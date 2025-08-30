@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import GitHubgrid from "./GitHubGrid";
+import GitHubGrid from "./GitHubGrid";
 
 
 export default function HeroSection() {
@@ -21,7 +21,7 @@ export default function HeroSection() {
           />
         </div>
 
-       <GitHubgrid />
+       <GitHubGrid />
 
         <div className="flex gap-6 mb-4">
           <Link href="https://linkedin.com/in/lukas-kouril/" target="_blank">

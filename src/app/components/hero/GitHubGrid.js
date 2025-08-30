@@ -1,31 +1,45 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export default function ContributionGrid() {
-  const [days, setDays] = useState([]);
+export default function GitHubgrid() {
+  const [weeks, setWeeks] = useState([]);
 
   useEffect(() => {
-    fetch("https://github-contributions-api.deno.dev/lukaskourilcz.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setDays(data.contributions || []);
-      });
+    async function loadData() {
+      try {
+        const res = await fetch("/api/contributions");
+        const data = await res.json();
+        console.log("API response:", data);
+        setWeeks(data.contributions || []);
+      } catch (err) {
+        console.error("Failed to load contributions:", err);
+      }
+    }
+    loadData();
   }, []);
+
+  if (!weeks.length) {
+    return <p className="text-center text-gray-400">Loading contributions…</p>;
+  }
 
   return (
     <div className="mt-8">
       <h3 className="text-sm font-semibold mb-2 text-center">
-        My GitHub Contributions 📊
+        My GitHub garden 📊
       </h3>
 
-      <div className="grid grid-cols-53 gap-1 overflow-x-auto">
-        {days.map((day, i) => (
-          <div
-            key={i}
-            className="w-3 h-3 rounded-sm"
-            style={{ backgroundColor: day.color }}
-            title={`${day.count} contributions on ${day.date}`}
-          />
+      <div className="flex gap-1 overflow-x-auto mx-auto w-fit">
+        {weeks.map((week, i) => (
+          <div key={i} className="flex flex-col gap-1">
+            {week.map((day, j) => (
+              <div
+                key={j}
+                className="w-2 h-2 rounded-sm"
+                style={{ backgroundColor: day.color || "#ebedf0" }}
+                title={`${day.count} contributions on ${day.date}`}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </div>
