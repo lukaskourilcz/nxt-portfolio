@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section className="flex min-h-screen relative">
       <div className="absolute top-12 left-[62%] transform -translate-x-1/2 z-10 flex items-center">
-        <div className="relative z-20 rounded-full p-[4px] bg-white/30 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-80 lg:h-80">
+        <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-80 lg:h-80">
           <div className="rounded-full overflow-hidden w-full h-full">
             <Image
               src="/profile.png"
@@ -18,7 +18,7 @@ export default function HeroSection() {
             />
           </div>
         </div>
-        <div className="relative -ml-18 mb-10 z-10 rounded-3xl p-[4px] bg-white/20 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[800px] h-[200px]">
+        <div className="relative -ml-18 mb-10 z-10 rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[800px] h-[200px]">
           <div className="rounded-3xl overflow-hidden w-full h-full">
             <Image
               src="/profile2.png"
