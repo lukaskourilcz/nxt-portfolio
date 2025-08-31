@@ -62,14 +62,14 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="bg-black text-white w-2/5 flex flex-col relative">
+      <div className="bg-gradient-to-tl from-black to-gray-900 text-white w-2/5 flex flex-col relative">
         <div className="mt-[22rem] w-full px-8 flex flex-col gap-10 items-center">
           <Skills />
           <GitHubGrid />
         </div>
       </div>
 
-      <div className="bg-gray-100 w-3/5 flex flex-col justify-center px-16 relative">
+      <div className="bg-gradient-to-bl from-white to-gray-100 w-3/5 flex flex-col justify-center px-16 relative">
         <div className="absolute top-6 right-6 flex gap-4 p-2">
           <Link href="https://linkedin.com/in/lukas-kouril/" target="_blank">
             <Image
