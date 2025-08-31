@@ -120,7 +120,7 @@ export default function HeroSection() {
             Download CV
           </a>
           <Link
-            href="#contact"
+            href="#experience"
             className="flex items-center gap-2 bg-black border-2 text-yellow-100/90 px-8 py-2 rounded-full hover:bg-gray-900 transition group"
           >
             Read more
