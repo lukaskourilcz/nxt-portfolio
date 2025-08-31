@@ -24,8 +24,8 @@ export default function GitHubgrid() {
 
   return (
     <div className="mt-8">
-      <h3 className="text-sm font-semibold mb-2 text-center">
-        My GitHub garden 📊
+      <h3 className="text-sm font-semibold mb-2 text-center opacity-50">
+        My GitHub garden
       </h3>
 
       <div className="flex gap-1 overflow-x-auto mx-auto w-fit">
@@ -34,7 +34,7 @@ export default function GitHubgrid() {
             {week.map((day, j) => (
               <div
                 key={j}
-                className="w-2 h-2 rounded-sm"
+                className="w-2 h-2 opacity-80"
                 style={{ backgroundColor: day.color || "#ebedf0" }}
                 title={`${day.count} contributions on ${day.date}`}
               />

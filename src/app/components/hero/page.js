@@ -6,12 +6,12 @@ import GitHubGrid from "./GitHubGrid";
 export default function HeroSection() {
   return (
     <section className="flex min-h-screen">
-      <div className="bg-black text-white w-1/3 flex flex-col justify-between items-center py-10">
+      <div className="bg-black text-white w-2/3 flex flex-col justify-between items-center py-10">
         <div className="self-start ml-8 text-2xl font-signature">
           Lukas Kouril
         </div>
 
-        <div className="rounded-full overflow-hidden shadow-lg border-4 border-white w-96 h-96">
+        <div className="rounded-full overflow-hidden shadow-lg border-4 border-white w-2/3">
           <Image
             src="/profile.png"
             alt="Profile"
