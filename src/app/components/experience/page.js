@@ -84,16 +84,16 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="bg-gradient-to-bl from-white to-yellow-600/10 py-20 px-6 lg:px-20"
+      className="bg-gradient-to-bl from-white to-yellow-600/10 py-16 px-6 lg:px-20"
     >
-      <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
+      <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">
         Experience
       </h2>
 
       <div className="relative">
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full rounded"></div>
 
-        <div className="grid md:grid-cols-2 gap-12 relative z-10">
+        <div className="grid md:grid-cols-2 gap-6 relative z-10">
           {experiences.map((exp, i) => (
             <div
               key={i}
