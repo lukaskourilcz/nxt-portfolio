@@ -118,14 +118,14 @@ export default function ExperienceSection() {
                 {exp.period} • {exp.location}
               </p>
 
-              <ul className="mt-4 space-y-2 text-gray-700">
-                {exp.responsibilities.map((res, j) => (
-                  <li key={j} className="flex items-start gap-2 text-sm">
-                    <span className="text-black font-bold" >›</span>
-                    <span>{res}</span>
-                  </li>
-                ))}
-              </ul>
+<ul className="mt-4 space-y-2 text-gray-700">
+  {exp.responsibilities.map((res, j) => (
+    <li key={j} className="flex items-start gap-2 text-xs">
+      <span className="text-black font-bold">›</span>
+      <span>{res}</span>
+    </li>
+  ))}
+</ul>
             </div>
           ))}
         </div>
