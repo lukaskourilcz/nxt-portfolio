@@ -1,27 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
 import GitHubGrid from "./GitHubGrid";
-
+import Skills from "./Skills";
 
 export default function HeroSection() {
   return (
     <section className="flex min-h-screen">
-      <div className="bg-black text-white w-2/3 flex flex-col justify-between items-center py-10">
+      <div className="bg-black text-white w-1/2 flex flex-col justify-between items-center py-10">
         <div className="self-start ml-8 text-2xl font-signature">
           Lukas Kouril
         </div>
 
-        <div className="rounded-full overflow-hidden shadow-lg border-4 border-white w-2/3">
+        <div className="rounded-full overflow-hidden shadow-lg border-4 border-white w-80 h-80">
           <Image
             src="/profile.png"
             alt="Profile"
-            width={800}
-            height={800}
+            width={600}
+            height={600}
             className="object-cover"
           />
         </div>
 
-       <GitHubGrid />
+        <Skills />
+        <GitHubGrid />
 
         <div className="flex gap-6 mb-4">
           <Link href="https://linkedin.com/in/lukas-kouril/" target="_blank">
