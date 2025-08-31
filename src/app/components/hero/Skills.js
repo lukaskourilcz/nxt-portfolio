@@ -59,7 +59,7 @@ export default function Skills() {
         ))}
       </div>
 
-      <div className="relative flex items-center justify-center mb-2 w-full">
+      <div className="relative flex items-center justify-center w-full">
         <button
           onClick={handlePrev}
           disabled={index === 0}

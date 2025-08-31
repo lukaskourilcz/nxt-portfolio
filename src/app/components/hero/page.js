@@ -21,7 +21,7 @@ export default function HeroSection() {
           />
         </div>
 
-  <div className="w-full px-8 mt-8 flex flex-col gap-10 items-center">
+  <div className="w-full px-8 flex flex-col gap-10 items-center">
     <Skills />
     <GitHubGrid />
   </div>
