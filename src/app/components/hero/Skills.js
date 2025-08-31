@@ -71,10 +71,10 @@ export default function Skills() {
         <button
           onClick={handlePrev}
           disabled={index === 0}
-          className={`absolute -left-4 px-2 py-1 z-10 cursor-pointer transition-all duration-300 ${
+          className={`absolute -left-4 px-2 py-1 z-10 transition-all duration-300 ${
             index === 0
-              ? "text-gray-300 cursor-not-allowed opacity-50"
-              : "text-gray-400 hover:text-gray-200 opacity-100"
+              ? "text-gray-300 opacity-35"
+              : "text-gray-400 hover:text-gray-200 opacity-100 cursor-pointer"
           }`}
         >
           &lt;
@@ -105,10 +105,10 @@ export default function Skills() {
         <button
           onClick={handleNext}
           disabled={index >= midSkills.length - itemsPerPage}
-          className={`absolute -right-4 px-2 py-1 z-10 cursor-pointer transition-all duration-300 ${
+          className={`absolute -right-4 px-2 py-1 z-10 transition-all duration-300 ${
             index >= midSkills.length - itemsPerPage
-              ? "text-gray-300 cursor-not-allowed opacity-50"
-              : "text-gray-400 hover:text-gray-200 opacity-100"
+              ? "text-gray-300 opacity-35"
+              : "text-gray-400 hover:text-gray-200 opacity-100 cursor-pointer"
           }`}
         >
           &gt;

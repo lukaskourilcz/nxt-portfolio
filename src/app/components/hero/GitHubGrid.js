@@ -74,7 +74,7 @@ export default function GitHubGrid() {
             alt="GitHub"
             width={18}
             height={18}
-            className="opacity-80 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100"
+            className="opacity-80 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100 mr-0.5"
           />
   <span className="transition-opacity duration-300 group-hover:text-gray-300">
             GitHub contributions:
