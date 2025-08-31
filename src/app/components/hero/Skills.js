@@ -39,9 +39,7 @@ export default function Skills() {
   };
 
   const handleNext = () => {
-    setIndex((prev) =>
-      (prev + 1) % midSkills.length
-    );
+    setIndex((prev) => (prev + 1) % midSkills.length);
   };
 
   const visibleSkills = [];
@@ -53,7 +51,7 @@ export default function Skills() {
     <div className="mt-10 px-6 text-center">
       <div className="flex flex-wrap justify-center gap-7 mb-6">
         {bigSkills.map((skill, i) => (
-          <div key={i} className="flex flex-col items-center">
+          <div key={i} className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity">
             <i className={`${skill.icon} text-4xl`}></i>
             <span className="text-[0.8rem] mt-1 text-gray-500">
               {skill.name}
@@ -62,28 +60,36 @@ export default function Skills() {
         ))}
       </div>
 
-      <div className="relative flex items-center justify-center mb-6">
+      <div className="relative flex items-center justify-center mb-6 w-full">
         <button
           onClick={handlePrev}
-          className="absolute left-0 bg-gray-200 text-black px-2 py-1 rounded-full hover:bg-gray-300"
+          className="absolute -left-6  text-gray-400 px-2 py-1 rounded-full hover:text-gray-200 z-10 cursor-pointer"
         >
           &lt;
         </button>
 
-        <div className="flex justify-center gap-5">
-          {visibleSkills.map((skill, i) => (
-            <div key={i} className="flex flex-col items-center">
-              <i className={`${skill.icon} text-2xl`}></i>
-              <span className="text-[0.6rem] text-gray-500 mt-1">
-                {skill.name}
-              </span>
-            </div>
-          ))}
+        <div className="overflow-hidden w-[90%] max-w-3xl">
+          <div
+            className="flex gap-1 transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${index * (100 / itemsPerPage)}%)` }}
+          >
+            {midSkills.map((skill, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-[calc(100%/7)] flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
+              >
+                <i className={`${skill.icon} text-2xl`}></i>
+                <span className="text-[0.6rem] text-gray-500 mt-1">
+                  {skill.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <button
           onClick={handleNext}
-          className="absolute right-0 bg-gray-200 text-black px-2 py-1 rounded-full hover:bg-gray-300"
+          className="absolute -right-6  text-gray-400 px-2 py-1 rounded-full hover:text-gray-200 z-10 cursor-pointer"
         >
           &gt;
         </button>
