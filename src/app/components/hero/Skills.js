@@ -1,4 +1,5 @@
 "use client";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 export default function Skills() {
@@ -15,8 +16,8 @@ export default function Skills() {
   const midSkills = [
     { name: "Vue.js", icon: "devicon-vuejs-plain colored" },
     { name: "TailwindCSS", icon: "devicon-tailwindcss-original colored" },
-    { name: "MySQL", icon: "devicon-mysql-plain colored" },
     { name: "NPM", icon: "devicon-npm-original-wordmark colored" },
+    { name: "MySQL", icon: "devicon-mysql-original colored" },
     { name: "Prisma", icon: "devicon-prisma-original colored" },
     { name: "Docker", icon: "devicon-docker-plain colored" },
     { name: "Jest", icon: "devicon-jest-plain colored" },
@@ -42,7 +43,7 @@ export default function Skills() {
 
   return (
     <div className="mt-10 text-center">
-      <h2 className="flex items-center gap-2 mb-4 text-gray-400">
+      <h2 className="flex items-center gap-2 mb-6 text-gray-400">
         <span
           role="img"
           aria-label="ninja"
@@ -74,11 +75,11 @@ export default function Skills() {
           disabled={index === 0}
           className={`absolute -left-4 px-2 py-1 z-10 transition-all duration-300 ${
             index === 0
-              ? "text-gray-300 opacity-35"
+              ? "text-gray-300 opacity-20"
               : "text-gray-400 hover:text-gray-200 opacity-100 cursor-pointer"
           }`}
         >
-          &lt;
+          <ChevronLeftIcon className="w-5 h-5"/>
         </button>
 
         <div className="overflow-hidden w-[90%] max-w-4xl">
@@ -108,11 +109,11 @@ export default function Skills() {
           disabled={index >= midSkills.length - itemsPerPage}
           className={`absolute -right-4 px-2 py-1 z-10 transition-all duration-300 ${
             index >= midSkills.length - itemsPerPage
-              ? "text-gray-300 opacity-35"
+              ? "text-gray-300 opacity-20"
               : "text-gray-400 hover:text-gray-200 opacity-100 cursor-pointer"
           }`}
         >
-          &gt;
+          <ChevronRightIcon className="w-5 h-5"/>
         </button>
       </div>
     </div>

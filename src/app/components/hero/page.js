@@ -90,7 +90,7 @@ export default function HeroSection() {
             />
           </Link>
         </div>
-        <div className="max-w-full ml-12 px-12 mt-60">
+        <div className="max-w-full ml-12 px-12 mt-65">
           <h3 className="text-gray-600 text-lg text-right">
             Frontend Engineer
           </h3>
