@@ -2,39 +2,38 @@ import Image from "next/image";
 import Link from "next/link";
 import GitHubGrid from "./GitHubGrid";
 import Skills from "./Skills";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
 export default function HeroSection() {
   return (
     <section className="flex min-h-screen relative">
-      <nav className="absolute top-20 left-20 flex flex-col gap-6 font-bold text-4xl text-gray-400 z-30">
-        <a
+      <nav className="absolute top-28 left-20 flex flex-col gap-6 font-bold text-5xl text-gray-400 z-30">
+        {/* <a
           href="#hero"
-          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-white"
+          className="group flex text-[#2ea44f] opacity-70 justify-start items-center gap-2 transition duration-300 hover:opacity-100"
         >
-          HERO
-          <ChevronDownIcon className="w-6 h-6 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
-        </a>
+          <span><ChevronRightIcon className="w-6 h-6 relative"/></span>HERO
+        </a> */}
         <a
           href="#experience"
-          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-white"
+          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-[#2ea44f]"
         >
           EXPERIENCE
-          <ChevronDownIcon className="w-6 h-6 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
+          <ChevronDownIcon className="w-8 h-8 relative top-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
         </a>
         <a
           href="#projects"
-          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-white"
+          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-[#2ea44f]"
         >
           PROJECTS
-          <ChevronDownIcon className="w-6 h-6 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
+          <ChevronDownIcon className="w-8 h-8 relative top-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
         </a>
         <a
           href="#contact"
-          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-white"
+          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-[#2ea44f]"
         >
           CONTACT
-          <ChevronDownIcon className="w-6 h-6 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
+          <ChevronDownIcon className="w-8 h-8 relative top-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
         </a>
       </nav>
 
