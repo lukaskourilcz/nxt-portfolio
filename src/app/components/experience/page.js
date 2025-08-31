@@ -51,6 +51,9 @@ export default function ExperienceSection() {
         "Handled logistics inquiries for pharmaceutical products, ensuring safe transport worldwide",
         "Monitored shipment data, identifying and resolving anomalies with data-driven insights",
         "Conducted root-cause analysis on operational trends, delivering regulatory-compliant solutions",
+        "Analyzed existing quality processes and identified opportunities for AI-driven and automation improvements",
+        "Raised and approved investigation of nonconformities (deviations / complaints / audit observations)",
+        "Compiled quality documentation such as quality reports, statistical reviews, and audit plans",
       ],
     },
     {
@@ -68,7 +71,7 @@ export default function ExperienceSection() {
       company: "Kiwi.com",
       role: "Customer Relations Advisor",
       period: "Dec 2015 – Nov 2019",
-      location: "Brno, Czech republic",
+      location: "Brno, Czech Republic",
       responsibilities: [
         "Resolved customer complaints with optimized communication pipelines",
         "Maintained knowledge of aviation industry trends and CRM tools",
@@ -81,7 +84,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="bg-gradient-to-t from-gray-100 to-gray-200 py-20 px-6 lg:px-20"
+      className="bg-gradient-to-bl from-white to-yellow-600/10 py-20 px-6 lg:px-20"
     >
       <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">
         Experience
@@ -115,9 +118,12 @@ export default function ExperienceSection() {
                 {exp.period} • {exp.location}
               </p>
 
-              <ul className="list-disc list-inside mt-4 text-gray-700 space-y-1 text-sm">
+              <ul className="mt-4 space-y-2 text-gray-700">
                 {exp.responsibilities.map((res, j) => (
-                  <li key={j}>{res}</li>
+                  <li key={j} className="flex items-start gap-2 text-sm">
+                    <span className="text-black font-bold" >›</span>
+                    <span>{res}</span>
+                  </li>
                 ))}
               </ul>
             </div>
