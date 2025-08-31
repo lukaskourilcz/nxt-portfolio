@@ -62,7 +62,7 @@ export default function GitHubGrid() {
 
   return (
     <div className="mb-8">
-      <h2 className="flex items-center gap-2 mb-2 text-gray-300 opacity-90 group cursor-pointer">
+      <h2 className="flex items-center gap-2 mb-2 text-gray-400 group cursor-pointer">
         <a
           href="https://github.com/lukaskourilcz"
           target="_blank"
@@ -76,7 +76,7 @@ export default function GitHubGrid() {
             height={18}
             className="opacity-80 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100"
           />
-          <span className="opacity-80 transition-opacity duration-300 group-hover:opacity-100">
+  <span className="transition-opacity duration-300 group-hover:text-gray-300">
             GitHub contributions:
           </span>
         </a>

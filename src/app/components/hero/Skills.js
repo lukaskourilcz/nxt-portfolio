@@ -42,7 +42,7 @@ export default function Skills() {
 
   return (
     <div className="mt-10 text-center">
-      <h2 className="flex items-center gap-2 mb-4 text-gray-400 cursor-pointer group">
+<h2 className="flex items-center gap-2 mb-4 text-gray-400 group">
   <span
     role="img"
     aria-label="ninja"
@@ -50,7 +50,7 @@ export default function Skills() {
   >
     🥷
   </span>
-  <span className="opacity-80 transition-colors duration-300 group-hover:opacity-90">
+  <span className="transition-opacity duration-300 group-hover:text-gray-300">
     Tech stack:
   </span>
 </h2>
