@@ -62,24 +62,17 @@ export default function GitHubGrid() {
 
   return (
     <div className="mb-8">
-      <h2 className="flex items-center gap-2 mb-2 text-gray-400 group cursor-pointer">
-        <a
-          href="https://github.com/lukaskourilcz"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2"
-        >
-          <Image
-            src="/icons/github.svg"
-            alt="GitHub"
-            width={18}
-            height={18}
-            className="opacity-80 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100 mr-0.5"
-          />
-  <span className="transition-opacity duration-300 group-hover:text-gray-300">
-            GitHub contributions:
-          </span>
-        </a>
+      <h2 className="flex items-center gap-2 mb-2 text-gray-400">
+        <Image
+          src="/icons/github.svg"
+          alt="GitHub"
+          width={18}
+          height={18}
+          className="opacity-80 transition-transform duration-300 hover:scale-110 hover:opacity-100 mr-0.5"
+        />
+        <span className="opacity-90 transition-opacity duration-300 hover:opacity-100 hover:text-gray-300">
+          GitHub contributions:
+        </span>
       </h2>
 
       <div className="flex ml-8 gap-1 mx-auto w-fit mb-1 text-[0.6rem] text-gray-400">
