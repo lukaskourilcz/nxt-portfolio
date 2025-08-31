@@ -43,7 +43,7 @@ export default function Skills() {
   };
 
   return (
-    <div className="mt-10 px-6 text-center">
+    <div className="mt-10 text-center">
         <h2 className="flex mb-4 text-gray-400">Tech stack:</h2>
       <div className="flex flex-wrap justify-center gap-7 mb-8">
         {bigSkills.map((skill, i) => (

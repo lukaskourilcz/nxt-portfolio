@@ -21,8 +21,10 @@ export default function HeroSection() {
           />
         </div>
 
-        <Skills />
-        <GitHubGrid />
+  <div className="w-full px-8 mt-8 flex flex-col gap-10 items-center">
+    <Skills />
+    <GitHubGrid />
+  </div>
 
         <div className="flex gap-6 mb-4">
           <Link href="https://linkedin.com/in/lukas-kouril/" target="_blank">

@@ -23,7 +23,7 @@ export default function GitHubgrid() {
   }
 
   return (
-    <div className="mt-8">
+    <div className="my-6">
       <h2 className="flex mb-4 text-gray-400">GitHub contributions:</h2>
 
       <div className="flex gap-1 overflow-x-auto mx-auto w-fit">
