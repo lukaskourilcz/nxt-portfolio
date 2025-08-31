@@ -6,14 +6,24 @@ import Skills from "./Skills";
 export default function HeroSection() {
   return (
     <section className="flex min-h-screen relative">
-      <div className="absolute top-12 left-2/5 transform -translate-x-1/2 z-10">
-        <div className="rounded-full overflow-hidden shadow-lg border-3 border-white w-64 h-64 lg:w-80 lg:h-80">
+      <div className="absolute top-8 left-[62%] transform -translate-x-1/2 z-10 flex items-center">
+        <div className="relative z-20 rounded-full overflow-hidden border-4 border-white shadow-2xl shadow-black/40 w-64 h-64 lg:w-90 lg:h-90">
           <Image
             src="/profile.png"
             alt="Profile"
             width={600}
             height={600}
             className="object-cover"
+          />
+        </div>
+
+        <div className="relative -ml-18 mb-10 z-10 overflow-hidden rounded-3xl border-4 border-white shadow-xl shadow-black/40 w-[800px] h-[200px]">
+          <Image
+            src="/profile2.png"
+            alt="Profile background"
+            width={1048}
+            height={262}
+            className="object-center"
           />
         </div>
       </div>
