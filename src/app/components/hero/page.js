@@ -6,6 +6,33 @@ import Skills from "./Skills";
 export default function HeroSection() {
   return (
     <section className="flex min-h-screen relative">
+      <nav className="absolute top-20 left-20 flex flex-col gap-6 font-bold text-4xl text-gray-400 z-30">
+        <a
+          href="#hero"
+          className="transition duration-300 hover:text-white hover:translate-x-1"
+        >
+          HERO
+        </a>
+        <a
+          href="#experience"
+          className="transition duration-300 hover:text-white hover:translate-x-1"
+        >
+          EXPERIENCE
+        </a>
+        <a
+          href="#projects"
+          className="transition duration-300 hover:text-white hover:translate-x-1"
+        >
+          PROJECTS
+        </a>
+        <a
+          href="#contact"
+          className="transition duration-300 hover:text-white hover:translate-x-1"
+        >
+          CONTACT
+        </a>
+      </nav>
+
       <div className="absolute top-12 left-[62%] transform -translate-x-1/2 z-10 flex items-center">
         <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-80 lg:h-80">
           <div className="rounded-full overflow-hidden w-full h-full">
