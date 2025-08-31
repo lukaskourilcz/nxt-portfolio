@@ -69,7 +69,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-bl from-white to-gray-100 w-3/5 flex flex-col justify-center px-16 relative">
+      <div className="bg-gradient-to-br from-white to-yellow-600/15 w-3/5 flex flex-col justify-center px-16 relative">
         <div className="absolute top-6 right-6 flex gap-4 p-2">
           <Link href="https://linkedin.com/in/lukas-kouril/" target="_blank">
             <Image
@@ -115,15 +115,16 @@ export default function HeroSection() {
           <a
             href="/pdf/resume.pdf"
             download
-            className="bg-white border-2 border-black text-gray-700 px-6 py-2 rounded-full hover:bg-black hover:text-gray-100 transition"
+            className="bg-transparent border-2 border-black text-gray-700 px-8 py-2 rounded-full hover:bg-yellow-200/10 transition"
           >
             Download CV
           </a>
           <Link
             href="#contact"
-            className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-900 transition"
+            className="flex items-center gap-2 bg-black border-2 text-yellow-100/90 px-8 py-2 rounded-full hover:bg-gray-900 transition"
           >
-            Contact
+            Read more
+            <ChevronDownIcon className="w-4 h-4" />
           </Link>
         </div>
       </div>
