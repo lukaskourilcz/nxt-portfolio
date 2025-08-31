@@ -37,23 +37,24 @@ export default function Skills() {
   };
 
   const handleNext = () => {
-    setIndex((prev) =>
-      Math.min(prev + 1, midSkills.length - itemsPerPage)
-    );
+    setIndex((prev) => Math.min(prev + 1, midSkills.length - itemsPerPage));
   };
 
   return (
     <div className="mt-10 text-center">
-<h2 className="flex items-center gap-2 mb-4 text-gray-400">
+      <h2 className="flex items-center gap-2 mb-4 text-gray-400 cursor-pointer group">
   <span
     role="img"
     aria-label="ninja"
-    className="cursor-pointer transition-transform transform hover:scale-125 hover:rotate-12"
+    className="transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12"
   >
     🥷
   </span>
-  Tech stack:
-</h2>      <div className="flex flex-wrap justify-center gap-7 mb-8">
+  <span className="opacity-80 transition-colors duration-300 group-hover:opacity-90">
+    Tech stack:
+  </span>
+</h2>
+      <div className="flex flex-wrap justify-center gap-7 mb-8">
         {bigSkills.map((skill, i) => (
           <div
             key={i}
@@ -66,7 +67,6 @@ export default function Skills() {
           </div>
         ))}
       </div>
-
       <div className="relative flex items-center justify-center w-full">
         <button
           onClick={handlePrev}

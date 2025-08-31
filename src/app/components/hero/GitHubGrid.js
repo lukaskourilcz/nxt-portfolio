@@ -29,7 +29,9 @@ export default function GitHubGrid() {
   }, []);
 
   if (!weeks.length) {
-    return <p className="text-center text-gray-400">Loading contributions…</p>;
+    return (
+      <p className="text-center text-gray-400 my-10">Loading contributions…</p>
+    );
   }
 
   const monthLabels = [];
@@ -60,23 +62,24 @@ export default function GitHubGrid() {
 
   return (
     <div className="mb-8">
-      <h2 className="flex items-center gap-2 mb-2 text-gray-400">
+      <h2 className="flex items-center gap-2 mb-2 text-gray-300 opacity-90 group cursor-pointer">
         <a
           href="https://github.com/lukaskourilcz"
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-transform transform hover:scale-110 hover:text-white"
-          title="Visit my GitHub"
+          className="flex items-center gap-2"
         >
           <Image
             src="/icons/github.svg"
             alt="GitHub"
             width={18}
             height={18}
-            className="opacity-80 hover:opacity-100 transition-opacity"
+            className="opacity-80 transition-transform duration-300 group-hover:scale-110 group-hover:opacity-100"
           />
+          <span className="opacity-80 transition-opacity duration-300 group-hover:opacity-100">
+            GitHub contributions:
+          </span>
         </a>
-        GitHub contributions:
       </h2>
 
       <div className="flex ml-8 gap-1 mx-auto w-fit mb-1 text-[0.6rem] text-gray-400">
