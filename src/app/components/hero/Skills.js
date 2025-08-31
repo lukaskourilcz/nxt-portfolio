@@ -46,7 +46,7 @@ export default function Skills() {
         <span
           role="img"
           aria-label="ninja"
-          className="transition-transform duration-300 hover:scale-125 hover:rotate-12"
+          className="cursor-default transition-transform duration-300 hover:scale-130 hover:rotate-12"
         >
           🥷
         </span>

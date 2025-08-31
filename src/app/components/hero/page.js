@@ -37,8 +37,8 @@ export default function HeroSection() {
         </a>
       </nav>
 
-      <div className="absolute top-12 left-[62%] transform -translate-x-1/2 z-10 flex items-center">
-        <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-80 lg:h-80">
+      <div className="absolute top-12 left-[62.3%] transform -translate-x-1/2 z-10 flex items-center">
+        <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-90 lg:h-90">
           <div className="rounded-full overflow-hidden w-full h-full">
             <Image
               src="/profile.png"
@@ -49,7 +49,7 @@ export default function HeroSection() {
             />
           </div>
         </div>
-        <div className="relative -ml-18 mb-10 z-10 rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[800px] h-[200px]">
+        <div className="relative -ml-18 mb-14 z-10 rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[800px] h-[200px]">
           <div className="rounded-3xl overflow-hidden w-full h-full">
             <Image
               src="/profile2.png"
@@ -100,7 +100,7 @@ export default function HeroSection() {
             development. I started building my first websites at 13 and ever
             since, creating digital products has been a constant element in my
             day to day activities. Currently, the main focus is on JavaScript,
-            TypeScript, React and Next.js, but I'm always looking for
+            TypeScript, React and Next.js, but I&apos;m always looking for
             opportunities to evolve my skills and explore new advancements.
             Driven by a passion for learning and a growth-oriented mindset,
             software development has been the core part of my life. Beyond tech,
