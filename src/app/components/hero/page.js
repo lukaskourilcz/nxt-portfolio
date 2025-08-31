@@ -61,7 +61,7 @@ export default function HeroSection() {
         </div>
         <div className="max-w-full ml-12 px-12 mt-60">
           <h3 className="text-gray-600 text-lg text-right">
-            Frotnend Engineer
+            Frontend Engineer
           </h3>
           <h1 className="text-4xl font-bold mt-2 text-right">Lukas Kouril</h1>
           <p className="text-gray-700 mt-4 leading-relaxed text-right">
