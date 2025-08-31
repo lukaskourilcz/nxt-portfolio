@@ -44,8 +44,16 @@ export default function Skills() {
 
   return (
     <div className="mt-10 text-center">
-        <h2 className="flex mb-4 text-gray-400">Tech stack:</h2>
-      <div className="flex flex-wrap justify-center gap-7 mb-8">
+<h2 className="flex items-center gap-2 mb-4 text-gray-400">
+  <span
+    role="img"
+    aria-label="ninja"
+    className="cursor-pointer transition-transform transform hover:scale-125 hover:rotate-12"
+  >
+    🥷
+  </span>
+  Tech stack:
+</h2>      <div className="flex flex-wrap justify-center gap-7 mb-8">
         {bigSkills.map((skill, i) => (
           <div
             key={i}

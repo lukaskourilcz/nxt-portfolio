@@ -46,6 +46,17 @@ export default function GitHubGrid() {
     }
   });
 
+  function formatTooltip(day) {
+    const d = new Date(day.date);
+    const dayNum = d.getDate();
+    const month = d.toLocaleString("default", { month: "long" });
+    const year = d.getFullYear();
+
+    return `${day.contributionCount} contribution${
+      day.contributionCount !== 1 ? "s" : ""
+    } on ${dayNum} ${month} ${year}`;
+  }
+
   return (
     <div className="mb-8">
       <h2 className="mb-2 text-gray-400">GitHub contributions:</h2>
@@ -71,17 +82,26 @@ export default function GitHubGrid() {
         <div className="flex gap-1 overflow-x-auto mx-auto w-fit">
           {weeks.map((week, i) => (
             <div key={i} className="flex flex-col gap-1">
-              {week.map((day, j) => (
-                <div
-                  key={j}
-                  className="w-2 h-2"
-                  style={{
-                    backgroundColor: day.color,
-                    opacity: day.contributionCount === 0 ? 0.2 : 1,
-                  }}
-                  title={`${day.contributionCount} contributions on ${day.date}`}
-                />
-              ))}
+              {week.map((day, j) => {
+                const isEmpty = day.contributionCount === 0;
+                return (
+                  <div
+                    key={j}
+                    className={`w-2 h-2 transition-opacity duration-200`}
+                    style={{
+                      backgroundColor: day.color,
+                      opacity: isEmpty ? 0.2 : 0.8,
+                    }}
+                    title={formatTooltip(day)}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.opacity = isEmpty ? 0.4 : 1)
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.opacity = isEmpty ? 0.2 : 0.8)
+                    }
+                  />
+                );
+              })}
             </div>
           ))}
         </div>
