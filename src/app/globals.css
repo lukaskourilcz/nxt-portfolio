@@ -1,5 +1,2 @@
 @import "tailwindcss";
-
-body {
-  @apply bg-white text-gray-900;
-}
+@import "devicon/devicon.min.css";
