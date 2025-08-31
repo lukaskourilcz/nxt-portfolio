@@ -30,27 +30,26 @@ export default function Skills() {
   ];
 
   const [index, setIndex] = useState(0);
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
 
   const handlePrev = () => {
-    setIndex((prev) => (prev === 0 ? prev : prev - itemsPerPage));
+    setIndex((prev) => Math.max(prev - 1, 0));
   };
 
   const handleNext = () => {
     setIndex((prev) =>
-      prev + itemsPerPage >= midSkills.length ? prev : prev + itemsPerPage
+      Math.min(prev + 1, midSkills.length - itemsPerPage)
     );
   };
 
-  const visibleSkills = midSkills.slice(index, index + itemsPerPage);
-
   return (
     <div className="mt-10 px-6 text-center">
-      <div className="flex flex-wrap justify-center gap-7 mb-6">
+        <h2 className="flex mb-4 text-gray-400">Tech stack:</h2>
+      <div className="flex flex-wrap justify-center gap-7 mb-8">
         {bigSkills.map((skill, i) => (
           <div
             key={i}
-            className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
+            className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity fade-in"
           >
             <i className={`${skill.icon} text-4xl`}></i>
             <span className="text-[0.8rem] mt-1 text-gray-500">
@@ -60,11 +59,11 @@ export default function Skills() {
         ))}
       </div>
 
-      <div className="relative flex items-center justify-center mb-6 w-full">
+      <div className="relative flex items-center justify-center mb-2 w-full">
         <button
           onClick={handlePrev}
           disabled={index === 0}
-          className={`absolute -left-5 px-2 py-1 rounded-full z-10 cursor-pointer transition-all duration-300 ${
+          className={`absolute -left-4 px-2 py-1 z-10 cursor-pointer transition-all duration-300 ${
             index === 0
               ? "text-gray-300 cursor-not-allowed opacity-50"
               : "text-gray-400 hover:text-gray-200 opacity-100"
@@ -73,26 +72,32 @@ export default function Skills() {
           &lt;
         </button>
 
-        <div className="flex justify-center gap-5 w-[90%] max-w-3xl">
-          {visibleSkills.map((skill, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center transition-all duration-500 ease-in-out animate-fadeIn"
-            >
-              <i
-                className={`${skill.icon} text-2xl opacity-80 hover:opacity-100 transition-opacity duration-300`}
-              ></i>
-              <span className="text-[0.6rem] text-gray-500 mt-1">
-                {skill.name}
-              </span>
-            </div>
-          ))}
+        <div className="overflow-hidden w-[90%] max-w-4xl">
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${index * (100 / itemsPerPage)}%)`,
+              width: `${(midSkills.length / itemsPerPage) * 100}%`,
+            }}
+          >
+            {midSkills.map((skill, i) => (
+              <div
+                key={i}
+                className="flex-shrink-0 w-[calc(100%/11)] flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity fade-in"
+              >
+                <i className={`${skill.icon} text-2xl`}></i>
+                <span className="text-[0.6rem] text-gray-500 mt-1">
+                  {skill.name}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
         <button
           onClick={handleNext}
           disabled={index >= midSkills.length - itemsPerPage}
-          className={`absolute -right-4 px-2 py-1 rounded-full z-10 cursor-pointer transition-all duration-300 ${
+          className={`absolute -right-4 px-2 py-1 z-10 cursor-pointer transition-all duration-300 ${
             index >= midSkills.length - itemsPerPage
               ? "text-gray-300 cursor-not-allowed opacity-50"
               : "text-gray-400 hover:text-gray-200 opacity-100"

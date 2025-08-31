@@ -24,9 +24,7 @@ export default function GitHubgrid() {
 
   return (
     <div className="mt-8">
-      <h3 className="text-sm font-semibold mb-2 text-center opacity-50">
-        My GitHub garden
-      </h3>
+      <h2 className="flex mb-4 text-gray-400">GitHub contributions:</h2>
 
       <div className="flex gap-1 overflow-x-auto mx-auto w-fit">
         {weeks.map((week, i) => (
