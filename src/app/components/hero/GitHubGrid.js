@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function GitHubGrid() {
   const [weeks, setWeeks] = useState([]);
@@ -59,7 +60,24 @@ export default function GitHubGrid() {
 
   return (
     <div className="mb-8">
-      <h2 className="mb-2 text-gray-400">GitHub contributions:</h2>
+      <h2 className="flex items-center gap-2 mb-2 text-gray-400">
+        <a
+          href="https://github.com/lukaskourilcz"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="transition-transform transform hover:scale-110 hover:text-white"
+          title="Visit my GitHub"
+        >
+          <Image
+            src="/icons/github.svg"
+            alt="GitHub"
+            width={18}
+            height={18}
+            className="opacity-80 hover:opacity-100 transition-opacity"
+          />
+        </a>
+        GitHub contributions:
+      </h2>
 
       <div className="flex ml-8 gap-1 mx-auto w-fit mb-1 text-[0.6rem] text-gray-400">
         {weeks.map((_, i) => {
