@@ -6,7 +6,7 @@ export default function ExperienceSection() {
       company: "BeKind",
       role: "Frontend Engineer",
       period: "Nov 2024 – Jun 2025",
-      location: "Barcelona, Catalonia, Spain",
+      location: "Barcelona, Spain",
       responsibilities: [
         "Developed the site with Next.js to ensure high performance, modern standards, and strong SEO capabilities",
         "Contributed to the UX/UI design process, emphasizing intuitive navigation and user-centered design",
@@ -19,7 +19,7 @@ export default function ExperienceSection() {
       company: "Autodoprava Kopeček",
       role: "Frontend Engineer",
       period: "Jan 2025 – Feb 2025",
-      location: "Brno, South Moravia, Czechia",
+      location: "Brno, Czech Republic",
       responsibilities: [
         "Developed the website using Next.js, ensuring a modern, high-performance, and SEO-friendly platform",
         "Implemented UI components from ShadCN to create a sleek and responsive interface",
@@ -32,7 +32,7 @@ export default function ExperienceSection() {
       company: "Take a Break",
       role: "Full Stack Developer",
       period: "May 2024 – Nov 2024",
-      location: "Barcelona, Catalonia, Spain",
+      location: "Barcelona, Spain",
       responsibilities: [
         "Collaborated on the development of a full-stack B2B web application for scheduling meditation sessions using Next.js and TypeScript",
         "Built a modern, responsive UI with React, TailwindCSS, and ShadCN",
@@ -46,7 +46,7 @@ export default function ExperienceSection() {
       company: "Controlant",
       role: "Technical Customer Analyst",
       period: "Nov 2021 – Nov 2024",
-      location: "Reykjavík, Capital Region, Iceland",
+      location: "Reykjavík, Iceland",
       responsibilities: [
         "Handled logistics inquiries for pharmaceutical products, ensuring safe transport worldwide",
         "Monitored shipment data, identifying and resolving anomalies with data-driven insights",
@@ -68,7 +68,7 @@ export default function ExperienceSection() {
       company: "Kiwi.com",
       role: "Customer Relations Advisor",
       period: "Dec 2015 – Nov 2019",
-      location: "Brno, South Moravia, Czechia",
+      location: "Brno, Czech republic",
       responsibilities: [
         "Resolved customer complaints with optimized communication pipelines",
         "Maintained knowledge of aviation industry trends and CRM tools",
@@ -103,15 +103,19 @@ export default function ExperienceSection() {
                 left-[-1.5rem] md:left-auto md:right-[-1.5rem]"
               ></div>
 
-              <h3 className="text-2xl font-bold text-gray-900">
-                {exp.company}
-              </h3>
-              <p className="text-lg text-gray-700">{exp.role}</p>
+              <div className="flex justify-between items-start">
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {exp.company}
+                </h3>
+                <span className="text-lg font-semibold text-gray-700">
+                  {exp.role}
+                </span>
+              </div>
               <p className="text-sm text-gray-500">
                 {exp.period} • {exp.location}
               </p>
 
-              <ul className="list-disc list-inside mt-4 text-gray-700 space-y-1">
+              <ul className="list-disc list-inside mt-4 text-gray-700 space-y-1 text-sm">
                 {exp.responsibilities.map((res, j) => (
                   <li key={j}>{res}</li>
                 ))}
