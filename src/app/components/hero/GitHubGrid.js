@@ -104,7 +104,7 @@ export default function GitHubGrid() {
                     className={`w-2 h-2 transition-opacity duration-200`}
                     style={{
                       backgroundColor: day.color,
-                      opacity: isEmpty ? 0.2 : 0.8,
+                      opacity: isEmpty ? 0.15 : 0.8,
                     }}
                     title={formatTooltip(day)}
                     onMouseEnter={(e) =>
