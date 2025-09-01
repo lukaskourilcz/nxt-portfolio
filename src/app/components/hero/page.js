@@ -123,7 +123,7 @@ export default function HeroSection() {
             href="#experience"
             className="flex items-center gap-2 bg-black border-2 text-yellow-100/90 px-8 py-2 rounded-full hover:bg-gray-900 transition group"
           >
-            Read more
+            Lets talk!
             <ChevronDownIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
           </Link>
         </div>
