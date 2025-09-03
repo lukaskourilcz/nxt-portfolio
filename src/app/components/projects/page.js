@@ -11,7 +11,7 @@ export default function ProjectsSection() {
       tech: ["Next.js", "React", "Gemini AI"],
       vercel: "https://react-quiz-app.vercel.app",
       github: "https://github.com/lukaskourilcz/react-quiz-app",
-      image: "/projects/react-quiz.png",
+      image: "/wip.png",
     },
     {
       title: "AI Powered Vue Quiz App",
@@ -20,7 +20,7 @@ export default function ProjectsSection() {
       tech: ["Vue 3", "Vite", "Gemini AI"],
       vercel: "https://vue-quiz-app.vercel.app",
       github: "https://github.com/lukaskourilcz/vue-quiz-app",
-      image: "/projects/vue-quiz.png",
+      image: "/wip.png",
     },
     {
       title: "Dont Wanna Know",
@@ -29,7 +29,7 @@ export default function ProjectsSection() {
       tech: ["Next.js", "Node.js", "Gemini AI"],
       vercel: "https://dontwannaknow.vercel.app",
       github: "https://github.com/lukaskourilcz/dontwannaknow",
-      image: "/projects/dontwannaknow.png",
+      image: "/wip.png",
     },
   ];
 
@@ -48,12 +48,12 @@ export default function ProjectsSection() {
             key={i}
             className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-yellow-300/30 transition-transform duration-300 group overflow-hidden"
           >
-            <div className="relative w-full h-40 overflow-hidden rounded-t-2xl">
+            <div className="relative w-full h-40 overflow-hidden rounded-t-2xl mt-4">
               <Image
                 src={proj.image}
                 alt={proj.title}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
