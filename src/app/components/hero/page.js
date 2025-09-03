@@ -42,27 +42,30 @@ export default function HeroSection() {
         ))}
       </nav>
 
-      <div className="absolute top-12 left-[62.3%] transform -translate-x-1/2 z-10 flex items-center">
-        <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-90 lg:h-90">
+      <div className="absolute top-18 left-[62.3%] transform -translate-x-1/2 z-10 flex items-center">
+        <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80">
           <div className="rounded-full overflow-hidden w-full h-full">
             <Image
               src="/profile.png"
-              alt="Profile"
+              alt="Portrait of Lukas Kouril"
               width={600}
               height={600}
               priority
               className="object-cover"
+              sizes="(max-width: 640px) 160px, (max-width: 768px) 208px, (max-width: 1024px) 256px, 320px"
             />
           </div>
         </div>
-        <div className="relative -ml-18 mb-14 z-10 rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[800px] h-[200px]">
+
+        <div className="relative -ml-8 sm:-ml-12 md:-ml-18 mb-8 sm:mb-10 md:mb-14 z-10 rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[300px] sm:w-[500px] md:w-[700px] lg:w-[800px] h-[120px] sm:h-[160px] md:h-[200px]">
           <div className="rounded-3xl overflow-hidden w-full h-full">
             <Image
               src="/profile2.png"
-              alt="Profile background"
+              alt="Decorative profile background"
               width={1048}
               height={262}
               className="object-cover"
+              sizes="(max-width: 640px) 300px, (max-width: 768px) 500px, (max-width: 1024px) 700px, 800px"
             />
           </div>
         </div>
@@ -90,12 +93,14 @@ export default function HeroSection() {
           ))}
         </div>
 
-        <div className="max-w-full ml-12 px-12 mt-64">
-          <h3 className="text-gray-600 text-lg text-right">
+        <div className="max-w-full mt-12 md:mt-32 lg:mt-64 px-6 md:px-12 text-center md:text-right">
+          <h3 className="text-gray-600 text-base md:text-lg">
             Frontend Engineer
           </h3>
-          <h1 className="text-4xl font-bold mt-2 text-right">Lukas Kouril</h1>
-          <p className="text-gray-700 mt-4 leading-relaxed text-right">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
+            Lukas Kouril
+          </h1>
+          <p className="text-gray-700 mt-4 leading-relaxed text-sm sm:text-base">
             Software engineer with a strong passion for design and web
             development. I started building my first websites at 13 and ever
             since, creating digital products has been a constant element in my
