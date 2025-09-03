@@ -25,9 +25,9 @@ const socialLinks = [
 
 export default function HeroSection() {
   return (
-    <header className="flex min-h-screen relative">
+    <header className="flex flex-col lg:flex-row min-h-screen relative">
       <nav
-        className="absolute top-28 left-20 flex flex-col gap-6 font-bold text-5xl text-gray-400 z-30"
+        className="hidden lg:flex absolute top-28 left-20 flex-col gap-6 font-bold text-4xl xl:text-5xl text-gray-400 z-30"
         aria-label="Main navigation"
       >
         {navLinks.map(({ href, label }) => (
@@ -68,14 +68,14 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="bg-gradient-to-tl from-black to-gray-900 text-white w-2/5 flex flex-col relative">
+      <div className="w-full lg:w-2/5 bg-gradient-to-tl from-black to-gray-900 text-white flex flex-col relative">
         <div className="mt-[22rem] w-full px-8 flex flex-col gap-10 items-center">
           <Skills />
           <GitHubGrid />
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-white to-yellow-600/15 w-3/5 flex flex-col justify-center px-16 relative">
+      <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 flex flex-col justify-center px-6 md:px-12 lg:px-16 relative">
         <div className="absolute top-6 right-6 flex gap-4 p-2">
           {socialLinks.map(({ href, icon, alt }) => (
             <Link key={href} href={href} target="_blank" aria-label={alt}>
