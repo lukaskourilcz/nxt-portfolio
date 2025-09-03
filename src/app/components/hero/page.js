@@ -79,7 +79,7 @@ export default function HeroSection() {
       </div>
 
       <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 flex flex-col justify-center px-6 md:px-12 lg:px-16 relative">
-        <div className="absolute top-6 right-6 flex gap-4 p-2">
+        <div className="flex justify-center md:justify-end gap-4 p-2 static md:absolute md:top-6 md:right-6">
           {socialLinks.map(({ href, icon, alt }) => (
             <Link key={href} href={href} target="_blank" aria-label={alt}>
               <Image
@@ -87,7 +87,7 @@ export default function HeroSection() {
                 alt={alt}
                 width={32}
                 height={32}
-                className="opacity-70 hover:opacity-100 transition-opacity filter invert"
+                className="opacity-70 hover:opacity-100 transition-opacity filter invert sm:w-8 sm:h-8"
               />
             </Link>
           ))}
