@@ -42,8 +42,8 @@ export default function HeroSection() {
         ))}
       </nav>
 
-      <div className="absolute top-18 left-[62.3%] transform -translate-x-1/2 z-10 flex items-center">
-        <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-40 h-40 sm:w-52 sm:h-52 md:w-64 md:h-64 lg:w-80 lg:h-80">
+      <div className="hidden lg:flex absolute top-18 left-[62.3%] transform -translate-x-1/2 z-10 items-center">
+        <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-80 lg:h-80">
           <div className="rounded-full overflow-hidden w-full h-full">
             <Image
               src="/profile.png"
@@ -52,12 +52,11 @@ export default function HeroSection() {
               height={600}
               priority
               className="object-cover"
-              sizes="(max-width: 640px) 160px, (max-width: 768px) 208px, (max-width: 1024px) 256px, 320px"
             />
           </div>
         </div>
 
-        <div className="relative -ml-8 sm:-ml-12 md:-ml-18 mb-8 sm:mb-10 md:mb-14 z-10 rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[300px] sm:w-[500px] md:w-[700px] lg:w-[800px] h-[120px] sm:h-[160px] md:h-[200px]">
+        <div className="relative -ml-18 mb-14 z-10 rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[700px] lg:w-[800px] h-[200px]">
           <div className="rounded-3xl overflow-hidden w-full h-full">
             <Image
               src="/profile2.png"
@@ -65,7 +64,33 @@ export default function HeroSection() {
               width={1048}
               height={262}
               className="object-cover"
-              sizes="(max-width: 640px) 300px, (max-width: 768px) 500px, (max-width: 1024px) 700px, 800px"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-col items-center relative z-10 lg:hidden mt-12">
+        <div className="rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[90%] h-[140px] sm:h-[160px] md:h-[180px]">
+          <div className="rounded-3xl overflow-hidden w-full h-full">
+            <Image
+              src="/profile2.png"
+              alt="Decorative profile background"
+              width={1048}
+              height={262}
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        <div className="relative -mt-12 sm:-mt-16 md:-mt-20 z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56">
+          <div className="rounded-full overflow-hidden w-full h-full">
+            <Image
+              src="/profile.png"
+              alt="Portrait of Lukas Kouril"
+              width={600}
+              height={600}
+              priority
+              className="object-cover"
             />
           </div>
         </div>
