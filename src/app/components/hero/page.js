@@ -116,17 +116,17 @@ export default function HeroSection() {
           </p>
         </div>
 
-        <div className="flex justify-end gap-4 mt-6 px-12">
+        <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-4 mt-6 px-6 md:px-12">
           <a
             href="/pdf/resume.pdf"
             download
-            className="bg-transparent border-2 border-black text-gray-700 px-8 py-2 rounded-full hover:bg-yellow-200/10 transition"
+            className="bg-transparent border-2 border-black text-gray-700 px-6 sm:px-8 py-2 rounded-full hover:bg-yellow-200/10 transition text-center"
           >
             Download CV
           </a>
           <Link
             href="#contact"
-            className="flex items-center gap-2 bg-black border-2 text-yellow-100/90 px-8 py-2 rounded-full hover:bg-gray-900 transition group"
+            className="flex items-center justify-center gap-2 bg-black border-2 text-yellow-100/90 px-6 sm:px-8 py-2 rounded-full hover:bg-gray-900 transition group"
           >
             Let’s talk!
             <ChevronDownIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
