@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import GitHubGrid from "./GitHubGrid";
 import Skills from "./Skills";
-import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const navLinks = [
   { href: "#experience", label: "EXPERIENCE" },
@@ -50,6 +50,7 @@ export default function HeroSection() {
               alt="Profile"
               width={600}
               height={600}
+              priority
               className="object-cover"
             />
           </div>
