@@ -1,6 +1,6 @@
 "use client";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Skills() {
   const bigSkills = [
@@ -31,7 +31,23 @@ export default function Skills() {
   ];
 
   const [index, setIndex] = useState(0);
-  const itemsPerPage = 9;
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerPage(4);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(6);
+      } else {
+        setItemsPerPage(9);
+      }
+    };
+
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
 
   const handlePrev = () => {
     setIndex((prev) => Math.max(prev - 1, 0));
@@ -47,7 +63,7 @@ export default function Skills() {
         <span
           role="img"
           aria-label="ninja"
-          className="cursor-default transition-transform duration-300 hover:scale-130 hover:rotate-12"
+          className="cursor-default transition-transform duration-300 hover:scale-125 hover:rotate-12"
         >
           🥷
         </span>
@@ -56,19 +72,20 @@ export default function Skills() {
         </span>
       </h2>
 
-      <div className="flex flex-wrap justify-center gap-7 mb-8">
+      <div className="grid grid-cols-4 justify-items-center gap-6 sm:flex sm:flex-wrap sm:justify-center mb-8">
         {bigSkills.map((skill, i) => (
           <div
             key={i}
-            className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity fade-in"
+            className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
           >
-            <i className={`${skill.icon} text-4xl`}></i>
-            <span className="text-[0.8rem] mt-1 text-gray-500">
+            <i className={`${skill.icon} text-2xl sm:text-3xl md:text-4xl`}></i>
+            <span className="text-[0.65rem] sm:text-[0.75rem] md:text-[0.85rem] mt-1 text-gray-500">
               {skill.name}
             </span>
           </div>
         ))}
       </div>
+
       <div className="relative flex items-center justify-center w-full">
         <button
           onClick={handlePrev}
@@ -79,7 +96,7 @@ export default function Skills() {
               : "text-gray-400 hover:text-gray-200 opacity-100 cursor-pointer"
           }`}
         >
-          <ChevronLeftIcon className="w-5 h-5"/>
+          <ChevronLeftIcon className="w-5 h-5" />
         </button>
 
         <div className="overflow-hidden w-[90%] max-w-4xl">
@@ -93,10 +110,13 @@ export default function Skills() {
             {midSkills.map((skill, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 w-[calc(100%/11)] flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity fade-in"
+                style={{ width: `${100 / itemsPerPage}%` }}
+                className="flex-shrink-0 flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
               >
-                <i className={`${skill.icon} text-2xl`}></i>
-                <span className="text-[0.6rem] text-gray-500 mt-1">
+                <i
+                  className={`${skill.icon} text-base sm:text-lg md:text-xl lg:text-2xl`}
+                ></i>
+                <span className="mt-1 text-[0.55rem] sm:text-[0.65rem] md:text-[0.75rem] text-gray-500">
                   {skill.name}
                 </span>
               </div>
@@ -113,7 +133,7 @@ export default function Skills() {
               : "text-gray-400 hover:text-gray-200 opacity-100 cursor-pointer"
           }`}
         >
-          <ChevronRightIcon className="w-5 h-5"/>
+          <ChevronRightIcon className="w-5 h-5" />
         </button>
       </div>
     </div>
