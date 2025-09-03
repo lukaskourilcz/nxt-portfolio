@@ -29,7 +29,7 @@ export default function ContactSection() {
         <div className="flex items-center gap-3">
           <MapPinIcon className="w-6 h-6 text-[#2ea44f]" />
           <span>
-            Currently residing in <b>Prague, Czech Republic</b>.
+            Residing in <b>Prague, Czech Republic</b>.
           </span>
         </div>
       </div>
