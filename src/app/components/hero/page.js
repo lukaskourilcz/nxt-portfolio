@@ -4,37 +4,42 @@ import GitHubGrid from "./GitHubGrid";
 import Skills from "./Skills";
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
+const navLinks = [
+  { href: "#experience", label: "EXPERIENCE" },
+  { href: "#projects", label: "PROJECTS" },
+  { href: "#contact", label: "CONTACT" },
+];
+
+const socialLinks = [
+  {
+    href: "https://linkedin.com/in/lukas-kouril/",
+    icon: "/icons/linkedin.svg",
+    alt: "LinkedIn",
+  },
+  {
+    href: "https://github.com/lukaskourilcz",
+    icon: "/icons/github.svg",
+    alt: "GitHub",
+  },
+];
+
 export default function HeroSection() {
   return (
-    <section className="flex min-h-screen relative">
-      <nav className="absolute top-28 left-20 flex flex-col gap-6 font-bold text-5xl text-gray-400 z-30">
-        {/* <a
-          href="#hero"
-          className="group flex text-[#2ea44f] opacity-70 justify-start items-center gap-2 transition duration-300 hover:opacity-100"
-        >
-          <span><ChevronRightIcon className="w-6 h-6 relative"/></span>HERO
-        </a> */}
-        <a
-          href="#experience"
-          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-[#2ea44f]"
-        >
-          EXPERIENCE
-          <ChevronDownIcon className="w-8 h-8 relative top-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
-        </a>
-        <a
-          href="#projects"
-          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-[#2ea44f]"
-        >
-          PROJECTS
-          <ChevronDownIcon className="w-8 h-8 relative top-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
-        </a>
-        <a
-          href="#contact"
-          className="group flex justify-start items-center gap-2 transition duration-300 hover:text-[#2ea44f]"
-        >
-          CONTACT
-          <ChevronDownIcon className="w-8 h-8 relative top-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
-        </a>
+    <header className="flex min-h-screen relative">
+      <nav
+        className="absolute top-28 left-20 flex flex-col gap-6 font-bold text-5xl text-gray-400 z-30"
+        aria-label="Main navigation"
+      >
+        {navLinks.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className="group flex items-center gap-2 transition duration-300 hover:text-[#2ea44f]"
+          >
+            {label}
+            <ChevronDownIcon className="w-8 h-8 relative top-1 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-1" />
+          </Link>
+        ))}
       </nav>
 
       <div className="absolute top-12 left-[62.3%] transform -translate-x-1/2 z-10 flex items-center">
@@ -71,26 +76,20 @@ export default function HeroSection() {
 
       <div className="bg-gradient-to-br from-white to-yellow-600/15 w-3/5 flex flex-col justify-center px-16 relative">
         <div className="absolute top-6 right-6 flex gap-4 p-2">
-          <Link href="https://linkedin.com/in/lukas-kouril/" target="_blank">
-            <Image
-              src="/icons/linkedin.svg"
-              alt="LinkedIn"
-              width={32}
-              height={32}
-              className="opacity-70 hover:opacity-100 transition-opacity filter invert"
-            />
-          </Link>
-          <Link href="https://github.com/lukaskourilcz" target="_blank">
-            <Image
-              src="/icons/github.svg"
-              alt="GitHub"
-              width={32}
-              height={32}
-              className="opacity-70 hover:opacity-100 transition-opacity filter invert"
-            />
-          </Link>
+          {socialLinks.map(({ href, icon, alt }) => (
+            <Link key={href} href={href} target="_blank" aria-label={alt}>
+              <Image
+                src={icon}
+                alt={alt}
+                width={32}
+                height={32}
+                className="opacity-70 hover:opacity-100 transition-opacity filter invert"
+              />
+            </Link>
+          ))}
         </div>
-        <div className="max-w-full ml-12 px-12 mt-65">
+
+        <div className="max-w-full ml-12 px-12 mt-64">
           <h3 className="text-gray-600 text-lg text-right">
             Frontend Engineer
           </h3>
@@ -99,7 +98,7 @@ export default function HeroSection() {
             Software engineer with a strong passion for design and web
             development. I started building my first websites at 13 and ever
             since, creating digital products has been a constant element in my
-            day to day activities. Currently, the main focus is on JavaScript,
+            day-to-day activities. Currently, the main focus is on JavaScript,
             TypeScript, React and Next.js, but I&apos;m always looking for
             opportunities to evolve my skills and explore new advancements.
             Driven by a passion for learning and a growth-oriented mindset,
@@ -123,11 +122,11 @@ export default function HeroSection() {
             href="#contact"
             className="flex items-center gap-2 bg-black border-2 text-yellow-100/90 px-8 py-2 rounded-full hover:bg-gray-900 transition group"
           >
-            Lets talk!
+            Let’s talk!
             <ChevronDownIcon className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" />
           </Link>
         </div>
       </div>
-    </section>
+    </header>
   );
 }
