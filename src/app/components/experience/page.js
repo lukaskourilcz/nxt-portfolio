@@ -1,9 +1,11 @@
+import Image from "next/image";
 import React from "react";
 
 export default function ExperienceSection() {
   const experiences = [
     {
-      company: "BeKind",
+      company: "beKind",
+      logo: "/logos/bekind_logo.png",
       role: "Frontend Engineer",
       period: "Nov 2024 – Jun 2025",
       location: "Barcelona, Spain",
@@ -17,6 +19,7 @@ export default function ExperienceSection() {
     },
     {
       company: "Autodoprava Kopeček",
+      logo: "/logos/autodopravakopecek_logo.png",
       role: "Frontend Engineer",
       period: "Jan 2025 – Feb 2025",
       location: "Brno, Czech Republic",
@@ -30,6 +33,7 @@ export default function ExperienceSection() {
     },
     {
       company: "Take a Break",
+      logo: "/logos/takeabreak_logo.png",
       role: "Full Stack Developer",
       period: "May 2024 – Nov 2024",
       location: "Barcelona, Spain",
@@ -44,6 +48,7 @@ export default function ExperienceSection() {
     },
     {
       company: "Controlant",
+      logo: "/logos/controlant_logo.png",
       role: "Technical Customer Analyst",
       period: "Nov 2021 – Nov 2024",
       location: "Reykjavík, Iceland",
@@ -57,7 +62,8 @@ export default function ExperienceSection() {
       ],
     },
     {
-      company: "GVC Group",
+      company: "Entain Group",
+      logo: "/logos/entain_logo.png",
       role: "Customer Protection Expert",
       period: "Jan 2020 – Sep 2021",
       location: "Gibraltar",
@@ -69,6 +75,7 @@ export default function ExperienceSection() {
     },
     {
       company: "Kiwi.com",
+      logo: "/logos/kiwi_logo.png",
       role: "Customer Relations Advisor",
       period: "Dec 2015 – Nov 2019",
       location: "Brno, Czech Republic",
@@ -84,7 +91,7 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="bg-gradient-to-bl from-white to-gray-600/10 py-16 px-6 lg:px-20"
+      className="bg-gradient-to-bl from-white to-gray-200 py-16 px-6 lg:px-20"
     >
       <div className="w-full flex justify-center">
         <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-24">
@@ -92,8 +99,8 @@ export default function ExperienceSection() {
         </h2>
       </div>
 
-      <div className="relative -mt-30">
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 top-1/6 bottom-0 bg-gray-300 rounded"></div>
+      <div className="relative -mt-31">
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 top-1/6 bottom-5 bg-gray-300 rounded"></div>
 
         <div className="grid md:grid-cols-2 gap-6 relative z-10">
           {experiences.map((exp, i) => (
@@ -104,9 +111,17 @@ export default function ExperienceSection() {
               }`}
             >
               <div className="flex justify-between items-start">
-                <h3 className="text-2xl font-bold text-gray-900">
-                  {exp.company}
-                </h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <Image
+                    src={exp.logo}
+                    alt={`${exp.company} logo`}
+                    width={exp.company === "Autodoprava Kopeček" ? 56 : 32}
+                    height={exp.company === "Autodoprava Kopeček" ? 56 : 32}
+                  />
+                  <h3 className="text-2xl font-bold text-gray-900">
+                    {exp.company}
+                  </h3>
+                </div>
                 <span className="text-lg font-semibold text-gray-700">
                   {exp.role}
                 </span>
