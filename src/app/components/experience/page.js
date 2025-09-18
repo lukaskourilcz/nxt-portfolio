@@ -91,13 +91,19 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="bg-gradient-to-bl from-white to-gray-200 py-16 px-6 lg:px-20"
+      className="relative bg-gradient-to-bl from-white to-gray-200 py-16 px-6 lg:px-20 overflow-hidden"
     >
       <div className="w-full flex justify-center">
         <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-24">
           EXPERIENCE
         </h2>
       </div>
+      <div
+        className="absolute inset-0 
+  bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
+  bg-[length:60px_60px,30px_30px] 
+  bg-[position:0_0,15px_15px]"
+      ></div>
 
       <div className="relative -mt-31">
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 top-1/6 bottom-5 bg-gray-300 rounded"></div>
