@@ -84,11 +84,13 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="bg-gradient-to-bl from-white to-yellow-600/10 py-16 px-6 lg:px-20"
+      className="bg-gradient-to-bl from-white to-gray-600/10 py-16 px-6 lg:px-20"
     >
-      <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">
-        Experience
-      </h2>
+      <div className="w-full flex justify-center">
+        <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-30 text-center leading-none -mt-23">
+          EXPERIENCE
+        </h2>
+      </div>
 
       <div className="relative">
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full rounded"></div>
@@ -118,14 +120,14 @@ export default function ExperienceSection() {
                 {exp.period} • {exp.location}
               </p>
 
-<ul className="mt-4 space-y-2 text-gray-700">
-  {exp.responsibilities.map((res, j) => (
-    <li key={j} className="flex items-start gap-2 text-xs">
-      <span className="text-black font-bold">›</span>
-      <span>{res}</span>
-    </li>
-  ))}
-</ul>
+              <ul className="mt-4 space-y-2 text-gray-700">
+                {exp.responsibilities.map((res, j) => (
+                  <li key={j} className="flex items-start gap-2 text-xs">
+                    <span className="text-black font-bold">›</span>
+                    <span>{res}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
