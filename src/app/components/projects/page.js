@@ -36,30 +36,34 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="bg-gradient-to-br from-gray-900 to-black text-white py-20 px-6 lg:px-20"
+      className="relative bg-gradient-to-br from-gray-900 to-black text-white py-24 px-6 lg:px-20 overflow-hidden"
     >
-      <h2 className="text-4xl font-bold mb-12 text-center text-yellow-200">
-        Projects
-      </h2>
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.05)_1px,transparent_2px)] bg-[length:30px_30px]"></div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="w-full flex justify-center relative z-10 mb-16 -mt-33">
+        <h2 className="absolute text-[18rem] font-bold text-transparent [-webkit-text-stroke:10px_rgba(202,138,4)] text-center leading-none">
+          PROJECTS
+        </h2>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 relative z-10">
         {projects.map((proj, i) => (
           <div
             key={i}
-            className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-lg hover:shadow-yellow-300/30 transition-transform duration-300 group overflow-hidden"
+            className="group bg-white/5 mt-19 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg hover:shadow-yellow-400/10 transition-transform duration-300 hover:-translate-y-1 overflow-hidden"
           >
-            <div className="relative w-full h-40 overflow-hidden rounded-t-2xl mt-4">
+            <div className="relative w-full h-48 overflow-hidden rounded-t-2xl">
               <Image
                 src={proj.image}
                 alt={proj.title}
                 fill
-                className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
+                className="object-contain p-4 transition-transform duration-500 group-hover:scale-105"
               />
             </div>
 
             <div className="p-6 flex flex-col">
-              <div className="flex justify-between items-start mb-3">
-                <h3 className="text-xl font-semibold text-yellow-100">
+              <div className="flex justify-between items-start mb-4">
+                <h3 className="text-2xl font-bold text-yellow-100 group-hover:text-yellow-300 transition">
                   {proj.title}
                 </h3>
                 <div className="flex gap-3">
@@ -88,13 +92,15 @@ export default function ProjectsSection() {
                 </div>
               </div>
 
-              <p className="text-gray-300 mb-4">{proj.description}</p>
+              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
+                {proj.description}
+              </p>
 
               <div className="flex flex-wrap gap-2 mt-auto">
                 {proj.tech.map((t, j) => (
                   <span
                     key={j}
-                    className="px-3 py-1 text-xs font-semibold bg-yellow-200/20 text-yellow-100 rounded-full"
+                    className="px-3 py-1 text-xs font-medium border border-yellow-200/40 text-yellow-100 rounded-full"
                   >
                     {t}
                   </span>
