@@ -9,6 +9,8 @@ export default function ContactSection() {
       id="contact"
       className="relative bg-gradient-to-br from-white to-gray-100 text-gray-900 py-24 px-6 lg:px-20 overflow-hidden"
     >
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.2)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
+
       <h2
         className="absolute inset-0 flex items-center justify-center text-[14rem] font-bold text-transparent
                [-webkit-text-stroke:6px_rgba(0,0,0,0.08)] opacity-40 leading-none pointer-events-none"
