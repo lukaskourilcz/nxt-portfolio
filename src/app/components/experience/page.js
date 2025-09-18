@@ -87,27 +87,22 @@ export default function ExperienceSection() {
       className="bg-gradient-to-bl from-white to-gray-600/10 py-16 px-6 lg:px-20"
     >
       <div className="w-full flex justify-center">
-        <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-30 text-center leading-none -mt-23">
+        <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-24">
           EXPERIENCE
         </h2>
       </div>
 
-      <div className="relative">
-        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full rounded"></div>
+      <div className="relative -mt-30">
+        <div className="absolute left-1/2 transform -translate-x-1/2 w-1 top-1/6 bottom-0 bg-gray-300 rounded"></div>
 
         <div className="grid md:grid-cols-2 gap-6 relative z-10">
           {experiences.map((exp, i) => (
             <div
               key={i}
-              className={`relative bg-white/70 backdrop-blur-md rounded-2xl shadow-md p-6 hover:shadow-xl transition ${
+              className={`relative bg-white/70 backdrop-blur-md opacity-97 rounded-2xl shadow-md p-6 hover:shadow-xl transition ${
                 i % 2 === 0 ? "md:mr-8" : "md:ml-8"
               }`}
             >
-              <div
-                className="absolute top-6 w-4 h-4 bg-[#2ea44f] border-2 border-white rounded-full shadow-md
-                left-[-1.5rem] md:left-auto md:right-[-1.5rem]"
-              ></div>
-
               <div className="flex justify-between items-start">
                 <h3 className="text-2xl font-bold text-gray-900">
                   {exp.company}
