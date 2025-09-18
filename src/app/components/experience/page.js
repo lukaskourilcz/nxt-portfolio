@@ -94,7 +94,7 @@ export default function ExperienceSection() {
       className="relative bg-gradient-to-bl from-white to-gray-200 py-16 px-6 lg:px-20 overflow-hidden"
     >
       <div className="w-full flex justify-center">
-        <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-24">
+        <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-23">
           EXPERIENCE
         </h2>
       </div>
@@ -117,7 +117,7 @@ export default function ExperienceSection() {
               }`}
             >
               <div className="flex justify-between items-start">
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-2 mb-1">
                   <Image
                     src={exp.logo}
                     alt={`${exp.company} logo`}
