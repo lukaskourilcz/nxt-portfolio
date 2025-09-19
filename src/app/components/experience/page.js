@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
+import { motion } from "framer-motion";
 
 export default function ExperienceSection() {
   const experiences = [
@@ -91,62 +94,86 @@ export default function ExperienceSection() {
   return (
     <section
       id="experience"
-      className="relative bg-gradient-to-bl from-white to-gray-200 py-16 px-6 lg:px-20 overflow-hidden"
+      className="relative bg-gradient-to-bl from-white to-gray-200 py-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
-      <div className="w-full flex justify-center">
-        <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-23">
-          EXPERIENCE
-        </h2>
-      </div>
       <div
         className="absolute inset-0 
-  bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
-  bg-[length:60px_60px,30px_30px] 
-  bg-[position:0_0,15px_15px]"
+        bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
+        bg-[length:40px_40px,20px_20px] 
+        bg-[position:0_0,10px_10px]"
       ></div>
 
-      <div className="relative -mt-31">
+      <motion.div
+        initial={{ opacity: 0.7 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="w-full flex justify-center relative z-0 mb-10 sm:mb-16"
+      >
+        <div className="w-full flex justify-center">
+          <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-23">
+            EXPERIENCE
+          </h2>
+        </div>
+      </motion.div>
+
+      <div className="relative -mt-48">
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 top-1/6 bottom-5 bg-gray-300 rounded"></div>
 
-        <div className="grid md:grid-cols-2 gap-6 relative z-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          transition={{ staggerChildren: 0.2 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-2 gap-6 relative z-10 -mt-31"
+        >
           {experiences.map((exp, i) => (
-            <div
+            <motion.div
               key={i}
-              className={`relative bg-white/70 backdrop-blur-md opacity-97 rounded-2xl shadow-md p-6 hover:shadow-xl transition ${
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 0.97 },
+              }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className={`relative bg-white/70 backdrop-blur-md rounded-2xl shadow-md p-4 sm:p-6 hover:shadow-lg transition ${
                 i % 2 === 0 ? "md:mr-8" : "md:ml-8"
               }`}
             >
-              <div className="flex justify-between items-start">
-                <div className="flex items-center gap-2 mb-1">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
+                <div className="flex items-center gap-2">
                   <Image
                     src={exp.logo}
                     alt={`${exp.company} logo`}
-                    width={exp.company === "Autodoprava Kopeček" ? 56 : 32}
-                    height={exp.company === "Autodoprava Kopeček" ? 56 : 32}
+                    width={exp.company === "Autodoprava Kopeček" ? 48 : 32}
+                    height={exp.company === "Autodoprava Kopeček" ? 48 : 32}
                   />
-                  <h3 className="text-2xl font-bold text-gray-900">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">
                     {exp.company}
                   </h3>
                 </div>
-                <span className="text-lg font-semibold text-gray-700">
+                <span className="text-sm sm:text-base md:text-lg font-semibold text-gray-700">
                   {exp.role}
                 </span>
               </div>
-              <p className="text-sm text-gray-500">
+
+              <p className="text-xs sm:text-sm text-gray-500">
                 {exp.period} • {exp.location}
               </p>
 
-              <ul className="mt-4 space-y-2 text-gray-700">
+              <ul className="mt-3 sm:mt-4 space-y-2 text-gray-700">
                 {exp.responsibilities.map((res, j) => (
-                  <li key={j} className="flex items-start gap-2 text-xs">
+                  <li
+                    key={j}
+                    className="flex items-start gap-2 text-xs sm:text-sm"
+                  >
                     <span className="text-black font-bold">›</span>
                     <span>{res}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

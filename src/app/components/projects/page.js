@@ -39,34 +39,24 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative bg-gradient-to-br from-gray-900 to-black text-white py-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
+      className="relative min-h-screen bg-gradient-to-br from-gray-900 to-black text-white py-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.05)_1px,transparent_2px)] bg-[length:24px_24px] sm:bg-[length:30px_30px]"></div>
-
-      <motion.h2
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.15 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true }}
-        className="hidden sm:flex absolute inset-0 items-center justify-center text-[4rem] sm:text-[8rem] md:text-[12rem] lg:text-[18rem] font-bold text-transparent 
-                  [-webkit-text-stroke:4px_rgba(202,138,4,0.5)] md:[-webkit-text-stroke:8px_rgba(202,138,4,0.5)] leading-none pointer-events-none text-center"
-      >
-        PROJECTS
-      </motion.h2>
+      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.05)_1px,transparent_2px)] bg-[length:20px_20px] sm:bg-[length:30px_30px]"></div>
 
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="relative z-10 text-center mb-10 sm:mb-16"
+        className="w-full flex justify-center relative z-10 -mt-25 mb-16 sm:mb-16"
       >
-        <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-yellow-300">
-          My Projects
+        <h2
+          className="absolute text-[4rem] sm:text-[8rem] md:text-[12rem] lg:text-[18rem] font-bold text-transparent 
+      [-webkit-text-stroke:14px_rgba(202,138,4)] sm:[-webkit-text-stroke:6px_rgba(202,138,4)] 
+      text-center leading-none"
+        >
+          PROJECTS
         </h2>
-        <p className="text-gray-400 mt-2 sm:mt-3 max-w-xl mx-auto text-sm sm:text-base md:text-lg">
-          Some of the apps and experiments I’ve been working on.
-        </p>
       </motion.div>
 
       <motion.div
@@ -74,7 +64,7 @@ export default function ProjectsSection() {
         whileInView="visible"
         transition={{ staggerChildren: 0.2 }}
         viewport={{ once: true }}
-        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 relative z-10"
+        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 relative z-10"
       >
         {projects.map((proj, i) => (
           <motion.div
@@ -84,7 +74,7 @@ export default function ProjectsSection() {
               visible: { opacity: 1 },
             }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="group bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg hover:shadow-yellow-400/10 transition-transform duration-300 hover:-translate-y-1 overflow-hidden"
+            className="group bg-white/5 mt-10 sm:mt-12 lg:mt-19 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg hover:shadow-yellow-400/10 transition-transform duration-300 hover:-translate-y-1 overflow-hidden"
           >
             <div className="relative w-full h-40 sm:h-48 overflow-hidden rounded-t-2xl">
               <Image
@@ -96,10 +86,25 @@ export default function ProjectsSection() {
             </div>
 
             <div className="p-4 sm:p-6 flex flex-col">
-              <div className="flex justify-between items-start mb-3 sm:mb-4">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-100 group-hover:text-yellow-300 transition">
-                  {proj.title}
-                </h3>
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-100 group-hover:text-yellow-300 transition mb-3 sm:mb-4">
+                {proj.title}
+              </h3>
+
+              <p className="text-gray-400 mb-4 sm:mb-6 text-xs sm:text-sm leading-relaxed">
+                {proj.description}
+              </p>
+
+              <div className="flex justify-between items-end mt-auto">
+                <div className="flex flex-wrap gap-2">
+                  {proj.tech.map((t, j) => (
+                    <span
+                      key={j}
+                      className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium border border-yellow-200/40 text-yellow-100 rounded-full"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
                 <div className="flex gap-2 sm:gap-3">
                   {proj.vercel && (
                     <Link href={proj.vercel} target="_blank">
@@ -108,7 +113,7 @@ export default function ProjectsSection() {
                         alt="Vercel"
                         width={20}
                         height={20}
-                        className="sm:w-[22px] sm:h-[22px] opacity-70 hover:opacity-100 hover:scale-110 transition"
+                        className="sm:w-[22px] sm:h-[22px] opacity-80 hover:opacity-100 hover:scale-110 transition invert"
                       />
                     </Link>
                   )}
@@ -119,26 +124,11 @@ export default function ProjectsSection() {
                         alt="GitHub"
                         width={20}
                         height={20}
-                        className="sm:w-[22px] sm:h-[22px] opacity-70 hover:opacity-100 hover:scale-110 transition invert"
+                        className="sm:w-[22px] sm:h-[22px] opacity-80 hover:opacity-100 hover:scale-110 transition"
                       />
                     </Link>
                   )}
                 </div>
-              </div>
-
-              <p className="text-gray-400 mb-4 sm:mb-6 text-xs sm:text-sm leading-relaxed">
-                {proj.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {proj.tech.map((t, j) => (
-                  <span
-                    key={j}
-                    className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium border border-yellow-200/40 text-yellow-100 rounded-full"
-                  >
-                    {t}
-                  </span>
-                ))}
               </div>
             </div>
           </motion.div>
