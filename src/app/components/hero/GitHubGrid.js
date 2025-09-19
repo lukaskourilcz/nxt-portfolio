@@ -75,7 +75,7 @@ export default function GitHubGrid() {
   }
 
   return (
-    <div className="mb-8">
+    <div className="mb-10">
       <h2 className="flex items-center gap-2 mb-4 text-gray-400">
         <Image
           src="/icons/github.svg"

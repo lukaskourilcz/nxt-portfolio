@@ -72,7 +72,7 @@ export default function Skills() {
         </span>
       </h2>
 
-      <div className="grid grid-cols-4 justify-items-center gap-6 sm:flex sm:flex-wrap sm:justify-center mb-8">
+      <div className="grid grid-cols-4 justify-items-center gap-6 sm:flex sm:flex-wrap sm:justify-center mb-6">
         {bigSkills.map((skill, i) => (
           <div
             key={i}
