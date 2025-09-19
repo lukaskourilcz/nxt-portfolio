@@ -164,7 +164,7 @@ export default function ExperienceSection() {
                 {exp.responsibilities.map((res, j) => (
                   <li
                     key={j}
-                    className="flex items-start gap-2 text-xs sm:text-sm"
+                    className="flex items-start gap-2 text-xs"
                   >
                     <span className="text-black font-bold">›</span>
                     <span>{res}</span>

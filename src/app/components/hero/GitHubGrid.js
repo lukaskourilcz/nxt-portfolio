@@ -4,6 +4,21 @@ import Image from "next/image";
 
 export default function GitHubGrid() {
   const [weeks, setWeeks] = useState([]);
+  const [monthsBack, setMonthsBack] = useState(9);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 1024) {
+        setMonthsBack(5);
+      } else {
+        setMonthsBack(9);
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     async function loadData() {
@@ -11,22 +26,21 @@ export default function GitHubGrid() {
         const res = await fetch("/api/contributions");
         const data = await res.json();
 
-        const nineMonthsAgo = new Date();
-        nineMonthsAgo.setMonth(nineMonthsAgo.getMonth() - 9);
+        const cutoff = new Date();
+        cutoff.setMonth(cutoff.getMonth() - monthsBack);
 
         const filtered = data.contributions.map((week) =>
-          week.filter((day) => new Date(day.date) >= nineMonthsAgo)
+          week.filter((day) => new Date(day.date) >= cutoff)
         );
 
         const cleaned = filtered.filter((week) => week.length > 0);
-
         setWeeks(cleaned);
       } catch (err) {
         console.error("Failed to load contributions:", err);
       }
     }
     loadData();
-  }, []);
+  }, [monthsBack]);
 
   if (!weeks.length) {
     return (
@@ -101,17 +115,17 @@ export default function GitHubGrid() {
                 return (
                   <div
                     key={j}
-                    className={`w-2 h-2 transition-opacity duration-200`}
+                    className="w-2 h-2 transition-opacity duration-200"
                     style={{
                       backgroundColor: day.color,
                       opacity: isEmpty ? 0.15 : 0.8,
                     }}
                     title={formatTooltip(day)}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.opacity = isEmpty ? 0.4 : 1)
+                      (e.currentTarget.style.opacity = isEmpty ? "0.4" : "1")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.opacity = isEmpty ? 0.2 : 0.8)
+                      (e.currentTarget.style.opacity = isEmpty ? "0.2" : "0.8")
                     }
                   />
                 );
