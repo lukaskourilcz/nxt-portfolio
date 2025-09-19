@@ -27,7 +27,7 @@ export default function HeroSection() {
   return (
     <header className="flex flex-col lg:flex-row min-h-screen relative">
       <nav
-        className="hidden lg:flex absolute top-28 left-20 flex-col gap-6 font-bold text-4xl xl:text-5xl text-gray-400 z-30"
+        className="hidden lg:flex absolute top-22 left-16 flex-col gap-6 font-bold text-4xl xl:text-5xl text-gray-400 z-30"
         aria-label="Main navigation"
       >
         {navLinks.map(({ href, label }) => (
@@ -42,7 +42,7 @@ export default function HeroSection() {
         ))}
       </nav>
 
-      <div className="hidden lg:flex absolute top-18 left-[62.3%] transform -translate-x-1/2 z-10 items-center">
+      <div className="hidden lg:flex absolute top-14 left-[62.3%] transform -translate-x-1/2 z-10 items-center">
         <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-80 lg:h-80">
           <div className="rounded-full overflow-hidden w-full h-full">
             <Image
@@ -97,7 +97,7 @@ export default function HeroSection() {
       </div>
 
       <div className="w-full lg:w-2/5 bg-gradient-to-tl from-black to-gray-900 text-white flex flex-col relative">
-        <div className="mt-[22rem] w-full px-8 flex flex-col gap-10 items-center">
+        <div className="mt-[19rem] w-full px-8 flex flex-col gap-10 items-center mb-4">
           <Skills />
           <GitHubGrid />
         </div>
