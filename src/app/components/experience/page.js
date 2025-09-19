@@ -162,10 +162,7 @@ export default function ExperienceSection() {
 
               <ul className="mt-3 sm:mt-4 space-y-2 text-gray-700">
                 {exp.responsibilities.map((res, j) => (
-                  <li
-                    key={j}
-                    className="flex items-start gap-2 text-xs"
-                  >
+                  <li key={j} className="flex items-start gap-2 text-xs">
                     <span className="text-black font-bold">›</span>
                     <span>{res}</span>
                   </li>

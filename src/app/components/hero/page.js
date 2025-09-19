@@ -69,20 +69,22 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center relative z-10 lg:hidden mt-12">
-        <div className="rounded-3xl p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-xl shadow-black/40 backdrop-blur-md w-[90%] h-[140px] sm:h-[160px] md:h-[180px]">
-          <div className="rounded-3xl overflow-hidden w-full h-full">
-            <Image
-              src="/profile2.png"
-              alt="Decorative profile background"
-              width={1048}
-              height={262}
-              className="object-cover"
-            />
-          </div>
+      <div className="flex flex-col items-center relative z-20 lg:hidden">
+        <div className="w-full h-[140px] sm:h-[160px] md:h-[180px]">
+          <Image
+            src="/profile2.png"
+            alt="Decorative profile background"
+            width={1048}
+            height={262}
+            className="object-cover w-full h-full"
+          />
         </div>
 
-        <div className="relative -mt-12 sm:-mt-16 md:-mt-20 z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56">
+        <div
+          className="relative -mt-24 sm:-mt-32 md:-mt-40 z-30 rounded-full p-[4px] 
+          bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 
+          shadow-2xl shadow-black/40 backdrop-blur-md w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80"
+        >
           <div className="rounded-full overflow-hidden w-full h-full">
             <Image
               src="/profile.png"
@@ -94,10 +96,25 @@ export default function HeroSection() {
             />
           </div>
         </div>
+
+        <nav
+          className="flex gap-6 mt-6 text-gray-400 font-semibold text-lg"
+          aria-label="Mobile navigation"
+        >
+          {navLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className="transition duration-300 hover:text-yellow-400"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
       </div>
 
       <div className="w-full lg:w-2/5 bg-gradient-to-tl from-black to-gray-900 text-white flex flex-col relative">
-        <div className="mt-[19rem] w-full px-8 flex flex-col gap-10 items-center mb-4">
+        <div className="mt-8 lg:mt-[19rem] w-full px-8 flex flex-col gap-10 items-center mb-4">
           <Skills />
           <GitHubGrid />
         </div>
