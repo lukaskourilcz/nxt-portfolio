@@ -16,7 +16,7 @@ export default function ContactSection() {
 
       <motion.h2
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.4 }}
+        whileInView={{ opacity: 0.8 }}
         transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
         className="hidden sm:flex absolute inset-0 items-center justify-center text-[6rem] md:text-[10rem] lg:text-[14rem] font-bold text-transparent
