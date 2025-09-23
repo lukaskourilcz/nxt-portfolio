@@ -8,22 +8,29 @@ import { motion } from "framer-motion";
 export default function ProjectsSection() {
   const projects = [
     {
-      title: "AI Powered React Quiz App",
+      title: "Portfolio",
+      description:
+        "My personal portfolio showcasing projects and skills. Built with Next.js, TailwindCSS, and Framer Motion.",
+      tech: ["Next.js", "React", "TailwindCSS", "Framer Motion", "Vercel"],
+      github: "https://github.com/lukaskourilcz/portfolio",
+      image: "/projects/portfolio_projekt.png",
+    },
+    {
+      title: "Autobusy Hodonín",
+      description:
+        "Developed and deployed a modern Next.js website for a transport company with SEO and accessibility in mind.",
+      tech: ["Next.js", "ShadCN", "TailwindCSS", "SEO", "Vercel"],
+      github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
+      image: "/projects/autodopravakopecek_projekt.png",
+    },
+    {
+      title: "AI Powered Quiz App",
       description:
         "Quiz app built with Next.js and Gemini AI that generates random React-related questions and grades answers in real time.",
       tech: ["Next.js", "React", "Gemini AI", "TypeScript", "Vercel"],
       vercel: "https://react-quiz-app.vercel.app",
       github: "https://github.com/lukaskourilcz/react-quiz-app",
-      image: "/wip.png",
-    },
-    {
-      title: "AI Powered Vue Quiz App",
-      description:
-        "Vue 3 quiz app that tests frontend knowledge. Gemini AI evaluates your answers and provides hints.",
-      tech: ["Vue 3", "Vite", "Gemini AI", "TailwindCSS", "Netlify"],
-      vercel: "https://vue-quiz-app.vercel.app",
-      github: "https://github.com/lukaskourilcz/vue-quiz-app",
-      image: "/wip.png",
+      image: "/projects/aiquiz_projekt.png",
     },
     {
       title: "Dont Wanna Know",
@@ -35,27 +42,19 @@ export default function ProjectsSection() {
       image: "/wip.png",
     },
     {
-      title: "Autobusy Hodonín",
-      description:
-        "Developed and deployed a modern Next.js website for a transport company with SEO and accessibility in mind.",
-      tech: ["Next.js", "ShadCN", "TailwindCSS", "SEO", "Vercel"],
-      github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
-      image: "/wip.png",
-    },
-    {
       title: "beKind Web App",
       description:
         "Contributed to rebranding and building the company web app with a focus on UX/UI and performance.",
       tech: ["Next.js", "React", "TailwindCSS", "UX/UI", "Vercel"],
-      image: "/wip.png",
+      image: "/projects/bekind_projekt.png",
     },
     {
-      title: "Take a Break App",
+      title: "Take a Break Web App",
       description:
         "Full-stack B2B meditation scheduling app. Built with Next.js, TypeScript, Prisma, and PostgreSQL.",
       tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Vercel"],
       github: "https://github.com/lukaskourilcz/TakeABreak",
-      image: "/wip.png",
+      image: "/projects/takeabreak_projekt.png",
     },
     {
       title: "Habit Tracker",
@@ -63,15 +62,16 @@ export default function ProjectsSection() {
         "Web app to track personal habits and skills using React, TypeScript, and ShadCN components.",
       tech: ["React", "TypeScript", "ShadCN", "TailwindCSS", "Vercel"],
       github: "https://github.com/lukaskourilcz/habit-tracker",
-      image: "/wip.png",
+      image: "/projects/habittracker_projekt.png",
     },
     {
-      title: "Portfolio",
+      title: "Vue Quiz App",
       description:
-        "My personal portfolio showcasing projects and skills. Built with Next.js, TailwindCSS, and Framer Motion.",
-      tech: ["Next.js", "React", "TailwindCSS", "Framer Motion", "Vercel"],
-      github: "https://github.com/lukaskourilcz/portfolio",
-      image: "/wip.png",
+        "Vue 3 quiz app that tests frontend knowledge. Takes questions from JSON and evaluates score at the end.",
+      tech: ["Vue 3", "Vite", "Gemini AI", "TailwindCSS", "Netlify"],
+      vercel: "https://vue-quiz-app.vercel.app",
+      github: "https://github.com/lukaskourilcz/vue-quiz-app",
+      image: "/projects/vuequiz_projekt.png",
     },
   ];
 
@@ -110,14 +110,42 @@ export default function ProjectsSection() {
                 className="object-contain p-2"
               />
             </div>
-            <h3 className="text-md sm:text-lg font-bold text-yellow-100 mb-2">
-              {proj.title}
-            </h3>
+
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-md sm:text-lg font-bold text-yellow-100">
+                {proj.title}
+              </h3>
+              <div className="flex gap-2">
+                {proj.vercel && (
+                  <Link href={proj.vercel} target="_blank">
+                    <Image
+                      src="/icons/vercel.svg"
+                      alt="Vercel"
+                      width={18}
+                      height={18}
+                      className="invert opacity-80 hover:opacity-100 hover:scale-110 transition"
+                    />
+                  </Link>
+                )}
+                {proj.github && (
+                  <Link href={proj.github} target="_blank">
+                    <Image
+                      src="/icons/github.svg"
+                      alt="GitHub"
+                      width={18}
+                      height={18}
+                      className="opacity-80 hover:opacity-100 hover:scale-110 transition"
+                    />
+                  </Link>
+                )}
+              </div>
+            </div>
+
             <p className="text-gray-400 text-xs sm:text-sm leading-snug mb-3">
               {proj.description}
             </p>
 
-            <div className="flex flex-wrap gap-1.5 mb-8">
+            <div className="flex flex-wrap gap-1.5">
               {proj.tech.map((t, j) => (
                 <span
                   key={j}
@@ -126,31 +154,6 @@ export default function ProjectsSection() {
                   {t}
                 </span>
               ))}
-            </div>
-
-            <div className="absolute bottom-3 right-3 flex gap-2">
-              {proj.vercel && (
-                <Link href={proj.vercel} target="_blank">
-                  <Image
-                    src="/icons/vercel.svg"
-                    alt="Vercel"
-                    width={20}
-                    height={20}
-                    className="invert opacity-80 hover:opacity-100 hover:scale-110 transition"
-                  />
-                </Link>
-              )}
-              {proj.github && (
-                <Link href={proj.github} target="_blank">
-                  <Image
-                    src="/icons/github.svg"
-                    alt="GitHub"
-                    width={20}
-                    height={20}
-                    className="opacity-80 hover:opacity-100 hover:scale-110 transition"
-                  />
-                </Link>
-              )}
             </div>
           </motion.div>
         ))}
