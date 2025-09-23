@@ -80,20 +80,17 @@ export default function ProjectsSection() {
       id="projects"
       className="relative min-h-[70vh] bg-gradient-to-br from-gray-900 to-black text-white py-12 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
-      <motion.div
+      <motion.h2
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="w-full flex justify-center relative z-10 mb-12"
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="hidden sm:flex absolute inset-0 items-center justify-center text-[6rem] md:text-[10rem] lg:text-[16.5rem] font-bold text-transparent
+                 [-webkit-text-stroke:3px_rgba(202,138,4,0.5)] md:[-webkit-text-stroke:5px_rgba(202,138,4,0.5)] lg:[-webkit-text-stroke:6px_rgba(202,138,4,0.5)]
+                 leading-none pointer-events-none text-center"
       >
-        <h2
-          className="absolute text-[3rem] sm:text-[6rem] md:text-[9rem] lg:text-[12rem] font-bold text-transparent 
-          [-webkit-text-stroke:10px_rgba(202,138,4)] sm:[-webkit-text-stroke:6px_rgba(202,138,4)] 
-          text-center leading-none"
-        >
-          PROJECTS
-        </h2>
-      </motion.div>
+        PROJECTS
+      </motion.h2>
 
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {projects.map((proj, i) => (
