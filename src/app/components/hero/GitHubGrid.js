@@ -7,13 +7,15 @@ export default function GitHubGrid() {
   const [monthsBack, setMonthsBack] = useState(9);
 
   useEffect(() => {
-    function handleResize() {
-      if (window.innerWidth < 1024) {
-        setMonthsBack(5);
-      } else {
-        setMonthsBack(9);
-      }
-    }
+function handleResize() {
+  if (window.innerWidth < 800) {
+    setMonthsBack(5);
+  } else if (window.innerWidth < 1024) {
+    setMonthsBack(7);
+  } else {
+    setMonthsBack(9);
+  }
+}
 
     handleResize();
     window.addEventListener("resize", handleResize);
