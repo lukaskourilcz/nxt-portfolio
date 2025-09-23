@@ -68,7 +68,7 @@ export default function HeroSection() {
         </div>
       </div>
       <div className="flex flex-col items-center relative z-20 lg:hidden">
-        <div className="w-full h-[140px] sm:h-[160px] md:h-[180px]">
+        <div className="w-full h-[140px] sm:h-[140px] md:h-[180px]">
           <Image
             src="/profile2.png"
             alt="Decorative profile background"
@@ -79,7 +79,7 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="relative -mt-24 sm:-mt-32 md:-mt-40 z-30 rounded-full p-[4px] 
+          className="relative -mt-36 sm:-mt-22 md:-mt-45 z-30 rounded-full p-[4px] 
           bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 
           shadow-2xl shadow-black/40 backdrop-blur-md w-44 h-44 sm:w-60 sm:h-60 md:w-80 md:h-80"
         >
@@ -101,9 +101,11 @@ export default function HeroSection() {
           <GitHubGrid />
         </div>
       </div>
-     <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 
+      <div
+        className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 
   flex flex-col justify-center px-6 md:px-12 lg:px-16 relative 
-  min-h-[80vh] lg:min-h-screen">
+  min-h-[80vh] lg:min-h-screen"
+      >
         <div className="hidden lg:flex justify-center md:justify-end gap-4 p-2 absolute top-6 right-6">
           {socialLinks.map(({ href, icon, alt }) => (
             <Link key={href} href={href} target="_blank" aria-label={alt}>
