@@ -101,7 +101,9 @@ export default function HeroSection() {
           <GitHubGrid />
         </div>
       </div>
-      <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 flex flex-col justify-center px-6 md:px-12 lg:px-16 relative min-h-screen">
+     <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 
+  flex flex-col justify-center px-6 md:px-12 lg:px-16 relative 
+  min-h-[80vh] lg:min-h-screen">
         <div className="hidden lg:flex justify-center md:justify-end gap-4 p-2 absolute top-6 right-6">
           {socialLinks.map(({ href, icon, alt }) => (
             <Link key={href} href={href} target="_blank" aria-label={alt}>
@@ -116,7 +118,7 @@ export default function HeroSection() {
           ))}
         </div>
 
-        <div className="max-w-full px-6 md:px-12 text-center md:text-right">
+        <div className="max-w-full px-6 md:px-12 text-center md:text-right lg:mt-60">
           <h3 className="text-gray-600 text-base md:text-lg">
             Frontend Engineer
           </h3>
