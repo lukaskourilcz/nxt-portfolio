@@ -72,13 +72,13 @@ export default function Skills() {
         </span>
       </h2>
 
-      <div className="grid grid-cols-4 justify-items-center gap-6 sm:flex sm:flex-wrap sm:justify-center mb-6">
+      <div className="grid grid-cols-4 sm:grid-cols-7 justify-items-center gap-4 mb-8">
         {bigSkills.map((skill, i) => (
           <div
             key={i}
             className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
           >
-            <i className={`${skill.icon} text-2xl sm:text-3xl md:text-4xl`}></i>
+            <i className={`${skill.icon} text-xl sm:text-3xl md:text-4xl`}></i>
             <span className="text-[0.65rem] sm:text-[0.75rem] md:text-[0.85rem] mt-1 text-gray-500">
               {skill.name}
             </span>
@@ -86,7 +86,23 @@ export default function Skills() {
         ))}
       </div>
 
-      <div className="relative flex items-center justify-center w-full">
+      <div className="grid grid-cols-4 sm:grid-cols-6 justify-items-center gap-4 mb-8 lg:hidden">
+        {midSkills.map((skill, i) => (
+          <div
+            key={i}
+            className="flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
+          >
+            <i
+              className={`${skill.icon} text-base sm:text-lg md:text-xl`}
+            ></i>
+            <span className="mt-1 text-[0.55rem] sm:text-[0.65rem] md:text-[0.75rem] text-gray-500">
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <div className="relative hidden lg:flex items-center justify-center w-full">
         <button
           onClick={handlePrev}
           disabled={index === 0}
@@ -114,9 +130,9 @@ export default function Skills() {
                 className="flex-shrink-0 flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity"
               >
                 <i
-                  className={`${skill.icon} text-base sm:text-lg md:text-xl lg:text-2xl`}
+                  className={`${skill.icon} text-lg md:text-xl lg:text-2xl`}
                 ></i>
-                <span className="mt-1 text-[0.55rem] sm:text-[0.65rem] md:text-[0.75rem] text-gray-500">
+                <span className="mt-1 text-[0.65rem] md:text-[0.75rem] text-gray-500">
                   {skill.name}
                 </span>
               </div>
