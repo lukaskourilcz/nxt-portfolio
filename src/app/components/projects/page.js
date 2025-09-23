@@ -82,6 +82,11 @@ export default function ProjectsSection() {
       id="projects"
       className="relative min-h-[70vh] bg-gradient-to-br from-gray-900 to-black text-white py-12 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
+
+            <h2 className="relative z-10 block lg:hidden text-4xl sm:text-5xl md:text-6xl font-bold text-gray-400 text-center mb-10">
+        PROJECTS
+      </h2>
+
       <motion.h2
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

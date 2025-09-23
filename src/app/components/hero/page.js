@@ -27,7 +27,7 @@ export default function HeroSection() {
   return (
     <header className="flex flex-col lg:flex-row min-h-screen relative">
       <nav
-        className="hidden lg:flex absolute top-22 left-16 flex-col gap-6 font-bold text-4xl xl:text-5xl text-gray-400 z-30"
+        className="hidden lg:flex absolute top-22 left-16 flex-col gap-6 font-bold text-4xl text-gray-400 z-30"
         aria-label="Main navigation"
       >
         {navLinks.map(({ href, label }) => (
@@ -101,8 +101,8 @@ export default function HeroSection() {
           <GitHubGrid />
         </div>
       </div>
-      <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 flex flex-col justify-center px-6 md:px-12 lg:px-16 relative">
-        <div className="flex justify-center md:justify-end gap-4 p-2 static md:absolute md:top-6 md:right-6">
+      <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 flex flex-col justify-center px-6 md:px-12 lg:px-16 relative min-h-screen">
+        <div className="hidden lg:flex justify-center md:justify-end gap-4 p-2 absolute top-6 right-6">
           {socialLinks.map(({ href, icon, alt }) => (
             <Link key={href} href={href} target="_blank" aria-label={alt}>
               <Image
@@ -116,7 +116,7 @@ export default function HeroSection() {
           ))}
         </div>
 
-        <div className="max-w-full mt-12 md:mt-32 lg:mt-64 px-6 md:px-12 text-center md:text-right">
+        <div className="max-w-full px-6 md:px-12 text-center md:text-right">
           <h3 className="text-gray-600 text-base md:text-lg">
             Frontend Engineer
           </h3>

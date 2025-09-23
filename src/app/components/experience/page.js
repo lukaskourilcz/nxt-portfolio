@@ -96,11 +96,17 @@ export default function ExperienceSection() {
       id="experience"
       className="relative bg-gradient-to-bl from-white to-gray-200 py-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
+      <div className="relative z-10 block lg:hidden" data-no-motion>
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 text-center -mt-6">
+          EXPERIENCE
+        </h2>
+      </div>
+
       <div
         className="absolute inset-0 
-        bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
-        bg-[length:40px_40px,20px_20px] 
-        bg-[position:0_0,10px_10px]"
+  bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
+  bg-[length:40px_40px,20px_20px] 
+  bg-[position:0_0,10px_10px]"
       ></div>
 
       <motion.div
@@ -117,7 +123,7 @@ export default function ExperienceSection() {
         </div>
       </motion.div>
 
-      <div className="relative -mt-48">
+      <div className="relative lg:-mt-48 mt-38">
         <div className="absolute left-1/2 transform -translate-x-1/2 w-1 top-1/6 bottom-5 bg-gray-300 rounded"></div>
 
         <motion.div
