@@ -13,13 +13,15 @@ export default function ProjectsSection() {
         "My personal portfolio showcasing projects and skills. Built with Next.js, TailwindCSS, and Framer Motion.",
       tech: ["Next.js", "React", "TailwindCSS", "Framer Motion", "Vercel"],
       github: "https://github.com/lukaskourilcz/portfolio",
+      vercel: "https://lukaskouril.vercel.app/",
       image: "/projects/portfolio_projekt.png",
     },
     {
-      title: "Autobusy Hodonín",
+      title: "AutobusyHodonín.cz",
       description:
         "Developed and deployed a modern Next.js website for a transport company with SEO and accessibility in mind.",
       tech: ["Next.js", "ShadCN", "TailwindCSS", "SEO", "Vercel"],
+      vercel: "https://autobusyhodonin.cz",
       github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
       image: "/projects/autodopravakopecek_projekt.png",
     },
@@ -102,12 +104,12 @@ export default function ProjectsSection() {
             viewport={{ once: true }}
             className="group relative bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-md overflow-hidden p-4 hover:shadow-yellow-400/20 transition-transform hover:scale-[1.02]"
           >
-            <div className="relative w-full h-28 sm:h-32 mb-3">
+            <div className="relative w-full h-40 sm:h-48 md:h-40 lg:h-32 mb-3 rounded-4xl overflow-hidden">
               <Image
                 src={proj.image}
                 alt={proj.title}
                 fill
-                className="object-contain p-2"
+                className="object-contain p-1"
               />
             </div>
 
