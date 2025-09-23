@@ -108,7 +108,7 @@ export default function ExperienceSection() {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
         viewport={{ once: true }}
-        className="w-full flex justify-center relative z-0 mb-10 sm:mb-16"
+        className="hidden lg:flex w-full justify-center relative z-0 mb-10 sm:mb-16"
       >
         <div className="w-full flex justify-center">
           <h2 className="text-[15rem] font-bold text-transparent [-webkit-text-stroke:10px_black] opacity-90 text-center leading-none -mt-23">
