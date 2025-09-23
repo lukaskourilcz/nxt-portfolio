@@ -41,7 +41,6 @@ export default function HeroSection() {
           </Link>
         ))}
       </nav>
-
       <div className="hidden lg:flex absolute top-14 left-[62.3%] transform -translate-x-1/2 z-10 items-center">
         <div className="relative z-20 rounded-full p-[4px] bg-gradient-to-br from-white/30 to-gray-200/10 border border-white/30 shadow-2xl shadow-black/40 backdrop-blur-md w-64 h-64 lg:w-80 lg:h-80">
           <div className="rounded-full overflow-hidden w-full h-full">
@@ -68,7 +67,6 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
-
       <div className="flex flex-col items-center relative z-20 lg:hidden">
         <div className="w-full h-[140px] sm:h-[160px] md:h-[180px]">
           <Image
@@ -96,30 +94,13 @@ export default function HeroSection() {
             />
           </div>
         </div>
-
-        <nav
-          className="flex gap-6 mt-6 text-gray-400 font-semibold text-lg"
-          aria-label="Mobile navigation"
-        >
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="transition duration-300 hover:text-yellow-400"
-            >
-              {label}
-            </Link>
-          ))}
-        </nav>
       </div>
-
       <div className="w-full lg:w-2/5 bg-gradient-to-tl from-black to-gray-900 text-white flex flex-col relative">
         <div className="mt-8 lg:mt-[19rem] w-full px-8 flex flex-col gap-10 items-center mb-4">
           <Skills />
           <GitHubGrid />
         </div>
       </div>
-
       <div className="w-full lg:w-3/5 bg-gradient-to-br from-white to-yellow-600/15 flex flex-col justify-center px-6 md:px-12 lg:px-16 relative">
         <div className="flex justify-center md:justify-end gap-4 p-2 static md:absolute md:top-6 md:right-6">
           {socialLinks.map(({ href, icon, alt }) => (
