@@ -145,7 +145,7 @@ export default function HeroSection() {
 
         <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-4 mt-6 px-6 md:px-12">
           <a
-            href="/pdf/resume.pdf"
+            href="/pdf/cv_lukaskouril.pdf"
             download
             className="bg-transparent border-2 border-black text-gray-700 px-6 sm:px-8 py-2 rounded-full hover:bg-yellow-200/10 transition text-center"
           >
