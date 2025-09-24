@@ -30,7 +30,7 @@ export default function ProjectsSection() {
       description:
         "Quiz app built with Next.js and Gemini AI that generates random React-related questions and grades answers in real time.",
       tech: ["Next.js", "React", "Gemini AI", "TypeScript", "Vercel"],
-      vercel: "https://react-quiz-app.vercel.app",
+      vercel: "https://quiz-app-nxt.vercel.app/",
       github: "https://github.com/lukaskourilcz/react-quiz-app",
       image: "/projects/aiquiz_projekt.png",
     },
@@ -39,7 +39,6 @@ export default function ProjectsSection() {
       description:
         "Web app using Gemini AI to reveal life stats after answering personal questions. Built with Next.js and Node.js.",
       tech: ["Next.js", "Node.js", "Gemini AI", "Prisma", "Vercel"],
-      vercel: "https://dontwannaknow.vercel.app",
       github: "https://github.com/lukaskourilcz/dontwannaknow",
       image: "/wip.png",
     },
@@ -71,7 +70,7 @@ export default function ProjectsSection() {
       description:
         "Vue 3 quiz app that tests frontend knowledge. Takes questions from JSON and evaluates score at the end.",
       tech: ["Vue 3", "Vite", "Bootstrap", "Netlify"],
-      vercel: "https://vue-quiz-app.vercel.app",
+      vercel: "https://quiz-app-sable-eight-67.vercel.app/",
       github: "https://github.com/lukaskourilcz/vue-quiz-app",
       image: "/projects/vuequiz_projekt.png",
     },
