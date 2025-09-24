@@ -11,7 +11,7 @@ export default function ProjectsSection() {
       title: "Portfolio",
       description:
         "My personal portfolio showcasing projects and skills. Built with Next.js, TailwindCSS, and Framer Motion.",
-      tech: ["Next.js", "React", "TailwindCSS", "Framer Motion", "Vercel"],
+      tech: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
       github: "https://github.com/lukaskourilcz/portfolio",
       vercel: "https://lukaskouril.vercel.app/",
       image: "/projects/portfolio_projekt.png",
@@ -20,7 +20,7 @@ export default function ProjectsSection() {
       title: "AutobusyHodonín.cz",
       description:
         "Developed and deployed a modern Next.js website for a transport company with SEO and accessibility in mind.",
-      tech: ["Next.js", "ShadCN", "TailwindCSS", "SEO", "Vercel"],
+      tech: ["TypeScript", "Next.js", "React", "TailwindCSS", "SEO", "i18n"],
       vercel: "https://autobusyhodonin.cz",
       github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
       image: "/projects/autodopravakopecek_projekt.png",
@@ -47,14 +47,14 @@ export default function ProjectsSection() {
       title: "beKind Web App",
       description:
         "Contributed to rebranding and building the company web app with a focus on UX/UI and performance.",
-      tech: ["Next.js", "React", "TailwindCSS", "UX/UI", "Vercel"],
+      tech: ["TypeScript", "Next.js", "React", "Node.js", "Prisma", "PostgreSQL", "UX/UI"],
       image: "/projects/bekind_projekt.png",
     },
     {
       title: "Take a Break Web App",
       description:
         "Full-stack B2B meditation scheduling app. Built with Next.js, TypeScript, Prisma, and PostgreSQL.",
-      tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Vercel"],
+      tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL", "Digital Twin", "UX/UI", "Vercel"],
       github: "https://github.com/lukaskourilcz/TakeABreak",
       image: "/projects/takeabreak_projekt.png",
     },
@@ -62,7 +62,7 @@ export default function ProjectsSection() {
       title: "Habit Tracker",
       description:
         "Web app to track personal habits and skills using React, TypeScript, and ShadCN components.",
-      tech: ["React", "TypeScript", "ShadCN", "TailwindCSS", "Vercel"],
+      tech: ["TypeScript", "React", "Node.js", "ShadCN", "TailwindCSS", "Vercel"],
       github: "https://github.com/lukaskourilcz/habit-tracker",
       image: "/projects/habittracker_projekt.png",
     },
@@ -70,7 +70,7 @@ export default function ProjectsSection() {
       title: "Vue Quiz App",
       description:
         "Vue 3 quiz app that tests frontend knowledge. Takes questions from JSON and evaluates score at the end.",
-      tech: ["Vue 3", "Vite", "Gemini AI", "TailwindCSS", "Netlify"],
+      tech: ["Vue 3", "Vite", "Bootstrap", "Netlify"],
       vercel: "https://vue-quiz-app.vercel.app",
       github: "https://github.com/lukaskourilcz/vue-quiz-app",
       image: "/projects/vuequiz_projekt.png",
