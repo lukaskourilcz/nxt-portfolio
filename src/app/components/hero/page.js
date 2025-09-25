@@ -95,6 +95,11 @@ export default function HeroSection() {
           </div>
         </div>
       </div>
+      <div className="block lg:hidden mt-6 text-center px-4">
+        <h2 className="text-sm font-medium text-gray-500">
+          Responsiveness is still being worked on, but I am on it!
+        </h2>
+      </div>
       <div className="w-full lg:w-2/5 bg-gradient-to-tl from-black to-gray-900 text-white flex flex-col relative">
         <div className="mt-8 lg:mt-[19rem] w-full px-8 flex flex-col gap-10 items-center mb-4">
           <Skills />
