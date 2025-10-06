@@ -22,22 +22,24 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section className="w-full max-w-4xl mx-auto text-center py-16">
-      <h2 className="text-2xl font-bold mb-10 text-foreground">Tech Stack</h2>
+    <section className="w-full max-w-3xl mx-auto text-center py-8">
+      <h2 className="text-lg sm:text-xl font-semibold mb-6 text-foreground">
+        Tech Stack
+      </h2>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 sm:gap-6 justify-items-center">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-1 justify-items-center">
         {skills.map((skill, i) => (
           <motion.div
             key={i}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
+            title={skill.name}
           >
-            <Card className="border-muted shadow-sm hover:shadow-md transition-all w-20 h-20 sm:w-24 sm:h-24 flex flex-col items-center justify-center">
-              <CardContent className="flex flex-col items-center justify-center p-2">
-                <i className={`${skill.icon} text-xl sm:text-2xl mb-1`}></i>
-                <span className="text-[0.65rem] sm:text-xs text-muted-foreground">
-                  {skill.name}
-                </span>
+            <Card className="border-muted shadow-sm hover:shadow-md transition-all aspect-square flex items-center justify-center cursor-default p-0">
+              <CardContent className="flex items-center justify-center p-0 m-0 w-full h-full">
+                <i
+                  className={`${skill.icon} text-xl sm:text-2xl text-gray-400 transition-all duration-300 filter grayscale hover:grayscale-0 hover:text-inherit`}
+                />
               </CardContent>
             </Card>
           </motion.div>
