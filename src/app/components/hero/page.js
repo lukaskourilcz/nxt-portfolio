@@ -82,8 +82,8 @@ export default function AboutCard() {
         </div>
       </div>
 
-      <Card className="relative z-10 max-w-3xl border-muted shadow-sm mb-8 bg-card/60 backdrop-blur-sm">
-        <CardContent className="p-8 space-y-10">
+      <Card className="relative z-10 max-w-3xl border-muted shadow-sm mb-6 bg-card/60 backdrop-blur-sm">
+        <CardContent className="p-6 md:p-8 space-y-3">
           <div className="space-y-3">
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
               Passionate about building{" "}
@@ -106,7 +106,7 @@ export default function AboutCard() {
 
           <div className="h-px bg-muted/60 mx-auto w-3/4" />
 
-          <div className="flex flex-col items-center space-y-8">
+          <div className="flex flex-col items-center space-y-0">
             <div className="w-full max-w-lg">
               <Skills />
             </div>
