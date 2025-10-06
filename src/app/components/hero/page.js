@@ -1,16 +1,28 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Download, Linkedin, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Download, Linkedin, Github } from "lucide-react";
 import Skills from "./Skills";
-import GitHubGrid from "./GitHubGrid";
+import GitHubGrid, { getMonthsBack } from "./GitHubGrid";
 
-export default function HeroSection() {
+export default function AboutCard() {
+  const [monthsBack, setMonthsBack] = useState(12);
+
+  useEffect(() => {
+    function updateMonths() {
+      setMonthsBack(getMonthsBack(window.innerWidth));
+    }
+    updateMonths();
+    window.addEventListener("resize", updateMonths);
+    return () => window.removeEventListener("resize", updateMonths);
+  }, []);
+
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen px-6 md:px-12 lg:px-24 text-center bg-background text-foreground">
+    <section className="flex flex-col items-center text-center">
       <div className="relative w-40 h-40 md:w-48 md:h-48 mb-6">
         <Image
           src="/profile.png"
@@ -27,31 +39,34 @@ export default function HeroSection() {
       <p className="text-muted-foreground text-base md:text-lg mb-6">
         Frontend Engineer · TypeScript · React · Next.js
       </p>
-
-      <Card className="max-w-2xl border-muted shadow-sm mb-12 bg-card/60 backdrop-blur-sm">
+      <Card className="max-w-3xl border-muted shadow-sm mb-8 bg-card/60 backdrop-blur-sm">
         <CardContent className="p-8 space-y-10">
-          <p className="text-base md:text-lg leading-relaxed text-muted-foreground text-center">
-            Passionate about building{" "}
-            <span className="text-foreground font-medium">
-              clean, user-friendly web applications
-            </span>{" "}
-            and continuously improving through learning and experimentation.
-            Beyond code, I write and travel. Creativity and curiosity fuel
-            everything I do.
-          </p>
+          <div className="space-y-3">
+            <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+              Passionate about building{" "}
+              <span className="text-foreground font-medium">
+                clean, user-friendly web applications
+              </span>{" "}
+              and continuously improving through learning and experimentation.
+              Beyond code, I write and travel. Creativity and curiosity fuel
+              everything I do.
+            </p>
 
-          <p className="text-xs uppercase tracking-wide text-muted-foreground/70 mt-2">
-            Check out my current tech stack and GitHub contributions ↓
-          </p>
+            <p className="text-xs uppercase tracking-wide text-muted-foreground/70 mt-2">
+              Check out my tech stack and my past{" "}
+              <span className="font-semibold text-foreground">
+                {monthsBack}
+              </span>{" "}
+              months GitHub contributions ↓
+            </p>
+          </div>
 
-          <div className="h-px bg-muted mx-auto w-3/4" />
+          <div className="h-px bg-muted/60 mx-auto w-3/4" />
 
           <div className="flex flex-col items-center space-y-8">
             <div className="w-full max-w-lg">
               <Skills />
             </div>
-                      <div className="h-px bg-muted mx-auto w-3/4" />
-
             <div className="w-full max-w-lg">
               <GitHubGrid />
             </div>
@@ -59,7 +74,7 @@ export default function HeroSection() {
         </CardContent>
       </Card>
 
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 mt-2">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
         <Button asChild variant="outline" className="w-full sm:w-auto">
           <a href="/pdf/cv_lukaskouril.pdf" download>
             <Download className="w-4 h-4 mr-2" /> Download CV
@@ -70,7 +85,7 @@ export default function HeroSection() {
         </Button>
       </div>
 
-      <div className="flex gap-5">
+      <div className="flex gap-5 mb-2">
         <a
           href="https://linkedin.com/in/lukas-kouril/"
           target="_blank"

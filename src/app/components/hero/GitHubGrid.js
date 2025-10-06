@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-function getMonthsBack(width) {
+export function getMonthsBack(width) {
   if (width < 480) return 6;
   if (width < 640) return 7;
   if (width < 800) return 8;
