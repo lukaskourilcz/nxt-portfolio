@@ -31,7 +31,7 @@ export default function HeroSection() {
         <CardContent className="p-6 text-sm md:text-base leading-relaxed text-muted-foreground">
           Passionate about building clean, user-friendly web applications and
           continuously improving through learning and experimentation. Beyond
-          code, I write books and travel — creativity and curiosity fuel
+          code, I write and travel. Creativity and curiosity fuels
           everything I do.
         </CardContent>
         <CardContent className="p-6 text-sm md:text-base leading-relaxed text-muted-foreground">
