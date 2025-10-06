@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Download, Linkedin, Github } from "lucide-react";
 import Skills from "./Skills";
+import GitHubGrid from "./GitHubGrid";
 
 export default function HeroSection() {
   return (
@@ -27,15 +28,34 @@ export default function HeroSection() {
         Frontend Engineer · TypeScript · React · Next.js
       </p>
 
-      <Card className="max-w-xl border-muted shadow-sm mb-12">
-        <CardContent className="p-6 text-sm md:text-base leading-relaxed text-muted-foreground">
-          Passionate about building clean, user-friendly web applications and
-          continuously improving through learning and experimentation. Beyond
-          code, I write and travel. Creativity and curiosity fuels
-          everything I do.
-        </CardContent>
-        <CardContent className="p-6 text-sm md:text-base leading-relaxed text-muted-foreground">
-          <Skills />
+      <Card className="max-w-2xl border-muted shadow-sm mb-12 bg-card/60 backdrop-blur-sm">
+        <CardContent className="p-8 space-y-10">
+          <p className="text-base md:text-lg leading-relaxed text-muted-foreground text-center">
+            Passionate about building{" "}
+            <span className="text-foreground font-medium">
+              clean, user-friendly web applications
+            </span>{" "}
+            and continuously improving through learning and experimentation.
+            Beyond code, I write and travel. Creativity and curiosity fuel
+            everything I do.
+          </p>
+
+          <p className="text-xs uppercase tracking-wide text-muted-foreground/70 mt-2">
+            Check out my current tech stack and GitHub contributions ↓
+          </p>
+
+          <div className="h-px bg-muted mx-auto w-3/4" />
+
+          <div className="flex flex-col items-center space-y-8">
+            <div className="w-full max-w-lg">
+              <Skills />
+            </div>
+                      <div className="h-px bg-muted mx-auto w-3/4" />
+
+            <div className="w-full max-w-lg">
+              <GitHubGrid />
+            </div>
+          </div>
         </CardContent>
       </Card>
 

@@ -23,9 +23,6 @@ const skills = [
 export default function Skills() {
   return (
     <section className="w-full max-w-3xl mx-auto text-center py-4">
-      <h2 className="text-lg sm:text-xl font-semibold mb-6 text-foreground">
-        Tech Stack
-      </h2>
 
       <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-3">
         {skills.map((skill, i) => (
