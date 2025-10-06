@@ -22,24 +22,67 @@ export default function AboutCard() {
   }, []);
 
   return (
-    <section className="flex flex-col items-center text-center">
-      <div className="relative w-40 h-40 md:w-48 md:h-48 mb-6">
-        <Image
-          src="/profile.png"
-          alt="Portrait of Lukas Kouril"
-          fill
-          className="rounded-full object-cover border border-border shadow-md"
-          priority
-        />
+    <section className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 bg-gray-50 overflow-hidden">
+      <div
+        className="absolute inset-0 
+        bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
+        bg-[length:40px_40px,20px_20px] 
+        bg-[position:0_0,10px_10px]"
+      ></div>
+
+      <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 mb-12 z-10 mt-8">
+        <div className="relative w-40 h-40 md:w-52 md:h-52 mb-4 md:mb-0">
+          <Image
+            src="/profile.png"
+            alt="Portrait of Lukas Kouril"
+            fill
+            className="rounded-full object-cover border border-border shadow-lg"
+            priority
+          />
+        </div>
+
+        <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left space-y-4">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+            Lukas Kouril
+          </h1>
+          <p className="text-muted-foreground text-base md:text-lg">
+            Frontend Engineer · TypeScript · React · Next.js
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-6">
+            <Button asChild variant="outline" className="w-auto">
+              <a href="/pdf/cv_lukaskouril.pdf" download>
+                <Download className="w-4 h-4 mr-2" /> Download CV
+              </a>
+            </Button>
+
+            <Button asChild className="w-auto">
+              <Link href="#contact">Let’s talk</Link>
+            </Button>
+
+            <div className="flex gap-4 ml-1">
+              <a
+                href="https://linkedin.com/in/lukas-kouril/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition"
+              >
+                <Linkedin className="w-6 h-6" />
+              </a>
+              <a
+                href="https://github.com/lukaskourilcz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition"
+              >
+                <Github className="w-6 h-6" />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-tight">
-        Lukas Kouril
-      </h1>
-      <p className="text-muted-foreground text-base md:text-lg mb-6">
-        Frontend Engineer · TypeScript · React · Next.js
-      </p>
-      <Card className="max-w-3xl border-muted shadow-sm mb-8 bg-card/60 backdrop-blur-sm">
+      <Card className="relative z-10 max-w-3xl border-muted shadow-sm mb-8 bg-card/60 backdrop-blur-sm">
         <CardContent className="p-8 space-y-10">
           <div className="space-y-3">
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
@@ -73,36 +116,6 @@ export default function AboutCard() {
           </div>
         </CardContent>
       </Card>
-
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
-        <Button asChild variant="outline" className="w-full sm:w-auto">
-          <a href="/pdf/cv_lukaskouril.pdf" download>
-            <Download className="w-4 h-4 mr-2" /> Download CV
-          </a>
-        </Button>
-        <Button asChild className="w-full sm:w-auto">
-          <Link href="#contact">Let’s talk</Link>
-        </Button>
-      </div>
-
-      <div className="flex gap-5 mb-2">
-        <a
-          href="https://linkedin.com/in/lukas-kouril/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-foreground transition"
-        >
-          <Linkedin className="w-6 h-6" />
-        </a>
-        <a
-          href="https://github.com/lukaskourilcz"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-foreground transition"
-        >
-          <Github className="w-6 h-6" />
-        </a>
-      </div>
     </section>
   );
 }
