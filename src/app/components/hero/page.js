@@ -34,9 +34,10 @@ export default function HeroSection() {
           code, I write books and travel — creativity and curiosity fuel
           everything I do.
         </CardContent>
+        <CardContent className="p-6 text-sm md:text-base leading-relaxed text-muted-foreground">
+          <Skills />
+        </CardContent>
       </Card>
-
-      <Skills />
 
       <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 mt-2">
         <Button asChild variant="outline" className="w-full sm:w-auto">

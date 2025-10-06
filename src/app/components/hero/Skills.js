@@ -27,7 +27,7 @@ export default function Skills() {
         Tech Stack
       </h2>
 
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(45px,1fr))] gap-1 justify-items-center">
+      <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-1.5 justify-items-center">
         {skills.map((skill, i) => (
           <motion.div
             key={i}
