@@ -4,7 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Github, Linkedin, Download } from "lucide-react";
+import { Download, Linkedin, Github } from "lucide-react";
+import Skills from "./Skills";
 
 export default function HeroSection() {
   return (
@@ -26,7 +27,7 @@ export default function HeroSection() {
         Frontend Engineer · TypeScript · React · Next.js
       </p>
 
-      <Card className="max-w-xl border-muted shadow-sm mb-8">
+      <Card className="max-w-xl border-muted shadow-sm mb-12">
         <CardContent className="p-6 text-sm md:text-base leading-relaxed text-muted-foreground">
           Passionate about building clean, user-friendly web applications and
           continuously improving through learning and experimentation. Beyond
@@ -35,7 +36,9 @@ export default function HeroSection() {
         </CardContent>
       </Card>
 
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
+      <Skills />
+
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 mt-2">
         <Button asChild variant="outline" className="w-full sm:w-auto">
           <a href="/pdf/cv_lukaskouril.pdf" download>
             <Download className="w-4 h-4 mr-2" /> Download CV
@@ -46,23 +49,23 @@ export default function HeroSection() {
         </Button>
       </div>
 
-      <div className="flex gap-5 mt-2">
-        <Link
+      <div className="flex gap-5">
+        <a
           href="https://linkedin.com/in/lukas-kouril/"
           target="_blank"
-          aria-label="LinkedIn"
+          rel="noopener noreferrer"
           className="text-muted-foreground hover:text-foreground transition"
         >
           <Linkedin className="w-6 h-6" />
-        </Link>
-        <Link
+        </a>
+        <a
           href="https://github.com/lukaskourilcz"
           target="_blank"
-          aria-label="GitHub"
+          rel="noopener noreferrer"
           className="text-muted-foreground hover:text-foreground transition"
         >
           <Github className="w-6 h-6" />
-        </Link>
+        </a>
       </div>
     </section>
   );
