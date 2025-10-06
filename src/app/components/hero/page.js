@@ -95,7 +95,7 @@ export default function AboutCard() {
               everything I do.
             </p>
 
-            <p className="text-xs uppercase tracking-wide text-muted-foreground/70 mt-2">
+            <p className="text-[0.65rem] uppercase tracking-wide text-muted-foreground/70 mt-2">
               Check out my tech stack and my past{" "}
               <span className="font-semibold text-foreground">
                 {monthsBack}

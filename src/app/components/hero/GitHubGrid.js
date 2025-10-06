@@ -2,37 +2,37 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function getMonthsBack(width) {
-  if (width < 480) return 6;
-  if (width < 768) return 8;
-  return 10;
+  if (width < 480) return 9;
+  if (width < 768) return 10;
+  return 11;
+}
+
+function getRangeStart(monthsBack) {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth() - monthsBack + 1, 1);
 }
 
 function formatTooltip(day) {
   const d = new Date(day.date);
-  const count = day.contributionCount;
-  return `${count} contribution${
-    count !== 1 ? "s" : ""
-  } on ${d.toLocaleDateString(undefined, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  })}`;
+  const c = day.contributionCount;
+  return `${c} contribution${c !== 1 ? "s" : ""} on ${d.toLocaleDateString(
+    undefined,
+    { day: "numeric", month: "long", year: "numeric" }
+  )}`;
 }
 
 export default function GitHubGrid() {
   const [weeks, setWeeks] = useState([]);
-  const [monthsBack, setMonthsBack] = useState(
-    typeof window !== "undefined" ? getMonthsBack(window.innerWidth) : 12
-  );
+  const [monthsBack, setMonthsBack] = useState(10);
 
   useEffect(() => {
-    function handleResize() {
-      setMonthsBack(getMonthsBack(window.innerWidth));
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const updateMonths = () => setMonthsBack(getMonthsBack(window.innerWidth));
+    updateMonths();
+    window.addEventListener("resize", updateMonths);
+    return () => window.removeEventListener("resize", updateMonths);
   }, []);
 
   useEffect(() => {
@@ -41,20 +41,40 @@ export default function GitHubGrid() {
         const res = await fetch("/api/contributions");
         const data = await res.json();
 
-        const cutoff = new Date();
-        cutoff.setMonth(cutoff.getMonth() - monthsBack);
+        const start = getRangeStart(monthsBack);
 
         const filtered = data.contributions
-          .map((week) => week.filter((day) => new Date(day.date) >= cutoff))
-          .filter((week) => week.length > 0);
+          .map((week) => week.filter((d) => new Date(d.date) >= start))
+          .filter((w) => w.length > 0);
 
         setWeeks(filtered);
-      } catch (err) {
-        console.error("Failed to load contributions:", err);
+      } catch (e) {
+        console.error("Failed to load contributions:", e);
       }
     }
+
     loadData();
   }, [monthsBack]);
+
+  const monthLabels = [];
+  if (weeks.length) {
+    let lastMonthKey = null;
+    const start = getRangeStart(monthsBack);
+
+    weeks.forEach((week, i) => {
+      const firstDay = new Date(week[0].date);
+      if (firstDay >= start) {
+        const key = `${firstDay.getFullYear()}-${firstDay.getMonth()}`;
+        if (key !== lastMonthKey) {
+          monthLabels.push({
+            index: i,
+            label: firstDay.toLocaleString("default", { month: "short" }),
+          });
+          lastMonthKey = key;
+        }
+      }
+    });
+  }
 
   if (!weeks.length) {
     return (
@@ -74,32 +94,54 @@ export default function GitHubGrid() {
         />
       </div>
 
-      <div className="flex gap-[3px] overflow-x-auto mx-auto w-fit">
-        {weeks.map((week, i) => (
-          <div key={i} className="flex flex-col gap-[3px]">
-            {week.map((day, j) => {
-              const isEmpty = day.contributionCount === 0;
-              return (
-                <div
-                  key={j}
-                  className="w-2 h-2 rounded-[2px] transition-all duration-200"
-                  style={{
-                    backgroundColor: day.color,
-                    opacity: isEmpty ? 0.15 : 0.85,
-                  }}
-                  title={formatTooltip(day)}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.opacity = isEmpty ? "0.4" : "1")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.opacity = isEmpty ? "0.15" : "0.85")
-                  }
-                />
-              );
-            })}
-          </div>
-        ))}
+      <div className="flex gap-[2px] mx-auto w-fit mb-1 text-[0.5rem] text-gray-400">
+        {weeks.map((_, i) => {
+          const label = monthLabels.find((m) => m.index === i);
+          return (
+            <div key={i} className="w-2 text-center">
+              {label ? label.label : ""}
+            </div>
+          );
+        })}
       </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={monthsBack}
+          initial={{ opacity: 0, y: 6, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -6, scale: 0.97 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="flex gap-[3px] overflow-x-auto mx-auto w-fit"
+        >
+          {weeks.map((week, i) => (
+            <div key={i} className="flex flex-col gap-[3px]">
+              {week.map((day, j) => {
+                const isEmpty = day.contributionCount === 0;
+                return (
+                  <div
+                    key={j}
+                    className="w-2 h-2 rounded-[2px] transition-all duration-200"
+                    style={{
+                      backgroundColor: day.color,
+                      opacity: isEmpty ? 0.15 : 0.85,
+                    }}
+                    title={formatTooltip(day)}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.opacity = isEmpty ? "0.4" : "1")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.opacity = isEmpty
+                        ? "0.15"
+                        : "0.85")
+                    }
+                  />
+                );
+              })}
+            </div>
+          ))}
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
