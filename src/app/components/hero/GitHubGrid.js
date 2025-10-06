@@ -5,16 +5,16 @@ import Image from "next/image";
 
 export function getMonthsBack(width) {
   if (width < 480) return 6;
-  if (width < 640) return 7;
-  if (width < 800) return 8;
-  if (width < 1024) return 10;
-  return 12;
+  if (width < 768) return 8;
+  return 10;
 }
 
 function formatTooltip(day) {
   const d = new Date(day.date);
   const count = day.contributionCount;
-  return `${count} contribution${count !== 1 ? "s" : ""} on ${d.toLocaleDateString(undefined, {
+  return `${count} contribution${
+    count !== 1 ? "s" : ""
+  } on ${d.toLocaleDateString(undefined, {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -57,7 +57,9 @@ export default function GitHubGrid() {
   }, [monthsBack]);
 
   if (!weeks.length) {
-    return <p className="text-center text-gray-400 my-10">Loading contributions…</p>;
+    return (
+      <p className="text-center text-gray-400 my-10">Loading contributions…</p>
+    );
   }
 
   return (

@@ -110,7 +110,7 @@ export default function AboutCard() {
             <div className="w-full max-w-lg">
               <Skills />
             </div>
-            <div className="w-full max-w-lg">
+            <div className="w-full max-w-full overflow-hidden">
               <GitHubGrid />
             </div>
           </div>
