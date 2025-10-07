@@ -30,7 +30,7 @@ export default function AboutCard() {
         bg-[position:0_0,10px_10px]"
       ></div>
 
-      <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 mb-12 z-10 mt-8">
+      <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 mb-12 z-10 mt-18">
         <div className="relative w-40 h-40 md:w-52 md:h-52 mb-4 md:mb-0">
           <Image
             src="/profile.png"
@@ -86,10 +86,10 @@ export default function AboutCard() {
       </div>
 
       <Card className="relative z-10 max-w-3xl border-muted shadow-sm mb-6 bg-card/60 backdrop-blur-sm">
-        <CardContent className="py-6 px-10 md:p-8 space-y-3">
+        <CardContent className="py-6 px-12 space-y-3">
           <div className="space-y-3">
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-              👋 Hello and welcome to my portfolio! I am a software engineer
+              👋 Hello and welcome to my portfolio! My name is Lukas and I am a software engineer
               from the Czech Republic who loves building{" "}
               <span className="text-foreground font-medium">
                 clean, user-friendly web applications
