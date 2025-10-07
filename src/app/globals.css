@@ -138,3 +138,10 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+    .lg\:timeline-grid {
+        grid-auto-rows: minmax(min-content, max-content);
+        align-items: start; 
+    }
+  }

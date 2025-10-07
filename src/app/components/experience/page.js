@@ -36,12 +36,12 @@ export default function ExperienceSection() {
       period: "Jan 2025 – Feb 2025",
       location: "Brno, Czech Republic",
       responsibilities: [
-        "Developed the website using Next.js, ensuring a modern, high-performance, and <strong>mobile-responsive</strong> SEO-friendly platform",
-        "Implemented UI components from ShadCN to create a sleek and <strong>visually appealing</strong> interface",
-        "Designed <strong>key aspects of the</strong> UX/UI focused on seamless customer experience and <strong>high conversion</strong>",
-        "Deployed and optimized the site for performance, accessibility, and scalability <strong>using Vercel</strong>",
-        "Managed the full development lifecycle from initial concept and design through <strong>testing and</strong> production release",
-        "<strong>Collaborated closely with the client</strong> to deliver a product that met all business requirements",
+        "Developed the website using Next.js, ensuring a modern, high-performance, and mobile-responsive SEO-friendly platform",
+        "Implemented UI components from ShadCN to create a sleek and visually appealing interface",
+        "Designed key aspects of the UX/UI focused on seamless customer experience and high conversion",
+        "Deployed and optimized the site for performance, accessibility, and scalability using Vercel",
+        "Managed the full development lifecycle from initial concept and design through testing and production release",
+        "Collaborated closely with the client to deliver a product that met all business requirements",
       ],
       tags: [
         "TYPESCRIPT",
@@ -60,12 +60,12 @@ export default function ExperienceSection() {
       period: "May 2024 – Nov 2024",
       location: "Barcelona, Spain",
       responsibilities: [
-        "Collaborated on a full-stack B2B web app for scheduling meditation sessions using <strong>Next.js &</strong> TypeScript",
-        "Built a modern UI with <strong>reusable</strong> React, TailwindCSS, and ShadCN <strong>components</strong>",
-        "Managed PostgreSQL & Prisma databases, optimizing performance and <strong>ensuring data</strong> integrity",
-        "Integrated <strong>Stripe and other</strong> third-party APIs for real-time updates and <strong>secure</strong> authentication",
-        "Used Figma for <strong>detailed</strong> UI/UX design and Linear for agile task management <strong>across sprints</strong>",
-        "Deployed the app on Vercel for scalability, fast load times, and <strong>easy continuous integration</strong>",
+        "Collaborated on a full-stack B2B web app for scheduling meditation sessions using Next.js & TypeScript",
+        "Built a modern UI with reusable React, TailwindCSS, and ShadCN components",
+        "Managed PostgreSQL & Prisma databases, optimizing performance and ensuring data integrity",
+        "Integrated Stripe and other third-party APIs for real-time updates and secure authentication",
+        "Used Figma for detailed UI/UX design and Linear for agile task management across sprints",
+        "Deployed the app on Vercel for scalability, fast load times, and easy continuous integration",
       ],
       tags: [
         "TYPESCRIPT",
@@ -84,18 +84,17 @@ export default function ExperienceSection() {
       location: "Reykjavík, Iceland",
       responsibilities: [
         "Handled logistics inquiries for pharmaceutical products, ensuring safe transport worldwide",
-        "Monitored shipment data and resolved critical anomalies using <strong>advanced</strong> data insights and tracking tools",
-        "Performed detailed root-cause analysis and delivered regulatory-compliant solutions <strong>to global clients</strong>",
-        "Identified opportunities for AI-driven automation improvements <strong>in data processing and client communication</strong>",
+        "Monitored shipment data and resolved critical anomalies using advanced data insights and tracking tools",
+        "Performed detailed root-cause analysis and delivered regulatory-compliant solutions to global clients",
+        "Identified opportunities for AI-driven automation improvements in data processing and client communication",
         "Compiled quality documentation, audit reports, and presented findings to senior management",
-        "<strong>Managed high-stakes technical issues</strong> requiring coordination between multiple international teams",
+        "Managed high-stakes technical issues requiring coordination between multiple international teams",
       ],
       tags: [
         "DATA ANALYSIS",
         "AI AUTOMATION",
         "LOGISTICS",
         "ROOT-CAUSE ANALYSIS",
-        "PHARMACEUTICALS",
       ],
     },
     {
@@ -105,20 +104,14 @@ export default function ExperienceSection() {
       period: "Jan 2020 – Sep 2021",
       location: "Gibraltar",
       responsibilities: [
-        "Developed expertise in gaming compliance and <strong>anti-money laundering (AML)</strong> frameworks",
-        "Used data analytics and specialized tools to detect suspicious behavior and <strong>prevent financial fraud</strong>",
-        "Delivered regulatory-compliant solutions ensuring adherence to <strong>strict EU and local</strong> standards",
-        "<strong>Conducted in-depth investigations</strong> and processed sensitive customer data in line with GDPR",
+        "Developed expertise in gaming compliance and anti-money laundering (AML) frameworks",
+        "Used data analytics and specialized tools to detect suspicious behavior and prevent financial fraud",
+        "Delivered regulatory-compliant solutions ensuring adherence to strict EU and local standards",
+        "Conducted in-depth investigations and processed sensitive customer data in line with GDPR",
         "Provided training and guidance to junior team members on compliance protocols and risk mitigation",
-        "<strong>Maintained a zero-tolerance approach to breaches</strong> of regulatory policy",
+        "Maintained a zero-tolerance approach to breaches of regulatory policy",
       ],
-      tags: [
-        "COMPLIANCE",
-        "AML/KYC",
-        "DATA ANALYTICS",
-        "RISK MANAGEMENT",
-        "REGULATORY SOLUTIONS",
-      ],
+      tags: ["COMPLIANCE", "AML/KYC", "DATA ANALYTICS", "RISK MANAGEMENT"],
     },
     {
       company: "Kiwi.com",
@@ -127,18 +120,16 @@ export default function ExperienceSection() {
       period: "Dec 2015 – Nov 2019",
       location: "Brno, Czech Republic",
       responsibilities: [
-        "Resolved complex customer issues with efficient communication workflows <strong>across multiple channels</strong>",
-        "Stayed updated on aviation trends and <strong>mastered various</strong> CRM systems to ensure high quality support",
-        "Provided feedback to stakeholders and <strong>management</strong> and optimized workflows <strong>to reduce resolution time</strong>",
-        "Supported KAYAK operations through data-backed resolutions and <strong>provided support for B2B partners</strong>",
-        "<strong>Consistently maintained a high customer satisfaction (CSAT) score</strong> exceeding team goals",
-        "<strong>Trained new hires</strong> on company policies, products, and customer service best practices",
+        "Resolved complex customer issues with efficient communication workflows across multiple channels",
+        "Stayed updated on aviation trends and mastered various CRM systems to ensure high quality support",
+        "Provided feedback to stakeholders and management and optimized workflows to reduce resolution time",
+        "Supported KAYAK operations through data-backed resolutions and provided support for B2B partners",
+        "Consistently maintained a high customer satisfaction (CSAT) score exceeding team goals",
+        "Trained new hires on company policies, products, and customer service best practices",
       ],
       tags: [
         "CRM SYSTEMS",
-        "CUSTOMER SUPPORT",
         "STAKEHOLDER COMMUNICATION",
-        "AVIATION",
         "WORKFLOW OPTIMIZATION",
       ],
     },
@@ -156,7 +147,7 @@ export default function ExperienceSection() {
     bg-[position:0_0,10px_10px]"
       ></div>
 
-      <div className="relative z-10 text-center mb-10">
+      <div className="relative z-10 text-center mb-12 -mt-6">
         <h2 className="text-3xl uppercase sm:text-4xl md:text-5xl font-extrabold text-gray-800 tracking-tight">
           Experience
         </h2>
@@ -169,7 +160,7 @@ export default function ExperienceSection() {
         whileInView="visible"
         transition={{ staggerChildren: 0.1 }}
         viewport={{ once: true }}
-        className="relative z-10 grid gap-10 lg:grid-cols-2 lg:gap-y-16 lg:grid-rows-auto lg:items-stretch"
+        className="relative z-10 grid gap-6 lg:grid-cols-2 lg:gap-y-0 lg:timeline-grid"
       >
         {experiences.map((exp, i) => (
           <motion.div
@@ -179,16 +170,19 @@ export default function ExperienceSection() {
               visible: { opacity: 1 },
             }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className={`text-left relative h-full ${
-              i % 2 === 0
-                ? "lg:col-start-1 lg:pr-10"
-                : "lg:col-start-2 lg:pl-10"
-            }
-        ${i === 1 || i === 3 || i === 5 ? "lg:mt-16" : ""}
-      `}
+            className={`text-left relative
+              ${
+                i % 2 === 0
+                  ? "lg:col-start-1 lg:pr-10"
+                  : "lg:col-start-2 lg:pl-10"
+              }
+              ${i > 0 ? "mt-2 lg:mt-0" : "lg:mt-0"}
+              
+              ${i % 2 === 1 ? "lg:mt-10" : ""}
+            `}
           >
-            <Card className="bg-white/80 backdrop-blur-lg border border-gray-200 shadow-sm hover:shadow-lg transition rounded-2xl h-full">
-              <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-0">
+            <Card className="bg-white/80 backdrop-blur-lg border border-gray-200 shadow-sm hover:shadow-lg transition rounded-2xl">
+              <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div className="flex items-center gap-3">
                   <Image
                     src={exp.logo}
@@ -206,26 +200,26 @@ export default function ExperienceSection() {
                 </span>
               </CardHeader>
 
-              <CardContent className="pt-2 flex flex-col justify-between h-full">
+              <CardContent className="pt-0 pb-4 flex flex-col justify-between">
                 <div>
-                  <p className="text-xs sm:text-sm text-gray-500 mb-2">
+                  <p className="text-xs sm:text-sm text-gray-500">
                     {exp.period} • {exp.location}
                   </p>
-                  <ul className="space-y-1 text-gray-700 mb-4">
+                  <ul className="space-y-1 text-gray-700 mt-2">
                     {exp.responsibilities.map((res, j) => (
                       <li
                         key={j}
                         className="flex items-start gap-2 text-sm leading-snug"
                       >
                         <span className="text-black font-bold">›</span>
-                        <span dangerouslySetInnerHTML={{ __html: res }} />
+                        <span>{res}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 {exp.tags && exp.tags.length > 0 && (
-                  <div className="pt-4 mt-auto border-t border-gray-100 flex flex-wrap gap-2">
+                  <div className="pt-2 mt-2 border-t border-gray-100 flex flex-wrap gap-2">
                     {exp.tags.map((tag, k) => (
                       <span
                         key={k}
