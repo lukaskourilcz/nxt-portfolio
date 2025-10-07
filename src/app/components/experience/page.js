@@ -153,7 +153,7 @@ export default function ExperienceSection() {
         </h2>
       </div>
 
-      <div className="absolute left-1/2 transform -translate-x-1/2 w-[2px] top-1/6 bottom-10 bg-gray-300 rounded hidden lg:block"></div>
+      <div className="absolute left-1/2 transform -translate-x-1/2 w-[2px] top-50 bottom-20 bg-gray-300 rounded hidden lg:block"></div>
 
       <motion.div
         initial="hidden"
