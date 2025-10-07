@@ -124,7 +124,7 @@ export default function GitHubGrid() {
                     className="w-2 h-2 rounded-[2px] transition-all duration-200"
                     style={{
                       backgroundColor: day.color,
-                      opacity: isEmpty ? 0.15 : 0.85,
+                      opacity: isEmpty ? 0.55 : 0.85,
                     }}
                     title={formatTooltip(day)}
                     onMouseEnter={(e) =>
@@ -132,7 +132,7 @@ export default function GitHubGrid() {
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.opacity = isEmpty
-                        ? "0.15"
+                        ? "0.45"
                         : "0.85")
                     }
                   />

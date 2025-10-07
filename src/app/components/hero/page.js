@@ -89,8 +89,8 @@ export default function AboutCard() {
         <CardContent className="py-6 px-12 space-y-3">
           <div className="space-y-3">
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-              👋 Hello and welcome to my portfolio! My name is Lukas and I am a software engineer
-              from the Czech Republic who loves building{" "}
+              👋 Hello and welcome to my portfolio! My name is Lukas and I am a
+              software engineer from the Czech Republic who loves building{" "}
               <span className="text-foreground font-medium">
                 clean, user-friendly web applications
               </span>{" "}
