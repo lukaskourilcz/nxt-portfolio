@@ -147,8 +147,8 @@ export default function ExperienceSection() {
     bg-[position:0_0,10px_10px]"
       ></div>
 
-      <div className="relative z-10 text-center mb-14 -mt-12">
-        <h2 className="uppercase sm:text-3xl md:text-5xl font-extrabold text-gray-800 tracking-wider">
+      <div className="relative z-10 text-center mb-14 -mt-6">
+        <h2 className="uppercase text-4xl md:text-5xl font-extrabold text-gray-800 tracking-wider">
           Experience
         </h2>
       </div>

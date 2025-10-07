@@ -1,125 +1,117 @@
 "use client";
 
 import React from "react";
-import { EnvelopeIcon, PhoneIcon, MapPinIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 
 export default function ContactSection() {
+  const contactItems = [
+    {
+      href: "mailto:kouril.lukas@gmail.com",
+      icon: <Mail className="w-5 h-5 text-gray-700" />,
+      text: "kouril.lukas@gmail.com",
+    },
+    {
+      href: "tel:+420737875367",
+      icon: <Phone className="w-5 h-5 text-gray-700" />,
+      text: "+420 737 875 367",
+    },
+    {
+      href: null,
+      icon: <MapPin className="w-5 h-5 text-gray-700" />,
+      text: "Prague, Czech Republic",
+    },
+  ];
+
   return (
     <section
       id="contact"
-      className="relative bg-gradient-to-br from-white to-gray-100 text-gray-900 py-16 px-4 sm:px-8 lg:px-20 overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-[85vh] bg-gray-50 px-6 py-20 overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[length:24px_24px] sm:bg-[length:40px_40px]"></div>
+      <div
+        className="absolute inset-0 
+    bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
+    bg-[length:40px_40px,20px_20px] 
+    bg-[position:0_0,10px_10px]"
+      ></div>
 
       <motion.h2
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.8 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="hidden sm:flex absolute inset-0 items-center justify-center text-[6rem] md:text-[10rem] lg:text-[14rem] font-bold text-transparent
-                 [-webkit-text-stroke:3px_rgba(0,0,0,0.08)] md:[-webkit-text-stroke:5px_rgba(0,0,0,0.08)] lg:[-webkit-text-stroke:6px_rgba(0,0,0,0.08)] leading-none pointer-events-none text-center"
+        className="relative z-10 uppercase text-4xl md:text-5xl -mt-18 font-extrabold text-gray-800 text-center mb-6 tracking-wider"
       >
-        LET&apos;S WORK
+        Get in touch
       </motion.h2>
 
-      <motion.div
+      <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="relative z-10 text-center mb-10 sm:mb-16"
+        className="relative z-10 text-gray-600 text-center max-w-lg mb-12 text-sm sm:text-base leading-relaxed"
       >
-        <h2 className="text-2xl sm:text-3xl md:text-5xl font-extrabold text-gray-900">
-          Let&apos;s make something happen.
-        </h2>
-        <p className="text-gray-600 mt-2 sm:mt-3 max-w-sm sm:max-w-xl mx-auto text-sm sm:text-base md:text-lg">
-          Feel free to reach out via email or phone.
-        </p>
-      </motion.div>
+        Are you hiring or have a project in mind?  
+        <br/>Reach out and let’s build something great!
+      </motion.p>
 
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        transition={{ staggerChildren: 0.2 }}
-        viewport={{ once: true }}
-        className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 text-sm sm:text-base md:text-lg max-w-md sm:max-w-2xl mx-auto w-full"
-      >
-        {[
-          {
-            href: "mailto:kouril.lukas@gmail.com",
-            icon: (
-              <EnvelopeIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-600" />
-            ),
-            text: "kouril.lukas@gmail.com",
-          },
-          {
-            href: "tel:+420737875367",
-            icon: (
-              <PhoneIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-600" />
-            ),
-            text: "+420 737 875 367",
-          },
-        ].map((item, i) => (
-          <motion.a
+      <div className="relative z-10 grid gap-4 sm:gap-5 w-full max-w-xl">
+        {contactItems.map((item, i) => (
+          <motion.div
             key={i}
-            href={item.href}
-            variants={{
-              hidden: { opacity: 0 },
-              visible: { opacity: 1 },
-            }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex items-center gap-3 sm:gap-4 w-full bg-gray-50 backdrop-blur-md rounded-lg sm:rounded-xl border border-gray-300 sm:border-gray-400 px-3 py-2.5 sm:px-6 sm:py-4 hover:border-yellow-400 hover:shadow-yellow-400/30 transition"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: i * 0.1 }}
+            viewport={{ once: true }}
           >
-            {item.icon}
-            <span className="text-gray-800 truncate">{item.text}</span>
-          </motion.a>
+            <Card className="border-gray-200 bg-white/90 backdrop-blur-sm shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-200">
+              <CardContent className="flex items-center gap-3 sm:gap-4 py-4 px-5">
+                <div className="flex-shrink-0 text-gray-700">{item.icon}</div>
+                {item.href ? (
+                  <Link
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : "_self"}
+                    className="text-gray-800 hover:text-gray-900 transition text-sm sm:text-base"
+                  >
+                    {item.text}
+                  </Link>
+                ) : (
+                  <span className="text-gray-800 text-sm sm:text-base">
+                    {item.text}
+                  </span>
+                )}
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
-
-        <motion.div
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1 },
-          }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex items-center gap-3 sm:gap-4 w-full bg-gray-50 backdrop-blur-md rounded-lg sm:rounded-xl border border-gray-300 sm:border-gray-400 px-3 py-2.5 sm:px-6 sm:py-4"
-        >
-          <MapPinIcon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-yellow-600" />
-          <span className="text-gray-800 text-sm sm:text-base">
-            Residing in{" "}
-            <b className="text-yellow-600">Prague, Czech Republic</b>
-          </span>
-        </motion.div>
-      </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
         viewport={{ once: true }}
-        className="relative z-10 flex justify-center gap-8 sm:gap-12 md:gap-16 mt-12 sm:mt-20 flex-wrap"
+        className="relative z-10 flex justify-center gap-10 mt-14"
       >
-        <Link href="https://www.linkedin.com/in/lukas-kouril" target="_blank">
-          <Image
-            src="/icons/linkedin.svg"
-            alt="LinkedIn"
-            width={40}
-            height={40}
-            className="sm:w-[50px] sm:h-[50px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] opacity-70 hover:opacity-100 hover:scale-110 transition filter invert"
-          />
+        <Link
+          href="https://www.linkedin.com/in/lukas-kouril"
+          target="_blank"
+          className="opacity-70 hover:opacity-100 hover:scale-110 transition"
+        >
+          <Linkedin className="w-8 h-8 md:w-10 md:h-10 text-gray-700" />
         </Link>
-        <Link href="https://github.com/lukaskourilcz" target="_blank">
-          <Image
-            src="/icons/github.svg"
-            alt="GitHub"
-            width={40}
-            height={40}
-            className="sm:w-[50px] sm:h-[50px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] opacity-70 hover:opacity-100 hover:scale-110 transition filter invert"
-          />
+        <Link
+          href="https://github.com/lukaskourilcz"
+          target="_blank"
+          className="opacity-70 hover:opacity-100 hover:scale-110 transition"
+        >
+          <Github className="w-8 h-8 md:w-10 md:h-10 text-gray-700" />
         </Link>
       </motion.div>
+
     </section>
   );
 }

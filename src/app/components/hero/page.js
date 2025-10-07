@@ -42,11 +42,14 @@ export default function AboutCard() {
         </div>
 
         <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left space-y-4">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
             Lukas Kouril
           </h1>
-          <p className="text-muted-foreground text-base md:text-lg">
-            Software Engineer · TypeScript · Next.js · Node.js
+          <p className="text-muted-foreground text-xl font-semibold md:text-2xl">
+            Software Engineer <br />
+          </p>
+          <p className="text-muted-foreground text-xs font-medium md:text-lg -mt-1">
+            with passion for TypeScript, Next.js, Node.js & SQL
           </p>
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-6">
@@ -83,20 +86,24 @@ export default function AboutCard() {
       </div>
 
       <Card className="relative z-10 max-w-3xl border-muted shadow-sm mb-6 bg-card/60 backdrop-blur-sm">
-        <CardContent className="p-6 md:p-8 space-y-3">
+        <CardContent className="py-6 px-10 md:p-8 space-y-3">
           <div className="space-y-3">
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-              Passionate about building{" "}
+              👋 Hello and welcome to my portfolio! I am a software engineer
+              from the Czech Republic who loves building{" "}
               <span className="text-foreground font-medium">
                 clean, user-friendly web applications
               </span>{" "}
               and continuously improving through learning and experimentation.
-              Beyond code, I write and travel. Creativity and curiosity fuel
-              everything I do.
+              Beyond code, I like to explore new tech, write and travel.
+              Creativity and curiosity fuel everything I do. 🌍
             </p>
 
-            <p className="text-[0.65rem] sm:text-[0.4rem] uppercase tracking-wide text-muted-foreground/70 mt-2">
-              See my tech stack and my past{" "}
+            <p
+              className="text-[0.65rem] sm:text-[0.7rem] md:text-[0.75rem] lg:text-[0.8rem]
+uppercase tracking-wide text-muted-foreground/70 mt-6"
+            >
+              💻 See my tech stack and my past{" "}
               <span className="font-semibold text-foreground">
                 {monthsBack}
               </span>{" "}

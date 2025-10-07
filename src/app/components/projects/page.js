@@ -110,7 +110,7 @@ export default function ProjectsSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="relative uppercase z-10 text-4xl md:text-5xl font-bold text-gray-800 text-center mb-10 -mt-16 tracking-wider"
+        className="relative uppercase z-10 text-4xl md:text-5xl font-extrabold text-gray-800 text-center mb-10 -mt-17 tracking-wider"
       >
         Projects
       </motion.h2>
