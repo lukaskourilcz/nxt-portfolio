@@ -4,6 +4,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Github, ExternalLink } from "lucide-react";
 
 export default function ProjectsSection() {
   const projects = [
@@ -11,7 +14,7 @@ export default function ProjectsSection() {
       title: "Portfolio",
       description:
         "My personal portfolio showcasing projects and skills. Built with Next.js, TailwindCSS, and Framer Motion.",
-      tech: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
+      tech: ["JavaScript", "Next.js", "TailwindCSS", "Framer Motion"],
       github: "https://github.com/lukaskourilcz/portfolio",
       vercel: "https://lukaskouril.vercel.app/",
       image: "/projects/portfolio_projekt.png",
@@ -20,7 +23,7 @@ export default function ProjectsSection() {
       title: "AutobusyHodonín.cz",
       description:
         "Developed and deployed a modern Next.js website for a transport company with SEO and accessibility in mind.",
-      tech: ["TypeScript", "Next.js", "React", "TailwindCSS", "SEO", "i18n"],
+      tech: ["TypeScript", "Next.js", "TailwindCSS", "SEO", "i18n"],
       vercel: "https://autobusyhodonin.cz",
       github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
       image: "/projects/autodopravakopecek_projekt.png",
@@ -29,7 +32,7 @@ export default function ProjectsSection() {
       title: "AI Powered Quiz App",
       description:
         "Quiz app built with Next.js and Gemini AI that generates random React-related questions and grades answers in real time.",
-      tech: ["Next.js", "React", "Gemini AI", "TypeScript", "Vercel"],
+      tech: ["TypeScript", "Next.js", "Gemini AI", "Vercel"],
       vercel: "https://quiz-app-nxt.vercel.app/",
       github: "https://github.com/lukaskourilcz/react-quiz-app",
       image: "/projects/aiquiz_projekt.png",
@@ -38,7 +41,7 @@ export default function ProjectsSection() {
       title: "Dont Wanna Know",
       description:
         "Web app using Gemini AI to reveal life stats after answering personal questions. Built with Next.js and Node.js.",
-      tech: ["Next.js", "Node.js", "Gemini AI", "Prisma", "Vercel"],
+      tech: ["JavaScript", "React", "Node.js", "Gemini AI", "Vercel"],
       github: "https://github.com/lukaskourilcz/dontwannaknow",
       image: "/wip.png",
     },
@@ -46,14 +49,23 @@ export default function ProjectsSection() {
       title: "beKind Web App",
       description:
         "Contributed to rebranding and building the company web app with a focus on UX/UI and performance.",
-      tech: ["TypeScript", "Next.js", "React", "Node.js", "Prisma", "PostgreSQL", "UX/UI"],
+      tech: ["TypeScript", "Next.js", "Node.js", "Prisma", "PostgreSQL"],
       image: "/projects/bekind_projekt.png",
     },
     {
       title: "Take a Break Web App",
       description:
         "Full-stack B2B meditation scheduling app. Built with Next.js, TypeScript, Prisma, and PostgreSQL.",
-      tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL", "Digital Twin", "UX/UI", "Vercel"],
+      tech: [
+        "TypeScript",
+        "Next.js",
+        "Node.js",
+        "Prisma",
+        "PostgreSQL",
+        "Digital Twin",
+        "UX/UI",
+        "Vercel",
+      ],
       github: "https://github.com/lukaskourilcz/TakeABreak",
       image: "/projects/takeabreak_projekt.png",
     },
@@ -61,7 +73,14 @@ export default function ProjectsSection() {
       title: "Habit Tracker",
       description:
         "Web app to track personal habits and skills using React, TypeScript, and ShadCN components.",
-      tech: ["TypeScript", "React", "Node.js", "ShadCN", "TailwindCSS", "Vercel"],
+      tech: [
+        "TypeScript",
+        "React",
+        "Node.js",
+        "ShadCN",
+        "TailwindCSS",
+        "Vercel",
+      ],
       github: "https://github.com/lukaskourilcz/habit-tracker",
       image: "/projects/habittracker_projekt.png",
     },
@@ -79,88 +98,79 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className="relative min-h-[70vh] bg-gradient-to-br from-gray-900 to-black text-white py-12 px-4 sm:px-8 lg:px-20 overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-screen bg-gray-50 px-6 py-16 overflow-hidden"
     >
-
-            <h2 className="relative z-10 block lg:hidden text-4xl sm:text-5xl md:text-6xl font-bold text-gray-400 text-center mb-10">
-        PROJECTS
-      </h2>
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)]
+        bg-[length:40px_40px,20px_20px] bg-[position:0_0,10px_10px]"
+      ></div>
 
       <motion.h2
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="hidden sm:flex absolute inset-0 items-center justify-center text-[6rem] md:text-[10rem] lg:text-[16.5rem] font-bold text-transparent
-                 [-webkit-text-stroke:3px_rgba(202,138,4,0.5)] md:[-webkit-text-stroke:5px_rgba(202,138,4,0.5)] lg:[-webkit-text-stroke:6px_rgba(202,138,4,0.5)]
-                 leading-none pointer-events-none text-center"
+        className="relative uppercase z-10 text-4xl md:text-5xl font-bold text-gray-800 text-center mb-10 tracking-wider"
       >
-        PROJECTS
+        Projects
       </motion.h2>
 
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="relative z-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {projects.map((proj, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: i * 0.05 }}
             viewport={{ once: true }}
-            className="group relative bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-md overflow-hidden p-4 hover:shadow-yellow-400/20 transition-transform hover:scale-[1.02]"
           >
-            <div className="relative w-full h-40 sm:h-48 md:h-40 lg:h-32 mb-3 rounded-4xl overflow-hidden">
-              <Image
-                src={proj.image}
-                alt={proj.title}
-                fill
-                className="object-contain p-1"
-              />
-            </div>
+            <Card
+              className="border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.01]
+                         h-full flex flex-col justify-between"
+            >
+              <CardHeader className="relative w-full h-40 overflow-hidden rounded-t-xl">
+                <Image
+                  src={proj.image}
+                  alt={proj.title}
+                  fill
+                  className="object-contain p-2"
+                />
+              </CardHeader>
 
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-md sm:text-lg font-bold text-yellow-100">
-                {proj.title}
-              </h3>
-              <div className="flex gap-2">
-                {proj.vercel && (
-                  <Link href={proj.vercel} target="_blank">
-                    <Image
-                      src="/icons/vercel.svg"
-                      alt="Vercel"
-                      width={18}
-                      height={18}
-                      className="invert opacity-80 hover:opacity-100 hover:scale-110 transition"
-                    />
-                  </Link>
-                )}
-                {proj.github && (
-                  <Link href={proj.github} target="_blank">
-                    <Image
-                      src="/icons/github.svg"
-                      alt="GitHub"
-                      width={18}
-                      height={18}
-                      className="opacity-80 hover:opacity-100 hover:scale-110 transition"
-                    />
-                  </Link>
-                )}
-              </div>
-            </div>
+              <CardContent className="p-4 flex flex-col justify-between flex-grow">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="font-semibold text-gray-800">{proj.title}</h3>
+                  <div className="flex gap-2">
+                    {proj.vercel && (
+                      <Link href={proj.vercel} target="_blank">
+                        <ExternalLink className="w-4 h-4 text-gray-500 hover:text-gray-800 transition" />
+                      </Link>
+                    )}
+                    {proj.github && (
+                      <Link href={proj.github} target="_blank">
+                        <Github className="w-4 h-4 text-gray-500 hover:text-gray-800 transition" />
+                      </Link>
+                    )}
+                  </div>
+                </div>
 
-            <p className="text-gray-400 text-xs sm:text-sm leading-snug mb-3">
-              {proj.description}
-            </p>
+                <p className="text-sm text-gray-500 leading-snug flex-grow">
+                  {proj.description}
+                </p>
 
-            <div className="flex flex-wrap gap-1.5">
-              {proj.tech.map((t, j) => (
-                <span
-                  key={j}
-                  className="px-2 py-0.5 text-[9px] sm:text-[10px] border border-yellow-200/40 text-yellow-100 rounded-full"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {proj.tech.map((t, j) => (
+                    <Badge
+                      key={j}
+                      variant="secondary"
+                      className="text-xs bg-gray-100 text-gray-700 border border-gray-200"
+                    >
+                      {t}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         ))}
       </div>

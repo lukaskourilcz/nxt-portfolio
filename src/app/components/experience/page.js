@@ -148,7 +148,7 @@ export default function ExperienceSection() {
       ></div>
 
       <div className="relative z-10 text-center mb-14 -mt-12">
-        <h2 className="uppercase sm:text-3xl md:text-4xl font-extrabold text-gray-800 tracking-wider">
+        <h2 className="uppercase sm:text-3xl md:text-5xl font-extrabold text-gray-800 tracking-wider">
           Experience
         </h2>
       </div>
