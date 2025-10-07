@@ -46,7 +46,7 @@ export default function AboutCard() {
             Lukas Kouril
           </h1>
           <p className="text-muted-foreground text-base md:text-lg">
-            Frontend Engineer · TypeScript · React · Next.js
+            Software Engineer · TypeScript · Next.js · Node.js
           </p>
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-6">

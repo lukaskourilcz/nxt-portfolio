@@ -147,8 +147,8 @@ export default function ExperienceSection() {
     bg-[position:0_0,10px_10px]"
       ></div>
 
-      <div className="relative z-10 text-center mb-12 -mt-6">
-        <h2 className="text-3xl uppercase sm:text-4xl md:text-5xl font-extrabold text-gray-800 tracking-tight">
+      <div className="relative z-10 text-center mb-14 -mt-12">
+        <h2 className="uppercase sm:text-3xl md:text-4xl font-extrabold text-gray-800 tracking-wider">
           Experience
         </h2>
       </div>
@@ -219,7 +219,7 @@ export default function ExperienceSection() {
                 </div>
 
                 {exp.tags && exp.tags.length > 0 && (
-                  <div className="pt-2 mt-2 border-t border-gray-100 flex flex-wrap gap-2">
+                  <div className="pt-4 mt-4 border-t border-gray-100 flex flex-wrap gap-2">
                     {exp.tags.map((tag, k) => (
                       <span
                         key={k}
