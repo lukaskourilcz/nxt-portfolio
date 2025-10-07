@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function getMonthsBack(width) {
-  if (width < 480) return 9;
+  if (width < 480) return 7;
   if (width < 768) return 10;
   return 11;
 }
