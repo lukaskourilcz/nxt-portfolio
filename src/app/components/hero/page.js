@@ -49,7 +49,7 @@ export default function AboutCard() {
             Software Engineer <br />
           </p>
           <p className="text-muted-foreground text-xs font-medium md:text-lg -mt-1">
-            with passion for TypeScript, Next.js, Node.js & SQL
+            with passion for TypeScript and React
           </p>
 
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mt-6">
@@ -89,7 +89,7 @@ export default function AboutCard() {
         <CardContent className="py-6 px-12 space-y-3">
           <div className="space-y-3">
             <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
-              👋 Hello and welcome to my portfolio! My name is Lukas and I am a
+              Hello and welcome to my portfolio! My name is Lukas and I am a
               software engineer from the Czech Republic who loves building{" "}
               <span className="text-foreground font-medium">
                 clean, user-friendly web applications
