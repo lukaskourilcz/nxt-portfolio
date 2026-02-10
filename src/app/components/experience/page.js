@@ -8,9 +8,51 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 export default function ExperienceSection() {
   const experiences = [
     {
+      company: "EmbedIT",
+      logo: "/logos/embedit_logo.png",
+      role: "Senior Fullstack Developer",
+      period: "Oct 2025 – Mar 2026",
+      location: "Prague, Czech Republic",
+      responsibilities: [
+        "Led modernization of an online banking platform, migrating legacy systems to a micro-frontend architecture",
+        "Designed and implemented a Backend-for-Frontend (BFF) layer, including controllers, mappers, and service orchestration",
+        "Owned API contract design and integration stability across multiple downstream services",
+        "Ensured production-grade quality through unit, integration, and E2E testing, with strict WCAG accessibility compliance",
+        "Improved developer experience by optimizing CI/CD pipelines and enforcing code review standards",
+      ],
+      tags: [
+        "TYPESCRIPT",
+        "REACT",
+        "EXPRESS.JS",
+        "STYLEX",
+        "NODE.JS",
+      ],
+    },
+    {
+      company: "Ersilia",
+      logo: "/logos/ersilia_logo.png",
+      role: "Fullstack Developer",
+      period: "May 2025 – Sep 2025",
+      location: "Barcelona, Spain",
+      responsibilities: [
+        "Designed and implemented a full-stack web app built with Next.js and TypeScript",
+        "Created the database schema and implemented backend integration for structured model metadata management",
+        "Developed key features of an AI-powered workflow leveraging the Vercel AI SDK for LLM-based PDF analysis",
+        "Automated metadata validation and repository synchronization through GitHub APIs and Actions",
+        "Collaborated with researchers and engineers to align technical implementation with open-science goals",
+      ],
+      tags: [
+        "TYPESCRIPT",
+        "NEXT.JS",
+        "VERCEL AI SDK",
+        "POSTGRESQL",
+        "NODE.JS",
+      ],
+    },
+    {
       company: "beKind",
       logo: "/logos/bekind_logo.png",
-      role: "Frontend Engineer",
+      role: "Frontend Developer",
       period: "Nov 2024 – Jun 2025",
       location: "Barcelona, Spain",
       responsibilities: [
@@ -25,7 +67,6 @@ export default function ExperienceSection() {
         "NEXT.JS",
         "TAILWIND",
         "POSTGRESQL",
-        "SEO",
         "NODE.JS",
       ],
     },
@@ -57,7 +98,7 @@ export default function ExperienceSection() {
       company: "Take a Break",
       logo: "/logos/takeabreak_logo.png",
       role: "Full Stack Developer",
-      period: "May 2024 – Nov 2024",
+      period: "Apr 2024 – Oct 2024",
       location: "Barcelona, Spain",
       responsibilities: [
         "Collaborated on a full-stack B2B web app for scheduling meditation sessions using Next.js & TypeScript",
@@ -80,7 +121,7 @@ export default function ExperienceSection() {
       company: "Controlant",
       logo: "/logos/controlant_logo.png",
       role: "Technical Customer Analyst",
-      period: "Nov 2021 – Nov 2024",
+      period: "Nov 2021 – Apr 2024",
       location: "Reykjavík, Iceland",
       responsibilities: [
         "Handled logistics inquiries for pharmaceutical products, ensuring safe transport worldwide",
