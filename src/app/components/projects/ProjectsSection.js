@@ -4,81 +4,104 @@ import { Github, ExternalLink } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 
+// Scouted from the live deployments + each repo's package.json.
+// GitHub links are shown only for public repos (private/removed repos would
+// 404 for visitors); live links only where the deployment still resolves.
 const PROJECTS = [
   {
     title: "Portfolio",
     description:
-      "My personal portfolio showcasing projects and skills. Built with Next.js, TailwindCSS, and Framer Motion.",
-    tech: ["JavaScript", "Next.js", "TailwindCSS", "Framer Motion"],
-    github: "https://github.com/lukaskourilcz/portfolio",
+      "Personal developer portfolio with a terminal-inspired design, showcasing stack, experience, and projects across animated, responsive sections.",
+    tech: ["Next.js", "JavaScript", "TailwindCSS", "Framer Motion"],
+    github: "https://github.com/lukaskourilcz/nxt-portfolio",
     vercel: "https://lukaskouril.vercel.app/",
     image: "/projects/portfolio_projekt.png",
   },
   {
+    title: "Take a Break",
+    description:
+      "B2B meditation-scheduling app featuring a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
+    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
+    vercel: "https://take-a-break-seven.vercel.app",
+    image: "/projects/takeabreak_projekt.png",
+  },
+  {
+    title: "Czech Monopoly",
+    description:
+      "Browser-based Czech-themed Monopoly game offering code-based 2–4 player multiplayer and next-intl localization.",
+    tech: ["Next.js", "TypeScript", "Payload CMS", "PostgreSQL", "next-intl"],
+    vercel: "https://czech-cities.vercel.app",
+    image: "/wip.png",
+  },
+  {
+    title: "Personal Dashboard",
+    description:
+      "Productivity dashboard tracking subscriptions, habits, plans, and calendar, enriched with AI insights and analytics charts.",
+    tech: ["Next.js", "TypeScript", "Supabase", "Claude AI", "Recharts"],
+    vercel: "https://own-dashboard-tau.vercel.app",
+    image: "/wip.png",
+  },
+  {
     title: "AutobusyHodonín.cz",
     description:
-      "Developed and deployed a modern Next.js website for a transport company with SEO and accessibility in mind.",
-    tech: ["TypeScript", "Next.js", "TailwindCSS", "SEO", "i18n"],
+      "Marketing website for a Czech bus and freight transport company, presenting fleet, passenger, and cargo services with an SEO and i18n focus.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "i18n"],
     vercel: "https://autobusyhodonin.cz",
     github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
     image: "/projects/autodopravakopecek_projekt.png",
   },
   {
-    title: "AI Powered Quiz App",
+    title: "Eurowafers",
     description:
-      "Quiz app built with Next.js and Gemini AI that generates random React-related questions and grades answers in real time.",
-    tech: ["TypeScript", "Next.js", "Gemini AI", "Vercel"],
-    vercel: "https://quiz-app-nxt.vercel.app/",
-    github: "https://github.com/lukaskourilcz/react-quiz-app",
-    image: "/projects/aiquiz_projekt.png",
-  },
-  {
-    title: "Dont Wanna Know",
-    description:
-      "Web app using Gemini AI to reveal life stats after answering personal questions. Built with Next.js and Node.js.",
-    tech: ["JavaScript", "React", "Node.js", "Gemini AI", "Vercel"],
-    github: "https://github.com/lukaskourilcz/dontwannaknow",
+      "Marketing website for a Czech spa-wafer manufacturer, presenting its history, product range, and distribution.",
+    tech: ["Astro", "TypeScript", "TailwindCSS", "Vercel"],
+    vercel: "https://eurowafers.vercel.app",
     image: "/wip.png",
   },
   {
-    title: "beKind Web App",
+    title: "DevQuiz",
     description:
-      "Contributed to rebranding and building the company web app with a focus on UX/UI and performance.",
-    tech: ["TypeScript", "Next.js", "Node.js", "Prisma", "PostgreSQL"],
-    image: "/projects/bekind_projekt.png",
+      "Full-stack developer quiz with JWT-secured auth and Supabase-backed data over an Express serverless API.",
+    tech: ["React", "TypeScript", "Express", "Supabase", "JWT"],
+    vercel: "https://react-express-app-five.vercel.app",
+    image: "/wip.png",
   },
   {
-    title: "Take a Break Web App",
+    title: "AI Powered Quiz App",
     description:
-      "Full-stack B2B meditation scheduling app. Built with Next.js, TypeScript, Prisma, and PostgreSQL.",
-    tech: [
-      "TypeScript",
-      "Next.js",
-      "Node.js",
-      "Prisma",
-      "PostgreSQL",
-      "Digital Twin",
-      "UX/UI",
-      "Vercel",
-    ],
-    github: "https://github.com/lukaskourilcz/TakeABreak",
-    image: "/projects/takeabreak_projekt.png",
+      "AI-powered quiz app that generates random React questions with Gemini and grades answers in real time.",
+    tech: ["Next.js", "TypeScript", "Gemini AI", "Vercel"],
+    image: "/projects/aiquiz_projekt.png",
   },
   {
     title: "Habit Tracker",
     description:
-      "Web app to track personal habits and skills using React, TypeScript, and ShadCN components.",
-    tech: ["TypeScript", "React", "Node.js", "ShadCN", "TailwindCSS", "Vercel"],
+      "Full-stack web app for tracking personal habits and skill progress, pairing a React front end with an Express and Prisma API.",
+    tech: ["React", "TypeScript", "Express", "Prisma", "Node.js"],
     github: "https://github.com/lukaskourilcz/habit-tracker",
     image: "/projects/habittracker_projekt.png",
   },
   {
+    title: "beKind Web App",
+    description:
+      "Company rebrand and web app delivering a polished, performance-focused experience on a Prisma-backed PostgreSQL database.",
+    tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
+    image: "/projects/bekind_projekt.png",
+  },
+  {
+    title: "Dont Wanna Know",
+    description:
+      "Interactive web app that asks personal questions, then uses Gemini AI to reveal tailored life statistics.",
+    tech: ["Next.js", "TypeScript", "Gemini AI"],
+    github: "https://github.com/lukaskourilcz/dontwannaknow",
+    vercel: "https://dontwannaknow.vercel.app",
+    image: "/wip.png",
+  },
+  {
     title: "Vue Quiz App",
     description:
-      "Vue 3 quiz app that tests frontend knowledge. Takes questions from JSON and evaluates score at the end.",
+      "Frontend-knowledge quiz that serves questions from JSON and tallies a final score, deployed on Netlify.",
     tech: ["Vue 3", "Vite", "Bootstrap", "Netlify"],
-    vercel: "https://quiz-app-sable-eight-67.vercel.app/",
-    github: "https://github.com/lukaskourilcz/vue-quiz-app",
     image: "/projects/vuequiz_projekt.png",
   },
 ];
