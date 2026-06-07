@@ -1,27 +1,17 @@
 import Link from "next/link";
 import {
   Github,
-  Sparkles,
-  Sparkle,
   Layers,
   ShieldCheck,
   KeyRound,
+  Rocket,
   Zap,
   Wand2,
-  Brain,
-  Plug,
-  Network,
-  Rocket,
   Puzzle,
-  SquareTerminal,
-  Bot,
   MessageSquare,
   MessageCircle,
-  Search,
-  Braces,
-  Triangle,
-  Link2,
 } from "lucide-react";
+import { BrandIcon } from "@/components/brand-icons";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import GitHubGrid from "@/components/github-grid";
@@ -105,25 +95,22 @@ const STACK = [
   {
     label: "ai",
     items: [
-      { name: "Claude Code", Icon: Sparkles, color: "#D97757" },
-      { name: "Claude", Icon: Brain, color: "#D97757" },
-      { name: "Anthropic SDK", Icon: Braces, color: "#D97757" },
-      { name: "MCP", Icon: Plug, color: "#D97757" },
-      { name: "Agent SDK", Icon: Network, color: "#D97757" },
-      { name: "SuperClaude", Icon: Rocket, color: "#D97757" },
+      { name: "Claude Code", brand: "claude", color: "#d97757" },
+      { name: "Anthropic SDK", brand: "anthropic", color: "#d4d4d8" },
+      { name: "MCP", brand: "mcp", color: "#d4d4d8" },
+      { name: "Agent SDK", brand: "claude", color: "#d97757" },
+      { name: "SuperClaude", Icon: Rocket, color: "#d97757" },
       { name: "Superpowers", Icon: Zap, color: "#f59e0b" },
       { name: "Matt Pocock Skills", Icon: Wand2, color: "#3178c6" },
       { name: "Skills & Plugins", Icon: Puzzle, color: "#10b981" },
-      { name: "Cursor", Icon: SquareTerminal },
-      { name: "GitHub Copilot", Icon: Bot },
+      { name: "Cursor", brand: "cursor", color: "#d4d4d8" },
+      { name: "GitHub Copilot", brand: "copilot", color: "#d4d4d8" },
       { name: "ChatGPT", Icon: MessageSquare, color: "#10a37f" },
-      { name: "OpenAI API", Icon: Braces, color: "#10a37f" },
-      { name: "Gemini", Icon: Sparkle, color: "#4285f4" },
-      { name: "Gemini API", Icon: Braces, color: "#4285f4" },
-      { name: "Perplexity", Icon: Search, color: "#20b8cd" },
-      { name: "Grok", Icon: MessageCircle },
-      { name: "Vercel AI SDK", Icon: Triangle },
-      { name: "LangChain", Icon: Link2, color: "#1c8a6e" },
+      { name: "Gemini", brand: "gemini", color: "#8e75b2" },
+      { name: "Perplexity", brand: "perplexity", color: "#1fb8cd" },
+      { name: "Grok", Icon: MessageCircle, color: "#d4d4d8" },
+      { name: "Vercel AI SDK", brand: "vercel", color: "#d4d4d8" },
+      { name: "LangChain", brand: "langchain", color: "#7fc8ff" },
     ],
   },
 ];
@@ -147,6 +134,12 @@ export default function StackSection() {
                 >
                   {it.icon ? (
                     <i className={`${it.icon} text-lg`} aria-hidden />
+                  ) : it.brand ? (
+                    <BrandIcon
+                      name={it.brand}
+                      className="h-[1.125rem] w-[1.125rem] shrink-0"
+                      style={{ color: it.color }}
+                    />
                   ) : (
                     <it.Icon
                       className="h-[1.125rem] w-[1.125rem] shrink-0"
