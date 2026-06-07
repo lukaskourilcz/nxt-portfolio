@@ -127,8 +127,8 @@ const SM_BASE = byTier("sm");
 function ring(items, r, offsetDeg, rnd) {
   const n = items.length;
   return items.map((it, k) => {
-    const ang = ((offsetDeg + (360 / n) * k + (rnd() - 0.5) * 22) * Math.PI) / 180;
-    const rr = r + (rnd() - 0.5) * 8;
+    const ang = ((offsetDeg + (360 / n) * k + (rnd() - 0.5) * 16) * Math.PI) / 180;
+    const rr = r + (rnd() - 0.5) * 5;
     return { it, x: 50 + rr * Math.cos(ang), y: 50 + rr * Math.sin(ang) };
   });
 }
@@ -140,10 +140,10 @@ function buildLayout(seed) {
   const sm = seededShuffle(SM_BASE, seed + 29);
   const rnd = makeRng(seed + 101);
   const circle = [
-    ...ring(lg, 16, 45, rnd),
-    ...ring(md, 29, 12, rnd),
-    ...ring(sm.slice(0, 14), 39, 8, rnd),
-    ...ring(sm.slice(14), 46, 0, rnd),
+    ...ring(lg, 14, 45, rnd),
+    ...ring(md, 24, 12, rnd),
+    ...ring(sm.slice(0, 14), 32, 8, rnd),
+    ...ring(sm.slice(14), 40, 0, rnd),
   ];
   return {
     flat: [...lg, ...md, ...sm],
@@ -170,11 +170,11 @@ const PX = (() => {
   const rnd = makeRng(909);
   const m = {};
   for (const it of STACK) {
-    if (it.name === "JavaScript") m[it.name] = 112;
-    else if (it.name === "TypeScript") m[it.name] = 90;
-    else if (it.name === "HTML5" || it.name === "CSS3") m[it.name] = 74;
-    else if (it.size === "md") m[it.name] = Math.round(54 + rnd() * 14);
-    else m[it.name] = Math.round(42 + rnd() * 16);
+    if (it.name === "JavaScript") m[it.name] = 160;
+    else if (it.name === "TypeScript") m[it.name] = 134;
+    else if (it.name === "HTML5" || it.name === "CSS3") m[it.name] = 114;
+    else if (it.size === "md") m[it.name] = Math.round(88 + rnd() * 24);
+    else m[it.name] = Math.round(74 + rnd() * 24);
   }
   return m;
 })();
@@ -193,9 +193,9 @@ function pushOffset(name, hovered, pos) {
   const dx = t.x - h.x;
   const dy = t.y - h.y;
   const dist = Math.hypot(dx, dy) || 0.001;
-  const INFLUENCE = 24; // percent
+  const INFLUENCE = 26; // percent
   if (dist >= INFLUENCE) return { x: 0, y: 0 };
-  const force = (1 - dist / INFLUENCE) * 60; // px
+  const force = (1 - dist / INFLUENCE) * 72; // px
   return { x: (dx / dist) * force, y: (dy / dist) * force };
 }
 
@@ -261,7 +261,7 @@ export default function StackSection() {
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
       {/* Desktop: scattered circular constellation with hover repulsion */}
-      <div className="relative mx-auto hidden aspect-square w-full max-w-4xl lg:block">
+      <div className="relative mx-auto hidden aspect-square w-full max-w-3xl lg:block">
         {circle.map(({ it, x, y }, i) => {
           const isHover = hovered === it.name;
           const off = pushOffset(it.name, hovered, posByName);
