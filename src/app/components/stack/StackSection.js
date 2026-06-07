@@ -40,9 +40,9 @@ function ShadcnIcon({ className, style, ...props }) {
 // Icons are sized by relevancy: lg (languages) > md (frameworks + version
 // control) > sm (everything else).
 const SIZES = {
-  lg: { box: "h-16 w-16 sm:h-20 sm:w-20", devicon: "text-4xl sm:text-5xl", svg: "h-8 w-8 sm:h-10 sm:w-10" },
-  md: { box: "h-12 w-12 sm:h-14 sm:w-14", devicon: "text-2xl sm:text-3xl", svg: "h-6 w-6 sm:h-7 sm:w-7" },
-  sm: { box: "h-10 w-10 sm:h-11 sm:w-11", devicon: "text-lg sm:text-xl", svg: "h-4 w-4 sm:h-5 sm:w-5" },
+  lg: { box: "h-32 w-32 sm:h-40 sm:w-40", devicon: "text-7xl sm:text-8xl", svg: "h-16 w-16 sm:h-20 sm:w-20" },
+  md: { box: "h-24 w-24 sm:h-28 sm:w-28", devicon: "text-5xl sm:text-6xl", svg: "h-12 w-12 sm:h-14 sm:w-14" },
+  sm: { box: "h-20 w-20 sm:h-[5.5rem] sm:w-[5.5rem]", devicon: "text-4xl sm:text-5xl", svg: "h-8 w-8 sm:h-10 sm:w-10" },
 };
 
 // A distinct tooltip / glow color per icon (cycled).
@@ -140,12 +140,24 @@ function ring(items, r, offsetDeg, seed) {
   });
 }
 const CIRCLE = [
-  ...ring(LG, 12, 45, 101),
-  ...ring(MD, 22, 12, 211),
-  ...ring(SM.slice(0, 14), 31, 8, 307),
-  ...ring(SM.slice(14), 39, 0, 421),
+  ...ring(LG, 16, 45, 101),
+  ...ring(MD, 29, 12, 211),
+  ...ring(SM.slice(0, 14), 39, 8, 307),
+  ...ring(SM.slice(14), 46, 0, 421),
 ];
 const POS = Object.fromEntries(CIRCLE.map((p) => [p.it.name, p]));
+
+// A random hover tilt per icon (mixed direction + magnitude), seeded so it's
+// stable across renders.
+const ROT = (() => {
+  const rnd = makeRng(555);
+  const m = {};
+  for (const it of STACK) {
+    const mag = 16 + rnd() * 20; // 16–36°
+    m[it.name] = Math.round((rnd() < 0.5 ? -1 : 1) * mag);
+  }
+  return m;
+})();
 
 // On hover, push nearby icons outward — proximity-scaled, in px.
 function pushOffset(name, hovered) {
@@ -156,9 +168,9 @@ function pushOffset(name, hovered) {
   const dx = t.x - h.x;
   const dy = t.y - h.y;
   const dist = Math.hypot(dx, dy) || 0.001;
-  const INFLUENCE = 22; // percent
+  const INFLUENCE = 24; // percent
   if (dist >= INFLUENCE) return { x: 0, y: 0 };
-  const force = (1 - dist / INFLUENCE) * 38; // px
+  const force = (1 - dist / INFLUENCE) * 60; // px
   return { x: (dx / dist) * force, y: (dy / dist) * force };
 }
 
@@ -217,7 +229,7 @@ export default function StackSection() {
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
       {/* Desktop: scattered circular constellation with hover repulsion */}
-      <div className="relative mx-auto hidden aspect-square w-full max-w-2xl lg:block">
+      <div className="relative mx-auto hidden aspect-square w-full max-w-4xl lg:block">
         {CIRCLE.map(({ it, x, y }, i) => {
           const isHover = hovered === it.name;
           const off = pushOffset(it.name, hovered);
@@ -237,8 +249,8 @@ export default function StackSection() {
                   animate={{
                     x: off.x,
                     y: off.y,
-                    scale: isHover ? 1.45 : 1,
-                    rotate: reduce ? 0 : isHover ? -6 : 0,
+                    scale: isHover ? 1.3 : 1,
+                    rotate: reduce ? 0 : isHover ? ROT[it.name] : 0,
                   }}
                   transition={INTERACT}
                   onMouseEnter={() => setHovered(it.name)}
@@ -267,7 +279,7 @@ export default function StackSection() {
               transition={{ ...ENTRANCE, delay: Math.min(i * 0.012, 0.4) }}
             >
               <motion.div
-                animate={{ scale: isHover ? 1.3 : 1, rotate: reduce ? 0 : isHover ? -6 : 0 }}
+                animate={{ scale: isHover ? 1.25 : 1, rotate: reduce ? 0 : isHover ? ROT[it.name] : 0 }}
                 transition={INTERACT}
                 onMouseEnter={() => setHovered(it.name)}
                 onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
