@@ -1,9 +1,12 @@
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { Github, Sparkles } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import GitHubGrid from "@/components/github-grid";
 
+// Items use a devicon class (`icon`) or a Lucide component (`Icon` + `color`)
+// for brands that devicon doesn't ship (e.g. Claude Code). Brand icons whose
+// natural color is dark are left uncolored so they inherit the light text.
 const STACK = [
   {
     label: "languages",
@@ -21,22 +24,33 @@ const STACK = [
       { name: "Next.js", icon: "devicon-nextjs-plain" },
       { name: "Vue.js", icon: "devicon-vuejs-plain colored" },
       { name: "TailwindCSS", icon: "devicon-tailwindcss-original colored" },
+      { name: "Bootstrap", icon: "devicon-bootstrap-plain colored" },
+      { name: "Framer Motion", icon: "devicon-framermotion-original" },
     ],
   },
   {
     label: "backend & data",
     items: [
       { name: "Node.js", icon: "devicon-nodejs-plain colored" },
+      { name: "Express.js", icon: "devicon-express-original" },
       { name: "PostgreSQL", icon: "devicon-postgresql-plain colored" },
       { name: "MySQL", icon: "devicon-mysql-original colored" },
+      { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
+      { name: "Prisma", icon: "devicon-prisma-original" },
     ],
   },
   {
     label: "tools",
     items: [
-      { name: "Docker", icon: "devicon-docker-plain colored" },
+      { name: "Git", icon: "devicon-git-plain colored" },
       { name: "GitHub", icon: "devicon-github-original" },
+      { name: "GitLab", icon: "devicon-gitlab-plain colored" },
+      { name: "Docker", icon: "devicon-docker-plain colored" },
+      { name: "Vercel", icon: "devicon-vercel-original" },
+      { name: "Netlify", icon: "devicon-netlify-plain colored" },
+      { name: "Vite", icon: "devicon-vitejs-plain colored" },
       { name: "Figma", icon: "devicon-figma-plain colored" },
+      { name: "Claude Code", Icon: Sparkles, color: "#D97757" },
     ],
   },
 ];
@@ -58,7 +72,15 @@ export default function StackSection() {
                   key={it.name}
                   className="flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-sm"
                 >
-                  <i className={`${it.icon} text-lg`} aria-hidden />
+                  {it.icon ? (
+                    <i className={`${it.icon} text-lg`} aria-hidden />
+                  ) : (
+                    <it.Icon
+                      className="h-[1.125rem] w-[1.125rem] shrink-0"
+                      style={{ color: it.color }}
+                      aria-hidden
+                    />
+                  )}
                   <span className="font-mono text-xs text-zinc-300">
                     {it.name}
                   </span>
