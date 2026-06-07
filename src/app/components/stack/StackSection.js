@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
+  Github,
   Layers,
   ShieldCheck,
   KeyRound,
@@ -10,7 +12,9 @@ import {
   ArrowLeftRight,
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/reveal";
 import { BrandIcon } from "@/components/brand-icons";
+import GitHubGrid from "@/components/github-grid";
 
 // shadcn/ui has no devicon glyph — render its two-stroke logo inline.
 function ShadcnIcon({ className, style, ...props }) {
@@ -219,6 +223,28 @@ export default function StackSection() {
           </motion.div>
         ))}
       </div>
+
+      <Reveal delay={0.1} className="mt-16">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+          <div className="mb-5 flex items-center justify-between">
+            <p className="font-mono text-xs text-zinc-400">
+              <span className="text-emerald-400">$</span> git log --graph
+            </p>
+            <Link
+              href="https://github.com/lukaskourilcz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 transition-colors hover:text-emerald-400"
+            >
+              <Github className="h-3.5 w-3.5" /> @lukaskourilcz
+            </Link>
+          </div>
+          <GitHubGrid />
+          <p className="mt-5 text-center font-mono text-xs text-zinc-500">
+            wish I could also show you the GitLab stats 😔
+          </p>
+        </div>
+      </Reveal>
     </section>
   );
 }
