@@ -21,9 +21,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 @theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -80,7 +83,7 @@ html {
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.928 0.006 264.531);
   --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0.707 0.022 261.325);
+  --ring: oklch(0.696 0.17 162.48);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -135,13 +138,46 @@ html {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    background-color: color-mix(in oklch, var(--ring) 25%, transparent);
   }
 }
 
 @layer components {
-    .lg\:timeline-grid {
-        grid-auto-rows: minmax(min-content, max-content);
-        align-items: start; 
-    }
+  .lg\:timeline-grid {
+    grid-auto-rows: minmax(min-content, max-content);
+    align-items: start;
   }
+
+  /* Faint blueprint grid used behind sections */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, oklch(0.13 0.028 261.692 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.13 0.028 261.692 / 0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .dark .bg-grid {
+    background-image:
+      linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+  }
+}
+
+/* Subtle, dev-flavored scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.85 0.01 264);
+  border-radius: 9999px;
+  border: 3px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ring);
+}

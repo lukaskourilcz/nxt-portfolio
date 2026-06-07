@@ -1,112 +1,107 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
-import { DotPatternBg } from "@/components/dot-pattern-bg";
+import { SectionHeading } from "@/components/section-heading";
+import { Reveal } from "@/components/reveal";
+
+const CONTACTS = [
+  {
+    label: "email",
+    href: "mailto:kouril.lukas@gmail.com",
+    value: "kouril.lukas@gmail.com",
+    Icon: Mail,
+  },
+  {
+    label: "phone",
+    href: "tel:+420737875367",
+    value: "+420 737 875 367",
+    Icon: Phone,
+  },
+  {
+    label: "location",
+    href: null,
+    value: "Prague, Czech Republic",
+    Icon: MapPin,
+  },
+];
+
+const SOCIALS = [
+  { href: "https://github.com/lukaskourilcz", label: "GitHub", Icon: Github },
+  {
+    href: "https://www.linkedin.com/in/lukas-kouril",
+    label: "LinkedIn",
+    Icon: Linkedin,
+  },
+];
 
 export default function ContactSection() {
-  const contactItems = [
-    {
-      href: "mailto:kouril.lukas@gmail.com",
-      icon: <Mail className="w-5 h-5 text-gray-700" />,
-      text: "kouril.lukas@gmail.com",
-    },
-    {
-      href: "tel:+420737875367",
-      icon: <Phone className="w-5 h-5 text-gray-700" />,
-      text: "+420 737 875 367",
-    },
-    {
-      href: null,
-      icon: <MapPin className="w-5 h-5 text-gray-700" />,
-      text: "Prague, Czech Republic",
-    },
-  ];
-
   return (
-    <section
-      id="contact"
-      className="relative flex flex-col items-center justify-center min-h-[85vh] bg-gray-50 px-6 py-20 overflow-hidden"
-    >
-      <DotPatternBg />
+    <section id="contact" className="mx-auto max-w-5xl px-6 py-24">
+      <SectionHeading index="04" command="contact" title="Get in touch" />
 
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="relative z-10 uppercase text-4xl md:text-5xl -mt-18 font-extrabold text-gray-800 text-center mb-6 tracking-wider"
-      >
-        Get in touch
-      </motion.h2>
+      <div className="grid items-start gap-10 lg:grid-cols-2">
+        <Reveal>
+          <p className="font-mono text-sm text-emerald-600 dark:text-emerald-400">
+            $ ./say-hello.sh
+          </p>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+            Are you hiring or have a project in mind? My inbox is always open —
+            whether it&apos;s a question, an opportunity, or just to say hi, I
+            will get back to you.
+          </p>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="relative z-10 text-gray-600 text-center max-w-lg mb-12 text-sm sm:text-base leading-relaxed"
-      >
-        Are you hiring or have a project in mind?  
-        <br/>Reach out and let’s build something great!
-      </motion.p>
-
-      <div className="relative z-10 grid gap-4 sm:gap-5 w-full max-w-xl">
-        {contactItems.map((item, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            viewport={{ once: true }}
+          <a
+            href="mailto:kouril.lukas@gmail.com"
+            className="mt-6 inline-flex items-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-600 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-emerald-400 dark:hover:text-zinc-900"
           >
-            <Card className="border-gray-200 bg-white/90 backdrop-blur-sm shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-200">
-              <CardContent className="flex items-center gap-3 sm:gap-4 py-4 px-5">
-                <div className="flex-shrink-0 text-gray-700">{item.icon}</div>
-                {item.href ? (
+            <Mail className="h-4 w-4" /> Say hello
+          </a>
+
+          <div className="mt-8 flex items-center gap-3">
+            {SOCIALS.map(({ href, label, Icon }) => (
+              <Link
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-200 text-zinc-500 transition-colors hover:border-emerald-500 hover:text-emerald-600 dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-emerald-500 dark:hover:text-emerald-400"
+              >
+                <Icon className="h-5 w-5" />
+              </Link>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1} className="space-y-3">
+          {CONTACTS.map(({ label, href, value, Icon }) => (
+            <div
+              key={label}
+              className="flex items-center gap-3 rounded-lg border border-zinc-200 bg-white px-4 py-3 transition-colors hover:border-emerald-200 dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-emerald-500/40"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
+                <Icon className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <p className="font-mono text-[0.7rem] uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                  {label}
+                </p>
+                {href ? (
                   <Link
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : "_self"}
-                    className="text-gray-800 hover:text-gray-900 transition text-sm sm:text-base"
+                    href={href}
+                    className="truncate text-sm text-zinc-800 transition-colors hover:text-emerald-600 dark:text-zinc-200 dark:hover:text-emerald-400"
                   >
-                    {item.text}
+                    {value}
                   </Link>
                 ) : (
-                  <span className="text-gray-800 text-sm sm:text-base">
-                    {item.text}
+                  <span className="text-sm text-zinc-800 dark:text-zinc-200">
+                    {value}
                   </span>
                 )}
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+              </div>
+            </div>
+          ))}
+        </Reveal>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="relative z-10 flex justify-center gap-10 mt-14"
-      >
-        <Link
-          href="https://www.linkedin.com/in/lukas-kouril"
-          target="_blank"
-          className="opacity-70 hover:opacity-100 hover:scale-110 transition"
-        >
-          <Linkedin className="w-8 h-8 md:w-10 md:h-10 text-gray-700" />
-        </Link>
-        <Link
-          href="https://github.com/lukaskourilcz"
-          target="_blank"
-          className="opacity-70 hover:opacity-100 hover:scale-110 transition"
-        >
-          <Github className="w-8 h-8 md:w-10 md:h-10 text-gray-700" />
-        </Link>
-      </motion.div>
-
     </section>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useResponsiveMonths } from "@/lib/useResponsiveMonths";
 
@@ -66,27 +65,20 @@ export default function GitHubGrid() {
 
   if (!weeks.length) {
     return (
-      <p className="text-center text-gray-400 my-10">Loading contributions…</p>
+      <p className="py-10 text-center font-mono text-sm text-zinc-400 dark:text-zinc-500">
+        <span className="text-emerald-600 dark:text-emerald-400">$</span> loading
+        contributions…
+      </p>
     );
   }
 
   return (
-    <div className="w-full max-w-lg mx-auto mb-10">
-      <div className="flex items-center justify-center mb-2 text-gray-400">
-        <Image
-          src="/icons/github.svg"
-          alt="GitHub"
-          width={18}
-          height={18}
-          className="opacity-80 transition-transform duration-300 hover:scale-110 hover:opacity-100"
-        />
-      </div>
-
-      <div className="flex gap-[2px] mx-auto w-fit mb-1 text-[0.5rem] text-gray-400">
+    <div className="mx-auto w-fit max-w-full">
+      <div className="mb-1 flex w-fit gap-[3px] text-[0.5rem] text-zinc-400 dark:text-zinc-500">
         {weeks.map((_, i) => {
           const label = monthLabels.find((m) => m.index === i);
           return (
-            <div key={i} className="w-2 text-center">
+            <div key={i} className="w-2 text-center font-mono">
               {label ? label.label : ""}
             </div>
           );
@@ -96,11 +88,11 @@ export default function GitHubGrid() {
       <AnimatePresence mode="wait">
         <motion.div
           key={monthsBack}
-          initial={{ opacity: 0, y: 6, scale: 0.97 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -6, scale: 0.97 }}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="flex gap-[3px] overflow-x-auto mx-auto w-fit"
+          className="flex w-fit gap-[3px]"
         >
           {weeks.map((week, i) => (
             <div key={i} className="flex flex-col gap-[3px]">
@@ -109,20 +101,13 @@ export default function GitHubGrid() {
                 return (
                   <div
                     key={j}
-                    className="w-2 h-2 rounded-[2px] transition-all duration-200"
-                    style={{
-                      backgroundColor: day.color,
-                      opacity: isEmpty ? 0.55 : 0.85,
-                    }}
                     title={formatTooltip(day)}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.opacity = isEmpty ? "0.4" : "1")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.opacity = isEmpty
-                        ? "0.45"
-                        : "0.85")
-                    }
+                    className={`h-2 w-2 rounded-[2px] transition-all duration-200 ${
+                      isEmpty
+                        ? "opacity-40 hover:opacity-70"
+                        : "opacity-85 hover:opacity-100"
+                    }`}
+                    style={{ backgroundColor: day.color }}
                   />
                 );
               })}
