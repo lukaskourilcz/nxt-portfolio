@@ -34,7 +34,7 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <div className="flex items-center justify-between border-t border-zinc-800 pt-6">
+        <div className="flex flex-col items-start gap-3 border-t border-zinc-800 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-[0.7rem] text-zinc-500">
             © 2026 Lukas Kouril — designed &amp; built in Prague.
           </p>

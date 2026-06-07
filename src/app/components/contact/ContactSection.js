@@ -35,13 +35,13 @@ const SOCIALS = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="contact" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="05" command="contact" title="Get in touch" />
 
-      <div className="grid items-start gap-10 lg:grid-cols-2">
+      <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2">
         <Reveal>
           <p className="font-mono text-sm text-emerald-400">$ ./say-hello.sh</p>
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-zinc-300">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg">
             Are you hiring or have a project in mind? My inbox is always open —
             whether it&apos;s a question, an opportunity, or just to say hi, I
             will get back to you.

@@ -165,7 +165,7 @@ function ProjectCard({ proj, delay }) {
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="projects" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="02" command="projects" title="Projects" />
 
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

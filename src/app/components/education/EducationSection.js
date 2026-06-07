@@ -121,7 +121,7 @@ const EDUCATORS = [
 
 export default function EducationSection() {
   return (
-    <section id="education" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="education" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="04" command="education" title="Education" />
 
       <div className="space-y-5">

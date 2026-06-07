@@ -29,7 +29,7 @@ export function CodeWindow({ title = "lukas.ts", children, className = "" }) {
       animate={controls}
       className={`overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-sm ${className}`}
     >
-      <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-800/50 px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-800/50 px-3 py-2 sm:px-4 sm:py-3">
         <div className="group/lights flex items-center gap-2">
           <button
             type="button"
@@ -78,7 +78,7 @@ export function CodeWindow({ title = "lukas.ts", children, className = "" }) {
         </div>
         <span className="ml-2 font-mono text-xs text-zinc-500">{title}</span>
       </div>
-      <div className="overflow-x-auto p-5 font-mono text-[0.8rem] leading-relaxed sm:text-sm">
+      <div className="overflow-x-auto p-4 font-mono text-xs leading-relaxed sm:p-5 sm:text-sm">
         {children}
       </div>
     </motion.div>

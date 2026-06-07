@@ -55,7 +55,7 @@ export default function HeroSection() {
       id="top"
       className="relative mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 pt-28 pb-16"
     >
-      <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="grid items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Left — intro */}
         <Reveal>
           <div className="mb-6 flex items-center gap-3">
@@ -79,10 +79,10 @@ export default function HeroSection() {
           </div>
 
           <p className="mb-3 font-mono text-sm text-emerald-400">$ whoami</p>
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl md:text-6xl">
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-6xl">
             Lukas Kouril
           </h1>
-          <p className="mt-4 text-xl font-medium text-zinc-300 md:text-2xl">
+          <p className="mt-4 text-lg font-medium text-zinc-300 sm:text-xl md:text-2xl">
             Software Engineer
           </p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">

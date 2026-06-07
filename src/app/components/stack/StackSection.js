@@ -265,7 +265,7 @@ export default function StackSection() {
   const { circle, flat, posByName } = useMemo(() => buildLayout(seed), [seed]);
 
   return (
-    <section id="stack" className="mx-auto max-w-5xl px-6 py-24">
+    <section id="stack" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
       {/* Desktop: scattered circular constellation with hover repulsion */}
@@ -305,7 +305,7 @@ export default function StackSection() {
       </div>
 
       {/* Mobile / tablet: flowing wrap */}
-      <div className="flex flex-wrap items-center justify-center gap-2.5 lg:hidden">
+      <div className="flex flex-wrap items-center justify-center gap-2 lg:hidden">
         {flat.map((it, i) => {
           const isHover = hovered === it.name;
           return (
@@ -324,14 +324,14 @@ export default function StackSection() {
                 onMouseEnter={() => setHovered(it.name)}
                 onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
               >
-                <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={Math.round(PX[it.name] * 0.6)} />
+                <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={Math.round(PX[it.name] * 0.42)} />
               </motion.div>
             </motion.div>
           );
         })}
       </div>
 
-      <Reveal delay={0.1} className="mt-16">
+      <Reveal delay={0.1} className="mt-16 hidden sm:block">
         <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
           <div className="mb-5 flex items-center justify-between">
             <p className="font-mono text-xs text-zinc-400">
