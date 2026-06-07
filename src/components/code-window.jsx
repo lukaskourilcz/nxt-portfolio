@@ -4,7 +4,7 @@
  * Used in the hero to render a code-styled "about" snippet.
  */
 const GLYPH =
-  "h-2 w-2 opacity-0 transition-opacity duration-150 group-hover/lights:opacity-100";
+  "h-2.5 w-2.5 opacity-0 transition-opacity duration-150 group-hover/lights:opacity-100";
 const DOT =
   "flex h-3 w-3 items-center justify-center rounded-full shadow-[inset_0_0_0_0.5px_rgba(0,0,0,0.2)]";
 
@@ -20,11 +20,11 @@ export function CodeWindow({ title = "lukas.ts", children, className = "" }) {
               viewBox="0 0 12 12"
               fill="none"
               stroke="#4d0000"
-              strokeWidth="1.5"
+              strokeWidth="1.8"
               strokeLinecap="round"
               className={GLYPH}
             >
-              <path d="M3.5 3.5l5 5M8.5 3.5l-5 5" />
+              <path d="M3 3l6 6M9 3l-6 6" />
             </svg>
           </span>
           <span className={`${DOT} bg-[#febc2e]`} aria-label="Minimize" role="button">
@@ -32,11 +32,11 @@ export function CodeWindow({ title = "lukas.ts", children, className = "" }) {
               viewBox="0 0 12 12"
               fill="none"
               stroke="#965700"
-              strokeWidth="1.5"
+              strokeWidth="1.8"
               strokeLinecap="round"
               className={GLYPH}
             >
-              <path d="M3 6h6" />
+              <path d="M2.6 6h6.8" />
             </svg>
           </span>
           <span
@@ -45,7 +45,7 @@ export function CodeWindow({ title = "lukas.ts", children, className = "" }) {
             role="button"
           >
             <svg viewBox="0 0 12 12" fill="#006500" className={GLYPH}>
-              <path d="M3.4 3.4H7.2L3.4 7.2ZM8.6 8.6H4.8L8.6 4.8Z" />
+              <path d="M3 3H7.8L3 7.8ZM9 9H4.2L9 4.2Z" />
             </svg>
           </span>
         </div>
