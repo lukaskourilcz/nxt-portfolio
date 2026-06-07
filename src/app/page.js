@@ -15,8 +15,8 @@ export default function Home() {
       <main id="main" tabIndex={-1} className="outline-none">
         <HeroSection />
         <StackSection />
-        <ExperienceSection />
         <ProjectsSection />
+        <ExperienceSection />
         <ContactSection />
       </main>
       <Footer />

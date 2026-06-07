@@ -1,12 +1,32 @@
 import Link from "next/link";
-import { Github, Sparkles } from "lucide-react";
+import { Github, Sparkles, Layers, ShieldCheck, KeyRound } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import GitHubGrid from "@/components/github-grid";
 
-// Items use a devicon class (`icon`) or a Lucide component (`Icon` + `color`)
-// for brands that devicon doesn't ship (e.g. Claude Code). Brand icons whose
-// natural color is dark are left uncolored so they inherit the light text.
+// shadcn/ui has no devicon glyph — render its two-stroke logo inline.
+function ShadcnIcon({ className, style, ...props }) {
+  return (
+    <svg
+      viewBox="0 0 256 256"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      style={style}
+      {...props}
+    >
+      <line x1="208" y1="128" x2="128" y2="208" />
+      <line x1="192" y1="40" x2="40" y2="192" />
+    </svg>
+  );
+}
+
+// Items use a devicon class (`icon`) or a component (`Icon` + optional `color`)
+// for brands that devicon doesn't ship (e.g. Claude Code, shadcn/ui). Brand
+// icons whose natural color is dark are left uncolored so they inherit the text.
 const STACK = [
   {
     label: "languages",
@@ -23,7 +43,10 @@ const STACK = [
       { name: "React", icon: "devicon-react-original colored" },
       { name: "Next.js", icon: "devicon-nextjs-plain" },
       { name: "Vue.js", icon: "devicon-vuejs-plain colored" },
+      { name: "Astro", icon: "devicon-astro-plain" },
       { name: "TailwindCSS", icon: "devicon-tailwindcss-original colored" },
+      { name: "shadcn/ui", Icon: ShadcnIcon },
+      { name: "MUI", icon: "devicon-materialui-plain colored" },
       { name: "Bootstrap", icon: "devicon-bootstrap-plain colored" },
       { name: "Framer Motion", icon: "devicon-framermotion-original" },
     ],
@@ -37,6 +60,9 @@ const STACK = [
       { name: "MySQL", icon: "devicon-mysql-original colored" },
       { name: "MongoDB", icon: "devicon-mongodb-plain colored" },
       { name: "Prisma", icon: "devicon-prisma-original" },
+      { name: "Payload CMS", Icon: Layers },
+      { name: "Better Auth", Icon: ShieldCheck },
+      { name: "Auth0", Icon: KeyRound, color: "#EB5424" },
     ],
   },
   {
@@ -49,6 +75,8 @@ const STACK = [
       { name: "Vercel", icon: "devicon-vercel-original" },
       { name: "Netlify", icon: "devicon-netlify-plain colored" },
       { name: "Vite", icon: "devicon-vitejs-plain colored" },
+      { name: "Postman", icon: "devicon-postman-plain colored" },
+      { name: "Google Cloud", icon: "devicon-googlecloud-plain colored" },
       { name: "Figma", icon: "devicon-figma-plain colored" },
       { name: "Claude Code", Icon: Sparkles, color: "#D97757" },
     ],

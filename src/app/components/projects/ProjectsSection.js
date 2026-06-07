@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 
@@ -67,21 +67,6 @@ const PROJECTS = [
     image: "/wip.png",
   },
   {
-    title: "AI Powered Quiz App",
-    description:
-      "AI-powered quiz app that generates random React questions with Gemini and grades answers in real time.",
-    tech: ["Next.js", "TypeScript", "Gemini AI", "Vercel"],
-    image: "/projects/aiquiz_projekt.png",
-  },
-  {
-    title: "Habit Tracker",
-    description:
-      "Full-stack web app for tracking personal habits and skill progress, pairing a React front end with an Express and Prisma API.",
-    tech: ["React", "TypeScript", "Express", "Prisma", "Node.js"],
-    github: "https://github.com/lukaskourilcz/habit-tracker",
-    image: "/projects/habittracker_projekt.png",
-  },
-  {
     title: "beKind Web App",
     description:
       "Company rebrand and web app delivering a polished, performance-focused experience on a Prisma-backed PostgreSQL database.",
@@ -97,80 +82,103 @@ const PROJECTS = [
     vercel: "https://dontwannaknow.vercel.app",
     image: "/wip.png",
   },
-  {
-    title: "Vue Quiz App",
-    description:
-      "Frontend-knowledge quiz that serves questions from JSON and tallies a final score, deployed on Netlify.",
-    tech: ["Vue 3", "Vite", "Bootstrap", "Netlify"],
-    image: "/projects/vuequiz_projekt.png",
-  },
 ];
+
+function IconLink({ href, label, children }) {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
+    >
+      {children}
+    </Link>
+  );
+}
+
+function ProjectCard({ proj, n, delay }) {
+  const primary = proj.vercel || proj.github || null;
+  return (
+    <Reveal
+      as="article"
+      delay={delay}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_24px_50px_-24px_rgba(0,0,0,0.85)]"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden">
+        <Image
+          src={proj.image}
+          alt={proj.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.06]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/15 to-transparent" />
+        <span className="absolute left-3 top-3 rounded-md border border-white/10 bg-zinc-950/50 px-1.5 py-0.5 font-mono text-[0.7rem] text-emerald-300 backdrop-blur-sm">
+          {n}
+        </span>
+        <div className="absolute right-3 top-3 flex translate-y-1 gap-1.5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          {proj.github && (
+            <IconLink href={proj.github} label={`${proj.title} source on GitHub`}>
+              <Github className="h-3.5 w-3.5" />
+            </IconLink>
+          )}
+          {proj.vercel && (
+            <IconLink href={proj.vercel} label={`${proj.title} live site`}>
+              <ExternalLink className="h-3.5 w-3.5" />
+            </IconLink>
+          )}
+        </div>
+      </div>
+
+      <div className="relative z-10 -mt-6 flex flex-1 flex-col px-5 pb-5">
+        <h3 className="text-base font-semibold text-zinc-100">
+          {primary ? (
+            <Link
+              href={primary}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 transition-colors hover:text-emerald-300"
+            >
+              {proj.title}
+              <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+            </Link>
+          ) : (
+            proj.title
+          )}
+        </h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
+          {proj.description}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {proj.tech.map((t) => (
+            <span
+              key={t}
+              className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.7rem] text-emerald-300"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  );
+}
 
 export default function ProjectsSection() {
   return (
     <section id="projects" className="mx-auto max-w-5xl px-6 py-24">
-      <SectionHeading index="03" command="projects" title="Projects" />
+      <SectionHeading index="02" command="projects" title="Projects" />
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((proj, i) => (
-          <Reveal key={proj.title} delay={Math.min(i * 0.05, 0.25)}>
-            <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-all duration-200 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-md">
-              <div className="relative h-44 w-full overflow-hidden border-b border-zinc-800 bg-zinc-800/50">
-                <Image
-                  src={proj.image}
-                  alt={proj.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
-                />
-              </div>
-
-              <div className="flex flex-1 flex-col p-5">
-                <div className="mb-2 flex items-start justify-between gap-2">
-                  <h3 className="font-semibold text-zinc-100">{proj.title}</h3>
-                  <div className="flex items-center gap-2 text-zinc-500">
-                    {proj.github && (
-                      <Link
-                        href={proj.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${proj.title} source on GitHub`}
-                        className="transition-colors hover:text-emerald-400"
-                      >
-                        <Github className="h-4 w-4" />
-                      </Link>
-                    )}
-                    {proj.vercel && (
-                      <Link
-                        href={proj.vercel}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${proj.title} live site`}
-                        className="transition-colors hover:text-emerald-400"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                      </Link>
-                    )}
-                  </div>
-                </div>
-
-                <p className="flex-1 text-sm leading-relaxed text-zinc-400">
-                  {proj.description}
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {proj.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.7rem] text-emerald-300"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          </Reveal>
+          <ProjectCard
+            key={proj.title}
+            proj={proj}
+            n={String(i + 1).padStart(2, "0")}
+            delay={Math.min(i * 0.04, 0.25)}
+          />
         ))}
       </div>
     </section>

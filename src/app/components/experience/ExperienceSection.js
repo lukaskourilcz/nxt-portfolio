@@ -133,7 +133,7 @@ const EXPERIENCES = [
 export default function ExperienceSection() {
   return (
     <section id="experience" className="mx-auto max-w-5xl px-6 py-24">
-      <SectionHeading index="02" command="experience" title="Experience" />
+      <SectionHeading index="03" command="experience" title="Experience" />
 
       <ol className="relative ml-2 border-l border-zinc-800">
         {EXPERIENCES.map((exp, i) => (

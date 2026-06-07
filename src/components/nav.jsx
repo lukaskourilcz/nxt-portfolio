@@ -6,8 +6,8 @@ import { Menu, X, Download } from "lucide-react";
 
 const LINKS = [
   { id: "stack", label: "stack", index: "01" },
-  { id: "experience", label: "experience", index: "02" },
-  { id: "projects", label: "projects", index: "03" },
+  { id: "projects", label: "projects", index: "02" },
+  { id: "experience", label: "experience", index: "03" },
   { id: "contact", label: "contact", index: "04" },
 ];
 
