@@ -181,7 +181,8 @@ export default function EducationSection() {
 
       <Reveal className="mb-6 mt-14">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
-          <span className="text-emerald-500">{"//"}</span> courses &amp; mentors
+          <span className="text-emerald-500">{"//"}</span> completed courses &amp;
+          favorite mentors
         </p>
       </Reveal>
 

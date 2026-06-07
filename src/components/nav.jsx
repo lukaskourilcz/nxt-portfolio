@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
 
 const LINKS = [
@@ -16,12 +18,28 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
   const [open, setOpen] = useState(false);
+  const [heroAvatarVisible, setHeroAvatarVisible] = useState(true);
+  const reduce = useReducedMotion();
+  const showPhoto = heroAvatarVisible;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Morph the nav mark between the hero photo and the LK logo as the hero
+  // avatar crosses under the sticky navbar.
+  useEffect(() => {
+    const el = document.getElementById("hero-avatar");
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setHeroAvatarVisible(entry.isIntersecting),
+      { rootMargin: "-64px 0px 0px 0px", threshold: 0 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   useEffect(() => {
@@ -53,8 +71,43 @@ export function Nav() {
           href="mailto:kouril.lukas@gmail.com"
           className="group flex items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
-            LK
+          <span className="relative block h-7 w-7 shrink-0">
+            <motion.span
+              aria-hidden
+              initial={false}
+              animate={{
+                opacity: showPhoto ? 0 : 1,
+                scale: showPhoto ? 0.5 : 1,
+                rotate: reduce ? 0 : showPhoto ? -90 : 0,
+              }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="absolute inset-0 flex items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900 transition-colors group-hover:bg-emerald-500 group-hover:text-white"
+            >
+              LK
+            </motion.span>
+            <motion.span
+              aria-hidden
+              initial={false}
+              animate={{
+                opacity: showPhoto ? 1 : 0,
+                scale: showPhoto ? 1 : 0.5,
+                rotate: reduce ? 0 : showPhoto ? 0 : 90,
+              }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="absolute inset-0"
+            >
+              <Image
+                src="/profile.png"
+                alt=""
+                width={28}
+                height={28}
+                className="h-7 w-7 rounded-md object-cover"
+              />
+              <span className="absolute -bottom-0.5 -right-0.5 flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full border border-zinc-950 bg-emerald-500" />
+              </span>
+            </motion.span>
           </span>
           <span>kouril.lukas@gmail.com</span>
         </a>

@@ -59,7 +59,7 @@ export default function HeroSection() {
         {/* Left — intro */}
         <Reveal>
           <div className="mb-6 flex items-center gap-3">
-            <div className="relative">
+            <div id="hero-avatar" className="relative">
               <Image
                 src="/profile.png"
                 alt="Portrait of Lukas Kouril"

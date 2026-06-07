@@ -98,7 +98,7 @@ function IconLink({ href, label, children }) {
   );
 }
 
-function ProjectCard({ proj, n, delay }) {
+function ProjectCard({ proj, delay }) {
   const primary = proj.vercel || proj.github || null;
   return (
     <Reveal
@@ -115,9 +115,6 @@ function ProjectCard({ proj, n, delay }) {
           className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.06]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/15 to-transparent" />
-        <span className="absolute left-3 top-3 rounded-md border border-white/10 bg-zinc-950/50 px-1.5 py-0.5 font-mono text-[0.7rem] text-emerald-300 backdrop-blur-sm">
-          {n}
-        </span>
         <div className="absolute right-3 top-3 flex translate-y-1 gap-1.5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
           {proj.github && (
             <IconLink href={proj.github} label={`${proj.title} source on GitHub`}>
@@ -176,7 +173,6 @@ export default function ProjectsSection() {
           <ProjectCard
             key={proj.title}
             proj={proj}
-            n={String(i + 1).padStart(2, "0")}
             delay={Math.min(i * 0.04, 0.25)}
           />
         ))}
