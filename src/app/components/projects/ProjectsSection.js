@@ -91,8 +91,8 @@ export default function ProjectsSection() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((proj, i) => (
           <Reveal key={proj.title} delay={Math.min(i * 0.05, 0.25)}>
-            <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white transition-all duration-200 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-emerald-500/40">
-              <div className="relative h-44 w-full overflow-hidden border-b border-zinc-100 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800/50">
+            <article className="group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition-all duration-200 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-md">
+              <div className="relative h-44 w-full overflow-hidden border-b border-zinc-800 bg-zinc-800/50">
                 <Image
                   src={proj.image}
                   alt={proj.title}
@@ -104,17 +104,15 @@ export default function ProjectsSection() {
 
               <div className="flex flex-1 flex-col p-5">
                 <div className="mb-2 flex items-start justify-between gap-2">
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
-                    {proj.title}
-                  </h3>
-                  <div className="flex items-center gap-2 text-zinc-400 dark:text-zinc-500">
+                  <h3 className="font-semibold text-zinc-100">{proj.title}</h3>
+                  <div className="flex items-center gap-2 text-zinc-500">
                     {proj.github && (
                       <Link
                         href={proj.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${proj.title} source on GitHub`}
-                        className="transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                        className="transition-colors hover:text-emerald-400"
                       >
                         <Github className="h-4 w-4" />
                       </Link>
@@ -125,7 +123,7 @@ export default function ProjectsSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${proj.title} live site`}
-                        className="transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                        className="transition-colors hover:text-emerald-400"
                       >
                         <ExternalLink className="h-4 w-4" />
                       </Link>
@@ -133,7 +131,7 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                <p className="flex-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                <p className="flex-1 text-sm leading-relaxed text-zinc-400">
                   {proj.description}
                 </p>
 
@@ -141,7 +139,7 @@ export default function ProjectsSection() {
                   {proj.tech.map((t) => (
                     <span
                       key={t}
-                      className="rounded-md border border-emerald-100 bg-emerald-50/60 px-2 py-0.5 font-mono text-[0.7rem] text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-300"
+                      className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.7rem] text-emerald-300"
                     >
                       {t}
                     </span>

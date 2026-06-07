@@ -65,16 +65,15 @@ export default function GitHubGrid() {
 
   if (!weeks.length) {
     return (
-      <p className="py-10 text-center font-mono text-sm text-zinc-400 dark:text-zinc-500">
-        <span className="text-emerald-600 dark:text-emerald-400">$</span> loading
-        contributions…
+      <p className="py-10 text-center font-mono text-sm text-zinc-500">
+        <span className="text-emerald-400">$</span> loading contributions…
       </p>
     );
   }
 
   return (
     <div className="mx-auto w-fit max-w-full">
-      <div className="mb-1 flex w-fit gap-[3px] text-[0.5rem] text-zinc-400 dark:text-zinc-500">
+      <div className="mb-1 flex w-fit gap-[3px] text-[0.5rem] text-zinc-500">
         {weeks.map((_, i) => {
           const label = monthLabels.find((m) => m.index === i);
           return (

@@ -7,57 +7,45 @@ import { CodeWindow } from "@/components/code-window";
 
 const CODE_LINES = [
   <>
-    <span className="text-purple-500 dark:text-purple-400">const</span>{" "}
-    <span className="text-zinc-900 dark:text-zinc-100">lukas</span>{" "}
-    <span className="text-zinc-400 dark:text-zinc-500">= {"{"}</span>
+    <span className="text-purple-400">const</span>{" "}
+    <span className="text-zinc-100">lukas</span>{" "}
+    <span className="text-zinc-500">= {"{"}</span>
   </>,
   <>
-    {"  "}role<span className="text-zinc-400 dark:text-zinc-500">:</span>{" "}
-    <span className="text-emerald-600 dark:text-emerald-400">
-      &quot;Software Engineer&quot;
-    </span>
-    <span className="text-zinc-400 dark:text-zinc-500">,</span>
+    {"  "}role<span className="text-zinc-500">:</span>{" "}
+    <span className="text-emerald-400">&quot;Software Engineer&quot;</span>
+    <span className="text-zinc-500">,</span>
   </>,
   <>
-    {"  "}location<span className="text-zinc-400 dark:text-zinc-500">:</span>{" "}
-    <span className="text-emerald-600 dark:text-emerald-400">
-      &quot;Prague, Czech Republic&quot;
-    </span>
-    <span className="text-zinc-400 dark:text-zinc-500">,</span>
+    {"  "}location<span className="text-zinc-500">:</span>{" "}
+    <span className="text-emerald-400">&quot;Prague, Czech Republic&quot;</span>
+    <span className="text-zinc-500">,</span>
   </>,
   <>
-    {"  "}stack<span className="text-zinc-400 dark:text-zinc-500">: [</span>
-    <span className="text-emerald-600 dark:text-emerald-400">
-      &quot;TypeScript&quot;
-    </span>
-    <span className="text-zinc-400 dark:text-zinc-500">, </span>
-    <span className="text-emerald-600 dark:text-emerald-400">&quot;React&quot;</span>
-    <span className="text-zinc-400 dark:text-zinc-500">, </span>
-    <span className="text-emerald-600 dark:text-emerald-400">
-      &quot;Node.js&quot;
-    </span>
-    <span className="text-zinc-400 dark:text-zinc-500">],</span>
+    {"  "}stack<span className="text-zinc-500">: [</span>
+    <span className="text-emerald-400">&quot;TypeScript&quot;</span>
+    <span className="text-zinc-500">, </span>
+    <span className="text-emerald-400">&quot;React&quot;</span>
+    <span className="text-zinc-500">, </span>
+    <span className="text-emerald-400">&quot;Node.js&quot;</span>
+    <span className="text-zinc-500">],</span>
   </>,
   <>
-    {"  "}focus<span className="text-zinc-400 dark:text-zinc-500">: [</span>
-    <span className="text-emerald-600 dark:text-emerald-400">
-      &quot;clean UI&quot;
-    </span>
-    <span className="text-zinc-400 dark:text-zinc-500">, </span>
-    <span className="text-emerald-600 dark:text-emerald-400">&quot;DX&quot;</span>
-    <span className="text-zinc-400 dark:text-zinc-500">, </span>
-    <span className="text-emerald-600 dark:text-emerald-400">
-      &quot;performance&quot;
-    </span>
-    <span className="text-zinc-400 dark:text-zinc-500">],</span>
+    {"  "}focus<span className="text-zinc-500">: [</span>
+    <span className="text-emerald-400">&quot;clean UI&quot;</span>
+    <span className="text-zinc-500">, </span>
+    <span className="text-emerald-400">&quot;DX&quot;</span>
+    <span className="text-zinc-500">, </span>
+    <span className="text-emerald-400">&quot;performance&quot;</span>
+    <span className="text-zinc-500">],</span>
   </>,
   <>
-    {"  "}available<span className="text-zinc-400 dark:text-zinc-500">:</span>{" "}
-    <span className="text-orange-500 dark:text-orange-400">true</span>
-    <span className="text-zinc-400 dark:text-zinc-500">,</span>
+    {"  "}available<span className="text-zinc-500">:</span>{" "}
+    <span className="text-orange-400">true</span>
+    <span className="text-zinc-500">,</span>
   </>,
   <>
-    <span className="text-zinc-400 dark:text-zinc-500">{"}"};</span>
+    <span className="text-zinc-500">{"}"};</span>
   </>,
 ];
 
@@ -78,55 +66,45 @@ export default function HeroSection() {
                 width={56}
                 height={56}
                 priority
-                className="h-14 w-14 rounded-full border border-zinc-200 object-cover dark:border-zinc-700"
+                className="h-14 w-14 rounded-full border border-zinc-700 object-cover"
               />
               <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-white bg-emerald-500 dark:border-zinc-950" />
+                <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-zinc-950 bg-emerald-500" />
               </span>
             </div>
-            <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+            <span className="font-mono text-xs text-zinc-400">
               available for work · Prague, CZ
             </span>
           </div>
 
-          <p className="mb-3 font-mono text-sm text-emerald-600 dark:text-emerald-400">
-            $ whoami
-          </p>
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl md:text-6xl dark:text-zinc-100">
+          <p className="mb-3 font-mono text-sm text-emerald-400">$ whoami</p>
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-100 sm:text-5xl md:text-6xl">
             Lukas Kouril
           </h1>
-          <p className="mt-4 text-xl font-medium text-zinc-700 md:text-2xl dark:text-zinc-300">
+          <p className="mt-4 text-xl font-medium text-zinc-300 md:text-2xl">
             Software Engineer
           </p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
             I build clean, user-friendly web applications with{" "}
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">
-              TypeScript
-            </span>
-            ,{" "}
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">
-              React
-            </span>{" "}
-            and{" "}
-            <span className="font-medium text-zinc-900 dark:text-zinc-100">
-              Node.js
-            </span>{" "}
-            — from micro-frontends to AI-powered tools. Endlessly curious, always
+            <span className="font-medium text-zinc-100">TypeScript</span>,{" "}
+            <span className="font-medium text-zinc-100">React</span> and{" "}
+            <span className="font-medium text-zinc-100">Node.js</span> — from
+            micro-frontends to AI-powered tools. Endlessly curious, always
             shipping.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-600 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-emerald-400 dark:hover:text-zinc-900"
+              className="inline-flex items-center gap-2 rounded-md bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-emerald-400 hover:text-zinc-900"
             >
               Get in touch <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href="/pdf/cv_lukaskouril.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-600 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-emerald-500 dark:hover:text-emerald-400"
+              className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-300 transition-colors hover:border-emerald-500 hover:text-emerald-400"
             >
               <Download className="h-4 w-4" /> Download CV
             </a>
@@ -136,7 +114,7 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="rounded-md p-2 text-zinc-400 transition-colors hover:text-emerald-600 dark:text-zinc-500 dark:hover:text-emerald-400"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-emerald-400"
               >
                 <Github className="h-5 w-5" />
               </Link>
@@ -145,7 +123,7 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="rounded-md p-2 text-zinc-400 transition-colors hover:text-emerald-600 dark:text-zinc-500 dark:hover:text-emerald-400"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-emerald-400"
               >
                 <Linkedin className="h-5 w-5" />
               </Link>
@@ -159,12 +137,10 @@ export default function HeroSection() {
             <div className="grid grid-cols-[auto_1fr] gap-x-4">
               {CODE_LINES.map((line, i) => (
                 <Fragment key={i}>
-                  <span className="select-none text-right text-zinc-300 dark:text-zinc-600">
+                  <span className="select-none text-right text-zinc-600">
                     {i + 1}
                   </span>
-                  <span className="whitespace-pre text-zinc-700 dark:text-zinc-300">
-                    {line}
-                  </span>
+                  <span className="whitespace-pre text-zinc-300">{line}</span>
                 </Fragment>
               ))}
             </div>
@@ -175,7 +151,7 @@ export default function HeroSection() {
       <div className="mt-16 hidden justify-center md:flex">
         <Link
           href="#stack"
-          className="font-mono text-xs text-zinc-400 transition-colors hover:text-emerald-600 dark:text-zinc-500 dark:hover:text-emerald-400"
+          className="font-mono text-xs text-zinc-500 transition-colors hover:text-emerald-400"
         >
           scroll ↓
         </Link>

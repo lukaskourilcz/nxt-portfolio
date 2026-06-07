@@ -43,7 +43,7 @@ export function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-zinc-200/80 bg-white/80 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-950/80"
+          ? "border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md"
           : "border-b border-transparent"
       }`}
     >
@@ -67,14 +67,12 @@ export function Nav() {
                 aria-current={active === l.id ? "true" : undefined}
                 className="group font-mono text-sm transition-colors"
               >
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  {l.index}.
-                </span>{" "}
+                <span className="text-emerald-400">{l.index}.</span>{" "}
                 <span
                   className={
                     active === l.id
-                      ? "text-zinc-900 dark:text-zinc-100"
-                      : "text-zinc-500 group-hover:text-zinc-900 dark:text-zinc-500 dark:group-hover:text-zinc-200"
+                      ? "text-zinc-100"
+                      : "text-zinc-500 group-hover:text-zinc-200"
                   }
                 >
                   {l.label}
@@ -84,14 +82,14 @@ export function Nav() {
             <a
               href="/pdf/cv_lukaskouril.pdf"
               download
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-300 px-3 py-1.5 font-mono text-xs text-zinc-700 transition-colors hover:border-emerald-500 hover:text-emerald-600 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-emerald-500 dark:hover:text-emerald-400"
+              className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-3 py-1.5 font-mono text-xs text-zinc-300 transition-colors hover:border-emerald-500 hover:text-emerald-400"
             >
               <Download className="h-3.5 w-3.5" /> resume
             </a>
           </div>
 
           <button
-            className="text-zinc-700 dark:text-zinc-300 md:hidden"
+            className="text-zinc-300 md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -101,25 +99,22 @@ export function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-zinc-200 bg-white/95 backdrop-blur-md md:hidden dark:border-zinc-800 dark:bg-zinc-950/95">
+        <div className="border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden">
           <div className="flex flex-col gap-1 px-6 py-4">
             {LINKS.map((l) => (
               <Link
                 key={l.id}
                 href={`#${l.id}`}
                 onClick={() => setOpen(false)}
-                className="py-2 font-mono text-sm text-zinc-600 dark:text-zinc-400"
+                className="py-2 font-mono text-sm text-zinc-400"
               >
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  {l.index}.
-                </span>{" "}
-                {l.label}
+                <span className="text-emerald-400">{l.index}.</span> {l.label}
               </Link>
             ))}
             <a
               href="/pdf/cv_lukaskouril.pdf"
               download
-              className="mt-2 inline-flex w-fit items-center gap-2 rounded-md border border-zinc-300 px-3 py-1.5 font-mono text-xs text-zinc-700 dark:border-zinc-700 dark:text-zinc-300"
+              className="mt-2 inline-flex w-fit items-center gap-2 rounded-md border border-zinc-700 px-3 py-1.5 font-mono text-xs text-zinc-300"
             >
               <Download className="h-3.5 w-3.5" /> resume
             </a>

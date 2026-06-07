@@ -135,7 +135,7 @@ export default function ExperienceSection() {
     <section id="experience" className="mx-auto max-w-5xl px-6 py-24">
       <SectionHeading index="02" command="experience" title="Experience" />
 
-      <ol className="relative ml-2 border-l border-zinc-200 dark:border-zinc-800">
+      <ol className="relative ml-2 border-l border-zinc-800">
         {EXPERIENCES.map((exp, i) => (
           <Reveal
             as="li"
@@ -143,12 +143,11 @@ export default function ExperienceSection() {
             delay={Math.min(i * 0.04, 0.2)}
             className="relative mb-8 ml-6 last:mb-0"
           >
-            <span className="absolute -left-[1.875rem] top-2 h-3 w-3 rounded-full border-2 border-white bg-emerald-500 ring-1 ring-emerald-200 dark:border-zinc-950 dark:ring-emerald-500/30" />
+            <span className="absolute -left-[1.875rem] top-2 h-3 w-3 rounded-full border-2 border-zinc-950 bg-emerald-500 ring-1 ring-emerald-500/30" />
 
-            <div className="rounded-xl border border-zinc-200 bg-white p-5 transition-all duration-200 hover:border-emerald-200 hover:shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-emerald-500/40">
-              <p className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                {exp.period}{" "}
-                <span className="text-zinc-300 dark:text-zinc-600">·</span>{" "}
+            <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 transition-all duration-200 hover:border-emerald-500/40 hover:shadow-sm">
+              <p className="font-mono text-xs text-zinc-400">
+                {exp.period} <span className="text-zinc-600">·</span>{" "}
                 {exp.location}
               </p>
 
@@ -161,12 +160,10 @@ export default function ExperienceSection() {
                   className="h-9 w-9 rounded-md object-contain"
                 />
                 <div>
-                  <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
+                  <h3 className="font-semibold text-zinc-100">
                     {exp.company}
                   </h3>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                    {exp.role}
-                  </p>
+                  <p className="text-sm text-zinc-400">{exp.role}</p>
                 </div>
               </div>
 
@@ -174,7 +171,7 @@ export default function ExperienceSection() {
                 {exp.responsibilities.map((res, j) => (
                   <li
                     key={j}
-                    className="flex gap-2 text-sm leading-snug text-zinc-600 dark:text-zinc-400"
+                    className="flex gap-2 text-sm leading-snug text-zinc-400"
                   >
                     <span className="mt-0.5 select-none font-mono text-emerald-500">
                       ›
@@ -188,7 +185,7 @@ export default function ExperienceSection() {
                 {exp.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full border border-zinc-200 bg-zinc-50 px-2.5 py-0.5 font-mono text-[0.7rem] text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                    className="rounded-full border border-zinc-700 bg-zinc-800 px-2.5 py-0.5 font-mono text-[0.7rem] text-zinc-300"
                   >
                     {tag}
                   </span>
