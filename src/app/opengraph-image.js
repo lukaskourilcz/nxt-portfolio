@@ -14,7 +14,7 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          background: "#fafafa",
+          background: "#09090b",
           padding: "90px",
         }}
       >
@@ -34,7 +34,7 @@ export default function Image() {
               width: "56px",
               height: "56px",
               borderRadius: "12px",
-              background: "#09090b",
+              background: "#10b981",
               color: "#ffffff",
               fontSize: "26px",
               fontWeight: 700,
@@ -42,14 +42,14 @@ export default function Image() {
           >
             LK
           </div>
-          <div style={{ display: "flex", color: "#059669", fontSize: "30px" }}>
+          <div style={{ display: "flex", color: "#34d399", fontSize: "30px" }}>
             $ whoami
           </div>
         </div>
         <div
           style={{
             display: "flex",
-            color: "#09090b",
+            color: "#fafafa",
             fontSize: "92px",
             fontWeight: 800,
             letterSpacing: "-2px",
@@ -60,7 +60,7 @@ export default function Image() {
         <div
           style={{
             display: "flex",
-            color: "#3f3f46",
+            color: "#d4d4d8",
             fontSize: "44px",
             marginTop: "10px",
           }}
@@ -70,7 +70,7 @@ export default function Image() {
         <div
           style={{
             display: "flex",
-            color: "#71717a",
+            color: "#a1a1aa",
             fontSize: "28px",
             marginTop: "40px",
           }}

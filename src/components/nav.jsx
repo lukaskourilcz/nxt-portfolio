@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Menu, X, Download } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
 
 const LINKS = [
   { id: "stack", label: "stack", index: "01" },
@@ -49,18 +48,15 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link
-          href="#top"
-          className="group flex items-center gap-2 font-mono text-sm font-semibold text-zinc-900 dark:text-zinc-100"
+        <a
+          href="mailto:kouril.lukas@gmail.com"
+          className="group flex items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-900 text-[0.7rem] text-white transition-colors group-hover:bg-emerald-600 group-hover:text-white dark:bg-white dark:text-zinc-900 dark:group-hover:bg-emerald-500 dark:group-hover:text-white">
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900 transition-colors group-hover:bg-emerald-500 group-hover:text-white">
             LK
           </span>
-          <span>
-            lukas<span className="text-emerald-600 dark:text-emerald-400">.</span>
-            kouril
-          </span>
-        </Link>
+          <span>kouril.lukas@gmail.com</span>
+        </a>
 
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-7 md:flex">
@@ -93,8 +89,6 @@ export function Nav() {
               <Download className="h-3.5 w-3.5" /> resume
             </a>
           </div>
-
-          <ThemeToggle />
 
           <button
             className="text-zinc-700 dark:text-zinc-300 md:hidden"
