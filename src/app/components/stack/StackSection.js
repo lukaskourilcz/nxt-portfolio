@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -37,13 +37,8 @@ function ShadcnIcon({ className, style, ...props }) {
   );
 }
 
-// Icons are sized by relevancy: lg (languages) > md (frameworks + version
-// control) > sm (everything else).
-const SIZES = {
-  lg: { box: "h-32 w-32 sm:h-40 sm:w-40", devicon: "text-7xl sm:text-8xl", svg: "h-16 w-16 sm:h-20 sm:w-20" },
-  md: { box: "h-24 w-24 sm:h-28 sm:w-28", devicon: "text-5xl sm:text-6xl", svg: "h-12 w-12 sm:h-14 sm:w-14" },
-  sm: { box: "h-20 w-20 sm:h-[5.5rem] sm:w-[5.5rem]", devicon: "text-4xl sm:text-5xl", svg: "h-8 w-8 sm:h-10 sm:w-10" },
-};
+// `size` ("lg"|"md"|"sm") is used only for ring placement. The actual pixel
+// size of each icon is computed per-icon in PX below.
 
 // A distinct tooltip / glow color per icon (cycled).
 const PALETTE = [
@@ -123,29 +118,39 @@ function seededShuffle(arr, seed) {
 }
 
 const byTier = (t) => STACK.filter((x) => x.size === t);
-const LG = seededShuffle(byTier("lg"), 7);
-const MD = seededShuffle(byTier("md"), 13);
-const SM = seededShuffle(byTier("sm"), 29);
-const FLAT = [...LG, ...MD, ...SM];
+const LG_BASE = byTier("lg");
+const MD_BASE = byTier("md");
+const SM_BASE = byTier("sm");
 
-// Concentric rings, tightened and jittered so it reads as a scattered cluster
-// rather than tidy circles. Percent offsets from the container center.
-function ring(items, r, offsetDeg, seed) {
+// Concentric rings, tightened and jittered so it reads as a scattered cluster.
+// `rnd` is shared across rings so the jitter varies with the layout seed.
+function ring(items, r, offsetDeg, rnd) {
   const n = items.length;
-  const rnd = makeRng(seed);
   return items.map((it, k) => {
     const ang = ((offsetDeg + (360 / n) * k + (rnd() - 0.5) * 22) * Math.PI) / 180;
     const rr = r + (rnd() - 0.5) * 8;
     return { it, x: 50 + rr * Math.cos(ang), y: 50 + rr * Math.sin(ang) };
   });
 }
-const CIRCLE = [
-  ...ring(LG, 16, 45, 101),
-  ...ring(MD, 29, 12, 211),
-  ...ring(SM.slice(0, 14), 39, 8, 307),
-  ...ring(SM.slice(14), 46, 0, 421),
-];
-const POS = Object.fromEntries(CIRCLE.map((p) => [p.it.name, p]));
+
+// Build a full layout (shuffled order + ring positions) from a seed.
+function buildLayout(seed) {
+  const lg = seededShuffle(LG_BASE, seed + 7);
+  const md = seededShuffle(MD_BASE, seed + 13);
+  const sm = seededShuffle(SM_BASE, seed + 29);
+  const rnd = makeRng(seed + 101);
+  const circle = [
+    ...ring(lg, 16, 45, rnd),
+    ...ring(md, 29, 12, rnd),
+    ...ring(sm.slice(0, 14), 39, 8, rnd),
+    ...ring(sm.slice(14), 46, 0, rnd),
+  ];
+  return {
+    flat: [...lg, ...md, ...sm],
+    circle,
+    posByName: Object.fromEntries(circle.map((p) => [p.it.name, p])),
+  };
+}
 
 // A random hover tilt per icon (mixed direction + magnitude), seeded so it's
 // stable across renders.
@@ -159,11 +164,31 @@ const ROT = (() => {
   return m;
 })();
 
+// Per-icon desktop pixel size: JS biggest, TS second, HTML/CSS third, then a
+// lot of others spread across varied medium sizes (seeded for stability).
+const PX = (() => {
+  const rnd = makeRng(909);
+  const m = {};
+  for (const it of STACK) {
+    if (it.name === "JavaScript") m[it.name] = 112;
+    else if (it.name === "TypeScript") m[it.name] = 90;
+    else if (it.name === "HTML5" || it.name === "CSS3") m[it.name] = 74;
+    else if (it.size === "md") m[it.name] = Math.round(54 + rnd() * 14);
+    else m[it.name] = Math.round(42 + rnd() * 16);
+  }
+  return m;
+})();
+
+// A stable tooltip / glow color per icon.
+const COLOR = Object.fromEntries(
+  STACK.map((it, i) => [it.name, PALETTE[i % PALETTE.length]])
+);
+
 // On hover, push nearby icons outward — proximity-scaled, in px.
-function pushOffset(name, hovered) {
+function pushOffset(name, hovered, pos) {
   if (!hovered || hovered === name) return { x: 0, y: 0 };
-  const h = POS[hovered];
-  const t = POS[name];
+  const h = pos[hovered];
+  const t = pos[name];
   if (!h || !t) return { x: 0, y: 0 };
   const dx = t.x - h.x;
   const dy = t.y - h.y;
@@ -174,15 +199,15 @@ function pushOffset(name, hovered) {
   return { x: (dx / dist) * force, y: (dy / dist) * force };
 }
 
-function StackIcon({ it, size }) {
-  if (it.icon) return <i className={`${it.icon} ${size.devicon}`} aria-hidden />;
+function StackIcon({ it, px }) {
+  if (it.icon)
+    return <i className={it.icon} style={{ fontSize: `${px}px`, lineHeight: 1 }} aria-hidden />;
   if (it.brand)
-    return <BrandIcon name={it.brand} className={size.svg} style={{ color: it.color }} />;
-  return <it.Icon className={size.svg} style={{ color: it.color }} aria-hidden />;
+    return <BrandIcon name={it.brand} style={{ color: it.color, width: px, height: px }} />;
+  return <it.Icon style={{ color: it.color, width: px, height: px }} aria-hidden />;
 }
 
-function IconBubble({ it, color, floatIndex, reduce, hovered }) {
-  const size = SIZES[it.size];
+function IconBubble({ it, color, floatIndex, reduce, hovered, px }) {
   return (
     <div
       className={reduce ? undefined : "animate-floaty"}
@@ -198,13 +223,15 @@ function IconBubble({ it, color, floatIndex, reduce, hovered }) {
       <div className="relative flex items-center justify-center">
         <div
           aria-label={it.name}
-          className={`flex ${size.box} items-center justify-center rounded-2xl border bg-zinc-900/80 transition-colors duration-200`}
+          className="flex items-center justify-center rounded-2xl border bg-zinc-900/80 transition-colors duration-200"
           style={{
+            width: px,
+            height: px,
             borderColor: hovered ? color : "#27272a",
             boxShadow: hovered ? `0 0 26px -4px ${color}` : "none",
           }}
         >
-          <StackIcon it={it} size={size} />
+          <StackIcon it={it} px={Math.round(px * 0.52)} />
         </div>
         <span
           className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-0.5 text-[0.7rem] font-semibold text-zinc-950 shadow-lg transition-opacity duration-200"
@@ -223,6 +250,11 @@ const INTERACT = { type: "spring", stiffness: 320, damping: 20, mass: 0.6 };
 export default function StackSection() {
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState(null);
+  const [seed, setSeed] = useState(0);
+
+  // Re-randomize the order on every load (after hydration to avoid a mismatch).
+  useEffect(() => setSeed(1 + Math.floor(Math.random() * 1e9)), []);
+  const { circle, flat, posByName } = useMemo(() => buildLayout(seed), [seed]);
 
   return (
     <section id="stack" className="mx-auto max-w-5xl px-6 py-24">
@@ -230,9 +262,9 @@ export default function StackSection() {
 
       {/* Desktop: scattered circular constellation with hover repulsion */}
       <div className="relative mx-auto hidden aspect-square w-full max-w-4xl lg:block">
-        {CIRCLE.map(({ it, x, y }, i) => {
+        {circle.map(({ it, x, y }, i) => {
           const isHover = hovered === it.name;
-          const off = pushOffset(it.name, hovered);
+          const off = pushOffset(it.name, hovered, posByName);
           return (
             <div
               key={it.name}
@@ -256,7 +288,7 @@ export default function StackSection() {
                   onMouseEnter={() => setHovered(it.name)}
                   onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
                 >
-                  <IconBubble it={it} color={PALETTE[i % PALETTE.length]} floatIndex={i} reduce={reduce} hovered={isHover} />
+                  <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={PX[it.name]} />
                 </motion.div>
               </motion.div>
             </div>
@@ -266,7 +298,7 @@ export default function StackSection() {
 
       {/* Mobile / tablet: flowing wrap */}
       <div className="flex flex-wrap items-center justify-center gap-2.5 lg:hidden">
-        {FLAT.map((it, i) => {
+        {flat.map((it, i) => {
           const isHover = hovered === it.name;
           return (
             <motion.div
@@ -284,7 +316,7 @@ export default function StackSection() {
                 onMouseEnter={() => setHovered(it.name)}
                 onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
               >
-                <IconBubble it={it} color={PALETTE[i % PALETTE.length]} floatIndex={i} reduce={reduce} hovered={isHover} />
+                <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={Math.round(PX[it.name] * 0.6)} />
               </motion.div>
             </motion.div>
           );
