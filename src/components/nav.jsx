@@ -20,7 +20,7 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   const [heroAvatarVisible, setHeroAvatarVisible] = useState(true);
   const reduce = useReducedMotion();
-  const showPhoto = heroAvatarVisible;
+  const showPhoto = !heroAvatarVisible;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -29,8 +29,9 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Morph the nav mark between the hero photo and the LK logo as the hero
-  // avatar crosses under the sticky navbar.
+  // Morph the nav mark between the LK logo and the hero photo as the hero
+  // avatar crosses under the sticky navbar: LK while the face is visible in
+  // the hero, the photo once it has scrolled out of view.
   useEffect(() => {
     const el = document.getElementById("hero-avatar");
     if (!el) return;
