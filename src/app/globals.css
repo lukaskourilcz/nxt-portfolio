@@ -53,6 +53,13 @@ html {
       linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
   }
+  /* Brighter emerald grid, revealed in a soft spotlight around the cursor */
+  .bg-grid-glow {
+    background-image:
+      linear-gradient(to right, oklch(0.7 0.17 162 / 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.7 0.17 162 / 0.45) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
 }
 
 /* Subtle, dev-flavored scrollbar */
