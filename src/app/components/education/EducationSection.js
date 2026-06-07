@@ -43,7 +43,7 @@ const ACADEMIES = [
     name: "Reykjavík Academy of Web Development",
     field: "Web Development",
     period: "Aug 2022 – Dec 2022",
-    url: null,
+    url: "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
     description:
       "Web Development focused bootcamp, where I developed a strong foundation in HTML, CSS, and JavaScript. The curriculum focused on building responsive, interactive web applications and emphasized core web development principles.",
     skills: [
