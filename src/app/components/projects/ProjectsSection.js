@@ -29,7 +29,7 @@ const PROJECTS = [
     title: "Czech Monopoly",
     description:
       "Browser-based Czech-themed Monopoly game offering code-based 2–4 player multiplayer and next-intl localization.",
-    tech: ["Next.js", "TypeScript", "Payload CMS", "PostgreSQL", "next-intl"],
+    tech: ["Next.js", "TypeScript", "Payload CMS", "NeonDB", "next-intl"],
     vercel: "https://czech-cities.vercel.app",
     image: "/wip.png",
   },
