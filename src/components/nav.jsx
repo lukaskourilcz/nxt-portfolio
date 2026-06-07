@@ -68,6 +68,7 @@ export function Nav() {
               <Link
                 key={l.id}
                 href={`#${l.id}`}
+                aria-current={active === l.id ? "true" : undefined}
                 className="group font-mono text-sm transition-colors"
               >
                 <span className="text-emerald-600 dark:text-emerald-400">

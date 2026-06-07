@@ -30,7 +30,7 @@ export default function GitHubGrid() {
 
         const start = getRangeStart(monthsBack);
 
-        const filtered = data.contributions
+        const filtered = (data.contributions ?? [])
           .map((week) => week.filter((d) => new Date(d.date) >= start))
           .filter((w) => w.length > 0);
 

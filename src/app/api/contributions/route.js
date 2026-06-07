@@ -1,8 +1,12 @@
+// Cache the upstream contributions for an hour instead of hitting it on
+// every request — the data only changes daily.
+export const revalidate = 3600;
+
 export async function GET() {
   try {
     const res = await fetch(
       "https://github-contributions-api.deno.dev/lukaskourilcz.json",
-      { cache: "no-store" }
+      { next: { revalidate: 3600 } }
     );
 
     if (!res.ok) {

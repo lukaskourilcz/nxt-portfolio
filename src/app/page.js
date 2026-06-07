@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <BackgroundGrid />
       <Nav />
-      <main>
+      <main id="main" tabIndex={-1} className="outline-none">
         <HeroSection />
         <StackSection />
         <ExperienceSection />

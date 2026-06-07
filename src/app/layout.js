@@ -3,8 +3,10 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Providers } from "@/components/providers";
 
+const SITE_URL = "https://lukaskouril.vercel.app";
+
 export const metadata = {
-  metadataBase: new URL("https://lukaskouril.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Lukas Kouril — Software Engineer",
     template: "%s — Lukas Kouril",
@@ -20,16 +22,50 @@ export const metadata = {
     "Next.js",
     "Node.js",
   ],
-  authors: [{ name: "Lukas Kouril" }],
+  authors: [{ name: "Lukas Kouril", url: SITE_URL }],
+  creator: "Lukas Kouril",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Lukas Kouril — Software Engineer",
     description:
       "Software Engineer building clean, user-friendly web applications with TypeScript, React and Node.js.",
-    url: "https://lukaskouril.vercel.app",
+    url: SITE_URL,
     siteName: "Lukas Kouril",
     type: "website",
     locale: "en_US",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lukas Kouril — Software Engineer",
+    description:
+      "Software Engineer building clean, user-friendly web applications with TypeScript, React and Node.js.",
+  },
+};
+
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+  ],
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Lukas Kouril",
+  jobTitle: "Software Engineer",
+  url: SITE_URL,
+  email: "kouril.lukas@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Prague",
+    addressCountry: "CZ",
+  },
+  sameAs: [
+    "https://github.com/lukaskourilcz",
+    "https://linkedin.com/in/lukas-kouril/",
+  ],
+  knowsAbout: ["TypeScript", "React", "Next.js", "Node.js"],
 };
 
 export default function RootLayout({ children }) {
@@ -40,6 +76,16 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className="font-sans bg-background text-foreground antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-zinc-900 focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-white dark:focus:bg-white dark:focus:text-zinc-900"
+        >
+          Skip to content
+        </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <Providers>{children}</Providers>
       </body>
     </html>
