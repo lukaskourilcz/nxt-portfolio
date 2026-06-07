@@ -36,7 +36,7 @@ const SOCIALS = [
 export default function ContactSection() {
   return (
     <section id="contact" className="mx-auto max-w-5xl px-6 py-24">
-      <SectionHeading index="04" command="contact" title="Get in touch" />
+      <SectionHeading index="05" command="contact" title="Get in touch" />
 
       <div className="grid items-start gap-10 lg:grid-cols-2">
         <Reveal>

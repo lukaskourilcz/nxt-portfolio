@@ -1,5 +1,13 @@
 import Link from "next/link";
-import { Github, Sparkles, Layers, ShieldCheck, KeyRound } from "lucide-react";
+import {
+  Github,
+  Sparkles,
+  Layers,
+  ShieldCheck,
+  KeyRound,
+  Zap,
+  Wand2,
+} from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import GitHubGrid from "@/components/github-grid";
@@ -78,7 +86,14 @@ const STACK = [
       { name: "Postman", icon: "devicon-postman-plain colored" },
       { name: "Google Cloud", icon: "devicon-googlecloud-plain colored" },
       { name: "Figma", icon: "devicon-figma-plain colored" },
+    ],
+  },
+  {
+    label: "ai",
+    items: [
       { name: "Claude Code", Icon: Sparkles, color: "#D97757" },
+      { name: "Superpowers", Icon: Zap, color: "#f59e0b" },
+      { name: "Matt Pocock Skills", Icon: Wand2, color: "#3178c6" },
     ],
   },
 ];

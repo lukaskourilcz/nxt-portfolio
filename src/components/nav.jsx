@@ -8,7 +8,8 @@ const LINKS = [
   { id: "stack", label: "stack", index: "01" },
   { id: "projects", label: "projects", index: "02" },
   { id: "experience", label: "experience", index: "03" },
-  { id: "contact", label: "contact", index: "04" },
+  { id: "education", label: "education", index: "04" },
+  { id: "contact", label: "contact", index: "05" },
 ];
 
 export function Nav() {
@@ -59,7 +60,7 @@ export function Nav() {
         </a>
 
         <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-7 md:flex">
+          <div className="hidden items-center gap-6 lg:flex">
             {LINKS.map((l) => (
               <Link
                 key={l.id}
@@ -89,7 +90,7 @@ export function Nav() {
           </div>
 
           <button
-            className="text-zinc-300 md:hidden"
+            className="text-zinc-300 lg:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
           >
@@ -99,7 +100,7 @@ export function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden">
+        <div className="border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md lg:hidden">
           <div className="flex flex-col gap-1 px-6 py-4">
             {LINKS.map((l) => (
               <Link
