@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -44,7 +45,7 @@ const SIZES = {
   sm: { box: "h-10 w-10 sm:h-11 sm:w-11", devicon: "text-lg sm:text-xl", svg: "h-4 w-4 sm:h-5 sm:w-5" },
 };
 
-// A distinct tooltip color per icon (cycled).
+// A distinct tooltip / glow color per icon (cycled).
 const PALETTE = [
   "#34d399", "#38bdf8", "#a78bfa", "#fbbf24", "#fb7185", "#22d3ee",
   "#a3e635", "#e879f9", "#fb923c", "#2dd4bf", "#818cf8", "#f472b6",
@@ -105,15 +106,17 @@ const STACK = [
   { name: "LangChain", brand: "langchain", color: "#7fc8ff", size: "sm" },
 ];
 
-// Deterministic shuffle (stable across SSR/client) so the arrangement looks
-// random without causing hydration mismatches.
-function seededShuffle(arr, seed) {
-  const a = arr.slice();
+// Seeded PRNG so the scattered arrangement is stable across SSR/client.
+function makeRng(seed) {
   let s = seed % 2147483647;
   if (s <= 0) s += 2147483646;
-  const next = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  return () => (s = (s * 16807) % 2147483647) / 2147483647;
+}
+function seededShuffle(arr, seed) {
+  const a = arr.slice();
+  const rnd = makeRng(seed);
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(next() * (i + 1));
+    const j = Math.floor(rnd() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
@@ -125,20 +128,39 @@ const MD = seededShuffle(byTier("md"), 13);
 const SM = seededShuffle(byTier("sm"), 29);
 const FLAT = [...LG, ...MD, ...SM];
 
-// Concentric-ring positions (percent offsets from center) for the desktop circle.
-function ring(items, r, offsetDeg) {
+// Concentric rings, tightened and jittered so it reads as a scattered cluster
+// rather than tidy circles. Percent offsets from the container center.
+function ring(items, r, offsetDeg, seed) {
   const n = items.length;
+  const rnd = makeRng(seed);
   return items.map((it, k) => {
-    const a = ((offsetDeg + (360 / n) * k) * Math.PI) / 180;
-    return { it, x: 50 + r * Math.cos(a), y: 50 + r * Math.sin(a) };
+    const ang = ((offsetDeg + (360 / n) * k + (rnd() - 0.5) * 22) * Math.PI) / 180;
+    const rr = r + (rnd() - 0.5) * 8;
+    return { it, x: 50 + rr * Math.cos(ang), y: 50 + rr * Math.sin(ang) };
   });
 }
 const CIRCLE = [
-  ...ring(LG, 15, 45),
-  ...ring(MD, 26, 15),
-  ...ring(SM.slice(0, 14), 37, 12),
-  ...ring(SM.slice(14), 45, 0),
+  ...ring(LG, 12, 45, 101),
+  ...ring(MD, 22, 12, 211),
+  ...ring(SM.slice(0, 14), 31, 8, 307),
+  ...ring(SM.slice(14), 39, 0, 421),
 ];
+const POS = Object.fromEntries(CIRCLE.map((p) => [p.it.name, p]));
+
+// On hover, push nearby icons outward — proximity-scaled, in px.
+function pushOffset(name, hovered) {
+  if (!hovered || hovered === name) return { x: 0, y: 0 };
+  const h = POS[hovered];
+  const t = POS[name];
+  if (!h || !t) return { x: 0, y: 0 };
+  const dx = t.x - h.x;
+  const dy = t.y - h.y;
+  const dist = Math.hypot(dx, dy) || 0.001;
+  const INFLUENCE = 22; // percent
+  if (dist >= INFLUENCE) return { x: 0, y: 0 };
+  const force = (1 - dist / INFLUENCE) * 38; // px
+  return { x: (dx / dist) * force, y: (dy / dist) * force };
+}
 
 function StackIcon({ it, size }) {
   if (it.icon) return <i className={`${it.icon} ${size.devicon}`} aria-hidden />;
@@ -147,7 +169,7 @@ function StackIcon({ it, size }) {
   return <it.Icon className={size.svg} style={{ color: it.color }} aria-hidden />;
 }
 
-function IconBubble({ it, color, floatIndex, reduce }) {
+function IconBubble({ it, color, floatIndex, reduce, hovered }) {
   const size = SIZES[it.size];
   return (
     <div
@@ -161,16 +183,20 @@ function IconBubble({ it, color, floatIndex, reduce }) {
             }
       }
     >
-      <div className="group/icon relative flex items-center justify-center">
+      <div className="relative flex items-center justify-center">
         <div
           aria-label={it.name}
-          className={`flex ${size.box} items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900/80 transition-[transform,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/icon:scale-[1.3] group-hover/icon:-rotate-6 group-hover/icon:border-emerald-500/50 group-hover/icon:shadow-[0_0_24px_-6px_rgba(16,185,129,0.45)]`}
+          className={`flex ${size.box} items-center justify-center rounded-2xl border bg-zinc-900/80 transition-colors duration-200`}
+          style={{
+            borderColor: hovered ? color : "#27272a",
+            boxShadow: hovered ? `0 0 26px -4px ${color}` : "none",
+          }}
         >
           <StackIcon it={it} size={size} />
         </div>
         <span
-          className="pointer-events-none absolute bottom-full left-1/2 z-40 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-0.5 text-[0.7rem] font-semibold text-zinc-950 opacity-0 shadow-lg transition-opacity duration-200 group-hover/icon:opacity-100"
-          style={{ backgroundColor: color }}
+          className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-0.5 text-[0.7rem] font-semibold text-zinc-950 shadow-lg transition-opacity duration-200"
+          style={{ backgroundColor: color, opacity: hovered ? 1 : 0 }}
         >
           {it.name}
         </span>
@@ -179,49 +205,78 @@ function IconBubble({ it, color, floatIndex, reduce }) {
   );
 }
 
-const SPRING = { type: "spring", stiffness: 260, damping: 18 };
+const ENTRANCE = { type: "spring", stiffness: 260, damping: 18 };
+const INTERACT = { type: "spring", stiffness: 320, damping: 20, mass: 0.6 };
 
 export default function StackSection() {
   const reduce = useReducedMotion();
+  const [hovered, setHovered] = useState(null);
 
   return (
     <section id="stack" className="mx-auto max-w-5xl px-6 py-24">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
-      {/* Desktop: circular constellation */}
+      {/* Desktop: scattered circular constellation with hover repulsion */}
       <div className="relative mx-auto hidden aspect-square w-full max-w-2xl lg:block">
-        {CIRCLE.map(({ it, x, y }, i) => (
-          <div
-            key={it.name}
-            className="absolute -translate-x-1/2 -translate-y-1/2 hover:z-30"
-            style={{ left: `${x}%`, top: `${y}%` }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: reduce ? 1 : 0.3 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ ...SPRING, delay: Math.min(i * 0.015, 0.5) }}
+        {CIRCLE.map(({ it, x, y }, i) => {
+          const isHover = hovered === it.name;
+          const off = pushOffset(it.name, hovered);
+          return (
+            <div
+              key={it.name}
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${x}%`, top: `${y}%`, zIndex: isHover ? 50 : 1 }}
             >
-              <IconBubble it={it} color={PALETTE[i % PALETTE.length]} floatIndex={i} reduce={reduce} />
-            </motion.div>
-          </div>
-        ))}
+              <motion.div
+                initial={{ opacity: 0, scale: reduce ? 1 : 0.3 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ ...ENTRANCE, delay: Math.min(i * 0.012, 0.4) }}
+              >
+                <motion.div
+                  animate={{
+                    x: off.x,
+                    y: off.y,
+                    scale: isHover ? 1.45 : 1,
+                    rotate: reduce ? 0 : isHover ? -6 : 0,
+                  }}
+                  transition={INTERACT}
+                  onMouseEnter={() => setHovered(it.name)}
+                  onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
+                >
+                  <IconBubble it={it} color={PALETTE[i % PALETTE.length]} floatIndex={i} reduce={reduce} hovered={isHover} />
+                </motion.div>
+              </motion.div>
+            </div>
+          );
+        })}
       </div>
 
       {/* Mobile / tablet: flowing wrap */}
-      <div className="flex flex-wrap items-center justify-center gap-3 lg:hidden">
-        {FLAT.map((it, i) => (
-          <motion.div
-            key={it.name}
-            className="relative hover:z-30"
-            initial={{ opacity: 0, scale: reduce ? 1 : 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ ...SPRING, delay: Math.min(i * 0.015, 0.4) }}
-          >
-            <IconBubble it={it} color={PALETTE[i % PALETTE.length]} floatIndex={i} reduce={reduce} />
-          </motion.div>
-        ))}
+      <div className="flex flex-wrap items-center justify-center gap-2.5 lg:hidden">
+        {FLAT.map((it, i) => {
+          const isHover = hovered === it.name;
+          return (
+            <motion.div
+              key={it.name}
+              className="relative"
+              style={{ zIndex: isHover ? 50 : 1 }}
+              initial={{ opacity: 0, scale: reduce ? 1 : 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ ...ENTRANCE, delay: Math.min(i * 0.012, 0.4) }}
+            >
+              <motion.div
+                animate={{ scale: isHover ? 1.3 : 1, rotate: reduce ? 0 : isHover ? -6 : 0 }}
+                transition={INTERACT}
+                onMouseEnter={() => setHovered(it.name)}
+                onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
+              >
+                <IconBubble it={it} color={PALETTE[i % PALETTE.length]} floatIndex={i} reduce={reduce} hovered={isHover} />
+              </motion.div>
+            </motion.div>
+          );
+        })}
       </div>
 
       <Reveal delay={0.1} className="mt-16">
