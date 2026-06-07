@@ -4,6 +4,22 @@ import { Reveal } from "@/components/reveal";
 
 const EXPERIENCES = [
   {
+    company: "Web Integrator",
+    mark: "Wi",
+    role: "Senior Frontend Engineer",
+    period: "Apr 2027 – Present",
+    location: "Prague, Czech Republic",
+    responsibilities: [
+      "Joined as the team's first AI-first Senior Frontend Engineer, weaving AI-assisted workflows into everyday development to ship faster without trading away quality",
+      "Lead advanced frontend implementation with TypeScript, React and Next.js, owning code validity and correct cross-browser behavior",
+      "Define and enforce coding standards, client guidelines and best practices, with a strong emphasis on accessibility and web standards",
+      "Author complete technical specifications from supplied designs and available materials, and prepare graphic assets for implementation",
+      "Drive technical and UX optimizations across sites and model structured content with Payload CMS",
+      "Own change delivery against the project plan with disciplined activity tracking and reporting",
+    ],
+    tags: ["AI", "TYPESCRIPT", "NEXT.JS", "REACT", "PAYLOADCMS"],
+  },
+  {
     company: "EmbedIT",
     logo: "/logos/embedit_logo.png",
     role: "Senior Fullstack Developer",
@@ -152,13 +168,19 @@ export default function ExperienceSection() {
               </p>
 
               <div className="mt-2 flex items-center gap-3">
-                <Image
-                  src={exp.logo}
-                  alt={`${exp.company} logo`}
-                  width={36}
-                  height={36}
-                  className="h-9 w-9 rounded-md object-contain"
-                />
+                {exp.logo ? (
+                  <Image
+                    src={exp.logo}
+                    alt={`${exp.company} logo`}
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 rounded-md object-contain"
+                  />
+                ) : (
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-emerald-500/10 font-mono text-sm font-semibold text-emerald-300">
+                    {exp.mark}
+                  </span>
+                )}
                 <div>
                   <h3 className="font-semibold text-zinc-100">
                     {exp.company}

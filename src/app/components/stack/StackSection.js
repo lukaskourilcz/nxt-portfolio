@@ -87,6 +87,14 @@ const STACK = [
   { name: "Postman", icon: "devicon-postman-plain colored", size: "sm" },
   { name: "Google Cloud", icon: "devicon-googlecloud-plain colored", size: "sm" },
   { name: "Figma", icon: "devicon-figma-plain colored", size: "sm" },
+  // testing & validation — TanStack medium, rest small
+  { name: "TanStack", brand: "tanstack", color: "#d4d4d8", size: "md" },
+  { name: "Zod", brand: "zod", color: "#408aff", size: "sm" },
+  { name: "React Hook Form", brand: "reacthookform", color: "#ec5990", size: "sm" },
+  { name: "Mocha", icon: "devicon-mocha-plain colored", size: "sm" },
+  { name: "Jest", icon: "devicon-jest-plain colored", size: "sm" },
+  { name: "Vitest", icon: "devicon-vitest-plain colored", size: "sm" },
+  { name: "Playwright", icon: "devicon-playwright-plain colored", size: "sm" },
   // ai — small
   { name: "Claude Code", brand: "claude", color: "#d97757", size: "sm" },
   { name: "Anthropic SDK", brand: "anthropic", color: "#d4d4d8", size: "sm" },
