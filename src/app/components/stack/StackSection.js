@@ -8,8 +8,6 @@ import {
   Zap,
   Wand2,
   Puzzle,
-  MessageSquare,
-  MessageCircle,
 } from "lucide-react";
 import { BrandIcon } from "@/components/brand-icons";
 import { SectionHeading } from "@/components/section-heading";
@@ -105,10 +103,10 @@ const STACK = [
       { name: "Skills & Plugins", Icon: Puzzle, color: "#10b981" },
       { name: "Cursor", brand: "cursor", color: "#d4d4d8" },
       { name: "GitHub Copilot", brand: "copilot", color: "#d4d4d8" },
-      { name: "ChatGPT", Icon: MessageSquare, color: "#10a37f" },
+      { name: "ChatGPT", brand: "openai", color: "#d4d4d8" },
       { name: "Gemini", brand: "gemini", color: "#8e75b2" },
       { name: "Perplexity", brand: "perplexity", color: "#1fb8cd" },
-      { name: "Grok", Icon: MessageCircle, color: "#d4d4d8" },
+      { name: "Grok", brand: "grok", color: "#d4d4d8" },
       { name: "Vercel AI SDK", brand: "vercel", color: "#d4d4d8" },
       { name: "LangChain", brand: "langchain", color: "#7fc8ff" },
     ],
