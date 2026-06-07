@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { DotPatternBg } from "@/components/dot-pattern-bg";
 
 export default function ExperienceSection() {
   const experiences = [
@@ -181,12 +181,7 @@ export default function ExperienceSection() {
       id="experience"
       className="relative bg-gray-50 py-14 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
-      <div
-        className="absolute inset-0 
-    bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
-    bg-[length:40px_40px,20px_20px] 
-    bg-[position:0_0,10px_10px]"
-      ></div>
+      <DotPatternBg />
 
       <div className="relative z-10 text-center mb-14 -mt-6">
         <h2 className="uppercase text-4xl md:text-5xl font-extrabold text-gray-800 tracking-wider">

@@ -3,12 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
-export function getMonthsBack(width) {
-  if (width < 480) return 7;
-  if (width < 768) return 10;
-  return 11;
-}
+import { useResponsiveMonths } from "@/lib/useResponsiveMonths";
 
 function getRangeStart(monthsBack) {
   const now = new Date();
@@ -26,14 +21,7 @@ function formatTooltip(day) {
 
 export default function GitHubGrid() {
   const [weeks, setWeeks] = useState([]);
-  const [monthsBack, setMonthsBack] = useState(10);
-
-  useEffect(() => {
-    const updateMonths = () => setMonthsBack(getMonthsBack(window.innerWidth));
-    updateMonths();
-    window.addEventListener("resize", updateMonths);
-    return () => window.removeEventListener("resize", updateMonths);
-  }, []);
+  const monthsBack = useResponsiveMonths();
 
   useEffect(() => {
     async function loadData() {

@@ -1,34 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Linkedin, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Skills from "./Skills";
-import GitHubGrid, { getMonthsBack } from "./GitHubGrid";
+import GitHubGrid from "./GitHubGrid";
+import { useResponsiveMonths } from "@/lib/useResponsiveMonths";
+import { DotPatternBg } from "@/components/dot-pattern-bg";
 
-export default function AboutCard() {
-  const [monthsBack, setMonthsBack] = useState(12);
-
-  useEffect(() => {
-    function updateMonths() {
-      setMonthsBack(getMonthsBack(window.innerWidth));
-    }
-    updateMonths();
-    window.addEventListener("resize", updateMonths);
-    return () => window.removeEventListener("resize", updateMonths);
-  }, []);
+export default function HeroSection() {
+  const monthsBack = useResponsiveMonths();
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 bg-gray-50 overflow-hidden">
-      <div
-        className="absolute inset-0 
-        bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
-        bg-[length:40px_40px,20px_20px] 
-        bg-[position:0_0,10px_10px]"
-      ></div>
+      <DotPatternBg />
 
       <div className="relative flex flex-col md:flex-row items-center justify-center gap-10 mb-12 z-10 mt-18">
         <div className="relative w-40 h-40 md:w-52 md:h-52 mb-4 md:mb-0">

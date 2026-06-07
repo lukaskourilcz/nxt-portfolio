@@ -1,13 +1,13 @@
-import ContactSection from "./components/contact/page";
-import ExperienceSection from "./components/experience/page";
-import HeroSection from "./components/hero/page";
-import ProjectsSection from "./components/projects/page";
+import HeroSection from "./components/hero/HeroSection";
+import ExperienceSection from "./components/experience/ExperienceSection";
+import ContactSection from "./components/contact/ContactSection";
 
 export default function Home() {
-  return <>
-  <HeroSection/>
-  <ExperienceSection />
-  {/* <ProjectsSection /> */}
-  <ContactSection />
-  </>;
+  return (
+    <>
+      <HeroSection />
+      <ExperienceSection />
+      <ContactSection />
+    </>
+  );
 }

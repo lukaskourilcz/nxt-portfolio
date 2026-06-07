@@ -6,20 +6,13 @@ export async function GET() {
     );
 
     if (!res.ok) {
-      return new Response(JSON.stringify({ error: "Failed to fetch data" }), {
-        status: 500,
-      });
+      return Response.json({ error: "Failed to fetch data" }, { status: 500 });
     }
 
     const data = await res.json();
 
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return Response.json(data);
   } catch (err) {
-    return new Response(JSON.stringify({ error: err.message }), {
-      status: 500,
-    });
+    return Response.json({ error: err.message }, { status: 500 });
   }
 }

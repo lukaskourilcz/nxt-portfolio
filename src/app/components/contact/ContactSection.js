@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { DotPatternBg } from "@/components/dot-pattern-bg";
 
 export default function ContactSection() {
   const contactItems = [
@@ -30,12 +30,7 @@ export default function ContactSection() {
       id="contact"
       className="relative flex flex-col items-center justify-center min-h-[85vh] bg-gray-50 px-6 py-20 overflow-hidden"
     >
-      <div
-        className="absolute inset-0 
-    bg-[radial-gradient(circle,rgba(0,0,0,0.02)_2px,transparent_2px),radial-gradient(circle,rgba(0,0,0,0.04)_2px,transparent_2px)] 
-    bg-[length:40px_40px,20px_20px] 
-    bg-[position:0_0,10px_10px]"
-      ></div>
+      <DotPatternBg />
 
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
