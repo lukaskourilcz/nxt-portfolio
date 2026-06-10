@@ -7,10 +7,10 @@ const EXPERIENCES = [
     company: "Web Integrator",
     mark: "Wi",
     role: "Senior Frontend Engineer",
-    period: "Apr 2027 – Present",
+    period: "Apr 2026 – Present",
     location: "Prague, Czech Republic",
     responsibilities: [
-      "Joined as the team's first AI-first Senior Frontend Engineer, weaving AI-assisted workflows into everyday development to ship faster without trading away quality",
+      "Joined as the team's first AI-focused engineer, bringing AI tools into everyday work to help the team move faster while keeping quality high",
       "Lead advanced frontend implementation with TypeScript, React and Next.js, owning code validity and correct cross-browser behavior",
       "Define and enforce coding standards, client guidelines and best practices, with a strong emphasis on accessibility and web standards",
       "Author complete technical specifications from supplied designs and available materials, and prepare graphic assets for implementation",
