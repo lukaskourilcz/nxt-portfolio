@@ -31,15 +31,6 @@ const CODE_LINES = [
     <span className="text-zinc-500">],</span>
   </>,
   <>
-    {"  "}focus<span className="text-zinc-500">: [</span>
-    <span className="text-emerald-400">&quot;clean UI&quot;</span>
-    <span className="text-zinc-500">, </span>
-    <span className="text-emerald-400">&quot;accessibility&quot;</span>
-    <span className="text-zinc-500">, </span>
-    <span className="text-emerald-400">&quot;performance&quot;</span>
-    <span className="text-zinc-500">],</span>
-  </>,
-  <>
     {"  "}available<span className="text-zinc-500">:</span>{" "}
     <span className="text-orange-400">true</span>
     <span className="text-zinc-500">,</span>
