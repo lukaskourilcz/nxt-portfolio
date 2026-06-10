@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -172,8 +172,9 @@ const ROT = (() => {
   return m;
 })();
 
-// Per-icon desktop pixel size: JS biggest, TS second, HTML/CSS third, then a
-// lot of others spread across varied medium sizes (seeded for stability).
+// Per-icon base pixel size at the reference width (scaled down to fit smaller
+// screens): JS biggest, TS second, HTML/CSS third, then a lot of others spread
+// across varied medium sizes (seeded for stability).
 const PX = (() => {
   const rnd = makeRng(909);
   const m = {};
@@ -255,21 +256,44 @@ function IconBubble({ it, color, floatIndex, reduce, hovered, px }) {
 const ENTRANCE = { type: "spring", stiffness: 260, damping: 18 };
 const INTERACT = { type: "spring", stiffness: 320, damping: 20, mass: 0.6 };
 
+// Width (px) the constellation's positions and icon sizes are tuned for
+// (max-w-3xl). Smaller containers scale everything down by the same factor.
+const REF_W = 768;
+
 export default function StackSection() {
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState(null);
   const [seed, setSeed] = useState(0);
+  const containerRef = useRef(null);
+  const [scale, setScale] = useState(1);
 
   // Re-randomize the order on every load (after hydration to avoid a mismatch).
   useEffect(() => setSeed(1 + Math.floor(Math.random() * 1e9)), []);
-  const { circle, flat, posByName } = useMemo(() => buildLayout(seed), [seed]);
+
+  // Fluidly scale the whole constellation (icon sizes + repulsion distance) to
+  // the container width, so the desktop layout fits identically on phones.
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setScale(Math.min(1, el.clientWidth / REF_W));
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const { circle, posByName } = useMemo(() => buildLayout(seed), [seed]);
 
   return (
     <section id="stack" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
-      {/* Desktop: scattered circular constellation with hover repulsion */}
-      <div className="relative mx-auto hidden aspect-square w-full max-w-3xl lg:block">
+      {/* Scattered circular constellation with hover repulsion — same layout,
+          order and animations on every breakpoint, scaled to fit the screen */}
+      <div
+        ref={containerRef}
+        className="relative mx-auto aspect-square w-full max-w-3xl"
+      >
         {circle.map(({ it, x, y }, i) => {
           const isHover = hovered === it.name;
           const off = pushOffset(it.name, hovered, posByName);
@@ -287,8 +311,8 @@ export default function StackSection() {
               >
                 <motion.div
                   animate={{
-                    x: off.x,
-                    y: off.y,
+                    x: off.x * scale,
+                    y: off.y * scale,
                     scale: isHover ? 1.3 : 1,
                     rotate: reduce ? 0 : isHover ? ROT[it.name] : 0,
                   }}
@@ -296,37 +320,10 @@ export default function StackSection() {
                   onMouseEnter={() => setHovered(it.name)}
                   onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
                 >
-                  <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={PX[it.name]} />
+                  <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={Math.max(1, Math.round(PX[it.name] * scale))} />
                 </motion.div>
               </motion.div>
             </div>
-          );
-        })}
-      </div>
-
-      {/* Mobile / tablet: flowing wrap */}
-      <div className="flex flex-wrap items-center justify-center gap-2 lg:hidden">
-        {flat.map((it, i) => {
-          const isHover = hovered === it.name;
-          return (
-            <motion.div
-              key={it.name}
-              className="relative"
-              style={{ zIndex: isHover ? 50 : 1 }}
-              initial={{ opacity: 0, scale: reduce ? 1 : 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ ...ENTRANCE, delay: Math.min(i * 0.012, 0.4) }}
-            >
-              <motion.div
-                animate={{ scale: isHover ? 1.25 : 1, rotate: reduce ? 0 : isHover ? ROT[it.name] : 0 }}
-                transition={INTERACT}
-                onMouseEnter={() => setHovered(it.name)}
-                onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
-              >
-                <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={Math.round(PX[it.name] * 0.42)} />
-              </motion.div>
-            </motion.div>
           );
         })}
       </div>
