@@ -1,6 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { Github, ExternalLink, ArrowUpRight, X } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 
@@ -98,14 +102,12 @@ function IconLink({ href, label, children }) {
   );
 }
 
-function ProjectCard({ proj, delay }) {
+// Shared card visual (image + content), reused by the desktop grid and the
+// mobile peek list.
+function ProjectVisual({ proj }) {
   const primary = proj.vercel || proj.github || null;
   return (
-    <Reveal
-      as="article"
-      delay={delay}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_24px_50px_-24px_rgba(0,0,0,0.85)]"
-    >
+    <>
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={proj.image}
@@ -159,7 +161,75 @@ function ProjectCard({ proj, delay }) {
           ))}
         </div>
       </div>
+    </>
+  );
+}
+
+const CARD_SHELL =
+  "group relative flex flex-col overflow-hidden rounded-2xl border bg-zinc-900";
+
+function ProjectCard({ proj, delay }) {
+  return (
+    <Reveal
+      as="article"
+      delay={delay}
+      className={`${CARD_SHELL} h-full border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_24px_50px_-24px_rgba(0,0,0,0.85)]`}
+    >
+      <ProjectVisual proj={proj} />
     </Reveal>
+  );
+}
+
+// Mobile: cards peek in from alternating edges (first off the left, second off
+// the right, …) showing ~70%, and slide to center — fully visible — on tap.
+// Cards span the full viewport width, so a 30% translate is exactly a 30% crop.
+const SLIDE = { duration: 0.45, ease: [0.22, 1, 0.36, 1] };
+
+function MobileProjects({ projects }) {
+  const [active, setActive] = useState(null);
+  return (
+    <div className="-mx-6 overflow-hidden sm:hidden">
+      <div className="flex flex-col gap-5">
+        {projects.map((proj, i) => {
+          const isActive = active === i;
+          const fromLeft = i % 2 === 0;
+          const x = isActive ? "0%" : fromLeft ? "-30%" : "30%";
+          return (
+            <motion.article
+              key={proj.title}
+              initial={false}
+              animate={{ x }}
+              transition={SLIDE}
+              className={`${CARD_SHELL} w-full ${
+                isActive ? "border-emerald-500/40" : "border-zinc-800"
+              }`}
+            >
+              <ProjectVisual proj={proj} />
+
+              {isActive ? (
+                <button
+                  type="button"
+                  aria-label={`Collapse ${proj.title}`}
+                  onClick={() => setActive(null)}
+                  className="absolute left-3 top-3 z-30 rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  aria-label={`Show ${proj.title}`}
+                  onClick={() => setActive(i)}
+                  className={`absolute inset-0 z-30 ${
+                    fromLeft ? "cursor-e-resize" : "cursor-w-resize"
+                  }`}
+                />
+              )}
+            </motion.article>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
@@ -168,7 +238,8 @@ export default function ProjectsSection() {
     <section id="projects" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="02" command="projects" title="Projects" />
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Tablet / desktop: grid of cards */}
+      <div className="hidden gap-5 sm:grid sm:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((proj, i) => (
           <ProjectCard
             key={proj.title}
@@ -177,6 +248,9 @@ export default function ProjectsSection() {
           />
         ))}
       </div>
+
+      {/* Mobile: alternating peek cards that slide to center on tap */}
+      <MobileProjects projects={PROJECTS} />
     </section>
   );
 }
