@@ -5,6 +5,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   color-scheme: dark;
+  /* Guard against stray full-width children (e.g. non-wrapping code) making the
+     page scroll sideways on mobile, which shifts every centered section. */
+  overflow-x: clip;
 }
 
 @theme inline {
@@ -34,6 +37,7 @@ html {
   }
   body {
     @apply bg-background text-foreground antialiased;
+    overflow-x: clip;
   }
   ::selection {
     background-color: color-mix(in oklch, var(--ring) 25%, transparent);
