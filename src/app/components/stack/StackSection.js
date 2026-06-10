@@ -37,6 +37,28 @@ function ShadcnIcon({ className, style, ...props }) {
   );
 }
 
+// Drizzle ORM has no devicon glyph — render its four diagonal "drizzle"
+// streaks inline.
+function DrizzleIcon({ className, style, ...props }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      className={className}
+      style={style}
+      {...props}
+    >
+      <line x1="3.8" y1="9.2" x2="9.8" y2="6.2" />
+      <line x1="13.4" y1="8.2" x2="19.4" y2="5.2" />
+      <line x1="4.6" y1="18.8" x2="10.6" y2="15.8" />
+      <line x1="14.2" y1="17.8" x2="20.2" y2="14.8" />
+    </svg>
+  );
+}
+
 // `size` ("lg"|"md"|"sm") is used only for ring placement. The actual pixel
 // size of each icon is computed per-icon in PX below.
 
@@ -76,6 +98,7 @@ const STACK = [
   { name: "MySQL", icon: "devicon-mysql-original colored", size: "sm" },
   { name: "MongoDB", icon: "devicon-mongodb-plain colored", size: "sm" },
   { name: "Prisma", icon: "devicon-prisma-original", size: "sm" },
+  { name: "Drizzle", Icon: DrizzleIcon, color: "#c5f74f", size: "sm" },
   { name: "Payload CMS", Icon: Layers, color: "#d4d4d8", size: "sm" },
   { name: "Better Auth", Icon: ShieldCheck, color: "#d4d4d8", size: "sm" },
   { name: "Auth0", Icon: KeyRound, color: "#eb5424", size: "sm" },
