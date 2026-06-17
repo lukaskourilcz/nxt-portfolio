@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { BackgroundGrid } from "@/components/background-grid";
+import { Button } from "@/components/ui/button";
 
 export const metadata = { title: "404 — Not Found" };
 
@@ -17,12 +18,11 @@ export default function NotFound() {
           Error: route not found. The page you&apos;re looking for doesn&apos;t
           exist or has been moved.
         </p>
-        <Link
-          href="/"
-          className="mt-8 inline-flex items-center gap-2 rounded-md bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-emerald-400"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back home
-        </Link>
+        <Button asChild className="mt-8">
+          <Link href="/">
+            <ArrowLeft className="h-4 w-4" /> Back home
+          </Link>
+        </Button>
       </main>
     </>
   );

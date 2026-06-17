@@ -1,14 +1,12 @@
 import Link from "next/link";
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { ExternalLink } from "@/components/external-link";
+import { GITHUB_URL, LINKEDIN_URL, EMAIL_HREF } from "@/lib/site";
 
 const SOCIALS = [
-  { href: "https://github.com/lukaskourilcz", label: "GitHub", Icon: Github },
-  {
-    href: "https://linkedin.com/in/lukas-kouril/",
-    label: "LinkedIn",
-    Icon: Linkedin,
-  },
-  { href: "mailto:kouril.lukas@gmail.com", label: "Email", Icon: Mail },
+  { href: GITHUB_URL, label: "GitHub", Icon: Github },
+  { href: LINKEDIN_URL, label: "LinkedIn", Icon: Linkedin },
+  { href: EMAIL_HREF, label: "Email", Icon: Mail },
 ];
 
 export function Footer() {
@@ -22,15 +20,14 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             {SOCIALS.map(({ href, label, Icon }) => (
-              <Link
+              <ExternalLink
                 key={label}
                 href={href}
-                target="_blank"
                 aria-label={label}
                 className="text-zinc-500 transition-colors hover:text-emerald-400"
               >
                 <Icon className="h-4 w-4" />
-              </Link>
+              </ExternalLink>
             ))}
           </div>
         </div>

@@ -1,63 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useScrolled } from "@/hooks/useScrolled";
+import { useActiveSection } from "@/hooks/useActiveSection";
+import { useElementOnScreen } from "@/hooks/useElementOnScreen";
+import { EMAIL, EMAIL_HREF, RESUME_PATH } from "@/lib/site";
 
-const LINKS = [
+const SECTIONS = [
   { id: "stack", label: "stack", index: "01" },
   { id: "projects", label: "projects", index: "02" },
   { id: "experience", label: "experience", index: "03" },
   { id: "education", label: "education", index: "04" },
   { id: "contact", label: "contact", index: "05" },
 ];
+const SECTION_IDS = SECTIONS.map((section) => section.id);
 
 export function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("");
-  const [open, setOpen] = useState(false);
-  const [heroAvatarVisible, setHeroAvatarVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const reduce = useReducedMotion();
-  const showPhoto = !heroAvatarVisible;
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const scrolled = useScrolled(8);
+  const activeSection = useActiveSection(SECTION_IDS);
 
-  // Morph the nav mark between the LK logo and the hero photo as the hero
-  // avatar crosses under the sticky navbar: LK while the face is visible in
-  // the hero, the photo once it has scrolled out of view.
-  useEffect(() => {
-    const el = document.getElementById("hero-avatar");
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => setHeroAvatarVisible(entry.isIntersecting),
-      { rootMargin: "-64px 0px 0px 0px", threshold: 0 }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const sections = LINKS.map((l) => document.getElementById(l.id)).filter(
-      Boolean
-    );
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
+  // Morph the nav mark between the "LK" logo and the hero photo: show "LK"
+  // while the hero avatar is still on screen, and swap to the photo once it has
+  // scrolled up under the sticky navbar (offset by the navbar's ~64px height).
+  const heroAvatarOnScreen = useElementOnScreen("hero-avatar", {
+    rootMargin: "-64px 0px 0px 0px",
+  });
+  const showPhoto = !heroAvatarOnScreen;
 
   return (
     <header
@@ -69,7 +45,7 @@ export function Nav() {
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a
-          href="mailto:kouril.lukas@gmail.com"
+          href={EMAIL_HREF}
           className="group flex items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm"
         >
           <span className="relative block h-7 w-7 shrink-0">
@@ -110,69 +86,66 @@ export function Nav() {
               </span>
             </motion.span>
           </span>
-          <span>kouril.lukas@gmail.com</span>
+          <span>{EMAIL}</span>
         </a>
 
         <div className="flex items-center gap-2">
           <div className="hidden items-center gap-6 lg:flex">
-            {LINKS.map((l) => (
+            {SECTIONS.map((section) => (
               <Link
-                key={l.id}
-                href={`#${l.id}`}
-                aria-current={active === l.id ? "true" : undefined}
+                key={section.id}
+                href={`#${section.id}`}
+                aria-current={activeSection === section.id ? "true" : undefined}
                 className="group font-mono text-sm transition-colors"
               >
-                <span className="text-emerald-400">{l.index}.</span>{" "}
+                <span className="text-emerald-400">{section.index}.</span>{" "}
                 <span
                   className={
-                    active === l.id
+                    activeSection === section.id
                       ? "text-zinc-100"
                       : "text-zinc-500 group-hover:text-zinc-200"
                   }
                 >
-                  {l.label}
+                  {section.label}
                 </span>
               </Link>
             ))}
-            <a
-              href="/pdf/cv_lukaskouril.pdf"
-              download
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-3 py-1.5 font-mono text-xs text-zinc-300 transition-colors hover:border-emerald-500 hover:text-emerald-400"
-            >
-              <Download className="h-3.5 w-3.5" /> resume
-            </a>
+            <Button asChild variant="outline" size="sm">
+              <a href={RESUME_PATH} download>
+                <Download className="h-3.5 w-3.5" /> resume
+              </a>
+            </Button>
           </div>
 
           <button
             className="text-zinc-300 lg:hidden"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => setMenuOpen((open) => !open)}
             aria-label="Toggle menu"
           >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </nav>
 
-      {open && (
+      {menuOpen && (
         <div className="border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md lg:hidden">
           <div className="flex flex-col gap-1 px-6 py-4">
-            {LINKS.map((l) => (
+            {SECTIONS.map((section) => (
               <Link
-                key={l.id}
-                href={`#${l.id}`}
-                onClick={() => setOpen(false)}
+                key={section.id}
+                href={`#${section.id}`}
+                onClick={() => setMenuOpen(false)}
                 className="py-2 font-mono text-sm text-zinc-400"
               >
-                <span className="text-emerald-400">{l.index}.</span> {l.label}
+                <span className="text-emerald-400">{section.index}.</span>{" "}
+                {section.label}
               </Link>
             ))}
-            <a
-              href="/pdf/cv_lukaskouril.pdf"
-              download
-              className="mt-2 inline-flex w-fit items-center gap-2 rounded-md border border-zinc-700 px-3 py-1.5 font-mono text-xs text-zinc-300"
-            >
-              <Download className="h-3.5 w-3.5" /> resume
-            </a>
+            <Button asChild variant="outline" size="sm" className="mt-2 w-fit">
+              <a href={RESUME_PATH} download>
+                <Download className="h-3.5 w-3.5" /> resume
+              </a>
+            </Button>
           </div>
         </div>
       )}

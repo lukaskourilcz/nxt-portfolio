@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { Tag } from "@/components/tag";
 
 const EXPERIENCES = [
   {
@@ -205,12 +206,9 @@ export default function ExperienceSection() {
 
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {exp.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-zinc-700 bg-zinc-800 px-2.5 py-0.5 font-mono text-[0.7rem] text-zinc-300"
-                  >
+                  <Tag key={tag} className="px-2.5">
                     {tag}
-                  </span>
+                  </Tag>
                 ))}
               </div>
             </div>

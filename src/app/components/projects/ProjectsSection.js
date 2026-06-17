@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, ArrowUpRight, X } from "lucide-react";
+import { Github, ExternalLink as ExternalLinkIcon, X } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { ExternalLink } from "@/components/external-link";
+import { ArrowLink } from "@/components/arrow-link";
+import { Tag } from "@/components/tag";
 
 // Scouted from the live deployments + each repo's package.json.
 // GitHub links are shown only for public repos (private/removed repos would
@@ -90,15 +92,13 @@ const PROJECTS = [
 
 function IconLink({ href, label, children }) {
   return (
-    <Link
+    <ExternalLink
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label={label}
       className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
     >
       {children}
-    </Link>
+    </ExternalLink>
   );
 }
 
@@ -125,7 +125,7 @@ function ProjectVisual({ proj }) {
           )}
           {proj.vercel && (
             <IconLink href={proj.vercel} label={`${proj.title} live site`}>
-              <ExternalLink className="h-3.5 w-3.5" />
+              <ExternalLinkIcon className="h-3.5 w-3.5" />
             </IconLink>
           )}
         </div>
@@ -134,15 +134,12 @@ function ProjectVisual({ proj }) {
       <div className="relative z-10 -mt-6 flex flex-1 flex-col px-5 pb-5">
         <h3 className="text-base font-semibold text-zinc-100">
           {primary ? (
-            <Link
+            <ArrowLink
               href={primary}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 transition-colors hover:text-emerald-300"
+              arrowClassName="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
             >
               {proj.title}
-              <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
-            </Link>
+            </ArrowLink>
           ) : (
             proj.title
           )}
@@ -151,13 +148,10 @@ function ProjectVisual({ proj }) {
           {proj.description}
         </p>
         <div className="mt-4 flex flex-wrap gap-1.5">
-          {proj.tech.map((t) => (
-            <span
-              key={t}
-              className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.7rem] text-emerald-300"
-            >
-              {t}
-            </span>
+          {proj.tech.map((tech) => (
+            <Tag key={tech} variant="accent">
+              {tech}
+            </Tag>
           ))}
         </div>
       </div>

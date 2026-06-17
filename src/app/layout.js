@@ -1,8 +1,7 @@
 import "./globals.css";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-
-const SITE_URL = "https://lukaskouril.vercel.app";
+import { SITE_URL, EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -52,16 +51,13 @@ const personJsonLd = {
   name: "Lukas Kouril",
   jobTitle: "Software Engineer",
   url: SITE_URL,
-  email: "kouril.lukas@gmail.com",
+  email: EMAIL,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Prague",
     addressCountry: "CZ",
   },
-  sameAs: [
-    "https://github.com/lukaskourilcz",
-    "https://linkedin.com/in/lukas-kouril/",
-  ],
+  sameAs: [GITHUB_URL, LINKEDIN_URL],
   knowsAbout: ["TypeScript", "React", "Next.js", "Node.js"],
 };
 

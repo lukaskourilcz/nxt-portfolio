@@ -1,4 +1,4 @@
-const SITE_URL = "https://lukaskouril.vercel.app";
+import { SITE_URL } from "@/lib/site";
 
 export default function robots() {
   return {

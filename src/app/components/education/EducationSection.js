@@ -1,7 +1,8 @@
-import Link from "next/link";
-import { GraduationCap, ArrowUpRight } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { ArrowLink } from "@/components/arrow-link";
+import { Tag } from "@/components/tag";
 
 const ACADEMIES = [
   {
@@ -140,15 +141,7 @@ export default function EducationSection() {
                 <div>
                   <h3 className="font-semibold text-zinc-100">
                     {a.url ? (
-                      <Link
-                        href={a.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 transition-colors hover:text-emerald-300"
-                      >
-                        {a.name}
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                      </Link>
+                      <ArrowLink href={a.url}>{a.name}</ArrowLink>
                     ) : (
                       a.name
                     )}
@@ -166,13 +159,10 @@ export default function EducationSection() {
             </p>
 
             <div className="mt-4 flex flex-wrap gap-1.5">
-              {a.skills.map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full border border-zinc-700 bg-zinc-800 px-2 py-0.5 font-mono text-[0.65rem] text-zinc-300"
-                >
-                  {s}
-                </span>
+              {a.skills.map((skill) => (
+                <Tag key={skill} className="text-[0.65rem]">
+                  {skill}
+                </Tag>
               ))}
             </div>
           </Reveal>
@@ -200,15 +190,12 @@ export default function EducationSection() {
               </span>
               <h3 className="font-semibold text-zinc-100">
                 {e.url ? (
-                  <Link
+                  <ArrowLink
                     href={e.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 transition-colors hover:text-emerald-300"
+                    arrowClassName="opacity-0 transition-opacity group-hover:opacity-100"
                   >
                     {e.name}
-                    <ArrowUpRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
-                  </Link>
+                  </ArrowLink>
                 ) : (
                   e.name
                 )}
@@ -218,13 +205,10 @@ export default function EducationSection() {
               {e.blurb}
             </p>
             <div className="mt-4 flex flex-wrap gap-1.5">
-              {e.tags.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.7rem] text-emerald-300"
-                >
-                  {t}
-                </span>
+              {e.tags.map((tag) => (
+                <Tag key={tag} variant="accent">
+                  {tag}
+                </Tag>
               ))}
             </div>
           </Reveal>

@@ -2,35 +2,27 @@ import Link from "next/link";
 import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { ExternalLink } from "@/components/external-link";
+import { Button } from "@/components/ui/button";
+import {
+  EMAIL,
+  EMAIL_HREF,
+  PHONE,
+  PHONE_HREF,
+  LOCATION,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "@/lib/site";
 
 const CONTACTS = [
-  {
-    label: "email",
-    href: "mailto:kouril.lukas@gmail.com",
-    value: "kouril.lukas@gmail.com",
-    Icon: Mail,
-  },
-  {
-    label: "phone",
-    href: "tel:+420737875367",
-    value: "+420 737 875 367",
-    Icon: Phone,
-  },
-  {
-    label: "location",
-    href: null,
-    value: "Prague, Czech Republic",
-    Icon: MapPin,
-  },
+  { label: "email", href: EMAIL_HREF, value: EMAIL, Icon: Mail },
+  { label: "phone", href: PHONE_HREF, value: PHONE, Icon: Phone },
+  { label: "location", href: null, value: LOCATION, Icon: MapPin },
 ];
 
 const SOCIALS = [
-  { href: "https://github.com/lukaskourilcz", label: "GitHub", Icon: Github },
-  {
-    href: "https://www.linkedin.com/in/lukas-kouril",
-    label: "LinkedIn",
-    Icon: Linkedin,
-  },
+  { href: GITHUB_URL, label: "GitHub", Icon: Github },
+  { href: LINKEDIN_URL, label: "LinkedIn", Icon: Linkedin },
 ];
 
 export default function ContactSection() {
@@ -47,25 +39,22 @@ export default function ContactSection() {
             will get back to you.
           </p>
 
-          <a
-            href="mailto:kouril.lukas@gmail.com"
-            className="mt-6 inline-flex items-center gap-2 rounded-md bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-emerald-400 hover:text-zinc-900"
-          >
-            <Mail className="h-4 w-4" /> Say hello
-          </a>
+          <Button asChild className="mt-6">
+            <a href={EMAIL_HREF}>
+              <Mail className="h-4 w-4" /> Say hello
+            </a>
+          </Button>
 
           <div className="mt-8 flex items-center gap-3">
             {SOCIALS.map(({ href, label, Icon }) => (
-              <Link
+              <ExternalLink
                 key={label}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
                 aria-label={label}
                 className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-emerald-500 hover:text-emerald-400"
               >
                 <Icon className="h-5 w-5" />
-              </Link>
+              </ExternalLink>
             ))}
           </div>
         </Reveal>

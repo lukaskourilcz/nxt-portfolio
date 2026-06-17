@@ -4,6 +4,9 @@ import Link from "next/link";
 import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { CodeWindow } from "@/components/code-window";
+import { ExternalLink } from "@/components/external-link";
+import { Button } from "@/components/ui/button";
+import { GITHUB_URL, LINKEDIN_URL, RESUME_PATH } from "@/lib/site";
 
 const CODE_LINES = [
   <>
@@ -86,38 +89,31 @@ export default function HeroSection() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-md bg-zinc-100 px-5 py-2.5 text-sm font-medium text-zinc-900 transition-colors hover:bg-emerald-400 hover:text-zinc-900"
-            >
-              Get in touch <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href="/pdf/cv_lukaskouril.pdf"
-              download
-              className="inline-flex items-center gap-2 rounded-md border border-zinc-700 px-5 py-2.5 text-sm font-medium text-zinc-300 transition-colors hover:border-emerald-500 hover:text-emerald-400"
-            >
-              <Download className="h-4 w-4" /> Download CV
-            </a>
+            <Button asChild>
+              <Link href="#contact">
+                Get in touch <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <a href={RESUME_PATH} download>
+                <Download className="h-4 w-4" /> Download CV
+              </a>
+            </Button>
             <div className="ml-1 flex items-center gap-1">
-              <Link
-                href="https://github.com/lukaskourilcz"
-                target="_blank"
-                rel="noopener noreferrer"
+              <ExternalLink
+                href={GITHUB_URL}
                 aria-label="GitHub"
                 className="rounded-md p-2 text-zinc-500 transition-colors hover:text-emerald-400"
               >
                 <Github className="h-5 w-5" />
-              </Link>
-              <Link
-                href="https://linkedin.com/in/lukas-kouril/"
-                target="_blank"
-                rel="noopener noreferrer"
+              </ExternalLink>
+              <ExternalLink
+                href={LINKEDIN_URL}
                 aria-label="LinkedIn"
                 className="rounded-md p-2 text-zinc-500 transition-colors hover:text-emerald-400"
               >
                 <Linkedin className="h-5 w-5" />
-              </Link>
+              </ExternalLink>
             </div>
           </div>
         </Reveal>
