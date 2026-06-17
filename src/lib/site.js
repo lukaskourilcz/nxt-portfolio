@@ -1,7 +1,5 @@
-// Single source of truth for the site's URL, contact details, and external
-// profile links. Anything that shows up in more than one place — page
-// metadata, the navbar, footer, contact section, structured data — lives here
-// so it only ever has to be changed once (and can't drift out of sync).
+// Site identity and contact details, shared by the page metadata, navbar,
+// footer, and contact section so they live in exactly one place.
 
 export const SITE_URL = "https://lukaskouril.vercel.app";
 
@@ -17,5 +15,5 @@ export const GITHUB_USERNAME = "lukaskourilcz";
 export const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
 export const LINKEDIN_URL = "https://linkedin.com/in/lukas-kouril/";
 
-// Downloadable CV/résumé served from /public.
+// CV served from /public.
 export const RESUME_PATH = "/pdf/cv_lukaskouril.pdf";

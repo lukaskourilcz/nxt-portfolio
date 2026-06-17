@@ -2,10 +2,8 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-// Shared button styling for the site's two call-to-action looks.
-// - solid   → light filled button that turns emerald on hover (primary CTA)
-// - outline → bordered/ghost button that turns emerald on hover (secondary)
-// Sizes: "md" for in-page CTAs, "sm" for the compact navbar résumé button.
+// CTA button styles: "solid" (primary) and "outline" (secondary), both turn
+// emerald on hover. Sizes: "md" for page CTAs, "sm" for the navbar résumé.
 const buttonVariants = cva(
   "inline-flex items-center gap-2 rounded-md transition-colors",
   {
@@ -25,12 +23,8 @@ const buttonVariants = cva(
   }
 );
 
-/**
- * Renders a real <button> by default, or — with `asChild` — applies the button
- * styling to whatever single element you nest inside (a Next.js <Link>, a
- * download <a>, ...). Most "buttons" on this site are actually links, so
- * `asChild` is the common case.
- */
+// Renders a <button>; with `asChild`, applies the styles to a nested element
+// instead (a Link or download <a>), since most CTAs here are links.
 export function Button({
   className,
   variant,

@@ -2,16 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Scroll-spy. Given the ids of the page's sections, returns the id of the one
- * currently within the viewport's reading band (roughly its vertical middle).
- * Drives the "you are here" highlight in the navbar.
- */
+// Scroll-spy: returns the id of the section currently in view, for the navbar's
+// active-link highlight.
 export function useActiveSection(sectionIds) {
   const [activeId, setActiveId] = useState("");
 
-  // Depend on the joined ids (a primitive) rather than the array reference, so
-  // the observer is only rebuilt when the actual list of sections changes.
+  // Join to a string so the effect doesn't re-run when a new array with the
+  // same ids is passed.
   const sectionIdsKey = sectionIds.join(",");
 
   useEffect(() => {

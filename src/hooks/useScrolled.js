@@ -2,10 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Returns true once the page has been scrolled more than `offset` pixels down
- * from the top. The navbar uses this to switch to its condensed, solid state.
- */
+// True once the page is scrolled past `offset` pixels; the navbar uses it to
+// switch to its solid state.
 export function useScrolled(offset = 0) {
   const [scrolled, setScrolled] = useState(false);
 

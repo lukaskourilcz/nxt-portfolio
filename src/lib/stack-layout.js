@@ -1,18 +1,15 @@
-// Pure geometry + randomness helpers for the tech-stack "constellation" — the
-// scattered ring of floating icons in StackSection. Deliberately framework-free
-// and deterministic: the same seed always produces the same arrangement, so the
-// server render and the client render agree (no hydration mismatch).
+// Geometry + seeded-randomness helpers for the tech-stack constellation in
+// StackSection. Pure and deterministic: a given seed always yields the same
+// arrangement, so the server and client renders match (no hydration mismatch).
 
-// Deterministic pseudo-random generator (Park–Miller LCG). Returns a function
-// that yields the next number in [0, 1) each time it's called.
+// Seeded PRNG (Park–Miller LCG): returns a function yielding numbers in [0, 1).
 export function createSeededRandom(seed) {
   let state = seed % 2147483647;
   if (state <= 0) state += 2147483646;
   return () => (state = (state * 16807) % 2147483647) / 2147483647;
 }
 
-// Fisher–Yates shuffle driven by a seed, so a given seed always yields the same
-// order. Returns a new array; the input is left untouched.
+// Seeded Fisher–Yates shuffle. Returns a new array; the input is left untouched.
 export function seededShuffle(items, seed) {
   const shuffled = items.slice();
   const random = createSeededRandom(seed);
@@ -23,10 +20,9 @@ export function seededShuffle(items, seed) {
   return shuffled;
 }
 
-// Spread `items` evenly around a circle of the given `radius` (in % of the
-// container), starting at `startAngleDeg`, with a little seeded jitter on both
-// the angle and the radius so the ring reads as a hand-scattered cluster rather
-// than a perfect circle. Coordinates are percentages centred on (50, 50).
+// Spread `items` around a circle of `radius` (% of container) from
+// `startAngleDeg`, with seeded jitter on angle and radius so it reads as a
+// scattered cluster. Coordinates are percentages centred on (50, 50).
 function placeOnRing(items, radius, startAngleDeg, random) {
   const count = items.length;
   return items.map((item, i) => {
@@ -42,19 +38,12 @@ function placeOnRing(items, radius, startAngleDeg, random) {
   });
 }
 
-// Small icons are split across two rings; this many go on the inner ring and
-// the rest spill onto an outer ring, so the cluster doesn't get too crowded.
+// Small icons span two rings; this many sit on the inner ring, the rest outside.
 const INNER_SMALL_RING_COUNT = 14;
 
-/**
- * Build the icon positions for one layout `seed`. Icons are grouped by their
- * `size` tier ("lg" | "md" | "sm") onto concentric rings, with each tier
- * independently shuffled so the arrangement changes on every reload.
- *
- * Returns:
- *   - positions:      [{ item, x, y }] in container-percentage coordinates
- *   - positionByName: item.name → position, for fast neighbour lookups
- */
+// Positions for one layout `seed`: each size tier is shuffled and placed on its
+// own ring. Returns the positioned items ({ item, x, y }, in % coordinates)
+// plus a name→position map for neighbour lookups.
 export function buildConstellation(stack, seed) {
   const tier = (size) => stack.filter((icon) => icon.size === size);
   const large = seededShuffle(tier("lg"), seed + 7);
@@ -77,17 +66,12 @@ export function buildConstellation(stack, seed) {
   };
 }
 
-// How close (in % of the container) an icon must be to the hovered one to get
-// pushed, and how hard (in px) the closest icons are pushed.
+// Repulsion reach (% of container) and max push strength (px).
 const INFLUENCE_RADIUS = 26;
 const MAX_PUSH_PX = 72;
 
-/**
- * Hover repulsion: when one icon is hovered, its neighbours slide away to open
- * up space around it. Returns the {x, y} pixel offset to apply to the icon
- * named `name`, given the currently `hoveredName` icon and the name→position
- * map. Icons beyond INFLUENCE_RADIUS (or when nothing is hovered) don't move.
- */
+// Pixel offset that pushes `name` away from `hoveredName`. Icons beyond
+// INFLUENCE_RADIUS, or when nothing is hovered, don't move.
 export function getRepulsionOffset(name, hoveredName, positionByName) {
   if (!hoveredName || hoveredName === name) return { x: 0, y: 0 };
 

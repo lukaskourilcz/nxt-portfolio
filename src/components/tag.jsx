@@ -1,10 +1,7 @@
 import { cn } from "@/lib/utils";
 
-// Small monospace pill used for tech stacks, skills, and category labels.
-// - "accent"  → emerald, for things we want to highlight (tech, course topics)
-// - "neutral" → muted zinc, for longer/secondary lists (skills, job tags)
-// Per-instance sizing tweaks (e.g. a smaller font for long lists) can be passed
-// through `className`, which wins over the defaults via tailwind-merge.
+// Monospace pill for tech, skills, and tags. "accent" is emerald, "neutral"
+// is zinc. Pass `className` to adjust size per use; it overrides the defaults.
 const TAG_VARIANTS = {
   neutral: "rounded-full border border-zinc-700 bg-zinc-800 text-zinc-300",
   accent:

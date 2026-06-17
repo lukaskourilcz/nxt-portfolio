@@ -2,12 +2,8 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "@/components/external-link";
 
-/**
- * A name/title that links out to an external site, followed by an
- * upper-right arrow. Used for project titles and school/mentor names.
- * `arrowClassName` controls the arrow's size and any hover behaviour
- * (e.g. fading the arrow in only when the parent card is hovered).
- */
+// External link with a trailing up-right arrow (project titles, school names).
+// `arrowClassName` sets the arrow's size and hover behaviour.
 export function ArrowLink({ href, children, className, arrowClassName }) {
   return (
     <ExternalLink

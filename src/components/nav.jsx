@@ -27,9 +27,8 @@ export function Nav() {
   const scrolled = useScrolled(8);
   const activeSection = useActiveSection(SECTION_IDS);
 
-  // Morph the nav mark between the "LK" logo and the hero photo: show "LK"
-  // while the hero avatar is still on screen, and swap to the photo once it has
-  // scrolled up under the sticky navbar (offset by the navbar's ~64px height).
+  // Show "LK" while the hero avatar is on screen, then swap to the photo once
+  // it scrolls under the navbar.
   const heroAvatarOnScreen = useElementOnScreen("hero-avatar", {
     rootMargin: "-64px 0px 0px 0px",
   });

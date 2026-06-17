@@ -2,14 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Tracks whether the element with the given id is currently visible in the
- * viewport. The navbar uses it to swap its "LK" logo for the profile photo
- * once the hero avatar has scrolled out of view. `rootMargin` lets callers
- * shrink the viewport — e.g. to discount the height of the sticky navbar.
- *
- * Defaults to true so the first paint matches the page starting at the top.
- */
+// Tracks whether the element with the given id is on screen. `rootMargin`
+// shrinks the viewport (e.g. to account for the sticky navbar). Defaults to
+// true to match the initial paint at the top of the page.
 export function useElementOnScreen(elementId, { rootMargin } = {}) {
   const [onScreen, setOnScreen] = useState(true);
 

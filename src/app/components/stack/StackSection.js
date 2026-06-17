@@ -141,8 +141,7 @@ const TOOLTIP_COLORS = [
   "#a3e635", "#e879f9", "#fb923c", "#2dd4bf", "#818cf8", "#f472b6",
 ];
 
-// Per-icon values below are computed once from fixed seeds, so they're stable
-// across renders and identical on the server and the client.
+// Per-icon values, derived once from fixed seeds so they match on server and client.
 
 // A random hover tilt (degrees, mixed direction and magnitude) per icon.
 const HOVER_TILT_DEG = (() => {
@@ -187,9 +186,7 @@ function StackIcon({ tech, px }) {
   return <Glyph style={{ color: tech.color, width: px, height: px }} aria-hidden />;
 }
 
-// One floating icon "bubble": a bordered tile that lifts in a gentle float
-// loop, glows in the tech's color on hover, and shows the tech name as a
-// tooltip above it.
+// One floating icon tile: glows in the tech's color on hover and shows its name.
 function IconBubble({ tech, color, floatIndex, reduce, hovered, px }) {
   return (
     <div
@@ -227,14 +224,12 @@ function IconBubble({ tech, color, floatIndex, reduce, hovered, px }) {
   );
 }
 
-// Spring transitions: a bouncier one for the scroll-in entrance, a snappier one
-// for hover interactions (repulsion, scale-up, tilt).
+// Spring transitions for the scroll-in entrance and hover interactions.
 const ENTRANCE_SPRING = { type: "spring", stiffness: 260, damping: 18 };
 const HOVER_SPRING = { type: "spring", stiffness: 320, damping: 20, mass: 0.6 };
 
-// Container width (px) the constellation's positions and icon sizes are tuned
-// for (matches max-w-3xl). Narrower containers scale everything down by the
-// same factor, so the layout is identical on every screen.
+// Width (px) the layout is tuned for (matches max-w-3xl); narrower containers
+// scale down by the same factor.
 const REFERENCE_WIDTH_PX = 768;
 
 export default function StackSection() {
@@ -243,9 +238,8 @@ export default function StackSection() {
   const [seed, setSeed] = useState(0);
   const [containerRef, scale] = useContainerScale(REFERENCE_WIDTH_PX);
 
-  // Re-shuffle the arrangement on every load — but only after hydration, so the
-  // server and first client render agree (both use seed 0) and React doesn't
-  // warn about a mismatch.
+  // Re-shuffle on each load, but only after hydration: the server and first
+  // client render both use seed 0, avoiding a mismatch warning.
   useEffect(() => setSeed(1 + Math.floor(Math.random() * 1e9)), []);
 
   const { positions, positionByName } = useMemo(
@@ -257,8 +251,8 @@ export default function StackSection() {
     <section id="stack" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
-      {/* Scattered circular constellation with hover repulsion — same layout,
-          order and animations on every breakpoint, scaled to fit the screen */}
+      {/* Scattered constellation with hover repulsion; same layout at every
+          breakpoint, scaled to fit. */}
       <div
         ref={containerRef}
         className="relative mx-auto aspect-square w-full max-w-3xl"
