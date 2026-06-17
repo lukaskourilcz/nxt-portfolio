@@ -17,7 +17,7 @@ const PROJECTS = [
   {
     title: "Portfolio",
     description:
-      "Personal developer portfolio with a terminal-inspired design, showcasing stack, experience, and projects across animated, responsive sections.",
+      "Personal developer portfolio with a terminal-inspired design and animated, responsive sections covering my stack, experience, and projects.",
     tech: ["Next.js", "JavaScript", "TailwindCSS", "Framer Motion"],
     github: "https://github.com/lukaskourilcz/nxt-portfolio",
     vercel: "https://lukaskouril.vercel.app/",
@@ -26,7 +26,7 @@ const PROJECTS = [
   {
     title: "Take a Break",
     description:
-      "B2B meditation-scheduling app featuring a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
+      "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
     tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
     vercel: "https://take-a-break-seven.vercel.app",
     image: "/projects/takeabreak_projekt.png",
@@ -34,7 +34,7 @@ const PROJECTS = [
   {
     title: "Czech Monopoly",
     description:
-      "Browser-based Czech-themed Monopoly game offering code-based 2–4 player multiplayer and next-intl localization.",
+      "Browser-based, Czech-themed Monopoly game with code-based 2–4 player multiplayer and next-intl localization.",
     tech: ["Next.js", "TypeScript", "Payload CMS", "NeonDB", "next-intl"],
     vercel: "https://czech-cities.vercel.app",
     image: "/wip.png",
@@ -42,7 +42,7 @@ const PROJECTS = [
   {
     title: "Personal Dashboard",
     description:
-      "Productivity dashboard tracking subscriptions, habits, plans, and calendar, enriched with AI insights and analytics charts.",
+      "Productivity dashboard for subscriptions, habits, plans, and a calendar, with AI insights and analytics charts.",
     tech: ["Next.js", "TypeScript", "Supabase", "Claude AI", "Recharts"],
     vercel: "https://own-dashboard-tau.vercel.app",
     image: "/wip.png",
@@ -50,7 +50,7 @@ const PROJECTS = [
   {
     title: "AutobusyHodonín.cz",
     description:
-      "Marketing website for a Czech bus and freight transport company, presenting fleet, passenger, and cargo services with an SEO and i18n focus.",
+      "Marketing site for a Czech bus and freight company, covering its fleet, passenger, and cargo services, with a focus on SEO and i18n.",
     tech: ["Next.js", "TypeScript", "TailwindCSS", "i18n"],
     vercel: "https://autobusyhodonin.cz",
     github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
@@ -59,7 +59,7 @@ const PROJECTS = [
   {
     title: "Eurowafers",
     description:
-      "Marketing website for a Czech spa-wafer manufacturer, presenting its history, product range, and distribution.",
+      "Marketing site for a Czech spa-wafer maker, covering its history, products, and distribution.",
     tech: ["Astro", "TypeScript", "TailwindCSS", "Vercel"],
     vercel: "https://eurowafers.vercel.app",
     image: "/wip.png",
@@ -67,7 +67,7 @@ const PROJECTS = [
   {
     title: "DevQuiz",
     description:
-      "Full-stack developer quiz with JWT-secured auth and Supabase-backed data over an Express serverless API.",
+      "Full-stack developer quiz with JWT auth and Supabase data behind an Express serverless API.",
     tech: ["React", "TypeScript", "Express", "Supabase", "JWT"],
     vercel: "https://react-express-app-five.vercel.app",
     image: "/wip.png",
@@ -75,14 +75,14 @@ const PROJECTS = [
   {
     title: "beKind Web App",
     description:
-      "Company rebrand and web app delivering a polished, performance-focused experience on a Prisma-backed PostgreSQL database.",
+      "Company rebrand and web app, focused on performance, backed by PostgreSQL and Prisma.",
     tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
     image: "/projects/bekind_projekt.png",
   },
   {
     title: "Dont Wanna Know",
     description:
-      "Interactive web app that asks personal questions, then uses Gemini AI to reveal tailored life statistics.",
+      "Interactive web app that asks personal questions, then uses Gemini AI to generate tailored life stats.",
     tech: ["Next.js", "TypeScript", "Gemini AI"],
     github: "https://github.com/lukaskourilcz/dontwannaknow",
     vercel: "https://dontwannaknow.vercel.app",

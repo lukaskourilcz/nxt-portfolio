@@ -11,7 +11,7 @@ const ACADEMIES = [
     period: "Jul 2024 – Dec 2024",
     url: "https://arol.dev",
     description:
-      "Intensive Software Engineering academy in Barcelona, where I gained experience in full-stack web development, working mainly with technologies like JavaScript, TypeScript, React, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, PrismaDB, and MongoDB. Alongside learning data structures, algorithms, and tools like Git, Docker, Vercel, and Figma, I built real-world projects that strengthened my problem-solving skills but also my passion for software engineering and continuous learning.",
+      "Intensive software engineering academy in Barcelona focused on full-stack web development. I worked mainly with JavaScript, TypeScript, React, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, Prisma, and MongoDB, alongside data structures, algorithms, and tools like Git, Docker, Vercel, and Figma. Most of the learning came from building actual projects, which is also where I got hooked on software engineering.",
     skills: [
       "Redux.js",
       "Software Development",
@@ -46,7 +46,7 @@ const ACADEMIES = [
     period: "Aug 2022 – Dec 2022",
     url: "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
     description:
-      "Web Development focused bootcamp, where I developed a strong foundation in HTML, CSS, and JavaScript. The curriculum focused on building responsive, interactive web applications and emphasized core web development principles.",
+      "Web development bootcamp where I built my foundation in HTML, CSS, and JavaScript. The course centered on responsive, interactive web apps and the fundamentals behind them.",
     skills: [
       "JavaScript",
       "CSS",
@@ -83,7 +83,7 @@ const EDUCATORS = [
     name: "Jonas Schmedtmann",
     url: "https://jonas.io",
     blurb:
-      "Web developer, designer, and teacher of the acclaimed Complete JavaScript and Ultimate React courses, with 2M+ students.",
+      "Web developer, designer, and teacher of the Complete JavaScript and Ultimate React courses, with over 2M students.",
     tags: ["JavaScript", "React", "CSS"],
   },
   {
@@ -115,7 +115,7 @@ const EDUCATORS = [
     name: "CleverProgrammer",
     url: "https://www.cleverprogrammer.com",
     blurb:
-      "Project-based coding community teaching learners to build real-world full-stack apps and land developer jobs.",
+      "Project-based coding community that helps people build full-stack apps and land developer jobs.",
     tags: ["Full-Stack"],
   },
 ];

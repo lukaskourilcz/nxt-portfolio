@@ -80,12 +80,12 @@ export default function HeroSection() {
             Software Engineer
           </p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
-            I build clean, user-friendly web applications with{" "}
+            I build web applications with{" "}
             <span className="font-medium text-zinc-100">TypeScript</span>,{" "}
             <span className="font-medium text-zinc-100">React</span> and{" "}
-            <span className="font-medium text-zinc-100">Node.js</span> — from
-            micro-frontends to AI-powered tools. Endlessly curious, always
-            shipping.
+            <span className="font-medium text-zinc-100">Node.js</span>, from
+            micro-frontends to AI-powered tools. I care about readable code and
+            shipping things that actually work.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">

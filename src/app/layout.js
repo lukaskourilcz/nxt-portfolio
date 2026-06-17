@@ -10,7 +10,7 @@ export const metadata = {
     template: "%s — Lukas Kouril",
   },
   description:
-    "Software Engineer from the Czech Republic building clean, user-friendly web applications with TypeScript, React and Node.js.",
+    "Software Engineer from the Czech Republic building web applications with TypeScript, React and Node.js.",
   keywords: [
     "Lukas Kouril",
     "Software Engineer",
@@ -26,7 +26,7 @@ export const metadata = {
   openGraph: {
     title: "Lukas Kouril — Software Engineer",
     description:
-      "Software Engineer building clean, user-friendly web applications with TypeScript, React and Node.js.",
+      "Software Engineer building web applications with TypeScript, React and Node.js.",
     url: SITE_URL,
     siteName: "Lukas Kouril",
     type: "website",
@@ -36,7 +36,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Lukas Kouril — Software Engineer",
     description:
-      "Software Engineer building clean, user-friendly web applications with TypeScript, React and Node.js.",
+      "Software Engineer building web applications with TypeScript, React and Node.js.",
   },
 };
 

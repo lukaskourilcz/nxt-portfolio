@@ -34,9 +34,9 @@ export default function ContactSection() {
         <Reveal>
           <p className="font-mono text-sm text-emerald-400">$ ./say-hello.sh</p>
           <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg">
-            Are you hiring or have a project in mind? My inbox is always open —
-            whether it&apos;s a question, an opportunity, or just to say hi, I
-            will get back to you.
+            Hiring, or have a project in mind? My inbox is always open. Whether
+            it&apos;s a question, an opportunity, or just a hello, I&apos;ll get
+            back to you.
           </p>
 
           <Button asChild className="mt-6">
