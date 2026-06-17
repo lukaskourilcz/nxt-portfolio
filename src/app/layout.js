@@ -1,8 +1,7 @@
 import "./globals.css";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-
-const SITE_URL = "https://lukaskouril.vercel.app";
+import { SITE_URL, EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -11,7 +10,7 @@ export const metadata = {
     template: "%s — Lukas Kouril",
   },
   description:
-    "Software Engineer from the Czech Republic building clean, user-friendly web applications with TypeScript, React and Node.js.",
+    "Software Engineer from the Czech Republic building web applications with TypeScript, React and Node.js.",
   keywords: [
     "Lukas Kouril",
     "Software Engineer",
@@ -27,7 +26,7 @@ export const metadata = {
   openGraph: {
     title: "Lukas Kouril — Software Engineer",
     description:
-      "Software Engineer building clean, user-friendly web applications with TypeScript, React and Node.js.",
+      "Software Engineer building web applications with TypeScript, React and Node.js.",
     url: SITE_URL,
     siteName: "Lukas Kouril",
     type: "website",
@@ -37,7 +36,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Lukas Kouril — Software Engineer",
     description:
-      "Software Engineer building clean, user-friendly web applications with TypeScript, React and Node.js.",
+      "Software Engineer building web applications with TypeScript, React and Node.js.",
   },
 };
 
@@ -52,16 +51,13 @@ const personJsonLd = {
   name: "Lukas Kouril",
   jobTitle: "Software Engineer",
   url: SITE_URL,
-  email: "kouril.lukas@gmail.com",
+  email: EMAIL,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Prague",
     addressCountry: "CZ",
   },
-  sameAs: [
-    "https://github.com/lukaskourilcz",
-    "https://linkedin.com/in/lukas-kouril/",
-  ],
+  sameAs: [GITHUB_URL, LINKEDIN_URL],
   knowsAbout: ["TypeScript", "React", "Next.js", "Node.js"],
 };
 

@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useRef } from "react";
-import Link from "next/link";
+import { useState, useEffect, useMemo } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Github,
@@ -14,8 +13,16 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { ExternalLink } from "@/components/external-link";
 import { BrandIcon } from "@/components/brand-icons";
 import GitHubGrid from "@/components/github-grid";
+import { useContainerScale } from "@/hooks/useContainerScale";
+import {
+  createSeededRandom,
+  buildConstellation,
+  getRepulsionOffset,
+} from "@/lib/stack-layout";
+import { GITHUB_URL, GITHUB_USERNAME } from "@/lib/site";
 
 // shadcn/ui has no devicon glyph — render its two-stroke logo inline.
 function ShadcnIcon({ className, style, ...props }) {
@@ -59,15 +66,11 @@ function DrizzleIcon({ className, style, ...props }) {
   );
 }
 
-// `size` ("lg"|"md"|"sm") is used only for ring placement. The actual pixel
-// size of each icon is computed per-icon in PX below.
-
-// A distinct tooltip / glow color per icon (cycled).
-const PALETTE = [
-  "#34d399", "#38bdf8", "#a78bfa", "#fbbf24", "#fb7185", "#22d3ee",
-  "#a3e635", "#e879f9", "#fb923c", "#2dd4bf", "#818cf8", "#f472b6",
-];
-
+// The full tech stack. Each entry sets exactly one icon source:
+//   icon  → a devicon CSS class      brand → a key in BrandIcon
+//   Icon  → a React component (a lucide or one of the inline SVGs above)
+// `size` is the tier ("lg" | "md" | "sm") that decides which ring the icon
+// sits on; its exact pixel size is derived per-icon in ICON_SIZE_PX below.
 const STACK = [
   // languages — large
   { name: "JavaScript", icon: "devicon-javascript-plain colored", size: "lg" },
@@ -132,114 +135,59 @@ const STACK = [
   { name: "LangChain", brand: "langchain", color: "#7fc8ff", size: "sm" },
 ];
 
-// Seeded PRNG so the scattered arrangement is stable across SSR/client.
-function makeRng(seed) {
-  let s = seed % 2147483647;
-  if (s <= 0) s += 2147483646;
-  return () => (s = (s * 16807) % 2147483647) / 2147483647;
-}
-function seededShuffle(arr, seed) {
-  const a = arr.slice();
-  const rnd = makeRng(seed);
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rnd() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
+// Distinct tooltip / glow colors, assigned to icons in order and cycled.
+const TOOLTIP_COLORS = [
+  "#34d399", "#38bdf8", "#a78bfa", "#fbbf24", "#fb7185", "#22d3ee",
+  "#a3e635", "#e879f9", "#fb923c", "#2dd4bf", "#818cf8", "#f472b6",
+];
+
+// Per-icon values, derived once from fixed seeds so they match on server and client.
+
+// A random hover tilt (degrees, mixed direction and magnitude) per icon.
+const HOVER_TILT_DEG = (() => {
+  const random = createSeededRandom(555);
+  const tiltByName = {};
+  for (const tech of STACK) {
+    const magnitude = 16 + random() * 20; // 16–36°
+    const direction = random() < 0.5 ? -1 : 1;
+    tiltByName[tech.name] = Math.round(direction * magnitude);
   }
-  return a;
-}
-
-const byTier = (t) => STACK.filter((x) => x.size === t);
-const LG_BASE = byTier("lg");
-const MD_BASE = byTier("md");
-const SM_BASE = byTier("sm");
-
-// Concentric rings, tightened and jittered so it reads as a scattered cluster.
-// `rnd` is shared across rings so the jitter varies with the layout seed.
-function ring(items, r, offsetDeg, rnd) {
-  const n = items.length;
-  return items.map((it, k) => {
-    const ang = ((offsetDeg + (360 / n) * k + (rnd() - 0.5) * 16) * Math.PI) / 180;
-    const rr = r + (rnd() - 0.5) * 5;
-    return { it, x: 50 + rr * Math.cos(ang), y: 50 + rr * Math.sin(ang) };
-  });
-}
-
-// Build a full layout (shuffled order + ring positions) from a seed.
-function buildLayout(seed) {
-  const lg = seededShuffle(LG_BASE, seed + 7);
-  const md = seededShuffle(MD_BASE, seed + 13);
-  const sm = seededShuffle(SM_BASE, seed + 29);
-  const rnd = makeRng(seed + 101);
-  const circle = [
-    ...ring(lg, 14, 45, rnd),
-    ...ring(md, 24, 12, rnd),
-    ...ring(sm.slice(0, 14), 32, 8, rnd),
-    ...ring(sm.slice(14), 40, 0, rnd),
-  ];
-  return {
-    flat: [...lg, ...md, ...sm],
-    circle,
-    posByName: Object.fromEntries(circle.map((p) => [p.it.name, p])),
-  };
-}
-
-// A random hover tilt per icon (mixed direction + magnitude), seeded so it's
-// stable across renders.
-const ROT = (() => {
-  const rnd = makeRng(555);
-  const m = {};
-  for (const it of STACK) {
-    const mag = 16 + rnd() * 20; // 16–36°
-    m[it.name] = Math.round((rnd() < 0.5 ? -1 : 1) * mag);
-  }
-  return m;
+  return tiltByName;
 })();
 
-// Per-icon base pixel size at the reference width (scaled down to fit smaller
-// screens): JS biggest, TS second, HTML/CSS third, then a lot of others spread
-// across varied medium sizes (seeded for stability).
-const PX = (() => {
-  const rnd = makeRng(909);
-  const m = {};
-  for (const it of STACK) {
-    if (it.name === "JavaScript") m[it.name] = 160;
-    else if (it.name === "TypeScript") m[it.name] = 134;
-    else if (it.name === "HTML5" || it.name === "CSS3") m[it.name] = 114;
-    else if (it.size === "md") m[it.name] = Math.round(88 + rnd() * 24);
-    else m[it.name] = Math.round(74 + rnd() * 24);
+// Base pixel size per icon at the reference width (scaled down to fit smaller
+// screens): JavaScript biggest, TypeScript next, then HTML/CSS, then the rest
+// spread across varied sizes by tier.
+const ICON_SIZE_PX = (() => {
+  const random = createSeededRandom(909);
+  const sizeByName = {};
+  for (const tech of STACK) {
+    if (tech.name === "JavaScript") sizeByName[tech.name] = 160;
+    else if (tech.name === "TypeScript") sizeByName[tech.name] = 134;
+    else if (tech.name === "HTML5" || tech.name === "CSS3") sizeByName[tech.name] = 114;
+    else if (tech.size === "md") sizeByName[tech.name] = Math.round(88 + random() * 24);
+    else sizeByName[tech.name] = Math.round(74 + random() * 24);
   }
-  return m;
+  return sizeByName;
 })();
 
-// A stable tooltip / glow color per icon.
-const COLOR = Object.fromEntries(
-  STACK.map((it, i) => [it.name, PALETTE[i % PALETTE.length]])
+// Tooltip / glow color per icon.
+const ICON_COLOR = Object.fromEntries(
+  STACK.map((tech, i) => [tech.name, TOOLTIP_COLORS[i % TOOLTIP_COLORS.length]])
 );
 
-// On hover, push nearby icons outward — proximity-scaled, in px.
-function pushOffset(name, hovered, pos) {
-  if (!hovered || hovered === name) return { x: 0, y: 0 };
-  const h = pos[hovered];
-  const t = pos[name];
-  if (!h || !t) return { x: 0, y: 0 };
-  const dx = t.x - h.x;
-  const dy = t.y - h.y;
-  const dist = Math.hypot(dx, dy) || 0.001;
-  const INFLUENCE = 26; // percent
-  if (dist >= INFLUENCE) return { x: 0, y: 0 };
-  const force = (1 - dist / INFLUENCE) * 72; // px
-  return { x: (dx / dist) * force, y: (dy / dist) * force };
+// Renders the glyph for a single tech, whichever icon source it uses.
+function StackIcon({ tech, px }) {
+  if (tech.icon)
+    return <i className={tech.icon} style={{ fontSize: `${px}px`, lineHeight: 1 }} aria-hidden />;
+  if (tech.brand)
+    return <BrandIcon name={tech.brand} style={{ color: tech.color, width: px, height: px }} />;
+  const Glyph = tech.Icon;
+  return <Glyph style={{ color: tech.color, width: px, height: px }} aria-hidden />;
 }
 
-function StackIcon({ it, px }) {
-  if (it.icon)
-    return <i className={it.icon} style={{ fontSize: `${px}px`, lineHeight: 1 }} aria-hidden />;
-  if (it.brand)
-    return <BrandIcon name={it.brand} style={{ color: it.color, width: px, height: px }} />;
-  return <it.Icon style={{ color: it.color, width: px, height: px }} aria-hidden />;
-}
-
-function IconBubble({ it, color, floatIndex, reduce, hovered, px }) {
+// One floating icon tile: glows in the tech's color on hover and shows its name.
+function IconBubble({ tech, color, floatIndex, reduce, hovered, px }) {
   return (
     <div
       className={reduce ? undefined : "animate-floaty"}
@@ -254,7 +202,7 @@ function IconBubble({ it, color, floatIndex, reduce, hovered, px }) {
     >
       <div className="relative flex items-center justify-center">
         <div
-          aria-label={it.name}
+          aria-label={tech.name}
           className="flex items-center justify-center rounded-2xl border bg-zinc-900/80 transition-colors duration-200"
           style={{
             width: px,
@@ -263,87 +211,88 @@ function IconBubble({ it, color, floatIndex, reduce, hovered, px }) {
             boxShadow: hovered ? `0 0 26px -4px ${color}` : "none",
           }}
         >
-          <StackIcon it={it} px={Math.round(px * 0.52)} />
+          <StackIcon tech={tech} px={Math.round(px * 0.52)} />
         </div>
         <span
           className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-0.5 text-[0.7rem] font-semibold text-zinc-950 shadow-lg transition-opacity duration-200"
           style={{ backgroundColor: color, opacity: hovered ? 1 : 0 }}
         >
-          {it.name}
+          {tech.name}
         </span>
       </div>
     </div>
   );
 }
 
-const ENTRANCE = { type: "spring", stiffness: 260, damping: 18 };
-const INTERACT = { type: "spring", stiffness: 320, damping: 20, mass: 0.6 };
+// Spring transitions for the scroll-in entrance and hover interactions.
+const ENTRANCE_SPRING = { type: "spring", stiffness: 260, damping: 18 };
+const HOVER_SPRING = { type: "spring", stiffness: 320, damping: 20, mass: 0.6 };
 
-// Width (px) the constellation's positions and icon sizes are tuned for
-// (max-w-3xl). Smaller containers scale everything down by the same factor.
-const REF_W = 768;
+// Width (px) the layout is tuned for (matches max-w-3xl); narrower containers
+// scale down by the same factor.
+const REFERENCE_WIDTH_PX = 768;
 
 export default function StackSection() {
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState(null);
   const [seed, setSeed] = useState(0);
-  const containerRef = useRef(null);
-  const [scale, setScale] = useState(1);
+  const [containerRef, scale] = useContainerScale(REFERENCE_WIDTH_PX);
 
-  // Re-randomize the order on every load (after hydration to avoid a mismatch).
+  // Re-shuffle on each load, but only after hydration: the server and first
+  // client render both use seed 0, avoiding a mismatch warning.
   useEffect(() => setSeed(1 + Math.floor(Math.random() * 1e9)), []);
 
-  // Fluidly scale the whole constellation (icon sizes + repulsion distance) to
-  // the container width, so the desktop layout fits identically on phones.
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const update = () => setScale(Math.min(1, el.clientWidth / REF_W));
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
-
-  const { circle, posByName } = useMemo(() => buildLayout(seed), [seed]);
+  const { positions, positionByName } = useMemo(
+    () => buildConstellation(STACK, seed),
+    [seed]
+  );
 
   return (
     <section id="stack" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
-      {/* Scattered circular constellation with hover repulsion — same layout,
-          order and animations on every breakpoint, scaled to fit the screen */}
+      {/* Scattered constellation with hover repulsion; same layout at every
+          breakpoint, scaled to fit. */}
       <div
         ref={containerRef}
         className="relative mx-auto aspect-square w-full max-w-3xl"
       >
-        {circle.map(({ it, x, y }, i) => {
-          const isHover = hovered === it.name;
-          const off = pushOffset(it.name, hovered, posByName);
+        {positions.map(({ item: tech, x, y }, i) => {
+          const isHovered = hovered === tech.name;
+          const offset = getRepulsionOffset(tech.name, hovered, positionByName);
           return (
             <div
-              key={it.name}
+              key={tech.name}
               className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${x}%`, top: `${y}%`, zIndex: isHover ? 50 : 1 }}
+              style={{ left: `${x}%`, top: `${y}%`, zIndex: isHovered ? 50 : 1 }}
             >
               <motion.div
                 initial={{ opacity: 0, scale: reduce ? 1 : 0.3 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ ...ENTRANCE, delay: Math.min(i * 0.012, 0.4) }}
+                transition={{ ...ENTRANCE_SPRING, delay: Math.min(i * 0.012, 0.4) }}
               >
                 <motion.div
                   animate={{
-                    x: off.x * scale,
-                    y: off.y * scale,
-                    scale: isHover ? 1.3 : 1,
-                    rotate: reduce ? 0 : isHover ? ROT[it.name] : 0,
+                    x: offset.x * scale,
+                    y: offset.y * scale,
+                    scale: isHovered ? 1.3 : 1,
+                    rotate: reduce ? 0 : isHovered ? HOVER_TILT_DEG[tech.name] : 0,
                   }}
-                  transition={INTERACT}
-                  onMouseEnter={() => setHovered(it.name)}
-                  onMouseLeave={() => setHovered((h) => (h === it.name ? null : h))}
+                  transition={HOVER_SPRING}
+                  onMouseEnter={() => setHovered(tech.name)}
+                  onMouseLeave={() =>
+                    setHovered((current) => (current === tech.name ? null : current))
+                  }
                 >
-                  <IconBubble it={it} color={COLOR[it.name]} floatIndex={i} reduce={reduce} hovered={isHover} px={Math.max(1, Math.round(PX[it.name] * scale))} />
+                  <IconBubble
+                    tech={tech}
+                    color={ICON_COLOR[tech.name]}
+                    floatIndex={i}
+                    reduce={reduce}
+                    hovered={isHovered}
+                    px={Math.max(1, Math.round(ICON_SIZE_PX[tech.name] * scale))}
+                  />
                 </motion.div>
               </motion.div>
             </div>
@@ -357,14 +306,12 @@ export default function StackSection() {
             <p className="font-mono text-xs text-zinc-400">
               <span className="text-emerald-400">$</span> git log --graph
             </p>
-            <Link
-              href="https://github.com/lukaskourilcz"
-              target="_blank"
-              rel="noopener noreferrer"
+            <ExternalLink
+              href={GITHUB_URL}
               className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 transition-colors hover:text-emerald-400"
             >
-              <Github className="h-3.5 w-3.5" /> @lukaskourilcz
-            </Link>
+              <Github className="h-3.5 w-3.5" /> @{GITHUB_USERNAME}
+            </ExternalLink>
           </div>
           <GitHubGrid />
           <p className="mt-5 text-center font-mono text-xs text-zinc-500">

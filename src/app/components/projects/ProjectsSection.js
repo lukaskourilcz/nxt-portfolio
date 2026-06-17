@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { Github, ExternalLink, ArrowUpRight, X } from "lucide-react";
+import { Github, ExternalLink as ExternalLinkIcon, X } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { ExternalLink } from "@/components/external-link";
+import { ArrowLink } from "@/components/arrow-link";
+import { Tag } from "@/components/tag";
 
 // Scouted from the live deployments + each repo's package.json.
 // GitHub links are shown only for public repos (private/removed repos would
@@ -15,7 +17,7 @@ const PROJECTS = [
   {
     title: "Portfolio",
     description:
-      "Personal developer portfolio with a terminal-inspired design, showcasing stack, experience, and projects across animated, responsive sections.",
+      "Personal developer portfolio with a terminal-inspired design and animated, responsive sections covering my stack, experience, and projects.",
     tech: ["Next.js", "JavaScript", "TailwindCSS", "Framer Motion"],
     github: "https://github.com/lukaskourilcz/nxt-portfolio",
     vercel: "https://lukaskouril.vercel.app/",
@@ -24,7 +26,7 @@ const PROJECTS = [
   {
     title: "Take a Break",
     description:
-      "B2B meditation-scheduling app featuring a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
+      "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
     tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
     vercel: "https://take-a-break-seven.vercel.app",
     image: "/projects/takeabreak_projekt.png",
@@ -32,7 +34,7 @@ const PROJECTS = [
   {
     title: "Czech Monopoly",
     description:
-      "Browser-based Czech-themed Monopoly game offering code-based 2–4 player multiplayer and next-intl localization.",
+      "Browser-based, Czech-themed Monopoly game with code-based 2–4 player multiplayer and next-intl localization.",
     tech: ["Next.js", "TypeScript", "Payload CMS", "NeonDB", "next-intl"],
     vercel: "https://czech-cities.vercel.app",
     image: "/wip.png",
@@ -40,7 +42,7 @@ const PROJECTS = [
   {
     title: "Personal Dashboard",
     description:
-      "Productivity dashboard tracking subscriptions, habits, plans, and calendar, enriched with AI insights and analytics charts.",
+      "Productivity dashboard for subscriptions, habits, plans, and a calendar, with AI insights and analytics charts.",
     tech: ["Next.js", "TypeScript", "Supabase", "Claude AI", "Recharts"],
     vercel: "https://own-dashboard-tau.vercel.app",
     image: "/wip.png",
@@ -48,7 +50,7 @@ const PROJECTS = [
   {
     title: "AutobusyHodonín.cz",
     description:
-      "Marketing website for a Czech bus and freight transport company, presenting fleet, passenger, and cargo services with an SEO and i18n focus.",
+      "Marketing site for a Czech bus and freight company, covering its fleet, passenger, and cargo services, with a focus on SEO and i18n.",
     tech: ["Next.js", "TypeScript", "TailwindCSS", "i18n"],
     vercel: "https://autobusyhodonin.cz",
     github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
@@ -57,7 +59,7 @@ const PROJECTS = [
   {
     title: "Eurowafers",
     description:
-      "Marketing website for a Czech spa-wafer manufacturer, presenting its history, product range, and distribution.",
+      "Marketing site for a Czech spa-wafer maker, covering its history, products, and distribution.",
     tech: ["Astro", "TypeScript", "TailwindCSS", "Vercel"],
     vercel: "https://eurowafers.vercel.app",
     image: "/wip.png",
@@ -65,7 +67,7 @@ const PROJECTS = [
   {
     title: "DevQuiz",
     description:
-      "Full-stack developer quiz with JWT-secured auth and Supabase-backed data over an Express serverless API.",
+      "Full-stack developer quiz with JWT auth and Supabase data behind an Express serverless API.",
     tech: ["React", "TypeScript", "Express", "Supabase", "JWT"],
     vercel: "https://react-express-app-five.vercel.app",
     image: "/wip.png",
@@ -73,14 +75,14 @@ const PROJECTS = [
   {
     title: "beKind Web App",
     description:
-      "Company rebrand and web app delivering a polished, performance-focused experience on a Prisma-backed PostgreSQL database.",
+      "Company rebrand and web app, focused on performance, backed by PostgreSQL and Prisma.",
     tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
     image: "/projects/bekind_projekt.png",
   },
   {
     title: "Dont Wanna Know",
     description:
-      "Interactive web app that asks personal questions, then uses Gemini AI to reveal tailored life statistics.",
+      "Interactive web app that asks personal questions, then uses Gemini AI to generate tailored life stats.",
     tech: ["Next.js", "TypeScript", "Gemini AI"],
     github: "https://github.com/lukaskourilcz/dontwannaknow",
     vercel: "https://dontwannaknow.vercel.app",
@@ -90,15 +92,13 @@ const PROJECTS = [
 
 function IconLink({ href, label, children }) {
   return (
-    <Link
+    <ExternalLink
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label={label}
       className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
     >
       {children}
-    </Link>
+    </ExternalLink>
   );
 }
 
@@ -125,7 +125,7 @@ function ProjectVisual({ proj }) {
           )}
           {proj.vercel && (
             <IconLink href={proj.vercel} label={`${proj.title} live site`}>
-              <ExternalLink className="h-3.5 w-3.5" />
+              <ExternalLinkIcon className="h-3.5 w-3.5" />
             </IconLink>
           )}
         </div>
@@ -134,15 +134,12 @@ function ProjectVisual({ proj }) {
       <div className="relative z-10 -mt-6 flex flex-1 flex-col px-5 pb-5">
         <h3 className="text-base font-semibold text-zinc-100">
           {primary ? (
-            <Link
+            <ArrowLink
               href={primary}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 transition-colors hover:text-emerald-300"
+              arrowClassName="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
             >
               {proj.title}
-              <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
-            </Link>
+            </ArrowLink>
           ) : (
             proj.title
           )}
@@ -151,13 +148,10 @@ function ProjectVisual({ proj }) {
           {proj.description}
         </p>
         <div className="mt-4 flex flex-wrap gap-1.5">
-          {proj.tech.map((t) => (
-            <span
-              key={t}
-              className="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 font-mono text-[0.7rem] text-emerald-300"
-            >
-              {t}
-            </span>
+          {proj.tech.map((tech) => (
+            <Tag key={tech} variant="accent">
+              {tech}
+            </Tag>
           ))}
         </div>
       </div>

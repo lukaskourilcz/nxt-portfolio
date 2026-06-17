@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
+import { Tag } from "@/components/tag";
 
 const EXPERIENCES = [
   {
@@ -10,12 +11,12 @@ const EXPERIENCES = [
     period: "Apr 2026 – Present",
     location: "Prague, Czech Republic",
     responsibilities: [
-      "Joined as the team's first AI-focused engineer, bringing AI tools into everyday work to help the team move faster while keeping quality high",
-      "Lead advanced frontend implementation with TypeScript, React and Next.js, owning code validity and correct cross-browser behavior",
-      "Define and enforce coding standards, client guidelines and best practices, with a strong emphasis on accessibility and web standards",
-      "Author complete technical specifications from supplied designs and available materials, and prepare graphic assets for implementation",
-      "Drive technical and UX optimizations across sites and model structured content with Payload CMS",
-      "Own change delivery against the project plan with disciplined activity tracking and reporting",
+      "Joined as the team's first AI-focused engineer, bringing AI tools into the team's day-to-day work to help everyone move faster without dropping quality",
+      "Lead frontend work in TypeScript, React and Next.js, and own code quality and cross-browser behavior",
+      "Set and maintain coding standards and client guidelines, with a focus on accessibility and web standards",
+      "Write technical specs from designs and other materials, and prepare graphic assets for the build",
+      "Improve technical and UX details across sites, and model structured content in Payload CMS",
+      "Track and report on progress, and ship changes according to the project plan",
     ],
     tags: ["AI", "TYPESCRIPT", "NEXT.JS", "REACT", "PAYLOADCMS"],
   },
@@ -26,11 +27,11 @@ const EXPERIENCES = [
     period: "Oct 2025 – Mar 2026",
     location: "Prague, Czech Republic",
     responsibilities: [
-      "Led modernization of an online banking platform, migrating legacy systems to a micro-frontend architecture",
-      "Designed and implemented a Backend-for-Frontend (BFF) layer, including controllers, mappers, and service orchestration",
-      "Owned API contract design and integration stability across multiple downstream services",
-      "Ensured production-grade quality through unit, integration, and E2E testing, with strict WCAG accessibility compliance",
-      "Improved developer experience by optimizing CI/CD pipelines and enforcing code review standards",
+      "Led the work to modernize an online banking platform, moving its legacy systems to a micro-frontend architecture",
+      "Built a Backend-for-Frontend (BFF) layer, including its controllers, mappers, and service orchestration",
+      "Owned API contract design and kept integrations stable across several downstream services",
+      "Covered the code with unit, integration, and E2E tests, and met WCAG accessibility requirements",
+      "Improved developer experience by speeding up CI/CD pipelines and tightening code review standards",
     ],
     tags: ["TYPESCRIPT", "REACT", "EXPRESS.JS", "STYLEX", "NODE.JS"],
   },
@@ -41,11 +42,11 @@ const EXPERIENCES = [
     period: "May 2025 – Sep 2025",
     location: "Barcelona, Spain",
     responsibilities: [
-      "Designed and implemented a full-stack web app built with Next.js and TypeScript",
-      "Created the database schema and implemented backend integration for structured model metadata management",
-      "Developed key features of an AI-powered workflow leveraging the Vercel AI SDK for LLM-based PDF analysis",
-      "Automated metadata validation and repository synchronization through GitHub APIs and Actions",
-      "Collaborated with researchers and engineers to align technical implementation with open-science goals",
+      "Built a full-stack web app with Next.js and TypeScript",
+      "Designed the database schema and the backend for managing structured model metadata",
+      "Built key parts of an AI workflow that uses the Vercel AI SDK to analyze PDFs with an LLM",
+      "Automated metadata validation and repo syncing with the GitHub API and Actions",
+      "Worked with researchers and engineers to keep the implementation in line with the project's open-science goals",
     ],
     tags: ["TYPESCRIPT", "NEXT.JS", "VERCEL AI SDK", "POSTGRESQL", "NODE.JS"],
   },
@@ -56,11 +57,11 @@ const EXPERIENCES = [
     period: "Nov 2024 – Jun 2025",
     location: "Barcelona, Spain",
     responsibilities: [
-      "Developed the site with Next.js to ensure high performance, modern standards, and strong SEO capabilities",
-      "Contributed to the UX/UI design process, emphasizing intuitive navigation and user-centered design",
-      "Implemented responsive and clean front-end interfaces using reusable components and best practices",
-      "Assisted with deployment and optimized the site for speed, accessibility, and scalability",
-      "Collaborated across departments to guide the project from planning through production release",
+      "Built the site in Next.js, with performance and SEO in mind",
+      "Helped with the UX/UI design, focusing on clear, easy navigation",
+      "Built responsive front-end interfaces from reusable components",
+      "Helped with deployment and tuned the site for speed and accessibility",
+      "Worked with other teams to move the project from planning to release",
     ],
     tags: ["TYPESCRIPT", "NEXT.JS", "TAILWIND", "POSTGRESQL", "NODE.JS"],
   },
@@ -71,14 +72,14 @@ const EXPERIENCES = [
     period: "Jan 2025 – Feb 2025",
     location: "Brno, Czech Republic",
     responsibilities: [
-      "Developed the website using Next.js, ensuring a modern, high-performance, and mobile-responsive SEO-friendly platform",
-      "Implemented UI components from ShadCN to create a sleek and visually appealing interface",
-      "Designed key aspects of the UX/UI focused on seamless customer experience and high conversion",
-      "Deployed and optimized the site for performance, accessibility, and scalability using Vercel",
-      "Managed the full development lifecycle from initial concept and design through testing and production release",
-      "Collaborated closely with the client to deliver a product that met all business requirements",
+      "Built the website in Next.js, with a focus on speed, mobile, and SEO",
+      "Used ShadCN components to put together the interface",
+      "Designed parts of the UX/UI around an easy customer flow and better conversions",
+      "Deployed on Vercel and tuned the site for performance and accessibility",
+      "Handled the whole project, from concept and design through testing and release",
+      "Worked closely with the client to build something that fit their needs",
     ],
-    tags: ["TYPESCRIPT", "NEXT.JS", "SEO", "UX/UI", "VERCEL", "AI18N", "ShadCN"],
+    tags: ["TYPESCRIPT", "NEXT.JS", "SEO", "UX/UI", "VERCEL", "I18N", "ShadCN"],
   },
   {
     company: "Take a Break",
@@ -87,12 +88,12 @@ const EXPERIENCES = [
     period: "Apr 2024 – Oct 2024",
     location: "Barcelona, Spain",
     responsibilities: [
-      "Collaborated on a full-stack B2B web app for scheduling meditation sessions using Next.js & TypeScript",
-      "Built a modern UI with reusable React, TailwindCSS, and ShadCN components",
-      "Managed PostgreSQL & Prisma databases, optimizing performance and ensuring data integrity",
-      "Integrated Stripe and other third-party APIs for real-time updates and secure authentication",
-      "Used Figma for detailed UI/UX design and Linear for agile task management across sprints",
-      "Deployed the app on Vercel for scalability, fast load times, and easy continuous integration",
+      "Worked on a full-stack B2B app for booking meditation sessions, using Next.js and TypeScript",
+      "Built the UI from reusable React, TailwindCSS, and ShadCN components",
+      "Worked with PostgreSQL and Prisma, tuning queries and keeping the data consistent",
+      "Integrated Stripe and other third-party APIs for real-time updates and authentication",
+      "Used Figma for UI/UX design and Linear to track work across sprints",
+      "Deployed on Vercel for fast load times and easy continuous integration",
     ],
     tags: ["TYPESCRIPT", "NEXT.JS", "TAILWIND", "POSTGRESQL", "ShadCN", "PRISMA"],
   },
@@ -103,12 +104,12 @@ const EXPERIENCES = [
     period: "Nov 2021 – Apr 2024",
     location: "Reykjavík, Iceland",
     responsibilities: [
-      "Handled logistics inquiries for pharmaceutical products, ensuring safe transport worldwide",
-      "Monitored shipment data and resolved critical anomalies using advanced data insights and tracking tools",
-      "Performed detailed root-cause analysis and delivered regulatory-compliant solutions to global clients",
-      "Identified opportunities for AI-driven automation improvements in data processing and client communication",
-      "Compiled quality documentation, audit reports, and presented findings to senior management",
-      "Managed high-stakes technical issues requiring coordination between multiple international teams",
+      "Answered logistics inquiries for pharmaceutical shipments, where keeping products safe in transit was critical",
+      "Monitored shipment data and resolved critical issues using the company's tracking tools",
+      "Ran root-cause analysis and provided compliant solutions for clients around the world",
+      "Spotted opportunities to automate parts of data processing and client communication",
+      "Put together quality documentation and audit reports, and presented findings to senior management",
+      "Handled high-stakes technical issues that needed coordination across several international teams",
     ],
     tags: ["DATA ANALYSIS", "AI AUTOMATION", "LOGISTICS", "ROOT-CAUSE ANALYSIS"],
   },
@@ -119,12 +120,12 @@ const EXPERIENCES = [
     period: "Jan 2020 – Sep 2021",
     location: "Gibraltar",
     responsibilities: [
-      "Developed expertise in gaming compliance and anti-money laundering (AML) frameworks",
-      "Used data analytics and specialized tools to detect suspicious behavior and prevent financial fraud",
-      "Delivered regulatory-compliant solutions ensuring adherence to strict EU and local standards",
-      "Conducted in-depth investigations and processed sensitive customer data in line with GDPR",
-      "Provided training and guidance to junior team members on compliance protocols and risk mitigation",
-      "Maintained a zero-tolerance approach to breaches of regulatory policy",
+      "Built up expertise in gaming compliance and anti-money laundering (AML)",
+      "Used data analysis and dedicated tools to spot suspicious behavior and prevent fraud",
+      "Kept processes in line with EU and local regulations",
+      "Ran investigations and handled sensitive customer data in line with GDPR",
+      "Trained and mentored junior team members on compliance and risk",
+      "Took a strict, zero-tolerance approach to policy breaches",
     ],
     tags: ["COMPLIANCE", "AML/KYC", "DATA ANALYTICS", "RISK MANAGEMENT"],
   },
@@ -135,12 +136,12 @@ const EXPERIENCES = [
     period: "Dec 2015 – Nov 2019",
     location: "Brno, Czech Republic",
     responsibilities: [
-      "Resolved complex customer issues with efficient communication workflows across multiple channels",
-      "Stayed updated on aviation trends and mastered various CRM systems to ensure high quality support",
-      "Provided feedback to stakeholders and management and optimized workflows to reduce resolution time",
-      "Supported KAYAK operations through data-backed resolutions and provided support for B2B partners",
-      "Consistently maintained a high customer satisfaction (CSAT) score exceeding team goals",
-      "Trained new hires on company policies, products, and customer service best practices",
+      "Resolved complex customer issues across multiple channels",
+      "Kept up with aviation trends and learned the various CRM systems we used",
+      "Shared feedback with management and reworked workflows to cut resolution time",
+      "Supported KAYAK operations with data-backed resolutions, and helped B2B partners",
+      "Kept a customer satisfaction (CSAT) score above team targets",
+      "Trained new hires on company policies, products, and how we handled support",
     ],
     tags: ["CRM SYSTEMS", "STAKEHOLDER COMMUNICATION", "WORKFLOW OPTIMIZATION"],
   },
@@ -205,12 +206,9 @@ export default function ExperienceSection() {
 
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {exp.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-zinc-700 bg-zinc-800 px-2.5 py-0.5 font-mono text-[0.7rem] text-zinc-300"
-                  >
+                  <Tag key={tag} className="px-2.5">
                     {tag}
-                  </span>
+                  </Tag>
                 ))}
               </div>
             </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useResponsiveMonths } from "@/lib/useResponsiveMonths";
+import { useResponsiveMonths } from "@/hooks/useResponsiveMonths";
 
 function getRangeStart(monthsBack) {
   const now = new Date();
@@ -10,9 +10,9 @@ function getRangeStart(monthsBack) {
 }
 
 function formatTooltip(day) {
-  const d = new Date(day.date);
-  const c = day.contributionCount;
-  return `${c} contribution${c !== 1 ? "s" : ""} on ${d.toLocaleDateString(
+  const date = new Date(day.date);
+  const count = day.contributionCount;
+  return `${count} contribution${count !== 1 ? "s" : ""} on ${date.toLocaleDateString(
     undefined,
     { day: "numeric", month: "long", year: "numeric" }
   )}`;
@@ -35,8 +35,8 @@ export default function GitHubGrid() {
           .filter((w) => w.length > 0);
 
         setWeeks(filtered);
-      } catch (e) {
-        console.error("Failed to load contributions:", e);
+      } catch (error) {
+        console.error("Failed to load contributions:", error);
       }
     }
 
