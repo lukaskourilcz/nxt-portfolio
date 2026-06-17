@@ -79,7 +79,7 @@ const EXPERIENCES = [
       "Handled the whole project, from concept and design through testing and release",
       "Worked closely with the client to build something that fit their needs",
     ],
-    tags: ["TYPESCRIPT", "NEXT.JS", "SEO", "UX/UI", "VERCEL", "AI18N", "ShadCN"],
+    tags: ["TYPESCRIPT", "NEXT.JS", "SEO", "UX/UI", "VERCEL", "I18N", "ShadCN"],
   },
   {
     company: "Take a Break",
