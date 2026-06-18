@@ -1,9 +1,5 @@
-"use client";
-
-import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Github, ExternalLink as ExternalLinkIcon, X } from "lucide-react";
+import { Github, ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import { ExternalLink } from "@/components/external-link";
@@ -102,8 +98,7 @@ function IconLink({ href, label, children }) {
   );
 }
 
-// Shared card visual (image + content), reused by the desktop grid and the
-// mobile peek list.
+// Shared card visual (image + content) for every project card.
 function ProjectVisual({ proj }) {
   const primary = proj.vercel || proj.github || null;
   return (
@@ -174,66 +169,12 @@ function ProjectCard({ proj, delay }) {
   );
 }
 
-// Mobile: cards peek in from alternating edges (first off the left, second off
-// the right, …) showing ~70%, and slide to center — fully visible — on tap.
-// Cards span the full viewport width, so a 30% translate is exactly a 30% crop.
-const SLIDE = { duration: 0.45, ease: [0.22, 1, 0.36, 1] };
-
-function MobileProjects({ projects }) {
-  const [active, setActive] = useState(null);
-  return (
-    <div className="-mx-6 overflow-hidden sm:hidden">
-      <div className="flex flex-col gap-5">
-        {projects.map((proj, i) => {
-          const isActive = active === i;
-          const fromLeft = i % 2 === 0;
-          const x = isActive ? "0%" : fromLeft ? "-30%" : "30%";
-          return (
-            <motion.article
-              key={proj.title}
-              initial={false}
-              animate={{ x }}
-              transition={SLIDE}
-              className={`${CARD_SHELL} w-full ${
-                isActive ? "border-emerald-500/40" : "border-zinc-800"
-              }`}
-            >
-              <ProjectVisual proj={proj} />
-
-              {isActive ? (
-                <button
-                  type="button"
-                  aria-label={`Collapse ${proj.title}`}
-                  onClick={() => setActive(null)}
-                  className="absolute left-3 top-3 z-30 rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
-                >
-                  <X className="h-3.5 w-3.5" />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  aria-label={`Show ${proj.title}`}
-                  onClick={() => setActive(i)}
-                  className={`absolute inset-0 z-30 ${
-                    fromLeft ? "cursor-e-resize" : "cursor-w-resize"
-                  }`}
-                />
-              )}
-            </motion.article>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 export default function ProjectsSection() {
   return (
     <section id="projects" className="mx-auto max-w-5xl px-6 py-12 sm:py-24">
       <SectionHeading index="02" command="projects" title="Projects" />
 
-      {/* Tablet / desktop: grid of cards */}
-      <div className="hidden gap-5 sm:grid sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((proj, i) => (
           <ProjectCard
             key={proj.title}
@@ -242,9 +183,6 @@ export default function ProjectsSection() {
           />
         ))}
       </div>
-
-      {/* Mobile: alternating peek cards that slide to center on tap */}
-      <MobileProjects projects={PROJECTS} />
     </section>
   );
 }

@@ -15,8 +15,7 @@ export default function NotFound() {
           404
         </h1>
         <p className="mt-4 max-w-md font-mono text-sm leading-relaxed text-zinc-400">
-          Error: route not found. The page you&apos;re looking for doesn&apos;t
-          exist or has been moved.
+          Error: route not found. That path doesn&apos;t exist — head back home.
         </p>
         <Button asChild className="mt-8">
           <Link href="/">

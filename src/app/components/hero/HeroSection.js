@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
+import { ArrowRight, FileText, Github, Linkedin } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { Terminal } from "@/components/ui/terminal";
 import { ExternalLink } from "@/components/external-link";
@@ -11,7 +11,7 @@ export default function HeroSection() {
   return (
     <section
       id="top"
-      className="relative mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 pt-28 pb-16"
+      className="relative mx-auto flex min-h-screen max-w-5xl flex-col justify-start px-6 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:justify-center"
     >
       <div className="grid items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Left — intro */}
@@ -41,15 +41,15 @@ export default function HeroSection() {
             Lukas Kouril
           </h1>
           <p className="mt-4 text-lg font-medium text-zinc-300 sm:text-xl md:text-2xl">
-            Software Engineer
+            Senior Frontend Engineer
           </p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
-            I build web applications with{" "}
-            <span className="font-medium text-zinc-100">TypeScript</span>,{" "}
-            <span className="font-medium text-zinc-100">React</span> and{" "}
-            <span className="font-medium text-zinc-100">Node.js</span>, from
-            micro-frontends to AI-powered tools. I care about readable code and
-            shipping things that actually work.
+            I specialize in{" "}
+            <span className="font-medium text-zinc-100">TypeScript</span> and{" "}
+            <span className="font-medium text-zinc-100">React</span> — from
+            micro-frontends for online banking to AI tooling in production
+            teams. I care about readable code and frontends that stay
+            maintainable as they grow.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -59,8 +59,8 @@ export default function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline">
-              <a href={RESUME_PATH} download>
-                <Download className="h-4 w-4" /> Download CV
+              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
+                <FileText className="h-4 w-4" /> View CV
               </a>
             </Button>
             <div className="ml-1 flex items-center gap-1">
@@ -86,7 +86,6 @@ export default function HeroSection() {
         <Reveal delay={0.15}>
           <Terminal
             username="lukas"
-            enableSound={false}
             className="px-0"
             typingSpeed={45}
             delayBetweenCommands={900}
@@ -97,7 +96,7 @@ export default function HeroSection() {
               "echo $STATUS",
             ]}
             outputs={{
-              0: ["Lukas Kouril — Software Engineer · Prague, CZ"],
+              0: ["Lukas Kouril — Senior Frontend Engineer · Prague, CZ"],
               1: [
                 "I build web apps with TypeScript, React,",
                 "Next.js and Node.js.",

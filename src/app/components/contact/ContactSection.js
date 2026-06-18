@@ -1,28 +1,16 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/reveal";
 import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
-import {
-  EMAIL,
-  EMAIL_HREF,
-  PHONE,
-  PHONE_HREF,
-  LOCATION,
-  GITHUB_URL,
-  LINKEDIN_URL,
-} from "@/lib/site";
+import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF, LOCATION } from "@/lib/site";
+import { SOCIALS } from "@/lib/socials";
 
 const CONTACTS = [
   { label: "email", href: EMAIL_HREF, value: EMAIL, Icon: Mail },
   { label: "phone", href: PHONE_HREF, value: PHONE, Icon: Phone },
   { label: "location", href: null, value: LOCATION, Icon: MapPin },
-];
-
-const SOCIALS = [
-  { href: GITHUB_URL, label: "GitHub", Icon: Github },
-  { href: LINKEDIN_URL, label: "LinkedIn", Icon: Linkedin },
 ];
 
 export default function ContactSection() {
@@ -34,8 +22,7 @@ export default function ContactSection() {
         <Reveal>
           <p className="font-mono text-sm text-emerald-400">$ ./say-hello.sh</p>
           <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg">
-            Hiring, or have a project in mind? My inbox is always open. Whether
-            it&apos;s a question, an opportunity, or just a hello, I&apos;ll get
+            Hiring, or have a project in mind? Drop me a line — I&apos;ll get
             back to you.
           </p>
 

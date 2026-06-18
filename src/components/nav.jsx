@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrolled } from "@/hooks/useScrolled";
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -45,7 +45,7 @@ export function Nav() {
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a
           href={EMAIL_HREF}
-          className="group flex items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm"
+          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm"
         >
           <span className="relative block h-7 w-7 shrink-0">
             <motion.span
@@ -85,11 +85,11 @@ export function Nav() {
               </span>
             </motion.span>
           </span>
-          <span>{EMAIL}</span>
+          <span className="truncate">{EMAIL}</span>
         </a>
 
-        <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-6 lg:flex">
+        <div className="flex shrink-0 items-center gap-2">
+          <div className="hidden items-center gap-4 md:flex lg:gap-6">
             {SECTIONS.map((section) => (
               <Link
                 key={section.id}
@@ -110,14 +110,14 @@ export function Nav() {
               </Link>
             ))}
             <Button asChild variant="outline" size="sm">
-              <a href={RESUME_PATH} download>
-                <Download className="h-3.5 w-3.5" /> resume
+              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
+                <FileText className="h-3.5 w-3.5" /> resume
               </a>
             </Button>
           </div>
 
           <button
-            className="text-zinc-300 lg:hidden"
+            className="text-zinc-300 md:hidden"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label="Toggle menu"
           >
@@ -127,7 +127,7 @@ export function Nav() {
       </nav>
 
       {menuOpen && (
-        <div className="border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md lg:hidden">
+        <div className="border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden">
           <div className="flex flex-col gap-1 px-6 py-4">
             {SECTIONS.map((section) => (
               <Link
@@ -141,8 +141,8 @@ export function Nav() {
               </Link>
             ))}
             <Button asChild variant="outline" size="sm" className="mt-2 w-fit">
-              <a href={RESUME_PATH} download>
-                <Download className="h-3.5 w-3.5" /> resume
+              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
+                <FileText className="h-3.5 w-3.5" /> resume
               </a>
             </Button>
           </div>

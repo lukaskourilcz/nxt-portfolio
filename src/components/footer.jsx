@@ -1,13 +1,7 @@
 import Link from "next/link";
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { ExternalLink } from "@/components/external-link";
-import { GITHUB_URL, LINKEDIN_URL, EMAIL_HREF } from "@/lib/site";
-
-const SOCIALS = [
-  { href: GITHUB_URL, label: "GitHub", Icon: Github },
-  { href: LINKEDIN_URL, label: "LinkedIn", Icon: Linkedin },
-  { href: EMAIL_HREF, label: "Email", Icon: Mail },
-];
+import { SOCIALS_WITH_EMAIL } from "@/lib/socials";
 
 export function Footer() {
   return (
@@ -19,12 +13,12 @@ export function Footer() {
             Tailwind &amp; Framer Motion
           </p>
           <div className="flex items-center gap-4">
-            {SOCIALS.map(({ href, label, Icon }) => (
+            {SOCIALS_WITH_EMAIL.map(({ href, label, Icon }) => (
               <ExternalLink
                 key={label}
                 href={href}
                 aria-label={label}
-                className="text-zinc-500 transition-colors hover:text-emerald-400"
+                className="-m-2 p-2 text-zinc-500 transition-colors hover:text-emerald-400"
               >
                 <Icon className="h-4 w-4" />
               </ExternalLink>

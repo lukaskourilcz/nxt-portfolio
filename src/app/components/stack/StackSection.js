@@ -135,11 +135,9 @@ const STACK = [
   { name: "LangChain", brand: "langchain", color: "#7fc8ff", size: "sm" },
 ];
 
-// Distinct tooltip / glow colors, assigned to icons in order and cycled.
-const TOOLTIP_COLORS = [
-  "#34d399", "#38bdf8", "#a78bfa", "#fbbf24", "#fb7185", "#22d3ee",
-  "#a3e635", "#e879f9", "#fb923c", "#2dd4bf", "#818cf8", "#f472b6",
-];
+// A single accent for every icon's hover glow and tooltip, so the constellation
+// reads as designed rather than a random rainbow.
+const ACCENT = "#34d399";
 
 // Per-icon values, derived once from fixed seeds so they match on server and client.
 
@@ -171,11 +169,6 @@ const ICON_SIZE_PX = (() => {
   return sizeByName;
 })();
 
-// Tooltip / glow color per icon.
-const ICON_COLOR = Object.fromEntries(
-  STACK.map((tech, i) => [tech.name, TOOLTIP_COLORS[i % TOOLTIP_COLORS.length]])
-);
-
 // Renders the glyph for a single tech, whichever icon source it uses.
 function StackIcon({ tech, px }) {
   if (tech.icon)
@@ -186,40 +179,29 @@ function StackIcon({ tech, px }) {
   return <Glyph style={{ color: tech.color, width: px, height: px }} aria-hidden />;
 }
 
-// One floating icon tile: glows in the tech's color on hover and shows its name.
-function IconBubble({ tech, color, floatIndex, reduce, hovered, px }) {
+// One icon tile: glows in the accent color on hover and shows its name.
+function IconBubble({ tech, color, hovered, px }) {
   return (
-    <div
-      className={reduce ? undefined : "animate-floaty"}
-      style={
-        reduce
-          ? undefined
-          : {
-              animationDelay: `${(floatIndex % 9) * 0.4}s`,
-              animationDuration: `${3.6 + (floatIndex % 5) * 0.5}s`,
-            }
-      }
-    >
-      <div className="relative flex items-center justify-center">
-        <div
-          aria-label={tech.name}
-          className="flex items-center justify-center rounded-2xl border bg-zinc-900/80 transition-colors duration-200"
-          style={{
-            width: px,
-            height: px,
-            borderColor: hovered ? color : "#27272a",
-            boxShadow: hovered ? `0 0 26px -4px ${color}` : "none",
-          }}
-        >
-          <StackIcon tech={tech} px={Math.round(px * 0.52)} />
-        </div>
-        <span
-          className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-0.5 text-[0.7rem] font-semibold text-zinc-950 shadow-lg transition-opacity duration-200"
-          style={{ backgroundColor: color, opacity: hovered ? 1 : 0 }}
-        >
-          {tech.name}
-        </span>
+    <div className="relative flex items-center justify-center">
+      <div
+        role="img"
+        aria-label={tech.name}
+        className="flex items-center justify-center rounded-2xl border bg-zinc-900/80 transition-colors duration-200"
+        style={{
+          width: px,
+          height: px,
+          borderColor: hovered ? color : "#27272a",
+          boxShadow: hovered ? `0 0 26px -4px ${color}` : "none",
+        }}
+      >
+        <StackIcon tech={tech} px={Math.round(px * 0.52)} />
       </div>
+      <span
+        className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-0.5 text-[0.7rem] font-semibold text-zinc-950 shadow-lg transition-opacity duration-200"
+        style={{ backgroundColor: color, opacity: hovered ? 1 : 0 }}
+      >
+        {tech.name}
+      </span>
     </div>
   );
 }
@@ -287,9 +269,7 @@ export default function StackSection() {
                 >
                   <IconBubble
                     tech={tech}
-                    color={ICON_COLOR[tech.name]}
-                    floatIndex={i}
-                    reduce={reduce}
+                    color={ACCENT}
                     hovered={isHovered}
                     px={Math.max(1, Math.round(ICON_SIZE_PX[tech.name] * scale))}
                   />
@@ -315,7 +295,7 @@ export default function StackSection() {
           </div>
           <GitHubGrid />
           <p className="mt-5 text-center font-mono text-xs text-zinc-500">
-            wish I could also show you the GitLab stats 😔
+            public GitHub contributions · private &amp; client work not shown
           </p>
         </div>
       </Reveal>
