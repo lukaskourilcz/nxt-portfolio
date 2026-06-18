@@ -131,7 +131,7 @@ export default function EducationSection() {
             as="article"
             key={a.name}
             delay={i * 0.08}
-            className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 sm:p-6"
+            className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-card sm:p-6"
           >
             <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
               <div className="flex items-center gap-3">
@@ -182,7 +182,7 @@ export default function EducationSection() {
             as="article"
             key={e.name}
             delay={Math.min(i * 0.05, 0.25)}
-            className="group flex h-full flex-col rounded-xl border border-zinc-800 bg-zinc-900 p-5 transition-all duration-200 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_18px_40px_-22px_rgba(0,0,0,0.8)]"
+            className="group flex h-full flex-col rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-200 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
           >
             <div className="mb-3 flex items-center gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 font-mono text-xs font-semibold text-emerald-300">

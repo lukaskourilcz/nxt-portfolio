@@ -27,7 +27,7 @@ export function CodeWindow({ title = "lukas.ts", children, className = "" }) {
   return (
     <motion.div
       animate={controls}
-      className={`overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-sm ${className}`}
+      className={`overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-card ${className}`}
     >
       <div className="flex items-center gap-2 border-b border-zinc-800 bg-zinc-800/50 px-3 py-2 sm:px-4 sm:py-3">
         <div className="group/lights flex items-center gap-2">

@@ -162,7 +162,7 @@ export default function ExperienceSection() {
           >
             <span className="absolute -left-[1.875rem] top-2 h-3 w-3 rounded-full border-2 border-zinc-950 bg-emerald-500 ring-1 ring-emerald-500/30" />
 
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 transition-all duration-200 hover:border-emerald-500/40 hover:shadow-sm">
+            <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-200 hover:border-emerald-500/40 hover:shadow-card-hover">
               <p className="font-mono text-xs text-zinc-400">
                 {exp.period} <span className="text-zinc-600">·</span>{" "}
                 {exp.location}

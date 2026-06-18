@@ -301,7 +301,7 @@ export default function StackSection() {
       </div>
 
       <Reveal delay={0.1} className="mt-16 hidden sm:block">
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6 shadow-card">
           <div className="mb-5 flex items-center justify-between">
             <p className="font-mono text-xs text-zinc-400">
               <span className="text-emerald-400">$</span> git log --graph

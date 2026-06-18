@@ -160,14 +160,14 @@ function ProjectVisual({ proj }) {
 }
 
 const CARD_SHELL =
-  "group relative flex flex-col overflow-hidden rounded-2xl border bg-zinc-900";
+  "group relative flex flex-col overflow-hidden rounded-2xl border bg-zinc-900 shadow-card";
 
 function ProjectCard({ proj, delay }) {
   return (
     <Reveal
       as="article"
       delay={delay}
-      className={`${CARD_SHELL} h-full border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_24px_50px_-24px_rgba(0,0,0,0.85)]`}
+      className={`${CARD_SHELL} h-full border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover`}
     >
       <ProjectVisual proj={proj} />
     </Reveal>
