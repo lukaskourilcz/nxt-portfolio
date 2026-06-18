@@ -63,7 +63,7 @@ export default function ContactSection() {
           {CONTACTS.map(({ label, href, value, Icon }) => (
             <div
               key={label}
-              className="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 transition-colors hover:border-emerald-500/40"
+              className="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 shadow-card transition-colors hover:border-emerald-500/40"
             >
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-emerald-500/10 text-emerald-400">
                 <Icon className="h-4 w-4" />
