@@ -1,47 +1,11 @@
-import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { CodeWindow } from "@/components/code-window";
+import { Terminal } from "@/components/ui/terminal";
 import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
 import { GITHUB_URL, LINKEDIN_URL, RESUME_PATH } from "@/lib/site";
-
-const CODE_LINES = [
-  <>
-    <span className="text-purple-400">const</span>{" "}
-    <span className="text-zinc-100">lukas</span>{" "}
-    <span className="text-zinc-500">= {"{"}</span>
-  </>,
-  <>
-    {"  "}role<span className="text-zinc-500">:</span>{" "}
-    <span className="text-emerald-400">&quot;Software Engineer&quot;</span>
-    <span className="text-zinc-500">,</span>
-  </>,
-  <>
-    {"  "}location<span className="text-zinc-500">:</span>{" "}
-    <span className="text-emerald-400">&quot;Prague, Czech Republic&quot;</span>
-    <span className="text-zinc-500">,</span>
-  </>,
-  <>
-    {"  "}stack<span className="text-zinc-500">: [</span>
-    <span className="text-emerald-400">&quot;TypeScript&quot;</span>
-    <span className="text-zinc-500">, </span>
-    <span className="text-emerald-400">&quot;React&quot;</span>
-    <span className="text-zinc-500">, </span>
-    <span className="text-emerald-400">&quot;Node.js&quot;</span>
-    <span className="text-zinc-500">],</span>
-  </>,
-  <>
-    {"  "}available<span className="text-zinc-500">:</span>{" "}
-    <span className="text-orange-400">true</span>
-    <span className="text-zinc-500">,</span>
-  </>,
-  <>
-    <span className="text-zinc-500">{"}"};</span>
-  </>,
-];
 
 export default function HeroSection() {
   return (
@@ -118,20 +82,33 @@ export default function HeroSection() {
           </div>
         </Reveal>
 
-        {/* Right — code window */}
+        {/* Right — animated terminal */}
         <Reveal delay={0.15}>
-          <CodeWindow title="lukas.ts">
-            <div className="grid grid-cols-[auto_1fr] gap-x-4">
-              {CODE_LINES.map((line, i) => (
-                <Fragment key={i}>
-                  <span className="select-none text-right text-zinc-600">
-                    {i + 1}
-                  </span>
-                  <span className="whitespace-pre text-zinc-300">{line}</span>
-                </Fragment>
-              ))}
-            </div>
-          </CodeWindow>
+          <Terminal
+            username="lukas"
+            enableSound={false}
+            className="px-0"
+            typingSpeed={45}
+            delayBetweenCommands={900}
+            commands={[
+              "whoami",
+              "cat about.txt",
+              "ls ~/stack",
+              "echo $STATUS",
+            ]}
+            outputs={{
+              0: ["Lukas Kouril — Software Engineer · Prague, CZ"],
+              1: [
+                "I build web apps with TypeScript, React,",
+                "Next.js and Node.js.",
+              ],
+              2: [
+                "typescript  react  next.js  node.js  postgresql",
+                "prisma  tailwindcss  payload  docker  ...",
+              ],
+              3: ["available for work ✅"],
+            }}
+          />
         </Reveal>
       </div>
 
