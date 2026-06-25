@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { Github, ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
@@ -8,10 +9,20 @@ import { ArrowLink } from "@/components/arrow-link";
 import { Tag } from "@/components/tag";
 import { staggerDelay } from "@/lib/anim";
 
+// Screenshots are captured separately and dropped into /public/projects/ as
+// <slug>.png. Until those files exist, keep this false so cards render flat
+// (no broken images, identical to the current look). Once the PNGs are in
+// place, flip to true to switch each card to its live-screenshot background.
+const SCREENSHOTS_READY: boolean = false;
+
 type Project = {
   title: string;
   description: string;
   tech: string[];
+  // Live screenshot used as the card background once SCREENSHOTS_READY is on
+  // (see ProjectCard). Stored at /public/projects/<slug>.png. Omit to keep a
+  // card image-less — used when a site has no live URL or can't be captured.
+  image?: string;
   github?: string;
   vercel?: string;
 };
@@ -21,32 +32,12 @@ type Project = {
 // 404 for visitors); live links only where the deployment still resolves.
 const PROJECTS: Project[] = [
   {
-    title: "Portfolio",
+    title: "devShark",
     description:
-      "Personal developer portfolio with a terminal-inspired design and animated, responsive sections covering my stack, experience, and projects.",
-    tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-    github: "https://github.com/lukaskourilcz/nxt-portfolio",
-    vercel: "https://lukaskouril.vercel.app/",
-  },
-  {
-    title: "aifirst",
-    description:
-      "Daily, fully static bilingual (CS/EN) AI & tech magazine — a scheduled GitHub Actions job scrapes the day's sources and Claude curates and writes each issue.",
-    tech: ["Next.js", "TypeScript", "Claude API", "GitHub Actions"],
-  },
-  {
-    title: "Take a Break",
-    description:
-      "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
-    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
-    vercel: "https://take-a-break-seven.vercel.app",
-  },
-  {
-    title: "Czech Monopoly",
-    description:
-      "Real-time, browser-based Czech-themed Monopoly where 2–4 players buy Czech cities via a room code, with a trivia twist and full CS/EN localization.",
-    tech: ["Next.js", "TypeScript", "Payload CMS", "Neon", "Ably"],
-    vercel: "https://czech-cities.vercel.app",
+      "Developer-knowledge quiz and learning app with topic paths, daily challenges, real-time multiplayer, and leaderboards, built on React, serverless functions, and Supabase.",
+    tech: ["React", "TypeScript", "Supabase", "Realtime", "Vercel"],
+    vercel: "https://react-express-app-five.vercel.app",
+    image: "/projects/devshark.png",
   },
   {
     title: "Personal Dashboard",
@@ -54,41 +45,22 @@ const PROJECTS: Project[] = [
       "Personal life dashboard for subscriptions, todos, streaks, finances, Czech invoices, books, and a calendar, with natural-language quick-add powered by Claude.",
     tech: ["Next.js", "TypeScript", "Supabase", "Claude AI", "Recharts"],
     vercel: "https://own-dashboard-tau.vercel.app",
+    image: "/projects/personal-dashboard.png",
   },
   {
-    title: "AutobusyHodonín.cz",
+    title: "aifirst",
     description:
-      "Marketing site for a Czech bus and freight company, covering its fleet, passenger, and cargo services, with a focus on SEO and i18n.",
-    tech: ["Next.js", "TypeScript", "TailwindCSS", "i18n"],
-    vercel: "https://autobusyhodonin.cz",
-    github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
+      "Daily, fully static bilingual (CS/EN) AI & tech magazine — a scheduled GitHub Actions job scrapes the day's sources and Claude curates and writes each issue.",
+    tech: ["Next.js", "TypeScript", "Claude API", "GitHub Actions"],
+    image: "/projects/aifirst.png",
   },
   {
-    title: "Umyjeme fasádu",
+    title: "Czech Monopoly",
     description:
-      "Marketing site for a Czech facade- and surface-cleaning service, presenting its work and contact details.",
-    tech: ["Next.js", "TypeScript", "TailwindCSS"],
-    vercel: "https://umyjemefasadu.vercel.app/",
-  },
-  {
-    title: "Eurowafers",
-    description:
-      "Marketing site for a Czech spa-wafer maker, covering its history, products, and distribution.",
-    tech: ["Astro", "TypeScript", "TailwindCSS", "Vercel"],
-    vercel: "https://eurowafers.vercel.app",
-  },
-  {
-    title: "devShark",
-    description:
-      "Developer-knowledge quiz and learning app with topic paths, daily challenges, real-time multiplayer, and leaderboards, built on React, serverless functions, and Supabase.",
-    tech: ["React", "TypeScript", "Supabase", "Realtime", "Vercel"],
-    vercel: "https://react-express-app-five.vercel.app",
-  },
-  {
-    title: "beKind Web App",
-    description:
-      "Company rebrand and web app, focused on performance, backed by PostgreSQL and Prisma.",
-    tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
+      "Real-time, browser-based Czech-themed Monopoly where 2–4 players buy Czech cities via a room code, with a trivia twist and full CS/EN localization.",
+    tech: ["Next.js", "TypeScript", "Payload CMS", "Neon", "Ably"],
+    vercel: "https://czech-cities.vercel.app",
+    image: "/projects/czech-monopoly.png",
   },
   {
     title: "Dont Wanna Know",
@@ -97,6 +69,55 @@ const PROJECTS: Project[] = [
     tech: ["React", "TypeScript", "Vite"],
     github: "https://github.com/lukaskourilcz/dontwannaknow",
     vercel: "https://dontwannaknow.vercel.app",
+    image: "/projects/dont-wanna-know.png",
+  },
+  {
+    title: "AutobusyHodonín.cz",
+    description:
+      "Marketing site for a Czech bus and freight company, covering its fleet, passenger, and cargo services, with a focus on SEO and i18n.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "i18n"],
+    vercel: "https://autobusyhodonin.cz",
+    github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
+    image: "/projects/autobusy-hodonin.png",
+  },
+  {
+    title: "Umyjeme fasádu",
+    description:
+      "Marketing site for a Czech facade- and surface-cleaning service, presenting its work and contact details.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS"],
+    vercel: "https://umyjemefasadu.vercel.app/",
+    image: "/projects/umyjeme-fasadu.png",
+  },
+  {
+    title: "Eurowafers",
+    description:
+      "Marketing site for a Czech spa-wafer maker, covering its history, products, and distribution.",
+    tech: ["Astro", "TypeScript", "TailwindCSS", "Vercel"],
+    vercel: "https://eurowafers.vercel.app",
+    image: "/projects/eurowafers.png",
+  },
+  {
+    title: "Take a Break",
+    description:
+      "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
+    tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
+    vercel: "https://take-a-break-seven.vercel.app",
+    image: "/projects/take-a-break.png",
+  },
+  {
+    title: "beKind Web App",
+    description:
+      "Company rebrand and web app, focused on performance, backed by PostgreSQL and Prisma.",
+    tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
+  },
+  {
+    title: "Portfolio",
+    description:
+      "Personal developer portfolio with a terminal-inspired design and animated, responsive sections covering my stack, experience, and projects.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
+    github: "https://github.com/lukaskourilcz/nxt-portfolio",
+    vercel: "https://lukaskouril.vercel.app/",
+    image: "/projects/portfolio.png",
   },
 ];
 
@@ -120,54 +141,75 @@ function IconLink({
   );
 }
 
-// Image-less "blank" card: title + links, description, and tech tags.
+// When SCREENSHOTS_READY is on and the project has an `image`, the live
+// screenshot becomes the card background under a dark scrim so the title,
+// description, and tags stay readable. Otherwise the card renders flat on
+// zinc-900 — identical to the image-less design.
 function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
   const primary = proj.vercel || proj.github || null;
+  const showImage = SCREENSHOTS_READY && proj.image;
   return (
     <Reveal
       as="article"
       delay={delay}
-      className="group flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
     >
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="min-w-0 text-base font-semibold text-zinc-100">
-          {primary ? (
-            <ArrowLink
-              href={primary}
-              arrowClassName="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
-            >
-              {proj.title}
-            </ArrowLink>
-          ) : (
-            proj.title
+      {showImage && (
+        <>
+          <Image
+            src={proj.image as string}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+          {/* Scrim: opaque at the bottom (tags), easing up so the screenshot
+              peeks through behind the title. Tune if text is hard to read. */}
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/70" />
+        </>
+      )}
+
+      <div className="relative z-10 flex flex-1 flex-col">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="min-w-0 text-base font-semibold text-zinc-100">
+            {primary ? (
+              <ArrowLink
+                href={primary}
+                arrowClassName="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                {proj.title}
+              </ArrowLink>
+            ) : (
+              proj.title
+            )}
+          </h3>
+          {(proj.github || proj.vercel) && (
+            <div className="flex shrink-0 gap-1.5">
+              {proj.github && (
+                <IconLink href={proj.github} label={`${proj.title} source on GitHub`}>
+                  <Github className="h-3.5 w-3.5" />
+                </IconLink>
+              )}
+              {proj.vercel && (
+                <IconLink href={proj.vercel} label={`${proj.title} live site`}>
+                  <ExternalLinkIcon className="h-3.5 w-3.5" />
+                </IconLink>
+              )}
+            </div>
           )}
-        </h3>
-        {(proj.github || proj.vercel) && (
-          <div className="flex shrink-0 gap-1.5">
-            {proj.github && (
-              <IconLink href={proj.github} label={`${proj.title} source on GitHub`}>
-                <Github className="h-3.5 w-3.5" />
-              </IconLink>
-            )}
-            {proj.vercel && (
-              <IconLink href={proj.vercel} label={`${proj.title} live site`}>
-                <ExternalLinkIcon className="h-3.5 w-3.5" />
-              </IconLink>
-            )}
-          </div>
-        )}
-      </div>
+        </div>
 
-      <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
-        {proj.description}
-      </p>
+        <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+          {proj.description}
+        </p>
 
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {proj.tech.map((tech) => (
-          <Tag key={tech} variant="accent">
-            {tech}
-          </Tag>
-        ))}
+        <div className="mt-4 flex flex-wrap gap-1.5">
+          {proj.tech.map((tech) => (
+            <Tag key={tech} variant="accent">
+              {tech}
+            </Tag>
+          ))}
+        </div>
       </div>
     </Reveal>
   );
