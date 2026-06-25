@@ -78,7 +78,7 @@ const PROJECTS: Project[] = [
     vercel: "https://eurowafers.vercel.app",
   },
   {
-    title: "DevQuiz",
+    title: "devShark",
     description:
       "Developer-knowledge quiz and learning app with topic paths, daily challenges, real-time multiplayer, and leaderboards, built on React, serverless functions, and Supabase.",
     tech: ["React", "TypeScript", "Supabase", "Realtime", "Vercel"],
