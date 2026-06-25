@@ -1,4 +1,3 @@
-import Image from "next/image";
 import type { ReactNode } from "react";
 import { Github, ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
@@ -13,7 +12,6 @@ type Project = {
   title: string;
   description: string;
   tech: string[];
-  image: string;
   github?: string;
   vercel?: string;
 };
@@ -29,7 +27,12 @@ const PROJECTS: Project[] = [
     tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
     github: "https://github.com/lukaskourilcz/nxt-portfolio",
     vercel: "https://lukaskouril.vercel.app/",
-    image: "/projects/portfolio_projekt.png",
+  },
+  {
+    title: "aifirst",
+    description:
+      "Daily, fully static bilingual (CS/EN) AI & tech magazine — a scheduled GitHub Actions job scrapes the day's sources and Claude curates and writes each issue.",
+    tech: ["Next.js", "TypeScript", "Claude API", "GitHub Actions"],
   },
   {
     title: "Take a Break",
@@ -37,23 +40,20 @@ const PROJECTS: Project[] = [
       "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
     tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
     vercel: "https://take-a-break-seven.vercel.app",
-    image: "/projects/takeabreak_projekt.png",
   },
   {
     title: "Czech Monopoly",
     description:
-      "Browser-based, Czech-themed Monopoly game with code-based 2–4 player multiplayer and next-intl localization.",
-    tech: ["Next.js", "TypeScript", "Payload CMS", "NeonDB", "next-intl"],
+      "Real-time, browser-based Czech-themed Monopoly where 2–4 players buy Czech cities via a room code, with a trivia twist and full CS/EN localization.",
+    tech: ["Next.js", "TypeScript", "Payload CMS", "Neon", "Ably"],
     vercel: "https://czech-cities.vercel.app",
-    image: "/wip.png",
   },
   {
     title: "Personal Dashboard",
     description:
-      "Productivity dashboard for subscriptions, habits, plans, and a calendar, with AI insights and analytics charts.",
+      "Personal life dashboard for subscriptions, todos, streaks, finances, Czech invoices, books, and a calendar, with natural-language quick-add powered by Claude.",
     tech: ["Next.js", "TypeScript", "Supabase", "Claude AI", "Recharts"],
     vercel: "https://own-dashboard-tau.vercel.app",
-    image: "/wip.png",
   },
   {
     title: "AutobusyHodonín.cz",
@@ -62,7 +62,13 @@ const PROJECTS: Project[] = [
     tech: ["Next.js", "TypeScript", "TailwindCSS", "i18n"],
     vercel: "https://autobusyhodonin.cz",
     github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
-    image: "/projects/autodopravakopecek_projekt.png",
+  },
+  {
+    title: "Umyjeme fasádu",
+    description:
+      "Marketing site for a Czech facade- and surface-cleaning service, presenting its work and contact details.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS"],
+    vercel: "https://umyjemefasadu.vercel.app/",
   },
   {
     title: "Eurowafers",
@@ -70,31 +76,27 @@ const PROJECTS: Project[] = [
       "Marketing site for a Czech spa-wafer maker, covering its history, products, and distribution.",
     tech: ["Astro", "TypeScript", "TailwindCSS", "Vercel"],
     vercel: "https://eurowafers.vercel.app",
-    image: "/wip.png",
   },
   {
     title: "DevQuiz",
     description:
-      "Full-stack developer quiz with JWT auth and Supabase data behind an Express serverless API.",
-    tech: ["React", "TypeScript", "Express", "Supabase", "JWT"],
+      "Developer-knowledge quiz and learning app with topic paths, daily challenges, real-time multiplayer, and leaderboards, built on React, serverless functions, and Supabase.",
+    tech: ["React", "TypeScript", "Supabase", "Realtime", "Vercel"],
     vercel: "https://react-express-app-five.vercel.app",
-    image: "/wip.png",
   },
   {
     title: "beKind Web App",
     description:
       "Company rebrand and web app, focused on performance, backed by PostgreSQL and Prisma.",
     tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
-    image: "/projects/bekind_projekt.png",
   },
   {
     title: "Dont Wanna Know",
     description:
-      "Interactive web app that asks personal questions, then uses Gemini AI to generate tailored life stats.",
-    tech: ["Next.js", "TypeScript", "Gemini AI"],
+      "Enter a birth year, country, and city to get an instant, fully in-browser report on the era someone grew up in — no backend and no API calls.",
+    tech: ["React", "TypeScript", "Vite"],
     github: "https://github.com/lukaskourilcz/dontwannaknow",
     vercel: "https://dontwannaknow.vercel.app",
-    image: "/wip.png",
   },
 ];
 
@@ -111,43 +113,24 @@ function IconLink({
     <ExternalLink
       href={href}
       aria-label={label}
-      className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
+      className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-300 transition-colors hover:text-emerald-300"
     >
       {children}
     </ExternalLink>
   );
 }
 
-// Shared card visual (image + content) for every project card.
-function ProjectVisual({ proj }: { proj: Project }) {
+// Image-less "blank" card: title + links, description, and tech tags.
+function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
   const primary = proj.vercel || proj.github || null;
   return (
-    <>
-      <div className="relative aspect-[16/10] overflow-hidden">
-        <Image
-          src={proj.image}
-          alt={proj.title}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.06]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/15 to-transparent" />
-        <div className="absolute right-3 top-3 flex translate-y-1 gap-1.5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          {proj.github && (
-            <IconLink href={proj.github} label={`${proj.title} source on GitHub`}>
-              <Github className="h-3.5 w-3.5" />
-            </IconLink>
-          )}
-          {proj.vercel && (
-            <IconLink href={proj.vercel} label={`${proj.title} live site`}>
-              <ExternalLinkIcon className="h-3.5 w-3.5" />
-            </IconLink>
-          )}
-        </div>
-      </div>
-
-      <div className="relative z-10 -mt-6 flex flex-1 flex-col px-5 pb-5">
-        <h3 className="text-base font-semibold text-zinc-100">
+    <Reveal
+      as="article"
+      delay={delay}
+      className="group flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
+    >
+      <div className="flex items-start justify-between gap-3">
+        <h3 className="min-w-0 text-base font-semibold text-zinc-100">
           {primary ? (
             <ArrowLink
               href={primary}
@@ -159,32 +142,33 @@ function ProjectVisual({ proj }: { proj: Project }) {
             proj.title
           )}
         </h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
-          {proj.description}
-        </p>
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {proj.tech.map((tech) => (
-            <Tag key={tech} variant="accent">
-              {tech}
-            </Tag>
-          ))}
-        </div>
+        {(proj.github || proj.vercel) && (
+          <div className="flex shrink-0 gap-1.5">
+            {proj.github && (
+              <IconLink href={proj.github} label={`${proj.title} source on GitHub`}>
+                <Github className="h-3.5 w-3.5" />
+              </IconLink>
+            )}
+            {proj.vercel && (
+              <IconLink href={proj.vercel} label={`${proj.title} live site`}>
+                <ExternalLinkIcon className="h-3.5 w-3.5" />
+              </IconLink>
+            )}
+          </div>
+        )}
       </div>
-    </>
-  );
-}
 
-const CARD_SHELL =
-  "group relative flex flex-col overflow-hidden rounded-2xl border bg-zinc-900 shadow-card";
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+        {proj.description}
+      </p>
 
-function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
-  return (
-    <Reveal
-      as="article"
-      delay={delay}
-      className={`${CARD_SHELL} h-full border-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover`}
-    >
-      <ProjectVisual proj={proj} />
+      <div className="mt-4 flex flex-wrap gap-1.5">
+        {proj.tech.map((tech) => (
+          <Tag key={tech} variant="accent">
+            {tech}
+          </Tag>
+        ))}
+      </div>
     </Reveal>
   );
 }
