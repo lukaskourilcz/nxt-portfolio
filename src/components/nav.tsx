@@ -47,7 +47,7 @@ export function Nav() {
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a
           href={EMAIL_HREF}
-          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm"
+          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm md:-ml-10"
         >
           <span className="relative block h-7 w-7 shrink-0">
             <motion.span
@@ -111,7 +111,7 @@ export function Nav() {
                 </span>
               </Link>
             ))}
-            <ResumeButton size="sm">
+            <ResumeButton size="sm" className="md:-mr-10">
               <FileText className="h-3.5 w-3.5" /> resume
             </ResumeButton>
           </div>
