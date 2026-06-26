@@ -130,7 +130,7 @@ function IconLink({
     <ExternalLink
       href={href}
       aria-label={label}
-      className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
+      className="inline-flex items-center justify-center rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
     >
       {children}
     </ExternalLink>
