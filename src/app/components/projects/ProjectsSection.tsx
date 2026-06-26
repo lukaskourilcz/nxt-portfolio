@@ -68,7 +68,7 @@ const PROJECTS: Project[] = [
     title: "Dont Wanna Know",
     description:
       "Enter a birth year, country, and city to get an instant, fully in-browser report on the era someone grew up in — no backend and no API calls.",
-    tech: ["React", "TypeScript", "Vite"],
+    tech: ["React", "TypeScript", "Vite", "i18n", "Vercel"],
     vercel: "https://dontwannaknow.vercel.app",
     image: "/projects/dontwannaknow.png",
   },
