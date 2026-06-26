@@ -23,6 +23,9 @@ type Project = {
   // card image-less — used when a site has no live URL or can't be captured.
   image?: string;
   vercel?: string;
+  // Optional italic aside shown under the description (e.g. a caveat about the
+  // screenshot). Omit on cards that don't need it.
+  note?: string;
 };
 
 // Scouted from the live deployments + each repo's package.json.
@@ -99,6 +102,7 @@ const PROJECTS: Project[] = [
       "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
     tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
     image: "/projects/takeabreak.png",
+    note: "Unfortunately I don't have a photo of the app anymore, but look at that beautiful team that built it!",
   },
   {
     title: "beKind Web App",
@@ -185,6 +189,11 @@ function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
         <p className="mt-2 text-sm leading-relaxed text-zinc-400">
           {proj.description}
         </p>
+        {proj.note && (
+          <p className="mt-2 text-xs italic leading-relaxed text-zinc-500">
+            {proj.note}
+          </p>
+        )}
       </div>
 
       {/* Tags in their own dark container — adds card height without touching
