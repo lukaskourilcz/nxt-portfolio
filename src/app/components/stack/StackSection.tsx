@@ -120,7 +120,6 @@ const STACK: StackItem[] = [
   { name: "Auth0", Icon: KeyRound, color: "#eb5424", size: "sm" },
   // tools — small
   { name: "Docker", icon: "devicon-docker-plain colored", size: "sm" },
-  { name: "Vercel", icon: "devicon-vercel-original", size: "sm" },
   { name: "Netlify", icon: "devicon-netlify-plain colored", size: "sm" },
   { name: "Vite", icon: "devicon-vitejs-plain colored", size: "sm" },
   { name: "Postman", icon: "devicon-postman-plain colored", size: "sm" },
