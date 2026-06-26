@@ -345,7 +345,7 @@ export default function StackSection() {
           </div>
           <GitHubGrid />
           <p className="mt-5 text-center font-mono text-xs text-zinc-500">
-            public GitHub contributions · private &amp; client work not shown
+            wish I could show you the GitLab stats
           </p>
         </div>
       </Reveal>
