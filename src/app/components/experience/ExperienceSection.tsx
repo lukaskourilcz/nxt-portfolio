@@ -113,11 +113,11 @@ const EXPERIENCES: Experience[] = [
   {
     company: "Controlant",
     logo: "/logos/controlant_logo.png",
-    role: "Technical Customer Analyst",
+    role: "Technical Analyst",
     period: "Nov 2021 – Apr 2024",
     location: "Reykjavík, Iceland",
     responsibilities: [
-      "Answered logistics inquiries for pharmaceutical shipments, where keeping products safe in transit was critical",
+      "Diagnosed and resolved logistics issues for pharmaceutical shipments, where keeping products safe in transit was critical",
       "Monitored shipment data and resolved critical issues using the company's tracking tools",
       "Ran root-cause analysis and provided compliant solutions for clients around the world",
       "Spotted opportunities to automate parts of data processing and client communication",
@@ -129,14 +129,14 @@ const EXPERIENCES: Experience[] = [
   {
     company: "Entain Group",
     logo: "/logos/entain_logo.png",
-    role: "Customer Protection Expert",
+    role: "User Protection Expert",
     period: "Jan 2020 – Sep 2021",
     location: "Gibraltar",
     responsibilities: [
       "Built up expertise in gaming compliance and anti-money laundering (AML)",
       "Used data analysis and dedicated tools to spot suspicious behavior and prevent fraud",
       "Kept processes in line with EU and local regulations",
-      "Ran investigations and handled sensitive customer data in line with GDPR",
+      "Ran investigations and processed sensitive user data in line with GDPR",
       "Trained and mentored junior team members on compliance and risk",
       "Took a strict, zero-tolerance approach to policy breaches",
     ],
