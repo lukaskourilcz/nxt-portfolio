@@ -44,7 +44,7 @@ export function Nav() {
           : "border-b border-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <nav className="mx-auto grid max-w-5xl grid-cols-[minmax(0,auto)_1fr_auto] items-center px-6 py-4">
         <a
           href={EMAIL_HREF}
           className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm md:-ml-10"
@@ -90,31 +90,33 @@ export function Nav() {
           <span className="truncate">{EMAIL}</span>
         </a>
 
-        <div className="flex shrink-0 items-center gap-2">
-          <div className="hidden items-center gap-4 md:flex lg:gap-6">
-            {SECTIONS.map((section) => (
-              <Link
-                key={section.id}
-                href={`#${section.id}`}
-                aria-current={activeSection === section.id ? "true" : undefined}
-                className="group font-mono text-sm transition-colors"
+        {/* Nav links, centered in the space between the email and the resume button. */}
+        <div className="hidden items-center justify-center gap-4 md:flex lg:gap-6">
+          {SECTIONS.map((section) => (
+            <Link
+              key={section.id}
+              href={`#${section.id}`}
+              aria-current={activeSection === section.id ? "true" : undefined}
+              className="group whitespace-nowrap font-mono text-sm transition-colors"
+            >
+              <span className="text-emerald-400">{section.index}.</span>{" "}
+              <span
+                className={
+                  activeSection === section.id
+                    ? "text-zinc-100"
+                    : "text-zinc-500 group-hover:text-zinc-200"
+                }
               >
-                <span className="text-emerald-400">{section.index}.</span>{" "}
-                <span
-                  className={
-                    activeSection === section.id
-                      ? "text-zinc-100"
-                      : "text-zinc-500 group-hover:text-zinc-200"
-                  }
-                >
-                  {section.label}
-                </span>
-              </Link>
-            ))}
-            <ResumeButton size="sm" className="md:-mr-10">
-              <FileText className="h-3.5 w-3.5" /> resume
-            </ResumeButton>
-          </div>
+                {section.label}
+              </span>
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex shrink-0 items-center gap-2">
+          <ResumeButton size="sm" className="hidden md:inline-flex md:-mr-10">
+            <FileText className="h-3.5 w-3.5" /> resume
+          </ResumeButton>
 
           <button
             className="text-zinc-300 md:hidden"
