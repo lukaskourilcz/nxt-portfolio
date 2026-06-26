@@ -130,67 +130,72 @@ function IconLink({
     <ExternalLink
       href={href}
       aria-label={label}
-      className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-300 transition-colors hover:text-emerald-300"
+      className="rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-200 backdrop-blur-sm transition-colors hover:text-emerald-300"
     >
       {children}
     </ExternalLink>
   );
 }
 
-// When SCREENSHOTS_READY is on and the project has an `image`, the live
-// screenshot becomes the card background under a dark scrim. The title,
-// description, and tags sit at the bottom over the opaque end of the scrim so
-// they stay readable, while the upper part of the card shows the screenshot.
-// The only link is the external-link icon (top right) — the title itself isn't
-// a link; the card just gets a hover lift and a title colour shift on hover.
+// The live screenshot sits in a fixed 16:10 banner at the top of the card —
+// the same ratio it's captured at, so object-cover shows the whole shot with no
+// cropping. Title and description follow, and the tech tags get their own dark
+// footer container, which is what makes the card taller (the screenshot's ratio
+// is untouched). The only link is the external-link icon (top right of the
+// banner); the title isn't a link — the card just gets a hover lift and a title
+// colour shift on hover.
 function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
   const showImage = SCREENSHOTS_READY && proj.image;
   return (
     <Reveal
       as="article"
       delay={delay}
-      className="group relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
     >
-      {showImage && (
-        <>
-          <Image
-            src={proj.image as string}
-            alt=""
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-          />
-          {/* Scrim: opaque at the bottom (where the text sits) and fading to
-              mostly clear at the top so more of the screenshot shows through. */}
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/25" />
-        </>
-      )}
+      <div className="relative aspect-[16/10] overflow-hidden bg-zinc-950">
+        {showImage ? (
+          <>
+            <Image
+              src={proj.image as string}
+              alt=""
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+            />
+            {/* Slight top scrim so the link icon stays legible on any shot. */}
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 to-zinc-900" />
+        )}
 
-      <div className="relative z-10 flex flex-1 flex-col">
         {proj.vercel && (
-          <div className="flex justify-end">
+          <div className="absolute right-3 top-3">
             <IconLink href={proj.vercel} label={`${proj.title} live site`}>
               <ExternalLinkIcon className="h-3.5 w-3.5" />
             </IconLink>
           </div>
         )}
+      </div>
 
-        <div className="mt-auto">
-          <h3 className="text-base font-semibold text-zinc-100 transition-colors group-hover:text-emerald-300">
-            {proj.title}
-          </h3>
+      <div className="flex flex-1 flex-col px-5 pt-4">
+        <h3 className="text-base font-semibold text-zinc-100 transition-colors group-hover:text-emerald-300">
+          {proj.title}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+          {proj.description}
+        </p>
+      </div>
 
-          <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-            {proj.description}
-          </p>
-
-          <div className="mt-4 flex flex-wrap gap-1.5">
-            {proj.tech.map((tech) => (
-              <Tag key={tech} variant="accent">
-                {tech}
-              </Tag>
-            ))}
-          </div>
+      {/* Tags in their own dark container — adds card height without touching
+          the screenshot's aspect ratio. */}
+      <div className="mt-4 border-t border-zinc-800 bg-zinc-950 px-5 py-4">
+        <div className="flex flex-wrap gap-1.5">
+          {proj.tech.map((tech) => (
+            <Tag key={tech} variant="accent">
+              {tech}
+            </Tag>
+          ))}
         </div>
       </div>
     </Reveal>
