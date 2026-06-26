@@ -59,7 +59,7 @@ const PROJECTS: Project[] = [
       "Real-time, browser-based Czech-themed Monopoly where 2–4 players buy Czech cities via a room code, with a trivia twist and full CS/EN localization.",
     tech: ["Next.js", "TypeScript", "Payload CMS", "Neon", "Ably"],
     vercel: "https://czech-cities.vercel.app",
-    image: "/projects/czech-monopoly.png",
+    image: "/projects/czech-cities.png",
   },
   {
     title: "Dont Wanna Know",
@@ -67,7 +67,7 @@ const PROJECTS: Project[] = [
       "Enter a birth year, country, and city to get an instant, fully in-browser report on the era someone grew up in — no backend and no API calls.",
     tech: ["React", "TypeScript", "Vite"],
     vercel: "https://dontwannaknow.vercel.app",
-    image: "/projects/dont-wanna-know.png",
+    image: "/projects/dontwannaknow.png",
   },
   {
     title: "AutobusyHodonín.cz",
