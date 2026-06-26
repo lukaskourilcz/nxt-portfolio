@@ -98,14 +98,14 @@ const PROJECTS: Project[] = [
     description:
       "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
     tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
-    vercel: "https://take-a-break-seven.vercel.app",
-    image: "/projects/take-a-break.png",
+    image: "/projects/takeabreak.png",
   },
   {
     title: "beKind Web App",
     description:
       "Company rebrand and web app, focused on performance, backed by PostgreSQL and Prisma.",
     tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
+    image: "/projects/bekind.png",
   },
   {
     title: "Portfolio",
