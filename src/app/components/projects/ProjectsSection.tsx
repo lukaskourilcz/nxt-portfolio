@@ -13,7 +13,7 @@ import { staggerDelay } from "@/lib/anim";
 // <slug>.png. Until those files exist, keep this false so cards render flat
 // (no broken images, identical to the current look). Once the PNGs are in
 // place, flip to true to switch each card to its live-screenshot background.
-const SCREENSHOTS_READY: boolean = false;
+const SCREENSHOTS_READY: boolean = true;
 
 type Project = {
   title: string;
@@ -83,8 +83,8 @@ const PROJECTS: Project[] = [
   {
     title: "Umyjeme fasádu",
     description:
-      "Marketing site for a Czech facade- and surface-cleaning service, presenting its work and contact details.",
-    tech: ["Next.js", "TypeScript", "TailwindCSS"],
+      "Marketing site for a Czech exterior-cleaning service — hot-water pressure washing of facades, roofs, and paving, with before/after sliders, a service breakdown, and a quote request form.",
+    tech: ["React", "TypeScript", "Vite", "TailwindCSS"],
     vercel: "https://umyjemefasadu.vercel.app/",
     image: "/projects/umyjeme-fasadu.png",
   },
