@@ -1,11 +1,10 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { Github, ExternalLink as ExternalLinkIcon } from "lucide-react";
+import { ExternalLink as ExternalLinkIcon } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { Reveal } from "@/components/reveal";
 import { ExternalLink } from "@/components/external-link";
-import { ArrowLink } from "@/components/arrow-link";
 import { Tag } from "@/components/tag";
 import { staggerDelay } from "@/lib/anim";
 
@@ -23,13 +22,12 @@ type Project = {
   // (see ProjectCard). Stored at /public/projects/<slug>.png. Omit to keep a
   // card image-less — used when a site has no live URL or can't be captured.
   image?: string;
-  github?: string;
   vercel?: string;
 };
 
 // Scouted from the live deployments + each repo's package.json.
-// GitHub links are shown only for public repos (private/removed repos would
-// 404 for visitors); live links only where the deployment still resolves.
+// The repos are private, so no source links are shown — only a live link
+// (the external-link icon) where the deployment still resolves.
 const PROJECTS: Project[] = [
   {
     title: "devShark",
@@ -67,7 +65,6 @@ const PROJECTS: Project[] = [
     description:
       "Enter a birth year, country, and city to get an instant, fully in-browser report on the era someone grew up in — no backend and no API calls.",
     tech: ["React", "TypeScript", "Vite"],
-    github: "https://github.com/lukaskourilcz/dontwannaknow",
     vercel: "https://dontwannaknow.vercel.app",
     image: "/projects/dont-wanna-know.png",
   },
@@ -77,7 +74,6 @@ const PROJECTS: Project[] = [
       "Marketing site for a Czech bus and freight company, covering its fleet, passenger, and cargo services, with a focus on SEO and i18n.",
     tech: ["Next.js", "TypeScript", "TailwindCSS", "i18n"],
     vercel: "https://autobusyhodonin.cz",
-    github: "https://github.com/lukaskourilcz/autodoprava-kopecek",
     image: "/projects/autobusy-hodonin.png",
   },
   {
@@ -115,7 +111,6 @@ const PROJECTS: Project[] = [
     description:
       "Personal developer portfolio with a terminal-inspired design and animated, responsive sections covering my stack, experience, and projects.",
     tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-    github: "https://github.com/lukaskourilcz/nxt-portfolio",
     vercel: "https://lukaskouril.vercel.app/",
     image: "/projects/portfolio.png",
   },
@@ -142,17 +137,18 @@ function IconLink({
 }
 
 // When SCREENSHOTS_READY is on and the project has an `image`, the live
-// screenshot becomes the card background under a dark scrim so the title,
-// description, and tags stay readable. Otherwise the card renders flat on
-// zinc-900 — identical to the image-less design.
+// screenshot becomes the card background under a dark scrim. The title,
+// description, and tags sit at the bottom over the opaque end of the scrim so
+// they stay readable, while the upper part of the card shows the screenshot.
+// The only link is the external-link icon (top right) — the title itself isn't
+// a link; the card just gets a hover lift and a title colour shift on hover.
 function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
-  const primary = proj.vercel || proj.github || null;
   const showImage = SCREENSHOTS_READY && proj.image;
   return (
     <Reveal
       as="article"
       delay={delay}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
+      className="group relative flex h-full min-h-[22rem] flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
     >
       {showImage && (
         <>
@@ -163,52 +159,37 @@ function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
           />
-          {/* Scrim: opaque at the bottom (tags), easing up so the screenshot
-              peeks through behind the title. Tune if text is hard to read. */}
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/70" />
+          {/* Scrim: opaque at the bottom (where the text sits) and fading to
+              mostly clear at the top so more of the screenshot shows through. */}
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-zinc-950/25" />
         </>
       )}
 
       <div className="relative z-10 flex flex-1 flex-col">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="min-w-0 text-base font-semibold text-zinc-100">
-            {primary ? (
-              <ArrowLink
-                href={primary}
-                arrowClassName="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
-              >
-                {proj.title}
-              </ArrowLink>
-            ) : (
-              proj.title
-            )}
+        {proj.vercel && (
+          <div className="flex justify-end">
+            <IconLink href={proj.vercel} label={`${proj.title} live site`}>
+              <ExternalLinkIcon className="h-3.5 w-3.5" />
+            </IconLink>
+          </div>
+        )}
+
+        <div className="mt-auto">
+          <h3 className="text-base font-semibold text-zinc-100 transition-colors group-hover:text-emerald-300">
+            {proj.title}
           </h3>
-          {(proj.github || proj.vercel) && (
-            <div className="flex shrink-0 gap-1.5">
-              {proj.github && (
-                <IconLink href={proj.github} label={`${proj.title} source on GitHub`}>
-                  <Github className="h-3.5 w-3.5" />
-                </IconLink>
-              )}
-              {proj.vercel && (
-                <IconLink href={proj.vercel} label={`${proj.title} live site`}>
-                  <ExternalLinkIcon className="h-3.5 w-3.5" />
-                </IconLink>
-              )}
-            </div>
-          )}
-        </div>
 
-        <p className="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
-          {proj.description}
-        </p>
+          <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+            {proj.description}
+          </p>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {proj.tech.map((tech) => (
-            <Tag key={tech} variant="accent">
-              {tech}
-            </Tag>
-          ))}
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {proj.tech.map((tech) => (
+              <Tag key={tech} variant="accent">
+                {tech}
+              </Tag>
+            ))}
+          </div>
         </div>
       </div>
     </Reveal>
