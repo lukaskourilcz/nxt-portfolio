@@ -50,6 +50,7 @@ const PROJECTS: Project[] = [
     description:
       "Daily, fully static bilingual (CS/EN) AI & tech magazine — a scheduled GitHub Actions job scrapes the day's sources and Claude curates and writes each issue.",
     tech: ["Next.js", "TypeScript", "Claude API", "GitHub Actions"],
+    vercel: "https://aifirst-beryl.vercel.app/",
     image: "/projects/aifirst.png",
   },
   {
