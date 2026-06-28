@@ -14,6 +14,11 @@ export function BackgroundGrid() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // The spotlight follows a cursor, so it's a hover/fine-pointer feature only.
+    // On touch devices a finger drag-scroll fires pointermove events, which would
+    // otherwise light the grid up and drag it along under the finger while
+    // scrolling — the mobile scroll "glitch". Skip it on touch-only devices.
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     const el = glowRef.current;
     if (!el) return;
 
@@ -27,6 +32,9 @@ export function BackgroundGrid() {
       el.style.opacity = "1";
     };
     const onMove = (e: PointerEvent) => {
+      // Ignore touch pointers on hybrid devices (touchscreen laptops) so a
+      // finger scroll never triggers the cursor spotlight.
+      if (e.pointerType === "touch") return;
       x = e.clientX;
       y = e.clientY;
       if (!raf) raf = requestAnimationFrame(apply);

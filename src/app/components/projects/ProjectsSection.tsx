@@ -102,7 +102,7 @@ const PROJECTS: Project[] = [
       "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
     tech: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Turborepo"],
     image: "/projects/takeabreak.png",
-    note: "Unfortunately I don't have a photo of the app anymore, but look at that beautiful team that built it!",
+    note: "Unfortunately I don't have a photo of the app anymore, but look at that beautiful team!",
   },
   {
     title: "beKind Web App",
