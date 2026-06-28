@@ -181,38 +181,44 @@ export default function EducationSection() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {EDUCATORS.map((e, i) => (
+          // Reveal (motion) runs only the entrance; the hover lift/border/shadow
+          // live on the inner card with their own scoped transition, so CSS
+          // `transition-all` never fights Framer Motion's transform writes (the
+          // flash the project cards had).
           <Reveal
             as="article"
             key={e.name}
             delay={staggerDelay(i, 0.05)}
-            className="group flex h-full flex-col rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-all duration-200 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
+            className="h-full"
           >
-            <div className="mb-3 flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 font-mono text-xs font-semibold text-emerald-300">
-                {e.mark}
-              </span>
-              <h3 className="font-semibold text-zinc-100">
-                {e.url ? (
-                  <ArrowLink
-                    href={e.url}
-                    arrowClassName="opacity-0 transition-opacity group-hover:opacity-100"
-                  >
-                    {e.name}
-                  </ArrowLink>
-                ) : (
-                  e.name
-                )}
-              </h3>
-            </div>
-            <p className="flex-1 text-sm leading-relaxed text-zinc-400">
-              {e.blurb}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {e.tags.map((tag) => (
-                <Tag key={tag} variant="accent">
-                  {tag}
-                </Tag>
-              ))}
+            <div className="group flex h-full flex-col rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover">
+              <div className="mb-3 flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 font-mono text-xs font-semibold text-emerald-300">
+                  {e.mark}
+                </span>
+                <h3 className="font-semibold text-zinc-100">
+                  {e.url ? (
+                    <ArrowLink
+                      href={e.url}
+                      arrowClassName="opacity-0 transition-opacity group-hover:opacity-100"
+                    >
+                      {e.name}
+                    </ArrowLink>
+                  ) : (
+                    e.name
+                  )}
+                </h3>
+              </div>
+              <p className="flex-1 text-sm leading-relaxed text-zinc-400">
+                {e.blurb}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {e.tags.map((tag) => (
+                  <Tag key={tag} variant="accent">
+                    {tag}
+                  </Tag>
+                ))}
+              </div>
             </div>
           </Reveal>
         ))}
