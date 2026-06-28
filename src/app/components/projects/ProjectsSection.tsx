@@ -111,14 +111,6 @@ const PROJECTS: Project[] = [
     tech: ["Next.js", "TypeScript", "Node.js", "Prisma", "PostgreSQL"],
     image: "/projects/bekind.png",
   },
-  {
-    title: "Portfolio",
-    description:
-      "Personal developer portfolio with a terminal-inspired design and animated, responsive sections covering my stack, experience, and projects.",
-    tech: ["Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-    vercel: "https://lukaskouril.vercel.app/",
-    image: "/projects/portfolio.png",
-  },
 ];
 
 function IconLink({
