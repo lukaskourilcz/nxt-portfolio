@@ -113,7 +113,7 @@ export function Nav() {
           ))}
         </div>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="col-start-3 flex shrink-0 items-center justify-self-end gap-2">
           <ResumeButton size="sm" className="hidden md:inline-flex md:-mr-[50px]">
             <FileText className="h-3.5 w-3.5" /> resume
           </ResumeButton>
