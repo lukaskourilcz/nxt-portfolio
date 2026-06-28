@@ -143,60 +143,63 @@ function IconLink({
 function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
   const showImage = SCREENSHOTS_READY && proj.image;
   return (
-    <Reveal
-      as="article"
-      delay={delay}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover"
-    >
-      <div className="relative aspect-[16/10] overflow-hidden bg-zinc-950">
-        {showImage ? (
-          <>
-            <Image
-              src={proj.image as string}
-              alt=""
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
-            />
-            {/* Slight top scrim so the link icon stays legible on any shot. */}
-            <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent" />
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 to-zinc-900" />
-        )}
+    // Reveal (the motion element) owns the scroll-entrance animation — opacity
+    // and transform. The hover lift/border/shadow live on the inner card with
+    // their own scoped transition. Keeping them on separate elements avoids a
+    // CSS `transition-all` fighting Framer Motion's inline transform writes,
+    // which flashed the cards on scroll (notably on mobile Safari's compositor).
+    <Reveal as="article" delay={delay} className="h-full">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover">
+        <div className="relative aspect-[16/10] overflow-hidden bg-zinc-950">
+          {showImage ? (
+            <>
+              <Image
+                src={proj.image as string}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+              />
+              {/* Slight top scrim so the link icon stays legible on any shot. */}
+              <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent" />
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 to-zinc-900" />
+          )}
 
-        {proj.vercel && (
-          <div className="absolute right-3 top-3">
-            <IconLink href={proj.vercel} label={`${proj.title} live site`}>
-              <ExternalLinkIcon className="h-3.5 w-3.5" />
-            </IconLink>
-          </div>
-        )}
-      </div>
+          {proj.vercel && (
+            <div className="absolute right-3 top-3">
+              <IconLink href={proj.vercel} label={`${proj.title} live site`}>
+                <ExternalLinkIcon className="h-3.5 w-3.5" />
+              </IconLink>
+            </div>
+          )}
+        </div>
 
-      <div className="flex flex-1 flex-col px-5 pt-4">
-        <h3 className="text-base font-semibold text-zinc-100 transition-colors group-hover:text-emerald-300">
-          {proj.title}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-          {proj.description}
-        </p>
-        {proj.note && (
-          <p className="mt-2 text-xs italic leading-relaxed text-zinc-500">
-            {proj.note}
+        <div className="flex flex-1 flex-col px-5 pt-4">
+          <h3 className="text-base font-semibold text-zinc-100 transition-colors group-hover:text-emerald-300">
+            {proj.title}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-400">
+            {proj.description}
           </p>
-        )}
-      </div>
+          {proj.note && (
+            <p className="mt-2 text-xs italic leading-relaxed text-zinc-500">
+              {proj.note}
+            </p>
+          )}
+        </div>
 
-      {/* Tags in their own dark container — adds card height without touching
-          the screenshot's aspect ratio. */}
-      <div className="mt-4 border-t border-zinc-800 bg-zinc-950 px-5 py-4">
-        <div className="flex flex-wrap gap-1.5">
-          {proj.tech.map((tech) => (
-            <Tag key={tech} variant="accent">
-              {tech}
-            </Tag>
-          ))}
+        {/* Tags in their own dark container — adds card height without touching
+            the screenshot's aspect ratio. */}
+        <div className="mt-4 border-t border-zinc-800 bg-zinc-950 px-5 py-4">
+          <div className="flex flex-wrap gap-1.5">
+            {proj.tech.map((tech) => (
+              <Tag key={tech} variant="accent">
+                {tech}
+              </Tag>
+            ))}
+          </div>
         </div>
       </div>
     </Reveal>
