@@ -3,10 +3,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { Reveal } from "@/components/reveal";
-import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
 import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF, LOCATION } from "@/lib/site";
-import { SOCIALS } from "@/lib/socials";
 import type { IconComponent } from "@/lib/types";
 
 type ContactItem = {
@@ -40,19 +38,6 @@ export default function ContactSection() {
               <Mail className="h-4 w-4" /> Say hello
             </a>
           </Button>
-
-          <div className="mt-8 flex items-center gap-3">
-            {SOCIALS.map(({ href, label, Icon }) => (
-              <ExternalLink
-                key={label}
-                href={href}
-                aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-emerald-500 hover:text-emerald-400"
-              >
-                <Icon className="h-5 w-5" />
-              </ExternalLink>
-            ))}
-          </div>
         </Reveal>
 
         <Reveal delay={0.1} className="space-y-3">
