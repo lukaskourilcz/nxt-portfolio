@@ -287,7 +287,7 @@ export default function StackSection() {
         className="relative mx-auto aspect-square w-full max-w-3xl"
       >
         {/* Contribution graph backdrop, centered behind the constellation. The
-            "garden" grid is scaled up 2.5× (full-bleed) to read large behind the
+            "garden" grid is scaled up 1.3× to read a bit larger behind the
             floating icons, while the labels stay normal-size and readable. */}
         <div className="absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 sm:block">
           <div className="mb-2 flex items-center justify-between">
@@ -298,7 +298,7 @@ export default function StackSection() {
               <Github className="h-3.5 w-3.5" /> @{GITHUB_USERNAME}
             </span>
           </div>
-          <div className="my-28 origin-center scale-[2.5]">
+          <div className="my-6 origin-center scale-[1.3]">
             <GitHubGrid />
           </div>
           <p className="mt-2 text-center font-mono text-xs text-zinc-600">
