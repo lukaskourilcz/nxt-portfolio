@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { SITE_URL, EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
+import { PostHog } from "@/components/posthog";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
         {children}
+        <PostHog />
       </body>
     </html>
   );

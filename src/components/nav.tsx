@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import { Menu, X, FileText } from "lucide-react";
 import { ResumeButton } from "@/components/resume-button";
 import { useScrolled } from "@/hooks/useScrolled";

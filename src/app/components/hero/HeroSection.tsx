@@ -14,7 +14,10 @@ export default function HeroSection() {
       id="top"
       className="relative mx-auto flex min-h-screen max-w-5xl flex-col justify-start px-6 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:justify-center"
     >
-      <div className="grid items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      {/* Static mesh-gradient accent — sits behind the content (-z-10) and
+          fades into the dark page background. Purely decorative. */}
+      <div aria-hidden className="hero-mesh pointer-events-none absolute inset-0 -z-10" />
+      <div className="relative grid items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Left — intro */}
         <Reveal>
           <div className="mb-6 flex items-center gap-3">

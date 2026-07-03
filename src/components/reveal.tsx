@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion, type HTMLMotionProps } from "framer-motion";
+import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 
 type RevealTag = "div" | "section" | "article" | "li" | "ul" | "ol" | "span";
 
