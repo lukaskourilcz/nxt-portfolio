@@ -1,12 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useResponsiveMonths } from "@/hooks/useResponsiveMonths";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Day = { date: string; contributionCount: number; color: string };
 type Week = Day[];
 type MonthLabel = { index: number; label: string };
+
+// Gap between cells (px). Cell size itself is derived to fill the container.
+const GAP = 3;
+const MIN_CELL = 6;
+const MAX_CELL = 18;
 
 function getRangeStart(monthsBack: number): Date {
   const now = new Date();
@@ -25,6 +36,11 @@ function formatTooltip(day: Day): string {
 export default function GitHubGrid() {
   const [weeks, setWeeks] = useState<Week[]>([]);
   const monthsBack = useResponsiveMonths();
+
+  // Derive the cell size so the whole grid spans (barely fits) its container
+  // width, rather than sitting small and centered.
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [cell, setCell] = useState(12);
 
   useEffect(() => {
     async function loadData() {
@@ -46,6 +62,20 @@ export default function GitHubGrid() {
 
     loadData();
   }, [monthsBack]);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || !weeks.length) return;
+    const update = () => {
+      const n = Math.max(weeks.length, 1);
+      const raw = Math.floor((el.clientWidth - GAP * (n - 1)) / n);
+      setCell(Math.max(MIN_CELL, Math.min(MAX_CELL, raw)));
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [weeks.length]);
 
   const monthLabels: MonthLabel[] = [];
   if (weeks.length) {
@@ -69,55 +99,76 @@ export default function GitHubGrid() {
 
   if (!weeks.length) {
     return (
-      <p className="py-10 text-center font-mono text-sm text-zinc-500">
-        <span className="text-emerald-400">$</span> loading contributions…
-      </p>
+      <div ref={containerRef} className="w-full">
+        <p className="py-10 text-center font-mono text-sm text-zinc-500">
+          <span className="text-emerald-400">$</span> loading contributions…
+        </p>
+      </div>
     );
   }
 
   return (
-    <div className="mx-auto w-fit max-w-full">
-      <div className="mb-1 flex w-fit gap-[3px] text-[0.5rem] text-zinc-500">
-        {weeks.map((_, i) => {
-          const label = monthLabels.find((m) => m.index === i);
-          return (
-            <div key={i} className="w-2 text-center font-mono">
-              {label ? label.label : ""}
-            </div>
-          );
-        })}
-      </div>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={monthsBack}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.35, ease: "easeInOut" }}
-          className="flex w-fit gap-[3px]"
+    // Each cell needs 1s of hover before its tooltip appears; skipDelayDuration
+    // of 0 means moving to another dot always waits the full second again.
+    <TooltipProvider delayDuration={1000} skipDelayDuration={0}>
+      <div ref={containerRef} className="w-full">
+        <div
+          className="mb-1 flex text-[0.5rem] text-zinc-500"
+          style={{ gap: GAP }}
         >
-          {weeks.map((week, i) => (
-            <div key={i} className="flex flex-col gap-[3px]">
-              {week.map((day, j) => {
-                const isEmpty = day.contributionCount === 0;
-                return (
-                  <div
-                    key={j}
-                    title={formatTooltip(day)}
-                    className={`h-2 w-2 rounded-[2px] transition-all duration-200 ${
-                      isEmpty
-                        ? "opacity-40 hover:opacity-70"
-                        : "opacity-85 hover:opacity-100"
-                    }`}
-                    style={{ backgroundColor: day.color }}
-                  />
-                );
-              })}
-            </div>
-          ))}
-        </motion.div>
-      </AnimatePresence>
-    </div>
+          {weeks.map((_, i) => {
+            const label = monthLabels.find((m) => m.index === i);
+            return (
+              <div
+                key={i}
+                className="text-center font-mono"
+                style={{ width: cell }}
+              >
+                {label ? label.label : ""}
+              </div>
+            );
+          })}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={monthsBack}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="flex"
+            style={{ gap: GAP }}
+          >
+            {weeks.map((week, i) => (
+              <div key={i} className="flex flex-col" style={{ gap: GAP }}>
+                {week.map((day, j) => {
+                  const isEmpty = day.contributionCount === 0;
+                  return (
+                    <Tooltip key={j}>
+                      <TooltipTrigger asChild>
+                        <div
+                          className={`rounded-[2px] transition-all duration-200 ${
+                            isEmpty
+                              ? "opacity-40 hover:opacity-70"
+                              : "opacity-85 hover:opacity-100"
+                          }`}
+                          style={{
+                            width: cell,
+                            height: cell,
+                            backgroundColor: day.color,
+                          }}
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent>{formatTooltip(day)}</TooltipContent>
+                    </Tooltip>
+                  );
+                })}
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </TooltipProvider>
   );
 }
