@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import type { CSSProperties } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "motion/react";
 import {
   Github,
   Layers,
