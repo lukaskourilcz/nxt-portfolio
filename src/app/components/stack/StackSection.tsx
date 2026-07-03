@@ -178,7 +178,7 @@ const BRAND_COLOR: Record<string, string> = {
   Prisma: "#e5e7eb",
   Docker: "#2496ed",
   Netlify: "#00c7b7",
-  Vite: "#646cff",
+  Vite: "#ffd028",
   Postman: "#ff6c37",
   "Google Cloud": "#4285f4",
   Figma: "#f24e1e",
@@ -345,7 +345,7 @@ export default function StackSection() {
               <Github className="h-3.5 w-3.5" /> @{GITHUB_USERNAME}
             </span>
           </div>
-          <div className="my-6 origin-center scale-[1.3] opacity-30">
+          <div className="my-6 origin-center scale-[1.3]">
             <GitHubGrid />
           </div>
           <p className="mt-2 text-center font-mono text-xs text-zinc-600">

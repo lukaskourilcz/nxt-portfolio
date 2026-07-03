@@ -113,7 +113,7 @@ export default function GitHubGrid() {
     <TooltipProvider delayDuration={1000} skipDelayDuration={0}>
       <div ref={containerRef} className="w-full">
         <div
-          className="mb-1 flex text-[0.5rem] text-zinc-500"
+          className="mb-1 flex text-[0.5rem] text-zinc-500 opacity-30"
           style={{ gap: GAP }}
         >
           {weeks.map((_, i) => {
@@ -142,28 +142,23 @@ export default function GitHubGrid() {
           >
             {weeks.map((week, i) => (
               <div key={i} className="flex flex-col" style={{ gap: GAP }}>
-                {week.map((day, j) => {
-                  const isEmpty = day.contributionCount === 0;
-                  return (
-                    <Tooltip key={j}>
-                      <TooltipTrigger asChild>
-                        <div
-                          className={`rounded-[2px] transition-all duration-200 ${
-                            isEmpty
-                              ? "opacity-40 hover:opacity-70"
-                              : "opacity-85 hover:opacity-100"
-                          }`}
-                          style={{
-                            width: cell,
-                            height: cell,
-                            backgroundColor: day.color,
-                          }}
-                        />
-                      </TooltipTrigger>
-                      <TooltipContent>{formatTooltip(day)}</TooltipContent>
-                    </Tooltip>
-                  );
-                })}
+                {week.map((day, j) => (
+                  <Tooltip key={j}>
+                    <TooltipTrigger asChild>
+                      {/* The garden sits faint at 0.3; hovering a square eases it
+                          up to 0.8 over 300ms so it lifts rather than flicks. */}
+                      <div
+                        className="rounded-[2px] opacity-30 transition-opacity duration-300 ease-out hover:opacity-80"
+                        style={{
+                          width: cell,
+                          height: cell,
+                          backgroundColor: day.color,
+                        }}
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>{formatTooltip(day)}</TooltipContent>
+                  </Tooltip>
+                ))}
               </div>
             ))}
           </motion.div>
