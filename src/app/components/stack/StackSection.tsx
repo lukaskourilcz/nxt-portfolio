@@ -348,7 +348,11 @@ export default function StackSection() {
           <div className="my-6 origin-center scale-[1.3]">
             <GitHubGrid />
           </div>
-          <p className="mt-2 text-center font-mono text-xs text-zinc-600">
+          {/* Right-aligned under the garden's bottom-right corner. The garden is
+              scaled 1.3×, so this box is 130% of the container (matching the
+              garden's visual width) and centered, putting text-right exactly at
+              the garden's right edge. Same styling as the "$ git log" line. */}
+          <p className="relative left-1/2 mt-2 w-[130%] -translate-x-1/2 text-right font-mono text-xs text-zinc-500">
             wish I could show you the GitLab stats
           </p>
         </div>
