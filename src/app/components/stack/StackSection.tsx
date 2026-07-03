@@ -145,9 +145,54 @@ const STACK: StackItem[] = [
   { name: "LangChain", brand: "langchain", color: "#7fc8ff", size: "sm" },
 ];
 
-// A single accent for every icon's hover glow and tooltip, so the constellation
-// reads as designed rather than a random rainbow.
+// Fallback accent for anything without its own brand colour.
 const ACCENT = "#34d399";
+
+// Per-logo brand colour used for the hover border, glow, and name label so each
+// icon lights up in its own colour instead of a uniform green. Items that already
+// carry a `color` (the BrandIcon / lucide glyphs) reuse it; this map fills in the
+// devicon-based entries. Monochrome logos (Next, GitHub, Express, …) use a light
+// neutral so they read on the dark background.
+const BRAND_COLOR: Record<string, string> = {
+  JavaScript: "#f7df1e",
+  TypeScript: "#3178c6",
+  HTML5: "#e34f26",
+  CSS3: "#1572b6",
+  React: "#61dafb",
+  "Next.js": "#e5e7eb",
+  "Vue.js": "#42b883",
+  Astro: "#ff5d01",
+  TailwindCSS: "#38bdf8",
+  "shadcn/ui": "#e5e7eb",
+  MUI: "#007fff",
+  Bootstrap: "#7952b3",
+  "Framer Motion": "#ff0055",
+  Git: "#f05032",
+  GitHub: "#e5e7eb",
+  GitLab: "#fc6d26",
+  "Node.js": "#8cc84b",
+  "Express.js": "#e5e7eb",
+  PostgreSQL: "#4a90d9",
+  MySQL: "#4479a1",
+  MongoDB: "#47a248",
+  Prisma: "#e5e7eb",
+  Docker: "#2496ed",
+  Netlify: "#00c7b7",
+  Vite: "#646cff",
+  Postman: "#ff6c37",
+  "Google Cloud": "#4285f4",
+  Figma: "#f24e1e",
+  Mocha: "#a5744b",
+  Jest: "#c21325",
+  Vitest: "#99c93c",
+  Playwright: "#2ead33",
+};
+
+// Resolve the colour an icon lights up in: its own brand colour first, then the
+// devicon map, then the shared accent.
+function brandColor(tech: StackItem): string {
+  return tech.color ?? BRAND_COLOR[tech.name] ?? ACCENT;
+}
 
 // Per-icon values, derived once from fixed seeds so they match on server and client.
 
@@ -292,7 +337,7 @@ export default function StackSection() {
         {/* Opacity lives on the header + grid (0.55) rather than the whole
             wrapper, so the caption below can stay fully opaque. */}
         <div className="absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 sm:block">
-          <div className="mb-2 flex items-center justify-between opacity-55">
+          <div className="mb-2 flex items-center justify-between opacity-30">
             <p className="font-mono text-xs text-zinc-500">
               <span className="text-emerald-400">$</span> git log --graph
             </p>
@@ -300,7 +345,7 @@ export default function StackSection() {
               <Github className="h-3.5 w-3.5" /> @{GITHUB_USERNAME}
             </span>
           </div>
-          <div className="my-6 origin-center scale-[1.3] opacity-55">
+          <div className="my-6 origin-center scale-[1.3] opacity-30">
             <GitHubGrid />
           </div>
           <p className="mt-2 text-center font-mono text-xs text-zinc-600">
@@ -340,7 +385,7 @@ export default function StackSection() {
                 >
                   <IconBubble
                     tech={tech}
-                    color={ACCENT}
+                    color={brandColor(tech)}
                     hovered={isHovered}
                     px={Math.max(1, Math.round(ICON_SIZE_PX[tech.name] * scale))}
                   />
