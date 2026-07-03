@@ -138,18 +138,18 @@ function IconLink({
 // cropping. Title and description follow, and the tech tags get their own dark
 // footer container, which is what makes the card taller (the screenshot's ratio
 // is untouched). The only link is the external-link icon (top right of the
-// banner); the title isn't a link — the card just gets a hover lift and a title
-// colour shift on hover.
+// banner); the title isn't a link. On hover the only motion is a gentle zoom of
+// the screenshot — the card itself stays put (no lift, border, or shadow shift).
 function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
   const showImage = SCREENSHOTS_READY && proj.image;
   return (
     // Reveal (the motion element) owns the scroll-entrance animation — opacity
-    // and transform. The hover lift/border/shadow live on the inner card with
-    // their own scoped transition. Keeping them on separate elements avoids a
-    // CSS `transition-all` fighting Framer Motion's inline transform writes,
-    // which flashed the cards on scroll (notably on mobile Safari's compositor).
+    // and transform. The card has no hover animation of its own; only the inner
+    // screenshot zooms via group-hover, so there's no CSS transition on the card
+    // to fight Framer Motion's inline transform writes (which previously flashed
+    // the cards on scroll, notably on mobile Safari's compositor).
     <Reveal as="article" delay={delay} className="h-full">
-      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover">
+      <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card">
         <div className="relative aspect-[16/10] overflow-hidden bg-zinc-950">
           {showImage ? (
             <>
@@ -177,7 +177,7 @@ function ProjectCard({ proj, delay }: { proj: Project; delay: number }) {
         </div>
 
         <div className="flex flex-1 flex-col px-5 pt-4">
-          <h3 className="text-base font-semibold text-zinc-100 transition-colors group-hover:text-emerald-300">
+          <h3 className="text-base font-semibold text-zinc-100">
             {proj.title}
           </h3>
           <p className="mt-2 text-sm leading-relaxed text-zinc-400">
