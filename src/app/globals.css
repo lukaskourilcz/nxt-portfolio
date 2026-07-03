@@ -74,12 +74,14 @@ html {
      no runtime canvas — masked so it dissolves into the dark background. */
   .hero-mesh {
     background-image:
-      radial-gradient(at 18% 20%, oklch(0.55 0.14 162 / 0.18) 0px, transparent 55%),
-      radial-gradient(at 82% 16%, oklch(0.5 0.1 210 / 0.14) 0px, transparent 50%),
-      radial-gradient(at 72% 82%, oklch(0.45 0.12 165 / 0.13) 0px, transparent 55%),
-      radial-gradient(at 28% 88%, oklch(0.42 0.09 275 / 0.1) 0px, transparent 50%);
-    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 50%, transparent 100%);
-    mask-image: radial-gradient(ellipse at 50% 40%, black 50%, transparent 100%);
+      radial-gradient(60% 55% at 20% 18%, oklch(0.55 0.14 162 / 0.16), transparent 72%),
+      radial-gradient(55% 50% at 82% 12%, oklch(0.5 0.1 210 / 0.12), transparent 72%),
+      radial-gradient(52% 48% at 62% 38%, oklch(0.45 0.12 165 / 0.1), transparent 75%);
+    /* Fade the accent out vertically so it dissolves into the dark background
+       well before the hero's bottom edge — no visible seam or line. The lobes'
+       own soft falloff handles the top/side edges. */
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 28%, transparent 70%);
+    mask-image: linear-gradient(to bottom, black 0%, black 28%, transparent 70%);
   }
   /* Hide scrollbars (used by the animated terminal content) */
   .no-visible-scrollbar {
