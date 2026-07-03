@@ -289,7 +289,7 @@ export default function StackSection() {
         {/* Contribution graph backdrop, centered behind the constellation. The
             "garden" grid is scaled up 1.3× to read a bit larger behind the
             floating icons, while the labels stay normal-size and readable. */}
-        <div className="absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 sm:block">
+        <div className="absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 opacity-80 sm:block">
           <div className="mb-2 flex items-center justify-between">
             <p className="font-mono text-xs text-zinc-500">
               <span className="text-emerald-400">$</span> git log --graph
