@@ -15,8 +15,13 @@ export default function HeroSection() {
       className="relative mx-auto flex min-h-screen max-w-5xl flex-col justify-start px-6 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:justify-center"
     >
       {/* Static mesh-gradient accent — sits behind the content (-z-10) and
-          fades into the dark page background. Purely decorative. */}
-      <div aria-hidden className="hero-mesh pointer-events-none absolute inset-0 -z-10" />
+          fades into the dark page background. Purely decorative. Full-bleed:
+          the section is max-w-5xl and centered, so break out to the full
+          viewport width instead of being clamped to the content column. */}
+      <div
+        aria-hidden
+        className="hero-mesh pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 -z-10"
+      />
       <div className="relative grid items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         {/* Left — intro */}
         <Reveal>

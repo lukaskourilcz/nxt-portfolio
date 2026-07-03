@@ -14,8 +14,6 @@ import {
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
-import { Reveal } from "@/components/reveal";
-import { ExternalLink } from "@/components/external-link";
 import { BrandIcon } from "@/components/brand-icons";
 import GitHubGrid from "@/components/github-grid";
 import { useContainerScale } from "@/hooks/useContainerScale";
@@ -25,7 +23,7 @@ import {
   getRepulsionOffset,
 } from "@/lib/stack-layout";
 import { staggerDelay } from "@/lib/anim";
-import { GITHUB_URL, GITHUB_USERNAME } from "@/lib/site";
+import { GITHUB_USERNAME } from "@/lib/site";
 import type { IconComponent } from "@/lib/types";
 
 type StackSize = "lg" | "md" | "sm";
@@ -282,11 +280,32 @@ export default function StackSection() {
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
       {/* Scattered constellation with hover repulsion; same layout at every
-          breakpoint, scaled to fit. */}
+          breakpoint, scaled to fit. The GitHub contribution graph sits as a
+          backdrop behind the icons (z-0); icons float on top (z-1+). */}
       <div
         ref={containerRef}
         className="relative mx-auto aspect-square w-full max-w-3xl"
       >
+        {/* Contribution graph backdrop, centered behind the constellation. The
+            "garden" grid is scaled up 2.5× (full-bleed) to read large behind the
+            floating icons, while the labels stay normal-size and readable. */}
+        <div className="absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 sm:block">
+          <div className="mb-2 flex items-center justify-between">
+            <p className="font-mono text-xs text-zinc-500">
+              <span className="text-emerald-400">$</span> git log --graph
+            </p>
+            <span className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-600">
+              <Github className="h-3.5 w-3.5" /> @{GITHUB_USERNAME}
+            </span>
+          </div>
+          <div className="my-28 origin-center scale-[2.5]">
+            <GitHubGrid />
+          </div>
+          <p className="mt-2 text-center font-mono text-xs text-zinc-600">
+            wish I could show you the GitLab stats
+          </p>
+        </div>
+
         {positions.map(({ item: tech, x, y }, i) => {
           const isHovered = hovered === tech.name;
           const offset = getRepulsionOffset(tech.name, hovered, positionByName);
@@ -329,26 +348,6 @@ export default function StackSection() {
           );
         })}
       </div>
-
-      <Reveal delay={0.1} className="mt-16 hidden sm:block">
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-6 shadow-card">
-          <div className="mb-5 flex items-center justify-between">
-            <p className="font-mono text-xs text-zinc-400">
-              <span className="text-emerald-400">$</span> git log --graph
-            </p>
-            <ExternalLink
-              href={GITHUB_URL}
-              className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 transition-colors hover:text-emerald-400"
-            >
-              <Github className="h-3.5 w-3.5" /> @{GITHUB_USERNAME}
-            </ExternalLink>
-          </div>
-          <GitHubGrid />
-          <p className="mt-5 text-center font-mono text-xs text-zinc-500">
-            wish I could show you the GitLab stats
-          </p>
-        </div>
-      </Reveal>
     </Section>
   );
 }
