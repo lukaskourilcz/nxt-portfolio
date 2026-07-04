@@ -7,8 +7,32 @@ import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
 import { ResumeButton } from "@/components/resume-button";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
+import { CONTENT } from "@/lib/content";
+
+// Renders the intro string with **word** segments highlighted.
+function Intro({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
+        part.startsWith("**") && part.endsWith("**") ? (
+          <span key={i} className="font-medium text-zinc-100 light:text-zinc-900">
+            {part.slice(2, -2)}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
 
 export default function HeroSection() {
+  const hero = CONTENT.hero;
+  const commands = hero.terminal.map((line) => line.command);
+  const outputs = Object.fromEntries(
+    hero.terminal.map((line, i) => [i, line.outputs])
+  );
+
   return (
     <section
       id="top"
@@ -33,32 +57,29 @@ export default function HeroSection() {
                 width={56}
                 height={56}
                 priority
-                className="h-14 w-14 rounded-full border border-zinc-700 object-cover"
+                className="h-14 w-14 rounded-full border border-zinc-700 object-cover light:border-zinc-300"
               />
               <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-zinc-950 bg-emerald-500" />
+                <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-zinc-950 bg-emerald-500 light:border-white" />
               </span>
             </div>
-            <span className="font-mono text-xs text-zinc-400">
-              available for work · Prague, CZ
+            <span className="font-mono text-xs text-zinc-400 light:text-zinc-600">
+              {hero.availability}
             </span>
           </div>
 
-          <p className="mb-3 font-mono text-sm text-emerald-400">$ whoami</p>
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-6xl">
-            Lukas Kouril
-          </h1>
-          <p className="mt-4 text-lg font-medium text-zinc-300 sm:text-xl md:text-2xl">
-            Senior Frontend Engineer
+          <p className="mb-3 font-mono text-sm text-emerald-400 light:text-emerald-600">
+            {hero.eyebrow}
           </p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
-            I specialize in{" "}
-            <span className="font-medium text-zinc-100">TypeScript</span> and{" "}
-            <span className="font-medium text-zinc-100">React</span> — from
-            micro-frontends for online banking to AI tooling in production
-            teams. I care about readable code and frontends that still make
-            sense a year later.
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-100 light:text-zinc-900 sm:text-4xl md:text-5xl lg:text-6xl">
+            {hero.name}
+          </h1>
+          <p className="mt-4 text-lg font-medium text-zinc-300 light:text-zinc-700 sm:text-xl md:text-2xl">
+            {hero.title}
+          </p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 light:text-zinc-600">
+            <Intro text={hero.intro} />
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -74,14 +95,14 @@ export default function HeroSection() {
               <ExternalLink
                 href={GITHUB_URL}
                 aria-label="GitHub"
-                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200 light:hover:text-zinc-800"
               >
                 <Github className="h-5 w-5" />
               </ExternalLink>
               <ExternalLink
                 href={LINKEDIN_URL}
                 aria-label="LinkedIn"
-                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200 light:hover:text-zinc-800"
               >
                 <Linkedin className="h-5 w-5" />
               </ExternalLink>
@@ -96,18 +117,8 @@ export default function HeroSection() {
             className="px-0"
             typingSpeed={45}
             delayBetweenCommands={900}
-            commands={["cat about.txt", "ls ~/stack", "echo $STATUS"]}
-            outputs={{
-              0: [
-                "I build web apps with TypeScript, React,",
-                "Next.js and Node.js.",
-              ],
-              1: [
-                "typescript  react  next.js  node.js  postgresql",
-                "  tailwindcss  payload  docker  ...",
-              ],
-              2: ["available_for_work"],
-            }}
+            commands={commands}
+            outputs={outputs}
           />
         </Reveal>
       </div>

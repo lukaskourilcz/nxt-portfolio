@@ -64,13 +64,24 @@ const personJsonLd = {
   knowsAbout: ["TypeScript", "React", "Next.js", "Node.js"],
 };
 
+// Picks dark or light at random on every load (deliberately no persistence)
+// and applies it before first paint so there is no theme flash.
+const themeScript = `(function(){var t=Math.random()<0.5?"dark":"light";document.documentElement.classList.add(t);})();`;
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="font-sans bg-background text-foreground antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-zinc-900"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:font-mono focus:text-sm focus:text-zinc-900 light:focus:bg-zinc-900 light:focus:text-white"
         >
           Skip to content
         </a>

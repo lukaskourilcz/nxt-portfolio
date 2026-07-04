@@ -1,0 +1,404 @@
+{
+  "hero": {
+    "availability": "available for work · Prague, CZ",
+    "eyebrow": "$ whoami",
+    "name": "Lukas Kouril",
+    "title": "Senior Frontend Engineer",
+    "intro": "I specialize in **TypeScript** and **React**, from micro-frontends for online banking to AI tooling in production teams. I care about readable code and frontends that still make sense a year later.",
+    "terminal": [
+      {
+        "command": "cat about.txt",
+        "outputs": [
+          "I build web apps with TypeScript, React,",
+          "Next.js and Node.js."
+        ]
+      },
+      {
+        "command": "ls ~/stack",
+        "outputs": [
+          "typescript  react  next.js  node.js  postgresql",
+          "  tailwindcss  payload  docker  ..."
+        ]
+      },
+      {
+        "command": "echo $STATUS",
+        "outputs": [
+          "available_for_work"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "title": "devShark",
+      "description": "Developer quiz and learning app with topic paths, daily challenges, real-time multiplayer, and leaderboards. React and Supabase behind serverless functions.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Supabase",
+        "Realtime",
+        "Vercel"
+      ],
+      "vercel": "https://react-express-app-five.vercel.app",
+      "image": "/projects/devshark.png"
+    },
+    {
+      "title": "Personal Dashboard",
+      "description": "Life dashboard for subscriptions, habits, finances, Czech invoices, books, and a calendar, plus a natural-language quick-add built on Claude.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Supabase",
+        "Claude AI",
+        "Recharts"
+      ],
+      "vercel": "https://own-dashboard-tau.vercel.app",
+      "image": "/projects/personal-dashboard.png"
+    },
+    {
+      "title": "aifirst",
+      "description": "Daily, fully static bilingual (CS/EN) AI & tech magazine. A scheduled GitHub Actions job scrapes the day's sources and Claude writes each issue.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Claude API",
+        "GitHub Actions"
+      ],
+      "vercel": "https://aifirst-beryl.vercel.app/",
+      "image": "/projects/aifirst.png"
+    },
+    {
+      "title": "Czech Monopoly",
+      "description": "Real-time, browser-based Czech-themed Monopoly where 2–4 players buy Czech cities via a room code, with a trivia twist and CS/EN localization.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Payload CMS",
+        "Neon",
+        "Ably"
+      ],
+      "vercel": "https://czech-cities.vercel.app",
+      "image": "/projects/czech-cities.png"
+    },
+    {
+      "title": "Dont Wanna Know",
+      "description": "Enter a birth year, country, and city to get an instant, fully in-browser report on the era someone grew up in. No backend, no API calls.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "i18n",
+        "Vercel"
+      ],
+      "vercel": "https://dontwannaknow.vercel.app",
+      "image": "/projects/dontwannaknow.png"
+    },
+    {
+      "title": "AutobusyHodonín.cz",
+      "description": "Marketing site for a Czech bus and freight company covering its fleet, passenger routes, and cargo, tuned for SEO in Czech and English.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "i18n"
+      ],
+      "vercel": "https://autobusyhodonin.cz",
+      "image": "/projects/autobusy-hodonin.png"
+    },
+    {
+      "title": "Umyjeme fasádu",
+      "description": "Site for a Czech exterior-cleaning service: hot-water pressure washing of facades, roofs, and paving, with before/after sliders and a quote form.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "TailwindCSS"
+      ],
+      "vercel": "https://umyjemefasadu.vercel.app/",
+      "image": "/projects/umyjeme-fasadu.png"
+    },
+    {
+      "title": "Eurowafers",
+      "description": "Web presentation for a Czech spa-wafer maker, covering its history, products, and distribution.",
+      "tech": [
+        "Astro",
+        "TypeScript",
+        "TailwindCSS",
+        "Vercel"
+      ],
+      "vercel": "https://eurowafers.vercel.app",
+      "image": "/projects/eurowafers.png"
+    },
+    {
+      "title": "Take a Break",
+      "description": "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "Turborepo"
+      ],
+      "image": "/projects/takeabreak.png",
+      "note": "Unfortunately I don't have a photo of the app anymore, but look at that beautiful team!"
+    },
+    {
+      "title": "beKind Web App",
+      "description": "Company rebrand and web app on Next.js, backed by PostgreSQL and Prisma.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Prisma",
+        "PostgreSQL"
+      ],
+      "image": "/projects/bekind.png"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Web Integrator",
+      "logo": "/logos/webintegrator_logo.svg",
+      "role": "Senior Frontend Engineer",
+      "period": "Apr 2026 – Present",
+      "location": "Prague, Czech Republic",
+      "responsibilities": [
+        "First AI-focused engineer on the team: brought AI tooling into the workflow and set the conventions for how we use it",
+        "Lead frontend work in TypeScript, React and Next.js, including code quality and cross-browser behavior",
+        "Maintain coding standards and client guidelines around accessibility and web standards",
+        "Write technical specs from designs and prepare graphic assets for the build",
+        "Model structured content in Payload CMS and improve UX details across client sites"
+      ],
+      "tags": [
+        "AI tooling",
+        "TypeScript",
+        "Next.js",
+        "React",
+        "Payload CMS"
+      ]
+    },
+    {
+      "company": "EmbedIT",
+      "logo": "/logos/embedit_logo.png",
+      "role": "Senior Fullstack Developer",
+      "period": "Oct 2025 – Mar 2026",
+      "location": "Prague, Czech Republic",
+      "responsibilities": [
+        "Led the modernization of an online banking platform, moving legacy systems to a micro-frontend architecture",
+        "Built the Backend-for-Frontend (BFF) layer: controllers, mappers, and service orchestration",
+        "Designed API contracts and kept integrations stable across several downstream services",
+        "Covered the code with unit, integration, and E2E tests, and met WCAG accessibility requirements",
+        "Sped up CI/CD pipelines and tightened code review standards"
+      ],
+      "tags": [
+        "TypeScript",
+        "React",
+        "Express.js",
+        "StyleX",
+        "Node.js"
+      ]
+    },
+    {
+      "company": "Ersilia",
+      "logo": "/logos/ersilia_logo.png",
+      "role": "Fullstack Developer",
+      "period": "May 2025 – Sep 2025",
+      "location": "Barcelona, Spain",
+      "responsibilities": [
+        "Built a full-stack app in Next.js and TypeScript for managing structured ML model metadata",
+        "Designed the database schema and the backend behind it",
+        "Built an AI workflow on the Vercel AI SDK that analyzes scientific PDFs with an LLM",
+        "Automated metadata validation and repo syncing with the GitHub API and Actions",
+        "Worked directly with the research team on an open-science codebase"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Vercel AI SDK",
+        "PostgreSQL",
+        "Node.js"
+      ]
+    },
+    {
+      "company": "beKind",
+      "logo": "/logos/bekind_logo.png",
+      "role": "Frontend Developer",
+      "period": "Nov 2024 – Jun 2025",
+      "location": "Barcelona, Spain",
+      "responsibilities": [
+        "Built the site in Next.js, tuned for performance and SEO",
+        "Helped shape the UX/UI around clear, simple navigation",
+        "Worked with the team to take the rebrand from design to launch"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Tailwind",
+        "PostgreSQL",
+        "Node.js"
+      ]
+    },
+    {
+      "company": "Autodoprava Kopeček",
+      "logo": "/logos/autodopravakopecek_logo.png",
+      "role": "Frontend Engineer",
+      "period": "Jan 2025 – Feb 2025",
+      "location": "Brno, Czech Republic",
+      "responsibilities": [
+        "Solo project: took the client's brief from concept and design through testing and release",
+        "Built the site in Next.js and shadcn/ui, mobile-first and heavy on SEO",
+        "Designed the customer flow around quote requests and conversions"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "SEO",
+        "UX/UI",
+        "i18n",
+        "shadcn/ui"
+      ]
+    },
+    {
+      "company": "Take a Break",
+      "logo": "/logos/takeabreak_logo.svg",
+      "role": "Full Stack Developer",
+      "period": "Apr 2024 – Oct 2024",
+      "location": "Barcelona, Spain",
+      "responsibilities": [
+        "Built a full-stack B2B app for booking meditation sessions in Next.js and TypeScript",
+        "Assembled the UI from reusable React, TailwindCSS, and shadcn/ui components",
+        "Tuned PostgreSQL queries through Prisma",
+        "Integrated Stripe and third-party APIs for payments, auth, and real-time updates",
+        "Deployed on Vercel with CI for preview and production builds"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Tailwind",
+        "PostgreSQL",
+        "Prisma"
+      ]
+    },
+    {
+      "company": "Controlant",
+      "logo": "/logos/controlant_logo.png",
+      "role": "Technical Analyst",
+      "period": "Nov 2021 – Apr 2024",
+      "location": "Reykjavík, Iceland",
+      "responsibilities": [
+        "Monitored live telemetry from cold-chain IoT trackers on pharmaceutical shipments and triaged critical temperature excursions",
+        "Ran root-cause analysis on shipment and sensor data and turned findings into compliant resolutions for global clients",
+        "Automated recurring parts of data processing and client reporting",
+        "Wrote audit reports and quality documentation, and presented findings to senior management"
+      ],
+      "tags": [
+        "Data Analysis",
+        "IoT Telemetry",
+        "Root-Cause Analysis",
+        "Automation"
+      ]
+    },
+    {
+      "company": "Entain Group",
+      "logo": "/logos/entain_logo.png",
+      "role": "User Protection Expert",
+      "period": "Jan 2020 – Sep 2021",
+      "location": "Gibraltar",
+      "responsibilities": [
+        "Detected fraud and money-laundering patterns in betting and transaction data using dedicated analysis tools",
+        "Ran investigations on flagged accounts and handled sensitive user data under GDPR",
+        "Kept detection processes compliant with EU and local gaming regulations",
+        "Mentored junior analysts on compliance and risk"
+      ],
+      "tags": [
+        "Fraud Detection",
+        "AML/KYC",
+        "Data Analytics",
+        "GDPR"
+      ]
+    },
+    {
+      "company": "Kiwi.com",
+      "logo": "/logos/kiwi_logo.png",
+      "role": "Customer Relations Advisor",
+      "period": "Dec 2015 – Nov 2019",
+      "location": "Brno, Czech Republic",
+      "responsibilities": [
+        "Resolved complex booking issues across multiple airline and CRM systems",
+        "Reworked support workflows with the team to cut resolution times",
+        "Supported KAYAK operations and B2B partners with data-backed resolutions",
+        "Trained new hires on systems, policies, and support processes"
+      ],
+      "tags": [
+        "CRM Systems",
+        "Workflow Optimization",
+        "B2B Support"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "name": "arol.dev",
+      "field": "Computer Software Engineering",
+      "period": "Jul 2024 – Dec 2024",
+      "url": "https://arol.dev",
+      "description": "Intensive software engineering academy in Barcelona focused on full-stack web development. I worked mainly with JavaScript, TypeScript, React, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, Prisma, and MongoDB, alongside data structures, algorithms, and tools like Git, Docker, Vercel, and Figma. Most of the learning came from building actual projects, which is also where I got hooked on software engineering.",
+      "skills": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "photos": [
+        {
+          "src": "/education/arol-office.jpg",
+          "alt": "The arol.dev office in Barcelona"
+        },
+        {
+          "src": "/education/arol-teamwork.jpg",
+          "alt": "Students working together at arol.dev"
+        },
+        {
+          "src": "/education/arol-rooftop.jpg",
+          "alt": "The arol.dev cohort above Barceloneta beach"
+        }
+      ]
+    },
+    {
+      "name": "Reykjavík Academy of Web Development",
+      "field": "Web Development",
+      "period": "Aug 2022 – Dec 2022",
+      "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
+      "description": "Web development bootcamp where I built my foundation in HTML, CSS, and JavaScript. Everything centered on building responsive, interactive web apps.",
+      "skills": [
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Vue.js",
+        "Responsive Design",
+        "REST APIs"
+      ],
+      "photos": [
+        {
+          "src": "/education/reykjavik-school.jpg",
+          "alt": "The Tækniskólinn building in Reykjavík"
+        },
+        {
+          "src": "/education/reykjavik-academy.jpg",
+          "alt": "Working through a UX flow at the Reykjavík academy"
+        },
+        {
+          "src": "/education/reykjavik-students.jpg",
+          "alt": "Students at Tækniskólinn between classes"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "prompt": "$ ./say-hello.sh",
+    "blurb": "Hiring, or have a project in mind? Drop me a line and I'll get back to you."
+  }
+}

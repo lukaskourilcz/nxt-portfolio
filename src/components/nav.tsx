@@ -6,6 +6,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Menu, X, FileText } from "lucide-react";
 import { ResumeButton } from "@/components/resume-button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { useScrolled } from "@/hooks/useScrolled";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useElementOnScreen } from "@/hooks/useElementOnScreen";
@@ -49,7 +50,7 @@ export function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md"
+          ? "border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md light:border-zinc-200/80 light:bg-white/80"
           : "border-b border-transparent"
       }`}
     >
@@ -58,7 +59,7 @@ export function Nav() {
             the 5xl container + 2×50px; below that they'd clip off-screen. */}
         <a
           href={EMAIL_HREF}
-          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-white sm:text-sm min-[1130px]:-ml-[50px]"
+          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-white light:text-zinc-900 light:hover:text-black sm:text-sm min-[1130px]:-ml-[50px]"
         >
           <span className="relative block h-7 w-7 shrink-0">
             <motion.span
@@ -70,7 +71,7 @@ export function Nav() {
                 rotate: reduce ? 0 : showPhoto ? -90 : 0,
               }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900"
+              className="absolute inset-0 flex items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900 light:bg-zinc-900 light:text-white"
             >
               LK
             </motion.span>
@@ -108,12 +109,14 @@ export function Nav() {
               }
               className="group whitespace-nowrap font-mono text-sm transition-colors"
             >
-              <span className="text-emerald-400">{section.index}.</span>{" "}
+              <span className="text-emerald-400 light:text-emerald-600">
+                {section.index}.
+              </span>{" "}
               <span
                 className={
                   activeSection === section.id
-                    ? "text-zinc-100"
-                    : "text-zinc-500 group-hover:text-zinc-200"
+                    ? "text-zinc-100 light:text-zinc-900"
+                    : "text-zinc-500 group-hover:text-zinc-200 light:group-hover:text-zinc-700"
                 }
               >
                 {section.label}
@@ -122,16 +125,14 @@ export function Nav() {
           ))}
         </div>
 
-        <div className="col-start-3 flex shrink-0 items-center justify-self-end gap-2">
-          <ResumeButton
-            size="sm"
-            className="hidden md:inline-flex min-[1130px]:-mr-[50px]"
-          >
+        <div className="col-start-3 flex shrink-0 items-center justify-self-end gap-2 min-[1130px]:-mr-[50px]">
+          <ThemeToggle />
+          <ResumeButton size="sm" className="hidden md:inline-flex">
             <FileText className="h-3.5 w-3.5" /> resume
           </ResumeButton>
 
           <button
-            className="text-zinc-300 md:hidden"
+            className="text-zinc-300 light:text-zinc-600 md:hidden"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
@@ -150,7 +151,7 @@ export function Nav() {
             animate={{ height: "auto", opacity: 1 }}
             exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="overflow-hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden"
+            className="overflow-hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md light:border-zinc-200 light:bg-white/95 md:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
               {SECTIONS.map((section) => (
@@ -163,11 +164,13 @@ export function Nav() {
                   }
                   className={`py-2 font-mono text-sm ${
                     activeSection === section.id
-                      ? "text-zinc-100"
-                      : "text-zinc-400"
+                      ? "text-zinc-100 light:text-zinc-900"
+                      : "text-zinc-400 light:text-zinc-600"
                   }`}
                 >
-                  <span className="text-emerald-400">{section.index}.</span>{" "}
+                  <span className="text-emerald-400 light:text-emerald-600">
+                    {section.index}.
+                  </span>{" "}
                   {section.label}
                 </Link>
               ))}

@@ -20,7 +20,7 @@ export function ArrowLink({
     <ExternalLink
       href={href}
       className={cn(
-        "inline-flex items-center gap-1 transition-colors hover:text-white",
+        "inline-flex items-center gap-1 transition-colors hover:text-white light:hover:text-black",
         className
       )}
     >
