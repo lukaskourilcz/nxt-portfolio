@@ -3,17 +3,16 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-// CTA button styles: "solid" (primary) and "outline" (secondary), both turn
-// emerald on hover. Sizes: "md" for page CTAs, "sm" for the navbar résumé.
+// CTA button styles: "solid" (primary) and "outline" (secondary), with quiet
+// brightness-step hovers. Sizes: "md" for page CTAs, "sm" for the navbar résumé.
 const buttonVariants = cva(
   "inline-flex items-center gap-2 rounded-md transition-colors",
   {
     variants: {
       variant: {
-        solid:
-          "bg-zinc-100 text-zinc-900 hover:bg-emerald-400 hover:text-zinc-900",
+        solid: "bg-zinc-100 text-zinc-900 hover:bg-white",
         outline:
-          "border border-zinc-700 text-zinc-300 hover:border-emerald-500 hover:text-emerald-400",
+          "border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100",
       },
       size: {
         md: "px-5 py-2.5 text-sm font-medium",

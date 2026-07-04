@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Menu, X, FileText } from "lucide-react";
 import { ResumeButton } from "@/components/resume-button";
 import { useScrolled } from "@/hooks/useScrolled";
@@ -36,6 +36,15 @@ export function Nav() {
   });
   const showPhoto = !heroAvatarOnScreen;
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -45,9 +54,11 @@ export function Nav() {
       }`}
     >
       <nav className="mx-auto grid max-w-5xl grid-cols-[minmax(0,auto)_1fr_auto] items-center px-6 py-4">
+        {/* The outward -ml/-mr offsets only fit once the viewport is wider than
+            the 5xl container + 2×50px; below that they'd clip off-screen. */}
         <a
           href={EMAIL_HREF}
-          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-emerald-400 sm:text-sm md:-ml-[50px]"
+          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-white sm:text-sm min-[1130px]:-ml-[50px]"
         >
           <span className="relative block h-7 w-7 shrink-0">
             <motion.span
@@ -59,7 +70,7 @@ export function Nav() {
                 rotate: reduce ? 0 : showPhoto ? -90 : 0,
               }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900 transition-colors group-hover:bg-emerald-500 group-hover:text-white"
+              className="absolute inset-0 flex items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900"
             >
               LK
             </motion.span>
@@ -81,10 +92,6 @@ export function Nav() {
                 height={28}
                 className="h-7 w-7 rounded-md object-cover"
               />
-              <span className="absolute -bottom-0.5 -right-0.5 flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full border border-zinc-950 bg-emerald-500" />
-              </span>
             </motion.span>
           </span>
           <span className="truncate">{EMAIL}</span>
@@ -96,7 +103,9 @@ export function Nav() {
             <Link
               key={section.id}
               href={`#${section.id}`}
-              aria-current={activeSection === section.id ? "true" : undefined}
+              aria-current={
+                activeSection === section.id ? "location" : undefined
+              }
               className="group whitespace-nowrap font-mono text-sm transition-colors"
             >
               <span className="text-emerald-400">{section.index}.</span>{" "}
@@ -114,7 +123,10 @@ export function Nav() {
         </div>
 
         <div className="col-start-3 flex shrink-0 items-center justify-self-end gap-2">
-          <ResumeButton size="sm" className="hidden md:inline-flex md:-mr-[50px]">
+          <ResumeButton
+            size="sm"
+            className="hidden md:inline-flex min-[1130px]:-mr-[50px]"
+          >
             <FileText className="h-3.5 w-3.5" /> resume
           </ResumeButton>
 
@@ -122,32 +134,50 @@ export function Nav() {
             className="text-zinc-300 md:hidden"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden">
-          <div className="flex flex-col gap-1 px-6 py-4">
-            {SECTIONS.map((section) => (
-              <Link
-                key={section.id}
-                href={`#${section.id}`}
-                onClick={() => setMenuOpen(false)}
-                className="py-2 font-mono text-sm text-zinc-400"
-              >
-                <span className="text-emerald-400">{section.index}.</span>{" "}
-                {section.label}
-              </Link>
-            ))}
-            <ResumeButton size="sm" className="mt-2 w-fit">
-              <FileText className="h-3.5 w-3.5" /> resume
-            </ResumeButton>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-menu"
+            initial={reduce ? { opacity: 1 } : { height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="overflow-hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden"
+          >
+            <div className="flex flex-col gap-1 px-6 py-4">
+              {SECTIONS.map((section) => (
+                <Link
+                  key={section.id}
+                  href={`#${section.id}`}
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={
+                    activeSection === section.id ? "location" : undefined
+                  }
+                  className={`py-2 font-mono text-sm ${
+                    activeSection === section.id
+                      ? "text-zinc-100"
+                      : "text-zinc-400"
+                  }`}
+                >
+                  <span className="text-emerald-400">{section.index}.</span>{" "}
+                  {section.label}
+                </Link>
+              ))}
+              <ResumeButton size="sm" className="mt-2 w-fit">
+                <FileText className="h-3.5 w-3.5" /> resume
+              </ResumeButton>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

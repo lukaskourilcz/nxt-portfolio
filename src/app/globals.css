@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "devicon/devicon.min.css";
 
 html {
   scroll-behavior: smooth;
@@ -107,7 +106,7 @@ html {
   border: 3px solid var(--background);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--ring);
+  background: oklch(0.55 0.01 264);
 }
 
 @media (prefers-reduced-motion: reduce) {

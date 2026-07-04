@@ -12,7 +12,7 @@ export default function HeroSection() {
   return (
     <section
       id="top"
-      className="relative mx-auto flex min-h-screen max-w-5xl flex-col justify-start px-6 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:justify-center"
+      className="relative mx-auto flex max-w-5xl flex-col px-6 pt-24 pb-12 sm:pt-28 sm:pb-16 lg:min-h-[100svh] lg:justify-center"
     >
       {/* Static mesh-gradient accent — sits behind the content (-z-10) and
           fades into the dark page background. Purely decorative. Full-bleed:
@@ -22,7 +22,7 @@ export default function HeroSection() {
         aria-hidden
         className="hero-mesh pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2 -z-10"
       />
-      <div className="relative grid items-center gap-8 sm:gap-10 md:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <div className="relative grid items-center gap-8 sm:gap-10 md:grid-cols-[1.05fr_0.95fr] md:gap-12">
         {/* Left — intro */}
         <Reveal>
           <div className="mb-6 flex items-center gap-3">
@@ -57,8 +57,8 @@ export default function HeroSection() {
             <span className="font-medium text-zinc-100">TypeScript</span> and{" "}
             <span className="font-medium text-zinc-100">React</span> — from
             micro-frontends for online banking to AI tooling in production
-            teams. I care about readable code and frontends that stay
-            maintainable as they grow.
+            teams. I care about readable code and frontends that still make
+            sense a year later.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -74,14 +74,14 @@ export default function HeroSection() {
               <ExternalLink
                 href={GITHUB_URL}
                 aria-label="GitHub"
-                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-emerald-400"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200"
               >
                 <Github className="h-5 w-5" />
               </ExternalLink>
               <ExternalLink
                 href={LINKEDIN_URL}
                 aria-label="LinkedIn"
-                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-emerald-400"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200"
               >
                 <Linkedin className="h-5 w-5" />
               </ExternalLink>
@@ -96,30 +96,20 @@ export default function HeroSection() {
             className="px-0"
             typingSpeed={45}
             delayBetweenCommands={900}
-            commands={["whoami", "cat about.txt", "ls ~/stack", "echo $STATUS"]}
+            commands={["cat about.txt", "ls ~/stack", "echo $STATUS"]}
             outputs={{
-              0: ["Lukas Kouril — Senior Frontend Engineer · Prague, CZ"],
-              1: [
+              0: [
                 "I build web apps with TypeScript, React,",
                 "Next.js and Node.js.",
               ],
-              2: [
+              1: [
                 "typescript  react  next.js  node.js  postgresql",
                 "  tailwindcss  payload  docker  ...",
               ],
-              3: ["available for work ✅"],
+              2: ["available_for_work"],
             }}
           />
         </Reveal>
-      </div>
-
-      <div className="mt-16 hidden justify-center md:flex">
-        <Link
-          href="#stack"
-          className="font-mono text-xs text-zinc-500 transition-colors hover:text-emerald-400"
-        >
-          scroll ↓
-        </Link>
       </div>
     </section>
   );

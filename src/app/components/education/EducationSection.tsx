@@ -1,10 +1,6 @@
-import { GraduationCap } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
-import { Reveal } from "@/components/reveal";
 import { ArrowLink } from "@/components/arrow-link";
-import { Tag } from "@/components/tag";
-import { staggerDelay } from "@/lib/anim";
 
 type Academy = {
   name: string;
@@ -13,14 +9,6 @@ type Academy = {
   url?: string;
   description: string;
   skills: string[];
-};
-
-type Educator = {
-  mark: string;
-  name: string;
-  url?: string;
-  blurb: string;
-  tags: string[];
 };
 
 const ACADEMIES: Academy[] = [
@@ -41,7 +29,6 @@ const ACADEMIES: Academy[] = [
       "Prisma ORM",
       "REST APIs",
       "Docker",
-      "Full-Stack Development",
     ],
   },
   {
@@ -50,7 +37,7 @@ const ACADEMIES: Academy[] = [
     period: "Aug 2022 – Dec 2022",
     url: "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
     description:
-      "Web development bootcamp where I built my foundation in HTML, CSS, and JavaScript. The course centered on responsive, interactive web apps and the fundamentals behind them.",
+      "Web development bootcamp where I built my foundation in HTML, CSS, and JavaScript. Everything centered on building responsive, interactive web apps.",
     skills: [
       "JavaScript",
       "TypeScript",
@@ -59,67 +46,7 @@ const ACADEMIES: Academy[] = [
       "Vue.js",
       "Responsive Design",
       "REST APIs",
-      "Front-End Development",
     ],
-  },
-];
-
-const EDUCATORS: Educator[] = [
-  {
-    mark: "JR",
-    name: "The Joy of React",
-    url: "https://www.joyofreact.com",
-    blurb:
-      "Josh W. Comeau's interactive React course covering fundamentals, hooks, state, component design, and full-stack Next.js.",
-    tags: ["React", "Next.js"],
-  },
-  {
-    mark: "CS",
-    name: "Colt Steele",
-    url: "https://www.coltsteele.com",
-    blurb:
-      "Developer and bootcamp instructor behind Udemy's best-selling Web Developer Bootcamp; former lead instructor at Galvanize.",
-    tags: ["Full-Stack", "JavaScript"],
-  },
-  {
-    mark: "JS",
-    name: "Jonas Schmedtmann",
-    url: "https://jonas.io",
-    blurb:
-      "Web developer, designer, and teacher of the Complete JavaScript and Ultimate React courses, with over 2M students.",
-    tags: ["JavaScript", "React", "CSS"],
-  },
-  {
-    mark: "MP",
-    name: "Matt Pocock",
-    url: "https://www.totaltypescript.com",
-    blurb:
-      "Full-time TypeScript educator and creator of Total TypeScript; former XState core team and Vercel developer advocate.",
-    tags: ["TypeScript"],
-  },
-  {
-    mark: "RQ",
-    name: "Rafeh Qazi",
-    url: "https://www.cleverprogrammer.com",
-    blurb:
-      "Founder of CleverProgrammer, teaching project-based full-stack development to over a million aspiring developers.",
-    tags: ["Full-Stack", "React"],
-  },
-  {
-    mark: "ND",
-    name: "Naz Dumanskyy",
-    url: "https://www.linkedin.com/in/nazariydumanskyy",
-    blurb:
-      "Full-stack developer and educator who helped build CleverProgrammer; now co-founder of the AI tool Poppy AI.",
-    tags: ["Full-Stack", "JavaScript"],
-  },
-  {
-    mark: "CP",
-    name: "CleverProgrammer",
-    url: "https://www.cleverprogrammer.com",
-    blurb:
-      "Project-based coding community that helps people build full-stack apps and land developer jobs.",
-    tags: ["Full-Stack"],
   },
 ];
 
@@ -128,99 +55,29 @@ export default function EducationSection() {
     <Section id="education">
       <SectionHeading index="04" command="education" title="Education" />
 
-      <div className="space-y-5">
-        {ACADEMIES.map((a, i) => (
-          <Reveal
-            as="article"
+      <div className="border-t border-zinc-800">
+        {ACADEMIES.map((a) => (
+          <article
             key={a.name}
-            delay={staggerDelay(i, 0.08)}
-            className="rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-card sm:p-6"
+            className="grid gap-x-8 gap-y-4 border-b border-zinc-800 py-8 sm:grid-cols-[150px_1fr]"
           >
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
-                  <GraduationCap className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="font-semibold text-zinc-100">
-                    {a.url ? (
-                      <ArrowLink href={a.url}>{a.name}</ArrowLink>
-                    ) : (
-                      a.name
-                    )}
-                  </h3>
-                  <p className="text-sm text-zinc-400">{a.field}</p>
-                </div>
-              </div>
-              <span className="font-mono text-xs text-zinc-500 sm:pt-1 sm:text-right">
-                {a.period}
-              </span>
-            </div>
-
-            <p className="mt-4 text-sm leading-relaxed text-zinc-400">
-              {a.description}
+            <p className="font-mono text-xs leading-relaxed text-zinc-400">
+              {a.period}
             </p>
 
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {a.skills.map((skill) => (
-                <Tag key={skill} className="text-[0.65rem]">
-                  {skill}
-                </Tag>
-              ))}
-            </div>
-          </Reveal>
-        ))}
-      </div>
-
-      <Reveal className="mb-6 mt-14">
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
-          <span className="text-emerald-500">{"//"}</span> completed courses &amp;
-          favorite mentors
-        </p>
-      </Reveal>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {EDUCATORS.map((e, i) => (
-          // Reveal (motion) runs only the entrance; the hover lift/border/shadow
-          // live on the inner card with their own scoped transition, so CSS
-          // `transition-all` never fights Framer Motion's transform writes (the
-          // flash the project cards had).
-          <Reveal
-            as="article"
-            key={e.name}
-            delay={staggerDelay(i, 0.05)}
-            className="h-full"
-          >
-            <div className="group flex h-full flex-col rounded-xl border border-zinc-800 bg-zinc-900 p-5 shadow-card transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-card-hover">
-              <div className="mb-3 flex items-center gap-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 font-mono text-xs font-semibold text-emerald-300">
-                  {e.mark}
-                </span>
-                <h3 className="font-semibold text-zinc-100">
-                  {e.url ? (
-                    <ArrowLink
-                      href={e.url}
-                      arrowClassName="opacity-0 transition-opacity group-hover:opacity-100"
-                    >
-                      {e.name}
-                    </ArrowLink>
-                  ) : (
-                    e.name
-                  )}
-                </h3>
-              </div>
-              <p className="flex-1 text-sm leading-relaxed text-zinc-400">
-                {e.blurb}
+            <div>
+              <h3 className="font-semibold text-zinc-100">
+                {a.url ? <ArrowLink href={a.url}>{a.name}</ArrowLink> : a.name}
+              </h3>
+              <p className="text-sm text-zinc-400">{a.field}</p>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-400">
+                {a.description}
               </p>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {e.tags.map((tag) => (
-                  <Tag key={tag} variant="accent">
-                    {tag}
-                  </Tag>
-                ))}
-              </div>
+              <p className="mt-3 font-mono text-xs text-zinc-500">
+                {a.skills.join(" · ")}
+              </p>
             </div>
-          </Reveal>
+          </article>
         ))}
       </div>
     </Section>

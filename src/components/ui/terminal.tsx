@@ -94,8 +94,8 @@ const tokenColors: Record<TokenType, string> = {
   operator: "text-red-400",
   path: "text-cyan-300",
   variable: "text-pink-400",
-  comment: "text-neutral-500",
-  default: "text-neutral-300",
+  comment: "text-zinc-500",
+  default: "text-zinc-300",
 };
 
 function SyntaxHighlightedText({ text }: { text: string }) {
@@ -313,11 +313,11 @@ export function Terminal({
   }, [lines, phase]);
 
   const prompt = (
-    <span className="text-neutral-500">
+    <span className="text-zinc-500">
       <span className="text-sky-500">{username}</span>
       <span className="text-emerald-600">:</span>
       <span className="text-sky-400">~</span>
-      <span className="text-neutral-500">$</span>{" "}
+      <span className="text-zinc-500">$</span>{" "}
     </span>
   );
 
@@ -328,9 +328,9 @@ export function Terminal({
     >
       <motion.div
         animate={shakeControls}
-        className="overflow-hidden rounded-[10px] border border-neutral-800 bg-neutral-900/90 shadow-2xl backdrop-blur-sm"
+        className="overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/90 shadow-2xl backdrop-blur-sm"
       >
-        <div className="flex items-center gap-2 bg-neutral-800/90 px-4 py-3">
+        <div className="flex items-center gap-2 bg-zinc-800/90 px-4 py-3">
           <div className="group flex items-center gap-1.5">
             <TrafficLight
               color="bg-red-500"
@@ -352,7 +352,7 @@ export function Terminal({
             />
           </div>
           <div className="flex-1 text-center">
-            <span className="truncate text-xs text-neutral-400">
+            <span className="truncate text-xs text-zinc-400">
               {username} — bash
             </span>
           </div>
@@ -371,7 +371,7 @@ export function Terminal({
                   <SyntaxHighlightedText text={line.content} />
                 </span>
               ) : (
-                <span className="text-neutral-400">{line.content}</span>
+                <span className="text-zinc-400">{line.content}</span>
               )}
             </div>
           ))}
@@ -380,7 +380,7 @@ export function Terminal({
             <div className="leading-relaxed whitespace-pre-wrap">
               {prompt}
               <SyntaxHighlightedText text={currentText} />
-              <span className="ml-0.5 inline-block h-4 w-2 bg-neutral-300 align-middle" />
+              <span className="ml-0.5 inline-block h-4 w-2 bg-zinc-300 align-middle" />
             </div>
           )}
 
@@ -391,7 +391,7 @@ export function Terminal({
               {prompt}
               <span
                 className={cn(
-                  "inline-block h-4 w-2 bg-neutral-300 align-middle transition-opacity duration-100",
+                  "inline-block h-4 w-2 bg-zinc-300 align-middle transition-opacity duration-100",
                   !cursorVisible && "opacity-0"
                 )}
               />

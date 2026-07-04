@@ -2,20 +2,19 @@
 
 import { useState, useEffect, useMemo } from "react";
 import type { CSSProperties } from "react";
+import Image from "next/image";
+import type { StaticImageData } from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import {
-  Github,
   Layers,
   ShieldCheck,
   KeyRound,
-  Zap,
   RadioTower,
   ArrowLeftRight,
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { BrandIcon } from "@/components/brand-icons";
-import GitHubGrid from "@/components/github-grid";
 import { useContainerScale } from "@/hooks/useContainerScale";
 import {
   createSeededRandom,
@@ -23,17 +22,69 @@ import {
   getRepulsionOffset,
 } from "@/lib/stack-layout";
 import { staggerDelay } from "@/lib/anim";
-import { GITHUB_USERNAME } from "@/lib/site";
 import type { IconComponent } from "@/lib/types";
 
+// Devicon SVGs as static imports — bundles only the ~30 logos actually used
+// instead of shipping the whole devicon icon-font CSS.
+import javascriptIcon from "devicon/icons/javascript/javascript-original.svg";
+import typescriptIcon from "devicon/icons/typescript/typescript-original.svg";
+import html5Icon from "devicon/icons/html5/html5-original.svg";
+import css3Icon from "devicon/icons/css3/css3-original.svg";
+import reactIcon from "devicon/icons/react/react-original.svg";
+import nextjsIcon from "devicon/icons/nextjs/nextjs-plain.svg";
+import vuejsIcon from "devicon/icons/vuejs/vuejs-original.svg";
+import astroIcon from "devicon/icons/astro/astro-plain.svg";
+import tailwindcssIcon from "devicon/icons/tailwindcss/tailwindcss-original.svg";
+import materialuiIcon from "devicon/icons/materialui/materialui-original.svg";
+import bootstrapIcon from "devicon/icons/bootstrap/bootstrap-original.svg";
+import framermotionIcon from "devicon/icons/framermotion/framermotion-original.svg";
+import gitIcon from "devicon/icons/git/git-original.svg";
+import githubIcon from "devicon/icons/github/github-original.svg";
+import gitlabIcon from "devicon/icons/gitlab/gitlab-original.svg";
+import nodejsIcon from "devicon/icons/nodejs/nodejs-original.svg";
+import expressIcon from "devicon/icons/express/express-original.svg";
+import postgresqlIcon from "devicon/icons/postgresql/postgresql-original.svg";
+import mysqlIcon from "devicon/icons/mysql/mysql-original.svg";
+import mongodbIcon from "devicon/icons/mongodb/mongodb-original.svg";
+import prismaIcon from "devicon/icons/prisma/prisma-original.svg";
+import dockerIcon from "devicon/icons/docker/docker-original.svg";
+import netlifyIcon from "devicon/icons/netlify/netlify-original.svg";
+import vitejsIcon from "devicon/icons/vitejs/vitejs-original.svg";
+import postmanIcon from "devicon/icons/postman/postman-original.svg";
+import googlecloudIcon from "devicon/icons/googlecloud/googlecloud-original.svg";
+import figmaIcon from "devicon/icons/figma/figma-original.svg";
+import mochaIcon from "devicon/icons/mocha/mocha-original.svg";
+import jestIcon from "devicon/icons/jest/jest-plain.svg";
+import vitestIcon from "devicon/icons/vitest/vitest-original.svg";
+import playwrightIcon from "devicon/icons/playwright/playwright-original.svg";
+
 type StackSize = "lg" | "md" | "sm";
+
+// Group labels drive the labeled grid shown below `md`, where the
+// constellation's hover interactions don't exist.
+const GROUPS = [
+  "languages",
+  "frameworks & ui",
+  "version control",
+  "backend & realtime",
+  "data & auth",
+  "tooling",
+  "testing & validation",
+  "ai",
+] as const;
+
+type StackGroup = (typeof GROUPS)[number];
 
 type StackItem = {
   name: string;
   size: StackSize;
-  icon?: string;
-  brand?: string;
-  Icon?: IconComponent;
+  group: StackGroup;
+  // Exactly one icon source:
+  img?: StaticImageData; //  devicon SVG
+  brand?: string; //         key in BrandIcon
+  Icon?: IconComponent; //   lucide or inline SVG component
+  // Dark monochrome logos get flipped to white for the dark background.
+  invert?: boolean;
   color?: string;
 };
 
@@ -77,72 +128,64 @@ function DrizzleIcon({ className, style }: { className?: string; style?: CSSProp
   );
 }
 
-// The full tech stack. Each entry sets exactly one icon source:
-//   icon  → a devicon CSS class      brand → a key in BrandIcon
-//   Icon  → a React component (a lucide or one of the inline SVGs above)
-// `size` is the tier ("lg" | "md" | "sm") that decides which ring the icon
-// sits on; its exact pixel size is derived per-icon in ICON_SIZE_PX below.
+// The tech stack, curated to tools that carry real signal (the AI section
+// lists dev tooling, not chat apps). `size` is the tier that decides which
+// ring an icon sits on in the constellation; exact pixels come from
+// ICON_SIZE_PX below.
 const STACK: StackItem[] = [
-  // languages — large
-  { name: "JavaScript", icon: "devicon-javascript-plain colored", size: "lg" },
-  { name: "TypeScript", icon: "devicon-typescript-plain colored", size: "lg" },
-  { name: "HTML5", icon: "devicon-html5-plain colored", size: "lg" },
-  { name: "CSS3", icon: "devicon-css3-plain colored", size: "lg" },
-  // frameworks — medium
-  { name: "React", icon: "devicon-react-original colored", size: "md" },
-  { name: "Next.js", icon: "devicon-nextjs-plain", size: "md" },
-  { name: "Vue.js", icon: "devicon-vuejs-plain colored", size: "md" },
-  { name: "Astro", icon: "devicon-astro-plain", size: "md" },
-  { name: "TailwindCSS", icon: "devicon-tailwindcss-original colored", size: "md" },
-  { name: "shadcn/ui", Icon: ShadcnIcon, size: "md" },
-  { name: "MUI", icon: "devicon-materialui-plain colored", size: "md" },
-  { name: "Bootstrap", icon: "devicon-bootstrap-plain colored", size: "md" },
-  { name: "Framer Motion", icon: "devicon-framermotion-original", size: "md" },
-  // version control — medium
-  { name: "Git", icon: "devicon-git-plain colored", size: "md" },
-  { name: "GitHub", icon: "devicon-github-original", size: "md" },
-  { name: "GitLab", icon: "devicon-gitlab-plain colored", size: "md" },
-  // backend & realtime — small
-  { name: "Node.js", icon: "devicon-nodejs-plain colored", size: "sm" },
-  { name: "Express.js", icon: "devicon-express-original", size: "sm" },
-  { name: "WebSockets", Icon: ArrowLeftRight, color: "#d4d4d8", size: "sm" },
-  { name: "Ably", Icon: RadioTower, color: "#ff5416", size: "sm" },
-  // data — small
-  { name: "PostgreSQL", icon: "devicon-postgresql-plain colored", size: "sm" },
-  { name: "MySQL", icon: "devicon-mysql-original colored", size: "sm" },
-  { name: "MongoDB", icon: "devicon-mongodb-plain colored", size: "sm" },
-  { name: "Prisma", icon: "devicon-prisma-original", size: "sm" },
-  { name: "Drizzle", Icon: DrizzleIcon, color: "#c5f74f", size: "sm" },
-  { name: "Payload CMS", Icon: Layers, color: "#d4d4d8", size: "sm" },
-  { name: "Better Auth", Icon: ShieldCheck, color: "#d4d4d8", size: "sm" },
-  { name: "Auth0", Icon: KeyRound, color: "#eb5424", size: "sm" },
-  // tools — small
-  { name: "Docker", icon: "devicon-docker-plain colored", size: "sm" },
-  { name: "Netlify", icon: "devicon-netlify-plain colored", size: "sm" },
-  { name: "Vite", icon: "devicon-vitejs-plain colored", size: "sm" },
-  { name: "Postman", icon: "devicon-postman-plain colored", size: "sm" },
-  { name: "Google Cloud", icon: "devicon-googlecloud-plain colored", size: "sm" },
-  { name: "Figma", icon: "devicon-figma-plain colored", size: "sm" },
-  // testing & validation — TanStack medium, rest small
-  { name: "TanStack", brand: "tanstack", color: "#d4d4d8", size: "md" },
-  { name: "Zod", brand: "zod", color: "#408aff", size: "sm" },
-  { name: "React Hook Form", brand: "reacthookform", color: "#ec5990", size: "sm" },
-  { name: "Mocha", icon: "devicon-mocha-plain colored", size: "sm" },
-  { name: "Jest", icon: "devicon-jest-plain colored", size: "sm" },
-  { name: "Vitest", icon: "devicon-vitest-plain colored", size: "sm" },
-  { name: "Playwright", icon: "devicon-playwright-plain colored", size: "sm" },
-  // ai — small
-  { name: "Claude Code", brand: "claude", color: "#d97757", size: "sm" },
-  { name: "Anthropic SDK", brand: "anthropic", color: "#d4d4d8", size: "sm" },
-  { name: "Superpowers", Icon: Zap, color: "#f59e0b", size: "sm" },
-  { name: "Cursor", brand: "cursor", color: "#d4d4d8", size: "sm" },
-  { name: "GitHub Copilot", brand: "copilot", color: "#d4d4d8", size: "sm" },
-  { name: "ChatGPT", brand: "openai", color: "#d4d4d8", size: "sm" },
-  { name: "Gemini", brand: "gemini", color: "#8e75b2", size: "sm" },
-  { name: "Perplexity", brand: "perplexity", color: "#1fb8cd", size: "sm" },
-  { name: "Grok", brand: "grok", color: "#d4d4d8", size: "sm" },
-  { name: "Vercel AI SDK", brand: "vercel", color: "#d4d4d8", size: "sm" },
-  { name: "LangChain", brand: "langchain", color: "#7fc8ff", size: "sm" },
+  // languages
+  { name: "JavaScript", img: javascriptIcon, size: "lg", group: "languages" },
+  { name: "TypeScript", img: typescriptIcon, size: "lg", group: "languages" },
+  { name: "HTML5", img: html5Icon, size: "lg", group: "languages" },
+  { name: "CSS3", img: css3Icon, size: "lg", group: "languages" },
+  // frameworks & ui
+  { name: "React", img: reactIcon, size: "md", group: "frameworks & ui" },
+  { name: "Next.js", img: nextjsIcon, invert: true, size: "md", group: "frameworks & ui" },
+  { name: "Vue.js", img: vuejsIcon, size: "md", group: "frameworks & ui" },
+  { name: "Astro", img: astroIcon, invert: true, size: "md", group: "frameworks & ui" },
+  { name: "TailwindCSS", img: tailwindcssIcon, size: "md", group: "frameworks & ui" },
+  { name: "shadcn/ui", Icon: ShadcnIcon, size: "md", group: "frameworks & ui" },
+  { name: "MUI", img: materialuiIcon, size: "md", group: "frameworks & ui" },
+  { name: "Bootstrap", img: bootstrapIcon, size: "md", group: "frameworks & ui" },
+  { name: "Motion", img: framermotionIcon, invert: true, size: "md", group: "frameworks & ui" },
+  { name: "TanStack", brand: "tanstack", color: "#d4d4d8", size: "md", group: "frameworks & ui" },
+  // version control
+  { name: "Git", img: gitIcon, size: "md", group: "version control" },
+  { name: "GitHub", img: githubIcon, invert: true, size: "md", group: "version control" },
+  { name: "GitLab", img: gitlabIcon, size: "md", group: "version control" },
+  // backend & realtime
+  { name: "Node.js", img: nodejsIcon, size: "sm", group: "backend & realtime" },
+  { name: "Express.js", img: expressIcon, invert: true, size: "sm", group: "backend & realtime" },
+  { name: "WebSockets", Icon: ArrowLeftRight, color: "#d4d4d8", size: "sm", group: "backend & realtime" },
+  { name: "Ably", Icon: RadioTower, color: "#ff5416", size: "sm", group: "backend & realtime" },
+  // data & auth
+  { name: "PostgreSQL", img: postgresqlIcon, size: "sm", group: "data & auth" },
+  { name: "MySQL", img: mysqlIcon, size: "sm", group: "data & auth" },
+  { name: "MongoDB", img: mongodbIcon, size: "sm", group: "data & auth" },
+  { name: "Prisma", img: prismaIcon, invert: true, size: "sm", group: "data & auth" },
+  { name: "Drizzle", Icon: DrizzleIcon, color: "#c5f74f", size: "sm", group: "data & auth" },
+  { name: "Payload CMS", Icon: Layers, color: "#d4d4d8", size: "sm", group: "data & auth" },
+  { name: "Better Auth", Icon: ShieldCheck, color: "#d4d4d8", size: "sm", group: "data & auth" },
+  { name: "Auth0", Icon: KeyRound, color: "#eb5424", size: "sm", group: "data & auth" },
+  // tooling
+  { name: "Docker", img: dockerIcon, size: "sm", group: "tooling" },
+  { name: "Netlify", img: netlifyIcon, size: "sm", group: "tooling" },
+  { name: "Vite", img: vitejsIcon, size: "sm", group: "tooling" },
+  { name: "Postman", img: postmanIcon, size: "sm", group: "tooling" },
+  { name: "Google Cloud", img: googlecloudIcon, size: "sm", group: "tooling" },
+  { name: "Figma", img: figmaIcon, size: "sm", group: "tooling" },
+  // testing & validation
+  { name: "Zod", brand: "zod", color: "#408aff", size: "sm", group: "testing & validation" },
+  { name: "React Hook Form", brand: "reacthookform", color: "#ec5990", size: "sm", group: "testing & validation" },
+  { name: "Mocha", img: mochaIcon, size: "sm", group: "testing & validation" },
+  { name: "Jest", img: jestIcon, size: "sm", group: "testing & validation" },
+  { name: "Vitest", img: vitestIcon, size: "sm", group: "testing & validation" },
+  { name: "Playwright", img: playwrightIcon, size: "sm", group: "testing & validation" },
+  // ai — dev tooling only
+  { name: "Claude Code", brand: "claude", color: "#d97757", size: "sm", group: "ai" },
+  { name: "Anthropic SDK", brand: "anthropic", color: "#d4d4d8", size: "sm", group: "ai" },
+  { name: "Vercel AI SDK", brand: "vercel", color: "#d4d4d8", size: "sm", group: "ai" },
+  { name: "LangChain", brand: "langchain", color: "#7fc8ff", size: "sm", group: "ai" },
 ];
 
 // Fallback accent for anything without its own brand colour.
@@ -166,7 +209,7 @@ const BRAND_COLOR: Record<string, string> = {
   "shadcn/ui": "#e5e7eb",
   MUI: "#007fff",
   Bootstrap: "#7952b3",
-  "Framer Motion": "#ff0055",
+  Motion: "#fff312",
   Git: "#f05032",
   GitHub: "#e5e7eb",
   GitLab: "#fc6d26",
@@ -209,16 +252,17 @@ const HOVER_TILT_DEG: Record<string, number> = (() => {
 })();
 
 // Base pixel size per icon at the reference width (scaled down to fit smaller
-// screens): JavaScript biggest, TypeScript next, then HTML/CSS, then the rest
-// spread across varied sizes by tier.
+// screens). TypeScript and React lead — that's the actual specialization —
+// with JavaScript next and the rest spread across varied sizes by tier.
 const ICON_SIZE_PX: Record<string, number> = (() => {
   const random = createSeededRandom(909);
   const sizeByName: Record<string, number> = {};
   for (const tech of STACK) {
-    if (tech.name === "JavaScript") sizeByName[tech.name] = 160;
-    else if (tech.name === "TypeScript") sizeByName[tech.name] = 134;
+    if (tech.name === "TypeScript") sizeByName[tech.name] = 160;
+    else if (tech.name === "React") sizeByName[tech.name] = 138;
+    else if (tech.name === "JavaScript") sizeByName[tech.name] = 118;
     else if (tech.name === "HTML5" || tech.name === "CSS3")
-      sizeByName[tech.name] = 114;
+      sizeByName[tech.name] = 96;
     else if (tech.size === "md")
       sizeByName[tech.name] = Math.round(88 + random() * 24);
     else sizeByName[tech.name] = Math.round(74 + random() * 24);
@@ -228,12 +272,17 @@ const ICON_SIZE_PX: Record<string, number> = (() => {
 
 // Renders the glyph for a single tech, whichever icon source it uses.
 function StackIcon({ tech, px }: { tech: StackItem; px: number }) {
-  if (tech.icon)
+  if (tech.img)
     return (
-      <i
-        className={tech.icon}
-        style={{ fontSize: `${px}px`, lineHeight: 1 }}
+      <Image
+        src={tech.img}
+        alt=""
+        width={px}
+        height={px}
+        unoptimized
         aria-hidden
+        className={tech.invert ? "invert" : undefined}
+        style={{ width: px, height: px }}
       />
     );
   if (tech.brand)
@@ -255,7 +304,7 @@ function StackIcon({ tech, px }: { tech: StackItem; px: number }) {
   return null;
 }
 
-// One icon tile: glows in the accent color on hover and shows its name.
+// One icon tile: glows in its brand color on hover and shows its name.
 function IconBubble({
   tech,
   color,
@@ -305,6 +354,39 @@ const HOVER_SPRING = {
 // scale down by the same factor.
 const REFERENCE_WIDTH_PX = 768;
 
+// Grouped, labeled grid for touch screens (below md) — hover tooltips don't
+// exist there, so every icon gets a visible name instead.
+function MobileStackList() {
+  return (
+    <div className="space-y-8 md:hidden">
+      {GROUPS.map((group) => {
+        const items = STACK.filter((tech) => tech.group === group);
+        if (!items.length) return null;
+        return (
+          <div key={group}>
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
+              <span className="text-emerald-500">{"//"}</span> {group}
+            </p>
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+              {items.map((tech) => (
+                <li
+                  key={tech.name}
+                  className="flex items-center gap-2.5 text-sm text-zinc-300"
+                >
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center">
+                    <StackIcon tech={tech} px={20} />
+                  </span>
+                  {tech.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function StackSection() {
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState<string | null>(null);
@@ -324,39 +406,14 @@ export default function StackSection() {
     <Section id="stack">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
-      {/* Scattered constellation with hover repulsion; same layout at every
-          breakpoint, scaled to fit. The GitHub contribution graph sits as a
-          backdrop behind the icons (z-0); icons float on top (z-1+). */}
+      <MobileStackList />
+
+      {/* Scattered constellation with hover repulsion — pointer screens only;
+          touch gets the labeled grid above. */}
       <div
         ref={containerRef}
-        className="relative mx-auto aspect-square w-full max-w-3xl"
+        className="relative mx-auto hidden aspect-square w-full max-w-3xl md:block"
       >
-        {/* Contribution graph backdrop, centered behind the constellation. The
-            "garden" grid is scaled up 1.3× to read a bit larger behind the
-            floating icons, while the labels stay normal-size and readable. */}
-        {/* Opacity lives on the header + grid (0.55) rather than the whole
-            wrapper, so the caption below can stay fully opaque. */}
-        <div className="absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 sm:block">
-          <div className="mb-2 flex items-center justify-between opacity-30">
-            <p className="font-mono text-xs text-zinc-500">
-              <span className="text-emerald-400">$</span> git log --graph
-            </p>
-            <span className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-600">
-              <Github className="h-3.5 w-3.5" /> @{GITHUB_USERNAME}
-            </span>
-          </div>
-          <div className="my-6 origin-center scale-[1.3]">
-            <GitHubGrid />
-          </div>
-          {/* Right-aligned under the garden's bottom-right corner. The garden is
-              scaled 1.3×, so this box is 130% of the container (matching the
-              garden's visual width) and centered, putting text-right exactly at
-              the garden's right edge. Same styling as the "$ git log" line. */}
-          <p className="relative left-1/2 mt-2 w-[130%] -translate-x-1/2 text-right font-mono text-xs text-zinc-500">
-            wish I could show you the GitLab stats
-          </p>
-        </div>
-
         {positions.map(({ item: tech, x, y }, i) => {
           const isHovered = hovered === tech.name;
           const offset = getRepulsionOffset(tech.name, hovered, positionByName);

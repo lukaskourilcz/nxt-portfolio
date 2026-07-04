@@ -17,7 +17,7 @@ export function Footer() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="-m-2 p-2 text-zinc-500 transition-colors hover:text-emerald-400"
+                className="-m-2 p-2 text-zinc-500 transition-colors hover:text-zinc-200"
               >
                 <Icon className="h-4 w-4" />
               </ExternalLink>
@@ -30,7 +30,7 @@ export function Footer() {
           </p>
           <Link
             href="#top"
-            className="inline-flex items-center gap-1 font-mono text-[0.7rem] text-zinc-500 transition-colors hover:text-emerald-400"
+            className="inline-flex items-center gap-1 font-mono text-[0.7rem] text-zinc-500 transition-colors hover:text-zinc-200"
           >
             back to top <ArrowUp className="h-3 w-3" />
           </Link>
