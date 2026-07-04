@@ -277,10 +277,7 @@ export default function DevEditor({ initial }: { initial: SiteContent }) {
   }
 
   return (
-    // The editor is a dev tool — it pins its own dark surface so the random
-    // page theme can't affect it.
-    <main className="min-h-screen bg-zinc-950 px-6 pb-32 pt-16">
-      <div className="mx-auto max-w-3xl">
+    <main className="mx-auto max-w-3xl px-6 pb-32 pt-16">
       <h1 className="font-mono text-lg text-zinc-100">
         <span className="text-emerald-400">$</span> vim portfolio-content
       </h1>
@@ -659,7 +656,6 @@ export default function DevEditor({ initial }: { initial: SiteContent }) {
             Save
           </button>
         </div>
-      </div>
       </div>
     </main>
   );

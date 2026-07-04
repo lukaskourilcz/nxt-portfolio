@@ -26,7 +26,7 @@ function ProjectBanner({ proj }: { proj: Project }) {
           <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent" />
         </>
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 to-zinc-900 light:from-zinc-200 light:to-zinc-100" />
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 to-zinc-900" />
       )}
       {proj.vercel && (
         <span className="absolute right-3 top-3 inline-flex items-center justify-center rounded-md border border-white/10 bg-zinc-950/60 p-1.5 text-zinc-300 backdrop-blur-sm transition-colors group-hover:text-white">
@@ -37,7 +37,7 @@ function ProjectBanner({ proj }: { proj: Project }) {
   );
 
   const bannerClass =
-    "relative block aspect-[16/10] overflow-hidden bg-zinc-950 light:bg-zinc-100";
+    "relative block aspect-[16/10] overflow-hidden bg-zinc-950";
 
   return proj.vercel ? (
     <ExternalLink
@@ -57,14 +57,14 @@ function ProjectBanner({ proj }: { proj: Project }) {
 // gentle zoom of the screenshot — the card itself stays put.
 function ProjectCard({ proj }: { proj: Project }) {
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card light:border-zinc-200 light:bg-white">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card">
       <ProjectBanner proj={proj} />
 
       <div className="flex flex-1 flex-col px-5 pt-4">
-        <h3 className="text-base font-semibold text-zinc-100 light:text-zinc-900">
+        <h3 className="text-base font-semibold text-zinc-100">
           {proj.title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-zinc-400 light:text-zinc-600">
+        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
           {proj.description}
         </p>
         {proj.note && (

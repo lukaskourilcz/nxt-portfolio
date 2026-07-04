@@ -26,10 +26,10 @@ export default function ContactSection() {
 
       <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2">
         <div>
-          <p className="font-mono text-sm text-emerald-400 light:text-emerald-600">
+          <p className="font-mono text-sm text-emerald-400">
             {CONTENT.contact.prompt}
           </p>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-300 light:text-zinc-700 sm:text-lg">
+          <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg">
             {CONTENT.contact.blurb}
           </p>
 
@@ -45,7 +45,7 @@ export default function ContactSection() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-zinc-100 light:border-zinc-300 light:text-zinc-500 light:hover:border-zinc-500 light:hover:text-zinc-900"
+                className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-zinc-100"
               >
                 <Icon className="h-5 w-5" />
               </ExternalLink>
@@ -53,25 +53,25 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="border-t border-zinc-800 light:border-zinc-200">
+        <div className="border-t border-zinc-800">
           {CONTACTS.map(({ label, href, value }) => {
             const row = (
               <>
                 <span className="font-mono text-[0.7rem] uppercase tracking-wider text-zinc-500">
                   {label}
                 </span>
-                <span className="min-w-0 truncate text-sm text-zinc-200 light:text-zinc-800">
+                <span className="min-w-0 truncate text-sm text-zinc-200">
                   {value}
                 </span>
               </>
             );
             const rowClass =
-              "flex items-center justify-between gap-4 border-b border-zinc-800 py-4 light:border-zinc-200";
+              "flex items-center justify-between gap-4 border-b border-zinc-800 py-4";
             return href ? (
               <a
                 key={label}
                 href={href}
-                className={`${rowClass} transition-colors hover:bg-white/[0.02] light:hover:bg-black/[0.02]`}
+                className={`${rowClass} transition-colors hover:bg-white/[0.02]`}
               >
                 {row}
               </a>

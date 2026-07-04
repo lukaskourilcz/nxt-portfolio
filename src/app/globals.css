@@ -1,10 +1,5 @@
 @import "tailwindcss";
 
-/* The site is styled dark-first; `light:` utilities activate when a
-   pre-paint script in the root layout puts .light on <html>. The theme is
-   picked at random on every load (no persistence, by design). */
-@custom-variant light (&:where(.light, .light *));
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
@@ -12,22 +7,6 @@ html {
   /* Guard against stray full-width children (e.g. non-wrapping code) making the
      page scroll sideways on mobile, which shifts every centered section. */
   overflow-x: clip;
-}
-
-html.light {
-  color-scheme: light;
-  --background: oklch(0.985 0.002 247.839);
-  --foreground: oklch(0.17 0.02 261.692);
-  --border: oklch(0 0 0 / 12%);
-}
-
-/* Fill colour for monochrome stack glyphs (Vercel, Anthropic, WebSockets, …):
-   near-white on the dark theme, dark slate on the light one. */
-:root {
-  --glyph-neutral: #d4d4d8;
-}
-html.light {
-  --glyph-neutral: #3f3f46;
 }
 
 @theme inline {
@@ -82,22 +61,12 @@ html.light {
       linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
   }
-  .light .bg-grid {
-    background-image:
-      linear-gradient(to right, oklch(0 0 0 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(0 0 0 / 0.06) 1px, transparent 1px);
-  }
   /* Brighter emerald grid, revealed in a soft spotlight around the cursor */
   .bg-grid-glow {
     background-image:
       linear-gradient(to right, oklch(0.7 0.17 162 / 0.45) 1px, transparent 1px),
       linear-gradient(to bottom, oklch(0.7 0.17 162 / 0.45) 1px, transparent 1px);
     background-size: 56px 56px;
-  }
-  .light .bg-grid-glow {
-    background-image:
-      linear-gradient(to right, oklch(0.55 0.15 162 / 0.5) 1px, transparent 1px),
-      linear-gradient(to bottom, oklch(0.55 0.15 162 / 0.5) 1px, transparent 1px);
   }
   /* Soft, static mesh-gradient accents. Emerald-forward to keep the site's
      identity, with cool teal lobes for depth. Pure CSS, no runtime canvas —
@@ -168,12 +137,6 @@ html.light {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: oklch(0.55 0.01 264);
-}
-html.light ::-webkit-scrollbar-thumb {
-  background: oklch(0.75 0.01 264);
-}
-html.light ::-webkit-scrollbar-thumb:hover {
-  background: oklch(0.6 0.01 264);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -15,7 +15,7 @@ function Intro({ text }: { text: string }) {
     <>
       {text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
         part.startsWith("**") && part.endsWith("**") ? (
-          <span key={i} className="font-medium text-zinc-100 light:text-zinc-900">
+          <span key={i} className="font-medium text-zinc-100">
             {part.slice(2, -2)}
           </span>
         ) : (
@@ -57,28 +57,28 @@ export default function HeroSection() {
                 width={56}
                 height={56}
                 priority
-                className="h-14 w-14 rounded-full border border-zinc-700 object-cover light:border-zinc-300"
+                className="h-14 w-14 rounded-full border border-zinc-700 object-cover"
               />
               <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-zinc-950 bg-emerald-500 light:border-white" />
+                <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-zinc-950 bg-emerald-500" />
               </span>
             </div>
-            <span className="font-mono text-xs text-zinc-400 light:text-zinc-600">
+            <span className="font-mono text-xs text-zinc-400">
               {hero.availability}
             </span>
           </div>
 
-          <p className="mb-3 font-mono text-sm text-emerald-400 light:text-emerald-600">
+          <p className="mb-3 font-mono text-sm text-emerald-400">
             {hero.eyebrow}
           </p>
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100 light:text-zinc-900 sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl md:text-5xl lg:text-6xl">
             {hero.name}
           </h1>
-          <p className="mt-4 text-lg font-medium text-zinc-300 light:text-zinc-700 sm:text-xl md:text-2xl">
+          <p className="mt-4 text-lg font-medium text-zinc-300 sm:text-xl md:text-2xl">
             {hero.title}
           </p>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400 light:text-zinc-600">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
             <Intro text={hero.intro} />
           </p>
 
@@ -95,14 +95,14 @@ export default function HeroSection() {
               <ExternalLink
                 href={GITHUB_URL}
                 aria-label="GitHub"
-                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200 light:hover:text-zinc-800"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200"
               >
                 <Github className="h-5 w-5" />
               </ExternalLink>
               <ExternalLink
                 href={LINKEDIN_URL}
                 aria-label="LinkedIn"
-                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200 light:hover:text-zinc-800"
+                className="rounded-md p-2 text-zinc-500 transition-colors hover:text-zinc-200"
               >
                 <Linkedin className="h-5 w-5" />
               </ExternalLink>

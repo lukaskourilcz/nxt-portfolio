@@ -10,13 +10,13 @@ export default function NotFound() {
     <>
       <BackgroundGrid />
       <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-        <p className="font-mono text-sm text-emerald-400 light:text-emerald-600">
+        <p className="font-mono text-sm text-emerald-400">
           $ cd /page
         </p>
-        <h1 className="mt-4 font-mono text-7xl font-bold tracking-tight text-zinc-100 light:text-zinc-900">
+        <h1 className="mt-4 font-mono text-7xl font-bold tracking-tight text-zinc-100">
           404
         </h1>
-        <p className="mt-4 max-w-md font-mono text-sm leading-relaxed text-zinc-400 light:text-zinc-600">
+        <p className="mt-4 max-w-md font-mono text-sm leading-relaxed text-zinc-400">
           Error: route not found. That path doesn&apos;t exist, head back home.
         </p>
         <Button asChild className="mt-8">

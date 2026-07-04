@@ -11,9 +11,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         solid:
-          "bg-zinc-100 text-zinc-900 hover:bg-white light:bg-zinc-900 light:text-zinc-50 light:hover:bg-zinc-800",
+          "bg-zinc-100 text-zinc-900 hover:bg-white",
         outline:
-          "border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100 light:border-zinc-300 light:text-zinc-600 light:hover:border-zinc-500 light:hover:text-zinc-900",
+          "border border-zinc-700 text-zinc-300 hover:border-zinc-500 hover:text-zinc-100",
       },
       size: {
         md: "px-5 py-2.5 text-sm font-medium",

@@ -281,25 +281,22 @@ function StackIcon({ tech, px }: { tech: StackItem; px: number }) {
         height={px}
         unoptimized
         aria-hidden
-        className={tech.invert ? "invert light:invert-0" : undefined}
+        className={tech.invert ? "invert" : undefined}
         style={{ width: px, height: px }}
       />
     );
-  // Near-white glyphs flip to a dark slate on the light theme via CSS var.
-  const glyphColor =
-    tech.color === "#d4d4d8" ? "var(--glyph-neutral)" : tech.color;
   if (tech.brand)
     return (
       <BrandIcon
         name={tech.brand}
-        style={{ color: glyphColor, width: px, height: px }}
+        style={{ color: tech.color, width: px, height: px }}
       />
     );
   if (tech.Icon) {
     const Glyph = tech.Icon;
     return (
       <Glyph
-        style={{ color: glyphColor, width: px, height: px }}
+        style={{ color: tech.color, width: px, height: px }}
         aria-hidden
       />
     );
@@ -324,7 +321,7 @@ function IconBubble({
       <div
         role="img"
         aria-label={tech.name}
-        className="flex items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900/80 transition-colors duration-200 light:border-zinc-300 light:bg-white/80"
+        className="flex items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900/80 transition-colors duration-200"
         style={{
           width: px,
           height: px,
@@ -369,7 +366,7 @@ function MobileStackList() {
         return (
           <div key={group}>
             <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
-              <span className="text-emerald-500 light:text-emerald-600">
+              <span className="text-emerald-500">
                 {"//"}
               </span>{" "}
               {group}
@@ -378,7 +375,7 @@ function MobileStackList() {
               {items.map((tech) => (
                 <li
                   key={tech.name}
-                  className="flex items-center gap-2.5 text-sm text-zinc-300 light:text-zinc-700"
+                  className="flex items-center gap-2.5 text-sm text-zinc-300"
                 >
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center">
                     <StackIcon tech={tech} px={20} />
