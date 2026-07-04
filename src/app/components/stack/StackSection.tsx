@@ -10,7 +10,6 @@ import {
   ShieldCheck,
   KeyRound,
   RadioTower,
-  ArrowLeftRight,
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
@@ -32,7 +31,6 @@ import html5Icon from "devicon/icons/html5/html5-original.svg";
 import css3Icon from "devicon/icons/css3/css3-original.svg";
 import reactIcon from "devicon/icons/react/react-original.svg";
 import nextjsIcon from "devicon/icons/nextjs/nextjs-plain.svg";
-import vuejsIcon from "devicon/icons/vuejs/vuejs-original.svg";
 import astroIcon from "devicon/icons/astro/astro-plain.svg";
 import tailwindcssIcon from "devicon/icons/tailwindcss/tailwindcss-original.svg";
 import materialuiIcon from "devicon/icons/materialui/materialui-original.svg";
@@ -48,7 +46,6 @@ import mysqlIcon from "devicon/icons/mysql/mysql-original.svg";
 import mongodbIcon from "devicon/icons/mongodb/mongodb-original.svg";
 import prismaIcon from "devicon/icons/prisma/prisma-original.svg";
 import dockerIcon from "devicon/icons/docker/docker-original.svg";
-import netlifyIcon from "devicon/icons/netlify/netlify-original.svg";
 import vitejsIcon from "devicon/icons/vitejs/vitejs-original.svg";
 import postmanIcon from "devicon/icons/postman/postman-original.svg";
 import googlecloudIcon from "devicon/icons/googlecloud/googlecloud-original.svg";
@@ -141,7 +138,6 @@ const STACK: StackItem[] = [
   // frameworks & ui
   { name: "React", img: reactIcon, size: "md", group: "frameworks & ui" },
   { name: "Next.js", img: nextjsIcon, invert: true, size: "md", group: "frameworks & ui" },
-  { name: "Vue.js", img: vuejsIcon, size: "md", group: "frameworks & ui" },
   { name: "Astro", img: astroIcon, invert: true, size: "md", group: "frameworks & ui" },
   { name: "TailwindCSS", img: tailwindcssIcon, size: "md", group: "frameworks & ui" },
   { name: "shadcn/ui", Icon: ShadcnIcon, size: "md", group: "frameworks & ui" },
@@ -156,7 +152,6 @@ const STACK: StackItem[] = [
   // backend & realtime
   { name: "Node.js", img: nodejsIcon, size: "sm", group: "backend & realtime" },
   { name: "Express.js", img: expressIcon, invert: true, size: "sm", group: "backend & realtime" },
-  { name: "WebSockets", Icon: ArrowLeftRight, color: "#d4d4d8", size: "sm", group: "backend & realtime" },
   { name: "Ably", Icon: RadioTower, color: "#ff5416", size: "sm", group: "backend & realtime" },
   // data & auth
   { name: "PostgreSQL", img: postgresqlIcon, size: "sm", group: "data & auth" },
@@ -169,7 +164,6 @@ const STACK: StackItem[] = [
   { name: "Auth0", Icon: KeyRound, color: "#eb5424", size: "sm", group: "data & auth" },
   // tooling
   { name: "Docker", img: dockerIcon, size: "sm", group: "tooling" },
-  { name: "Netlify", img: netlifyIcon, size: "sm", group: "tooling" },
   { name: "Vite", img: vitejsIcon, size: "sm", group: "tooling" },
   { name: "Postman", img: postmanIcon, size: "sm", group: "tooling" },
   { name: "Google Cloud", img: googlecloudIcon, size: "sm", group: "tooling" },
@@ -185,7 +179,6 @@ const STACK: StackItem[] = [
   { name: "Claude Code", brand: "claude", color: "#d97757", size: "sm", group: "ai" },
   { name: "Anthropic SDK", brand: "anthropic", color: "#d4d4d8", size: "sm", group: "ai" },
   { name: "Vercel AI SDK", brand: "vercel", color: "#d4d4d8", size: "sm", group: "ai" },
-  { name: "LangChain", brand: "langchain", color: "#7fc8ff", size: "sm", group: "ai" },
 ];
 
 // Fallback accent for anything without its own brand colour.
@@ -203,7 +196,6 @@ const BRAND_COLOR: Record<string, string> = {
   CSS3: "#1572b6",
   React: "#61dafb",
   "Next.js": "#e5e7eb",
-  "Vue.js": "#42b883",
   Astro: "#ff5d01",
   TailwindCSS: "#38bdf8",
   "shadcn/ui": "#e5e7eb",
@@ -220,7 +212,6 @@ const BRAND_COLOR: Record<string, string> = {
   MongoDB: "#47a248",
   Prisma: "#e5e7eb",
   Docker: "#2496ed",
-  Netlify: "#00c7b7",
   Vite: "#ffd028",
   Postman: "#ff6c37",
   "Google Cloud": "#4285f4",
