@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { StaticImageData } from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion, useInView } from "motion/react";
 import {
   Layers,
   ShieldCheck,
@@ -17,10 +17,13 @@ import { BrandIcon } from "@/components/brand-icons";
 import { useContainerScale } from "@/hooks/useContainerScale";
 import {
   createSeededRandom,
+  seededShuffle,
   buildConstellation,
   getRepulsionOffset,
+  type Positioned,
 } from "@/lib/stack-layout";
 import { staggerDelay } from "@/lib/anim";
+import { BRAND_COLOR } from "@/lib/stack-colors";
 import type { IconComponent } from "@/lib/types";
 
 // Devicon SVGs as static imports — bundles only the ~30 logos actually used
@@ -57,8 +60,8 @@ import playwrightIcon from "devicon/icons/playwright/playwright-original.svg";
 
 type StackSize = "lg" | "md" | "sm";
 
-// Group labels drive the labeled grid shown below `md`, where the
-// constellation's hover interactions don't exist.
+// Curation metadata: keeps the stack organised by discipline (the STACK array
+// below is grouped in this order).
 const GROUPS = [
   "languages",
   "frameworks & ui",
@@ -184,46 +187,10 @@ const STACK: StackItem[] = [
 // Fallback accent for anything without its own brand colour.
 const ACCENT = "#34d399";
 
-// Per-logo brand colour used for the hover border, glow, and name label so each
-// icon lights up in its own colour instead of a uniform green. Items that already
-// carry a `color` (the BrandIcon / lucide glyphs) reuse it; this map fills in the
-// devicon-based entries. Monochrome logos (Next, GitHub, Express, …) use a light
-// neutral so they read on the dark background.
-const BRAND_COLOR: Record<string, string> = {
-  JavaScript: "#f7df1e",
-  TypeScript: "#3178c6",
-  HTML5: "#e34f26",
-  CSS3: "#1572b6",
-  React: "#61dafb",
-  "Next.js": "#e5e7eb",
-  Astro: "#ff5d01",
-  TailwindCSS: "#38bdf8",
-  "shadcn/ui": "#e5e7eb",
-  MUI: "#007fff",
-  Bootstrap: "#7952b3",
-  Motion: "#fff312",
-  Git: "#f05032",
-  GitHub: "#e5e7eb",
-  GitLab: "#fc6d26",
-  "Node.js": "#8cc84b",
-  "Express.js": "#e5e7eb",
-  PostgreSQL: "#4a90d9",
-  MySQL: "#4479a1",
-  MongoDB: "#47a248",
-  Prisma: "#e5e7eb",
-  Docker: "#2496ed",
-  Vite: "#ffd028",
-  Postman: "#ff6c37",
-  "Google Cloud": "#4285f4",
-  Figma: "#f24e1e",
-  Mocha: "#a5744b",
-  Jest: "#c21325",
-  Vitest: "#99c93c",
-  Playwright: "#2ead33",
-};
-
-// Resolve the colour an icon lights up in: its own brand colour first, then the
-// devicon map, then the shared accent.
+// Resolve the colour an icon lights up in (hover border, glow, and name
+// label): its own brand colour first, then the shared devicon palette, then
+// the accent. Items that carry a `color` are the BrandIcon / lucide glyphs;
+// BRAND_COLOR (in lib/stack-colors) fills in the devicon-based entries.
 function brandColor(tech: StackItem): string {
   return tech.color ?? BRAND_COLOR[tech.name] ?? ACCENT;
 }
@@ -346,35 +313,191 @@ const HOVER_SPRING = {
 // scale down by the same factor.
 const REFERENCE_WIDTH_PX = 768;
 
-// Grouped, labeled grid for touch screens (below md) — hover tooltips don't
-// exist there, so every icon gets a visible name instead.
-function MobileStackList() {
+// ---------------------------------------------------------------------------
+// Mobile constellation (below md) — the same scattered layout as desktop,
+// stretched onto a portrait canvas, with touch-friendly stand-ins for every
+// pointer interaction: icons assemble from the centre on scroll, drift on a
+// slow idle float, and a "spotlight" tours the stack lighting each tech up
+// exactly like a desktop hover (brand glow, tilt, name label, neighbours
+// pushed aside). Tapping an icon steals the spotlight.
+// ---------------------------------------------------------------------------
+
+// Canvas width/height ratio — keep in sync with the `aspect-[3/4]` class.
+const MOBILE_ASPECT = 3 / 4;
+
+// Icons render a touch larger than the pure width-scale would make them; the
+// portrait canvas provides the extra breathing room.
+const MOBILE_SIZE_BOOST = 1.18;
+
+// Auto-spotlight pacing: how long each tech holds the light, and how long a
+// tap keeps the tour paused.
+const SPOTLIGHT_INTERVAL_MS = 2600;
+const TAP_HOLD_MS = 6000;
+
+// Auto spotlights stay calmer than deliberate taps, which get the full
+// desktop-hover pop.
+const SPOTLIGHT_SCALE = { auto: 1.18, tap: 1.3 } as const;
+const SPOTLIGHT_TILT = { auto: 0.55, tap: 1 } as const;
+
+// Per-icon idle-float parameters (seeded, so server and client renders match):
+// amplitude via the --float-amp custom property, plus desynced duration/phase.
+const FLOAT_STYLE: Record<string, CSSProperties> = (() => {
+  const random = createSeededRandom(333);
+  const styleByName: Record<string, CSSProperties> = {};
+  for (const tech of STACK) {
+    styleByName[tech.name] = {
+      "--float-amp": `${(2.5 + random() * 2.5).toFixed(1)}px`,
+      animationDuration: `${(4.5 + random() * 3).toFixed(2)}s`,
+      animationDelay: `${(-random() * 6).toFixed(2)}s`,
+      // Custom properties aren't in React's closed CSSProperties typing.
+    } as CSSProperties;
+  }
+  return styleByName;
+})();
+
+function MobileStackConstellation({
+  positions,
+  positionByName,
+  seed,
+}: {
+  positions: Positioned<StackItem>[];
+  positionByName: Record<string, Positioned<StackItem>>;
+  seed: number;
+}) {
+  const reduce = useReducedMotion();
+  const [containerRef, scale] = useContainerScale(REFERENCE_WIDTH_PX);
+  const inView = useInView(containerRef, { amount: 0.2 });
+
+  // The lit tech, and whether a tap (vs the auto-tour) lit it.
+  const [spot, setSpot] = useState<{ name: string; byTap: boolean } | null>(
+    null
+  );
+  const holdUntilRef = useRef(0);
+  const queueIndexRef = useRef(-1);
+
+  // Tour order: a seeded shuffle so it looks random but visits every tech
+  // exactly once per lap.
+  const queue = useMemo(
+    () =>
+      seededShuffle(
+        STACK.map((tech) => tech.name),
+        seed + 47
+      ),
+    [seed]
+  );
+
+  // Run the tour only while the canvas is on screen; kill the light when it
+  // scrolls away so re-entry starts fresh. Reduced motion skips the tour —
+  // tapping still works.
+  useEffect(() => {
+    if (!inView) {
+      setSpot(null);
+      holdUntilRef.current = 0;
+      return;
+    }
+    if (reduce) return;
+    const id = setInterval(() => {
+      if (Date.now() < holdUntilRef.current) return;
+      queueIndexRef.current = (queueIndexRef.current + 1) % queue.length;
+      setSpot({ name: queue[queueIndexRef.current], byTap: false });
+    }, SPOTLIGHT_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [inView, reduce, queue]);
+
+  // Tap: steal the spotlight (tap the lit icon to dismiss it), pause the tour
+  // for a beat, and continue it from the tapped tech.
+  const handleTap = (name: string) => {
+    holdUntilRef.current = Date.now() + TAP_HOLD_MS;
+    queueIndexRef.current = Math.max(0, queue.indexOf(name));
+    setSpot((current) =>
+      current?.name === name ? null : { name, byTap: true }
+    );
+  };
+
+  const mobileScale = scale * MOBILE_SIZE_BOOST;
+  const containerWidth = scale * REFERENCE_WIDTH_PX;
+  const containerHeight = containerWidth / MOBILE_ASPECT;
+
   return (
-    <div className="space-y-8 md:hidden">
-      {GROUPS.map((group) => {
-        const items = STACK.filter((tech) => tech.group === group);
-        if (!items.length) return null;
+    <div
+      ref={containerRef}
+      className="relative mx-auto aspect-[3/4] w-full max-w-md select-none md:hidden"
+    >
+      {positions.map(({ item: tech, x, y }, i) => {
+        const spotMode =
+          spot && spot.name === tech.name
+            ? spot.byTap
+              ? ("tap" as const)
+              : ("auto" as const)
+            : null;
+        const offset = getRepulsionOffset(
+          tech.name,
+          spot?.name ?? null,
+          positionByName
+        );
         return (
-          <div key={group}>
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-zinc-500">
-              <span className="text-emerald-500">
-                {"//"}
-              </span>{" "}
-              {group}
-            </p>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
-              {items.map((tech) => (
-                <li
-                  key={tech.name}
-                  className="flex items-center gap-2.5 text-sm text-zinc-300"
+          <div
+            key={tech.name}
+            className="absolute -translate-x-1/2 -translate-y-1/2"
+            style={{ left: `${x}%`, top: `${y}%`, zIndex: spotMode ? 50 : 1 }}
+          >
+            {/* Entrance: the constellation assembles from the canvas centre,
+                inner rings first (positions are ring-ordered, so the index
+                stagger expands outward). x/y are keyframes rather than
+                `initial` values so they're measured when the icon scrolls
+                into view, not at mount. Reduced motion zeroes the magnitudes
+                but keeps the same value keys — the key set must not vary, or
+                the transform baked into the server render never gets
+                animated away. */}
+            <motion.div
+              initial={{ opacity: 0, scale: reduce ? 1 : 0.2 }}
+              whileInView={{
+                opacity: 1,
+                scale: 1,
+                x: reduce ? 0 : [((50 - x) / 100) * containerWidth, 0],
+                y: reduce ? 0 : [((50 - y) / 100) * containerHeight, 0],
+              }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{
+                ...ENTRANCE_SPRING,
+                delay: staggerDelay(i, 0.03, 0.55),
+              }}
+            >
+              {/* Idle bob — CSS-driven so all icons float for free; paused on
+                  the lit icon so its name label holds still. */}
+              <div
+                className="stack-float"
+                style={{
+                  ...FLOAT_STYLE[tech.name],
+                  animationPlayState: spotMode ? "paused" : "running",
+                }}
+              >
+                <motion.div
+                  animate={{
+                    x: offset.x * mobileScale,
+                    y: offset.y * mobileScale,
+                    scale: spotMode ? SPOTLIGHT_SCALE[spotMode] : 1,
+                    rotate:
+                      reduce || !spotMode
+                        ? 0
+                        : HOVER_TILT_DEG[tech.name] * SPOTLIGHT_TILT[spotMode],
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={HOVER_SPRING}
+                  onTap={() => handleTap(tech.name)}
                 >
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center">
-                    <StackIcon tech={tech} px={20} />
-                  </span>
-                  {tech.name}
-                </li>
-              ))}
-            </ul>
+                  <IconBubble
+                    tech={tech}
+                    color={brandColor(tech)}
+                    hovered={Boolean(spotMode)}
+                    px={Math.max(
+                      1,
+                      Math.round(ICON_SIZE_PX[tech.name] * mobileScale)
+                    )}
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         );
       })}
@@ -401,10 +524,14 @@ export default function StackSection() {
     <Section id="stack" mesh="right">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
-      <MobileStackList />
+      <MobileStackConstellation
+        positions={positions}
+        positionByName={positionByName}
+        seed={seed}
+      />
 
       {/* Scattered constellation with hover repulsion — pointer screens only;
-          touch gets the labeled grid above. */}
+          touch gets the spotlight-tour constellation above. */}
       <div
         ref={containerRef}
         className="relative mx-auto hidden aspect-square w-full max-w-3xl md:block"

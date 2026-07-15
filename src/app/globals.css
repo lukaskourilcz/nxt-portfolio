@@ -102,6 +102,21 @@ html {
       radial-gradient(52% 46% at 84% 24%, oklch(0.55 0.14 162 / 0.12), transparent 72%),
       radial-gradient(46% 40% at 22% 72%, oklch(0.45 0.12 165 / 0.09), transparent 72%);
   }
+  /* Slow idle bob for the mobile tech-stack constellation. Amplitude comes
+     from the per-icon --float-amp custom property; duration and phase are set
+     inline so the icons drift out of sync. */
+  @keyframes stack-float {
+    0%,
+    100% {
+      transform: translateY(calc(var(--float-amp, 3px) * -1));
+    }
+    50% {
+      transform: translateY(var(--float-amp, 3px));
+    }
+  }
+  .stack-float {
+    animation: stack-float 6s ease-in-out infinite;
+  }
   /* One quick heartbeat, used by the experience logos on hover */
   @keyframes logo-pulse {
     0%,
