@@ -94,6 +94,55 @@ low-opacity and masked so it stays a background accent, not a redesign.
 
 ---
 
+## 5. NEW — AI-tools catalogue items
+
+### 5a. Spotlight project cards — shipped, no action *(Aceternity/Magic UI, High)*
+
+The project cards now use a new **`SpotlightCard`**
+(`src/components/ui/spotlight-card.tsx`) — a cursor-following emerald glow +
+hover border lift, so the grid reads as designed instead of the same flat box
+repeated (the #1 "AI-slop" flag in `fable-suggestions.md`). Pointer-only, so
+touch/reduced-motion users get the static card. It's a generic wrapper — reuse
+it on the Education or Experience cards the same way if you like.
+
+### 5b. Recraft / Ideogram hero art — needs you *(explicitly requested)*
+
+I **can't generate images** — Recraft/Ideogram render art from your account. So
+I left a placeholder at **`public/hero-art.svg`** (an abstract emerald aurora
+sized for the hero's right column) as the swap target.
+
+**To finish:**
+1. Generate a bespoke hero illustration with **Recraft** (<https://recraft.ai>,
+   vector/SVG output) or **Ideogram** (<https://ideogram.ai>).
+2. Save it over `public/hero-art.svg` (keep the name), or export a PNG and
+   update the reference.
+3. Wire it into `src/app/components/hero/HeroSection.tsx` — the right column
+   (`md:grid-cols-[1.05fr_0.95fr]`) currently holds the terminal; add the art
+   beside/behind it, or swap the terminal for it. It is **not** wired in yet
+   (I didn't want to redesign your hero unprompted) — the file is staged and
+   ready.
+
+> Your existing **favicon** (`src/app/icon.svg`) and **OG image**
+> (`opengraph-image.tsx`, generated) are already solid — no Recraft needed there.
+
+### 5c. Optional — re-theme with tweakcn *(High, but your design call)*
+
+`fable-suggestions.md` flags emerald overuse. I did **not** unilaterally recolor
+your portfolio (a subjective brand decision). If you want to diversify the
+palette: open **tweakcn** (<https://tweakcn.com>), design a theme (or generate
+one from an image), and paste the exported CSS variables into the `@theme`
+block + `:root` tokens in `src/app/globals.css`. The `SpotlightCard` glow reads
+from `--color-ring`, so it follows whatever accent you choose.
+
+### 5d. Optional — measure the devicon bundle *(Medium)*
+
+`fable-suggestions.md` flagged devicon bundle bloat. Run the deployed URL through
+**PageSpeed Insights** (<https://pagespeed.web.dev>) or **DebugBear**
+(<https://www.debugbear.com/tools>) and, if the icon payload shows up, import
+only the specific brand icons you use instead of the full set.
+
+---
+
 ## Notes
 
 - **This file** (`NEEDED.md`) is just for you — delete it once you've worked
