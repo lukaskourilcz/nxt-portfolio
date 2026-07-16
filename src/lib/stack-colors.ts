@@ -52,6 +52,8 @@ const ITEM_BRAND_COLORS = [
   "#408aff", // Zod
   "#ec5990", // React Hook Form
   "#d97757", // Claude Code
+  "#bc52ee", // Astryx
+  "#4f7cff", // StyleX
 ];
 
 // Vivid, deduplicated palette for randomized accents.

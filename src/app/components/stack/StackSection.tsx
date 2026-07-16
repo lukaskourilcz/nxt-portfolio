@@ -10,6 +10,8 @@ import {
   ShieldCheck,
   KeyRound,
   RadioTower,
+  Palette,
+  Rocket,
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
@@ -142,7 +144,9 @@ const STACK: StackItem[] = [
   { name: "React", img: reactIcon, size: "md", group: "frameworks & ui" },
   { name: "Next.js", img: nextjsIcon, invert: true, size: "md", group: "frameworks & ui" },
   { name: "Astro", img: astroIcon, invert: true, size: "md", group: "frameworks & ui" },
+  { name: "Astryx", Icon: Rocket, color: "#bc52ee", size: "md", group: "frameworks & ui" },
   { name: "TailwindCSS", img: tailwindcssIcon, size: "md", group: "frameworks & ui" },
+  { name: "StyleX", Icon: Palette, color: "#4f7cff", size: "md", group: "frameworks & ui" },
   { name: "shadcn/ui", Icon: ShadcnIcon, size: "md", group: "frameworks & ui" },
   { name: "MUI", img: materialuiIcon, size: "md", group: "frameworks & ui" },
   { name: "Bootstrap", img: bootstrapIcon, size: "md", group: "frameworks & ui" },
@@ -510,6 +514,7 @@ export default function StackSection() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [seed, setSeed] = useState(0);
   const [containerRef, scale] = useContainerScale(REFERENCE_WIDTH_PX);
+  const inView = useInView(containerRef, { amount: 0.2 });
 
   // Re-shuffle on each load, but only after hydration: the server and first
   // client render both use seed 0, avoiding a mismatch warning.
@@ -519,6 +524,37 @@ export default function StackSection() {
     () => buildConstellation(STACK, seed),
     [seed]
   );
+
+  // Desktop auto-spotlight tour — the same "one icon pops up at a time" motion
+  // the touch canvas uses, so pointer screens aren't static until you hover.
+  // Hover always wins: while the cursor is on an icon the auto light steps
+  // aside. Tour order is a seeded shuffle that visits every tech once per lap.
+  const [spot, setSpot] = useState<string | null>(null);
+  const spotIndexRef = useRef(-1);
+  const spotQueue = useMemo(
+    () =>
+      seededShuffle(
+        STACK.map((tech) => tech.name),
+        seed + 91
+      ),
+    [seed]
+  );
+
+  useEffect(() => {
+    // Run only while on screen; reduced motion opts out (hover still works).
+    if (!inView || reduce) {
+      setSpot(null);
+      return;
+    }
+    const id = setInterval(() => {
+      spotIndexRef.current = (spotIndexRef.current + 1) % spotQueue.length;
+      setSpot(spotQueue[spotIndexRef.current]);
+    }, SPOTLIGHT_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [inView, reduce, spotQueue]);
+
+  // Hover suppresses the auto light entirely; otherwise the tour drives it.
+  const active = hovered ?? spot;
 
   return (
     <Section id="stack" mesh="right">
@@ -530,20 +566,23 @@ export default function StackSection() {
         seed={seed}
       />
 
-      {/* Scattered constellation with hover repulsion — pointer screens only;
-          touch gets the spotlight-tour constellation above. */}
+      {/* Scattered constellation — pointer screens only; touch gets the
+          spotlight-tour constellation above. Hover lights an icon on demand,
+          and between hovers the same auto spotlight tours the stack. */}
       <div
         ref={containerRef}
         className="relative mx-auto hidden aspect-square w-full max-w-3xl md:block"
       >
         {positions.map(({ item: tech, x, y }, i) => {
           const isHovered = hovered === tech.name;
-          const offset = getRepulsionOffset(tech.name, hovered, positionByName);
+          const isAutoSpot = !hovered && spot === tech.name;
+          const isActive = isHovered || isAutoSpot;
+          const offset = getRepulsionOffset(tech.name, active, positionByName);
           return (
             <div
               key={tech.name}
               className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${x}%`, top: `${y}%`, zIndex: isHovered ? 50 : 1 }}
+              style={{ left: `${x}%`, top: `${y}%`, zIndex: isActive ? 50 : 1 }}
             >
               <motion.div
                 initial={{ opacity: 0, scale: reduce ? 1 : 0.3 }}
@@ -555,8 +594,19 @@ export default function StackSection() {
                   animate={{
                     x: offset.x * scale,
                     y: offset.y * scale,
-                    scale: isHovered ? 1.3 : 1,
-                    rotate: reduce ? 0 : isHovered ? HOVER_TILT_DEG[tech.name] : 0,
+                    // Deliberate hovers get the full pop; the passing auto
+                    // spotlight stays calmer, matching the touch canvas.
+                    scale: isHovered
+                      ? 1.3
+                      : isAutoSpot
+                        ? SPOTLIGHT_SCALE.auto
+                        : 1,
+                    rotate:
+                      reduce || !isActive
+                        ? 0
+                        : isHovered
+                          ? HOVER_TILT_DEG[tech.name]
+                          : HOVER_TILT_DEG[tech.name] * SPOTLIGHT_TILT.auto,
                   }}
                   transition={HOVER_SPRING}
                   onMouseEnter={() => setHovered(tech.name)}
@@ -569,7 +619,7 @@ export default function StackSection() {
                   <IconBubble
                     tech={tech}
                     color={brandColor(tech)}
-                    hovered={isHovered}
+                    hovered={isActive}
                     px={Math.max(1, Math.round(ICON_SIZE_PX[tech.name] * scale))}
                   />
                 </motion.div>
