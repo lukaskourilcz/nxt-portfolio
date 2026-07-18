@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ExternalLink as ExternalLinkIcon } from "lucide-react";
+import { ExternalLink as ExternalLinkIcon, ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { ExternalLink } from "@/components/external-link";
@@ -10,8 +10,15 @@ const PROJECTS: Project[] = CONTENT.projects;
 
 // The screenshot banner and its corner icon inside; if the project is live,
 // the whole banner is the link (the icon is a decorative affordance, not a
-// separate nested anchor).
-function ProjectBanner({ proj }: { proj: Project }) {
+// separate nested anchor). `featured` switches the banner to a full-height
+// left panel with a left-to-right scrim instead of the 16:10 top banner.
+function ProjectBanner({
+  proj,
+  featured,
+}: {
+  proj: Project;
+  featured: boolean;
+}) {
   const visual = (
     <>
       {proj.image ? (
@@ -20,11 +27,22 @@ function ProjectBanner({ proj }: { proj: Project }) {
             src={proj.image}
             alt=""
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes={
+              featured
+                ? "(max-width: 1024px) 100vw, 33vw"
+                : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 22vw"
+            }
             className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
           />
-          {/* Slight top scrim so the link icon stays legible on any shot. */}
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent" />
+          {/* Featured gets a left-to-right scrim so the text side stays legible;
+              regular cards keep a slight top scrim for the link icon. */}
+          <div
+            className={
+              featured
+                ? "absolute inset-0 bg-gradient-to-r from-transparent from-[55%] to-zinc-900/55"
+                : "absolute inset-0 bg-gradient-to-b from-zinc-950/50 via-transparent to-transparent"
+            }
+          />
         </>
       ) : (
         <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/40 to-zinc-900" />
@@ -37,8 +55,9 @@ function ProjectBanner({ proj }: { proj: Project }) {
     </>
   );
 
-  const bannerClass =
-    "relative block aspect-[16/10] overflow-hidden bg-zinc-950";
+  const bannerClass = featured
+    ? "relative block min-h-[220px] w-full shrink-0 overflow-hidden bg-zinc-950 lg:min-h-[300px] lg:w-[52%]"
+    : "relative block aspect-[16/10] overflow-hidden bg-zinc-950";
 
   return proj.vercel ? (
     <ExternalLink
@@ -53,43 +72,112 @@ function ProjectBanner({ proj }: { proj: Project }) {
   );
 }
 
-// 16:10 screenshot banner (the same ratio it's captured at), then title,
-// description, and a quiet mono tech list. On hover the only motion is a
-// gentle zoom of the screenshot — the card itself stays put.
-function ProjectCard({ proj }: { proj: Project }) {
+// The tech line plus a right-aligned live-site link (or a muted "not public"
+// when there's no deploy). Shared by both card layouts.
+function ProjectFooter({
+  proj,
+  featured,
+}: {
+  proj: Project;
+  featured: boolean;
+}) {
   return (
-    <SpotlightCard className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-card transition-colors duration-300 hover:border-zinc-700">
-      <ProjectBanner proj={proj} />
-
-      <div className="relative z-20 flex flex-1 flex-col px-5 pt-4">
-        <h3 className="text-base font-semibold text-zinc-100">
-          {proj.title}
-        </h3>
-        <p className="mt-2 text-sm leading-relaxed text-zinc-400">
-          {proj.description}
-        </p>
-        {proj.note && (
-          <p className="mt-2 text-xs italic leading-relaxed text-zinc-500">
-            {proj.note}
-          </p>
-        )}
-      </div>
-
-      <p className="relative z-20 px-5 pb-5 pt-4 font-mono text-xs leading-relaxed text-zinc-500">
+    <div
+      className={`relative z-20 flex items-center justify-between gap-4 ${
+        featured ? "px-7 pb-7 pt-5" : "px-5 pb-5 pt-4"
+      }`}
+    >
+      <p className="min-w-0 truncate font-mono text-xs leading-relaxed text-zinc-500">
         {proj.tech.join(" · ")}
       </p>
+      {proj.vercel ? (
+        <ExternalLink
+          href={proj.vercel}
+          className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-emerald-400 transition-colors hover:text-emerald-300"
+        >
+          Visit site <ArrowUpRight className="h-3 w-3" />
+        </ExternalLink>
+      ) : (
+        <span className="shrink-0 font-mono text-xs text-zinc-600">
+          not public
+        </span>
+      )}
+    </div>
+  );
+}
+
+// A single project card. Featured cards span the full grid width and lay out
+// horizontally (image left, text right); regular cards stack vertically. On
+// hover the SpotlightCard sweeps a random-colour glow, the border lightens,
+// and the screenshot zooms — same behaviour for both layouts.
+function ProjectCard({
+  proj,
+  featured,
+}: {
+  proj: Project;
+  featured: boolean;
+}) {
+  return (
+    <SpotlightCard
+      className={`group relative flex overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 shadow-card transition-colors duration-300 hover:border-zinc-700 ${
+        featured ? "flex-col lg:flex-row" : "h-full flex-col"
+      } ${featured ? "col-span-full lg:col-span-6" : "lg:col-span-2"}`}
+    >
+      <ProjectBanner proj={proj} featured={featured} />
+
+      <div className="relative z-20 flex min-w-0 flex-1 flex-col">
+        <div
+          className={`flex flex-1 flex-col ${
+            featured ? "px-7 pt-7" : "px-5 pt-4"
+          }`}
+        >
+          {featured && (
+            <span className="mb-3.5 self-start rounded-full border border-emerald-400/40 px-2.5 py-[3px] font-mono text-[11px] uppercase tracking-[0.08em] text-emerald-300">
+              Featured
+            </span>
+          )}
+          <h3
+            className={`font-semibold text-zinc-100 ${
+              featured ? "text-2xl tracking-tight" : "text-base"
+            }`}
+          >
+            {proj.title}
+          </h3>
+          <p
+            className={`mt-2.5 leading-relaxed text-zinc-400 ${
+              featured ? "max-w-[48ch] text-[15px]" : "text-sm"
+            }`}
+          >
+            {proj.description}
+          </p>
+          {proj.note && (
+            <p className="mt-2 text-xs italic leading-relaxed text-zinc-500">
+              {proj.note}
+            </p>
+          )}
+        </div>
+
+        <ProjectFooter proj={proj} featured={featured} />
+      </div>
     </SpotlightCard>
   );
 }
 
-export default function ProjectsSection() {
+export default function ProjectsSection({
+  // How many leading projects render as full-width featured cards (0–3).
+  featuredCount = 1,
+}: {
+  featuredCount?: number;
+} = {}) {
+  const featured = Math.max(0, Math.min(3, featuredCount));
+
   return (
     <Section id="projects" mesh="left">
       <SectionHeading index="02" command="projects" title="Projects" />
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((proj) => (
-          <ProjectCard key={proj.title} proj={proj} />
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-6">
+        {PROJECTS.map((proj, i) => (
+          <ProjectCard key={proj.title} proj={proj} featured={i < featured} />
         ))}
       </div>
     </Section>

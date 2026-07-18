@@ -49,7 +49,7 @@ export default function HeroSection() {
       <div className="relative grid items-center gap-8 sm:gap-10 md:grid-cols-[1.05fr_0.95fr] md:gap-12">
         {/* Left — intro */}
         <Reveal>
-          <div className="mb-6 flex items-center gap-3">
+          <div className="mb-6 flex flex-wrap items-center gap-3">
             <div id="hero-avatar" className="relative">
               <Image
                 src="/profile.png"
@@ -64,7 +64,9 @@ export default function HeroSection() {
                 <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-zinc-950 bg-emerald-500" />
               </span>
             </div>
-            <span className="font-mono text-xs text-zinc-400">
+            {/* Availability pill — emerald, with a leading dot. */}
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/35 bg-emerald-400/[0.08] px-3 py-[5px] font-mono text-xs text-emerald-300">
+              <span className="h-[7px] w-[7px] rounded-full bg-emerald-400" />
               {hero.availability}
             </span>
           </div>
@@ -78,12 +80,48 @@ export default function HeroSection() {
           <p className="mt-4 text-lg font-medium text-zinc-300 sm:text-xl md:text-2xl">
             {hero.title}
           </p>
+          {/* Specialization line — the actual day-to-day stack. */}
+          <p className="mt-2.5 font-mono text-[13px] text-zinc-500">
+            {hero.specialization}
+          </p>
+          {/* Current-role context — links through to the experience section. */}
+          <p className="mt-4 text-sm text-zinc-400">
+            Currently{" "}
+            <span className="font-medium text-zinc-200">
+              {hero.roleContext.role}
+            </span>{" "}
+            at{" "}
+            <Link
+              href={hero.roleContext.companyHref}
+              className="border-b border-zinc-700 text-zinc-200 transition-colors hover:border-zinc-500"
+            >
+              {hero.roleContext.company}
+            </Link>
+            , {hero.roleContext.location}.
+          </p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
             <Intro text={hero.intro} />
           </p>
 
+          {/* Proof strip — three metrics in a mono row. */}
+          <div className="mt-8 flex flex-wrap gap-x-9 gap-y-4">
+            {hero.metrics.map((metric) => (
+              <div key={metric.label}>
+                <div className="font-mono text-[22px] font-semibold leading-none text-zinc-100">
+                  {metric.value}
+                </div>
+                <div className="mt-1.5 font-mono text-xs text-zinc-500">
+                  {metric.label}
+                </div>
+              </div>
+            ))}
+          </div>
+
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button asChild>
+            <Button
+              asChild
+              className="bg-emerald-400 font-semibold text-[#052e1f] shadow-[0_0_24px_-6px_rgba(52,211,153,0.5)] hover:bg-emerald-300"
+            >
               <Link href="#contact">
                 Get in touch <ArrowRight className="h-4 w-4" />
               </Link>
