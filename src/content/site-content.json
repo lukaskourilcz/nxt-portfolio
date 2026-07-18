@@ -182,7 +182,7 @@
       "company": "EmbedIT",
       "logo": "/logos/embedit_logo.png",
       "role": "Senior Fullstack Developer",
-      "period": "Sep 2025 – Mar 2026",
+      "period": "Jul 2025 – Mar 2026",
       "location": "Prague, Czech Republic",
       "responsibilities": [
         "Led the modernization of an online banking platform, moving legacy systems to a micro-frontend architecture",
@@ -203,7 +203,7 @@
       "company": "Ersilia",
       "logo": "/logos/ersilia_logo.png",
       "role": "Fullstack Developer",
-      "period": "Feb 2024 – Aug 2025",
+      "period": "Jan 2024 – Jun 2025",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built a full-stack app in Next.js and TypeScript for managing structured ML model metadata",
@@ -224,7 +224,7 @@
       "company": "beKind",
       "logo": "/logos/bekind_logo.png",
       "role": "Frontend Developer",
-      "period": "Feb 2023 – Jan 2024",
+      "period": "Feb 2023 – Dec 2023",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built the site in Next.js, tuned for performance and SEO",
