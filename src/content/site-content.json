@@ -228,9 +228,9 @@
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built a B2B marketplace connecting charities and corporations in Next.js and TypeScript, tuned for performance and SEO",
-        "Owned the frontend architecture, establishing a reusable React and TailwindCSS component library and a consistent design system",
+        "Owned the frontend architecture with a reusable React and TailwindCSS component library",
         "Translated UX wireframes into production interfaces in close collaboration with design stakeholders",
-        "Contributed to the backend and database schema design with Node.js and PostgreSQL, integrating REST APIs across the stack",
+        "Contributed to the backend and schema design with Node.js, PostgreSQL, and REST APIs",
         "Drove the company rebrand from design through to launch"
       ],
       "tags": [
