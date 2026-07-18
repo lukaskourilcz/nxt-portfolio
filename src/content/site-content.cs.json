@@ -228,9 +228,9 @@
       "location": "Barcelona, Španělsko",
       "responsibilities": [
         "Postavil jsem B2B marketplace propojující neziskovky a firmy v Next.js a TypeScriptu, vyladěný na výkon a SEO",
-        "Převzal jsem architekturu frontendu — znovupoužitelná komponentová knihovna v Reactu a TailwindCSS a konzistentní design systém",
+        "Převzal jsem architekturu frontendu se znovupoužitelnou komponentovou knihovnou v Reactu a TailwindCSS",
         "Převáděl jsem UX wireframy do produkčních rozhraní v úzké spolupráci s designéry",
-        "Přispěl jsem k backendu a návrhu databázového schématu v Node.js a PostgreSQL a integroval REST API napříč stackem",
+        "Přispěl jsem k backendu a návrhu schématu v Node.js, PostgreSQL a REST API",
         "Dovedl jsem firemní rebrand od návrhu až po spuštění"
       ],
       "tags": [
