@@ -5,18 +5,7 @@
     "name": "Lukas Kouril",
     "title": "Senior Fullstack Engineer",
     "specialization": "TypeScript · React · Next.js · Node.js",
-    "roleContext": {
-      "role": "Senior Frontend Engineer",
-      "company": "Web Integrator",
-      "companyHref": "#experience",
-      "location": "Prague"
-    },
     "intro": "I build production frontends in **TypeScript** and **React** — from micro-frontends for online banking to **AI tooling** shipped with real teams. I care about readable code and interfaces that still make sense a year later.",
-    "metrics": [
-      { "value": "10", "label": "projects shipped" },
-      { "value": "9", "label": "teams & clients" },
-      { "value": "4", "label": "countries worked" }
-    ],
     "terminal": [
       {
         "command": "cat about.txt",
@@ -368,14 +357,6 @@
         {
           "src": "/education/arol-office.jpg",
           "alt": "The arol.dev office in Barcelona"
-        },
-        {
-          "src": "/education/arol-teamwork.jpg",
-          "alt": "Students working together at arol.dev"
-        },
-        {
-          "src": "/education/arol-rooftop.jpg",
-          "alt": "The arol.dev cohort above Barceloneta beach"
         }
       ]
     },
@@ -397,14 +378,6 @@
         {
           "src": "/education/reykjavik-school.jpg",
           "alt": "The Tækniskólinn building in Reykjavík"
-        },
-        {
-          "src": "/education/reykjavik-academy.jpg",
-          "alt": "Working through a UX flow at the Reykjavík academy"
-        },
-        {
-          "src": "/education/reykjavik-students.jpg",
-          "alt": "Students at Tækniskólinn between classes"
         }
       ]
     }

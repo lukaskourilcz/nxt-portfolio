@@ -84,38 +84,9 @@ export default function HeroSection() {
           <p className="mt-2.5 font-mono text-[13px] text-zinc-500">
             {hero.specialization}
           </p>
-          {/* Current-role context — links through to the experience section. */}
-          <p className="mt-4 text-sm text-zinc-400">
-            Currently{" "}
-            <span className="font-medium text-zinc-200">
-              {hero.roleContext.role}
-            </span>{" "}
-            at{" "}
-            <Link
-              href={hero.roleContext.companyHref}
-              className="border-b border-zinc-700 text-zinc-200 transition-colors hover:border-zinc-500"
-            >
-              {hero.roleContext.company}
-            </Link>
-            , {hero.roleContext.location}.
-          </p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
             <Intro text={hero.intro} />
           </p>
-
-          {/* Proof strip — three metrics in a mono row. */}
-          <div className="mt-8 flex flex-wrap gap-x-9 gap-y-4">
-            {hero.metrics.map((metric) => (
-              <div key={metric.label}>
-                <div className="font-mono text-[22px] font-semibold leading-none text-zinc-100">
-                  {metric.value}
-                </div>
-                <div className="mt-1.5 font-mono text-xs text-zinc-500">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
-          </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button

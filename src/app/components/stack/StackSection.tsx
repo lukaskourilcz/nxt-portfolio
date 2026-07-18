@@ -189,67 +189,6 @@ const STACK: StackItem[] = [
   { name: "Vercel AI SDK", brand: "vercel", color: "#d4d4d8", size: "sm", group: "ai" },
 ];
 
-// Lookup by name so the grouped list below can pull the same icon/colour
-// resolution the constellation uses.
-const STACK_BY_NAME: Record<string, StackItem> = Object.fromEntries(
-  STACK.map((tech) => [tech.name, tech])
-);
-
-// Display grouping for the scannable list under the constellation. Curated
-// order and labels — a couple of tiers are merged from the constellation's
-// finer `group` tags (e.g. version control folds into tooling here).
-const DISPLAY_GROUPS: { label: string; names: string[] }[] = [
-  { label: "Languages", names: ["JavaScript", "TypeScript", "HTML5", "CSS3"] },
-  {
-    label: "Frameworks & UI",
-    names: [
-      "React",
-      "Next.js",
-      "Astro",
-      "Astryx",
-      "TailwindCSS",
-      "StyleX",
-      "shadcn/ui",
-      "MUI",
-      "Bootstrap",
-      "Motion",
-      "TanStack",
-    ],
-  },
-  { label: "Backend & Realtime", names: ["Node.js", "Express.js", "Ably"] },
-  {
-    label: "Data & Auth",
-    names: [
-      "PostgreSQL",
-      "MySQL",
-      "MongoDB",
-      "Prisma",
-      "Drizzle",
-      "Payload CMS",
-      "Better Auth",
-      "Auth0",
-    ],
-  },
-  {
-    label: "Tooling & Version Control",
-    names: [
-      "Git",
-      "GitHub",
-      "GitLab",
-      "Docker",
-      "Vite",
-      "Postman",
-      "Google Cloud",
-      "Figma",
-    ],
-  },
-  {
-    label: "Testing & Validation",
-    names: ["Zod", "React Hook Form", "Mocha", "Jest", "Vitest", "Playwright"],
-  },
-  { label: "AI", names: ["Claude Code", "Anthropic SDK", "Vercel AI SDK"] },
-];
-
 // Fallback accent for anything without its own brand colour.
 const ACCENT = "#34d399";
 
@@ -571,56 +510,7 @@ function MobileStackConstellation({
   );
 }
 
-// A scannable, grouped fallback/companion to the constellation: one row per
-// discipline, each a wrapping set of icon+name chips. Reuses StackIcon so the
-// glyphs match the constellation exactly, just at 16px.
-function GroupedStackList({ inset }: { inset: boolean }) {
-  return (
-    <div style={{ marginTop: inset ? 40 : 0 }} className="flex flex-col">
-      {DISPLAY_GROUPS.map((group, gi) => (
-        <Reveal
-          key={group.label}
-          as="div"
-          delay={staggerDelay(gi, 0.05, 0.3)}
-          className="grid grid-cols-1 items-start gap-x-6 gap-y-3 border-t border-zinc-800 py-5 sm:grid-cols-[190px_1fr]"
-        >
-          <div className="font-mono text-[13px]">
-            <span className="text-emerald-500">
-              {String(gi + 1).padStart(2, "0")}
-            </span>
-            <span className="mx-2 text-zinc-600">/</span>
-            <span className="text-zinc-200">{group.label}</span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {group.names.map((name) => {
-              const tech = STACK_BY_NAME[name];
-              if (!tech) return null;
-              return (
-                <span
-                  key={name}
-                  className="inline-flex items-center gap-2 rounded-md border border-zinc-800 bg-zinc-900/60 px-2.5 py-1.5 font-mono text-[12.5px] text-zinc-300"
-                >
-                  <span className="flex h-4 w-4 shrink-0 items-center justify-center">
-                    <StackIcon tech={tech} px={16} />
-                  </span>
-                  {name}
-                </span>
-              );
-            })}
-          </div>
-        </Reveal>
-      ))}
-    </div>
-  );
-}
-
-export default function StackSection({
-  stackView = "both",
-}: {
-  // "both" shows the constellation with the grouped list beneath;
-  // "constellation" / "grouped" show just one.
-  stackView?: "both" | "constellation" | "grouped";
-} = {}) {
+export default function StackSection() {
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState<string | null>(null);
   const [seed, setSeed] = useState(0);
@@ -667,34 +557,27 @@ export default function StackSection({
   // Hover suppresses the auto light entirely; otherwise the tour drives it.
   const active = hovered ?? spot;
 
-  const showConstellation = stackView !== "grouped";
-  const showGrouped = stackView !== "constellation";
-
   return (
     <Section id="stack" mesh="right">
       <SectionHeading index="01" command="stack" title="Tech Stack" />
 
       <Reveal className="-mt-4 mb-8 max-w-[40rem] text-[15px] leading-relaxed text-zinc-400 sm:-mt-8">
         The tools I reach for day to day — grouped by where they sit in the
-        stack. Hover the constellation to explore, or scan the list below.
+        stack. Hover the constellation to explore.
       </Reveal>
 
-      {showConstellation && (
-        <MobileStackConstellation
-          positions={positions}
-          positionByName={positionByName}
-          seed={seed}
-        />
-      )}
+      <MobileStackConstellation
+        positions={positions}
+        positionByName={positionByName}
+        seed={seed}
+      />
 
       {/* Scattered constellation — pointer screens only; touch gets the
           spotlight-tour constellation above. Hover lights an icon on demand,
           and between hovers the same auto spotlight tours the stack. */}
       <div
         ref={containerRef}
-        className={`relative mx-auto aspect-square w-full max-w-3xl ${
-          showConstellation ? "hidden md:block" : "hidden"
-        }`}
+        className="relative mx-auto aspect-square w-full max-w-3xl hidden md:block"
       >
         {positions.map(({ item: tech, x, y }, i) => {
           const isHovered = hovered === tech.name;
@@ -751,8 +634,6 @@ export default function StackSection({
           );
         })}
       </div>
-
-      {showGrouped && <GroupedStackList inset={stackView === "both"} />}
     </Section>
   );
 }
