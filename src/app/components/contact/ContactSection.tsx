@@ -1,11 +1,13 @@
+"use client";
+
 import { Mail } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
+import { useI18n } from "@/components/language-provider";
 import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF, LOCATION } from "@/lib/site";
 import { SOCIALS } from "@/lib/socials";
-import { CONTENT } from "@/lib/content";
 
 type ContactItem = {
   label: string;
@@ -13,29 +15,35 @@ type ContactItem = {
   value: string;
 };
 
-const CONTACTS: ContactItem[] = [
-  { label: "email", href: EMAIL_HREF, value: EMAIL },
-  { label: "phone", href: PHONE_HREF, value: PHONE },
-  { label: "location", href: null, value: LOCATION },
-];
-
 export default function ContactSection() {
+  const { content, t } = useI18n();
+
+  const contacts: ContactItem[] = [
+    { label: t.contact.email, href: EMAIL_HREF, value: EMAIL },
+    { label: t.contact.phone, href: PHONE_HREF, value: PHONE },
+    { label: t.contact.location, href: null, value: LOCATION },
+  ];
+
   return (
     <Section id="contact" mesh="right">
-      <SectionHeading index="05" command="contact" title="Get in touch" />
+      <SectionHeading
+        index="05"
+        command={t.sections.contact.command}
+        title={t.sections.contact.title}
+      />
 
       <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2">
         <div>
           <p className="font-mono text-sm text-emerald-400">
-            {CONTENT.contact.prompt}
+            {content.contact.prompt}
           </p>
           <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg">
-            {CONTENT.contact.blurb}
+            {content.contact.blurb}
           </p>
 
           <Button asChild className="mt-6">
             <a href={EMAIL_HREF}>
-              <Mail className="h-4 w-4" /> Say hello
+              <Mail className="h-4 w-4" /> {t.contact.sayHello}
             </a>
           </Button>
 
@@ -54,7 +62,7 @@ export default function ContactSection() {
         </div>
 
         <div className="border-t border-zinc-800">
-          {CONTACTS.map(({ label, href, value }) => {
+          {contacts.map(({ label, href, value }) => {
             const row = (
               <>
                 <span className="font-mono text-[0.7rem] uppercase tracking-wider text-zinc-500">

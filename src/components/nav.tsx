@@ -6,25 +6,34 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Menu, X, FileText } from "lucide-react";
 import { ResumeButton } from "@/components/resume-button";
+import { LanguageToggle } from "@/components/language-toggle";
+import { useI18n } from "@/components/language-provider";
 import { useScrolled } from "@/hooks/useScrolled";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useElementOnScreen } from "@/hooks/useElementOnScreen";
 import { EMAIL, EMAIL_HREF } from "@/lib/site";
 
-type NavSection = { id: string; label: string; index: string };
-
-const SECTIONS: NavSection[] = [
-  { id: "stack", label: "stack", index: "01" },
-  { id: "projects", label: "projects", index: "02" },
-  { id: "experience", label: "experience", index: "03" },
-  { id: "education", label: "education", index: "04" },
-  { id: "contact", label: "contact", index: "05" },
+// Section id + anchor stay fixed across languages; the visible label comes
+// from the active-language UI dictionary (keyed by id).
+type NavSectionId = "stack" | "projects" | "experience" | "education" | "contact";
+const SECTION_ORDER: { id: NavSectionId; index: string }[] = [
+  { id: "stack", index: "01" },
+  { id: "projects", index: "02" },
+  { id: "experience", index: "03" },
+  { id: "education", index: "04" },
+  { id: "contact", index: "05" },
 ];
-const SECTION_IDS = SECTIONS.map((section) => section.id);
+const SECTION_IDS = SECTION_ORDER.map((section) => section.id);
 
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const reduce = useReducedMotion();
+  const { t } = useI18n();
+
+  const sections = SECTION_ORDER.map((section) => ({
+    ...section,
+    label: t.sections[section.id].command,
+  }));
 
   const scrolled = useScrolled(8);
   const activeSection = useActiveSection(SECTION_IDS);
@@ -99,7 +108,7 @@ export function Nav() {
 
         {/* Nav links, centered in the space between the email and the resume button. */}
         <div className="hidden items-center justify-center gap-4 md:flex lg:gap-6">
-          {SECTIONS.map((section) => (
+          {sections.map((section) => (
             <Link
               key={section.id}
               href={`#${section.id}`}
@@ -125,8 +134,10 @@ export function Nav() {
         </div>
 
         <div className="col-start-3 flex shrink-0 items-center justify-self-end gap-2 min-[1130px]:-mr-[50px]">
+          <LanguageToggle />
+
           <ResumeButton size="sm" className="hidden md:inline-flex">
-            <FileText className="h-3.5 w-3.5" /> resume
+            <FileText className="h-3.5 w-3.5" /> {t.nav.resume}
           </ResumeButton>
 
           <button
@@ -152,7 +163,7 @@ export function Nav() {
             className="overflow-hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden"
           >
             <div className="flex flex-col gap-1 px-6 py-4">
-              {SECTIONS.map((section) => (
+              {sections.map((section) => (
                 <Link
                   key={section.id}
                   href={`#${section.id}`}
@@ -173,7 +184,7 @@ export function Nav() {
                 </Link>
               ))}
               <ResumeButton size="sm" className="mt-2 w-fit">
-                <FileText className="h-3.5 w-3.5" /> resume
+                <FileText className="h-3.5 w-3.5" /> {t.nav.resume}
               </ResumeButton>
             </div>
           </motion.div>

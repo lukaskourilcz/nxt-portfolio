@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, FileText, Github, Linkedin } from "lucide-react";
@@ -6,8 +8,8 @@ import { Terminal } from "@/components/ui/terminal";
 import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
 import { ResumeButton } from "@/components/resume-button";
+import { useI18n } from "@/components/language-provider";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
-import { CONTENT } from "@/lib/content";
 
 // Renders the intro string with **word** segments highlighted.
 function Intro({ text }: { text: string }) {
@@ -27,7 +29,8 @@ function Intro({ text }: { text: string }) {
 }
 
 export default function HeroSection() {
-  const hero = CONTENT.hero;
+  const { content, t } = useI18n();
+  const hero = content.hero;
   const commands = hero.terminal.map((line) => line.command);
   const outputs = Object.fromEntries(
     hero.terminal.map((line, i) => [i, line.outputs])
@@ -84,38 +87,9 @@ export default function HeroSection() {
           <p className="mt-2.5 font-mono text-[13px] text-zinc-500">
             {hero.specialization}
           </p>
-          {/* Current-role context — links through to the experience section. */}
-          <p className="mt-4 text-sm text-zinc-400">
-            Currently{" "}
-            <span className="font-medium text-zinc-200">
-              {hero.roleContext.role}
-            </span>{" "}
-            at{" "}
-            <Link
-              href={hero.roleContext.companyHref}
-              className="border-b border-zinc-700 text-zinc-200 transition-colors hover:border-zinc-500"
-            >
-              {hero.roleContext.company}
-            </Link>
-            , {hero.roleContext.location}.
-          </p>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
             <Intro text={hero.intro} />
           </p>
-
-          {/* Proof strip — three metrics in a mono row. */}
-          <div className="mt-8 flex flex-wrap gap-x-9 gap-y-4">
-            {hero.metrics.map((metric) => (
-              <div key={metric.label}>
-                <div className="font-mono text-[22px] font-semibold leading-none text-zinc-100">
-                  {metric.value}
-                </div>
-                <div className="mt-1.5 font-mono text-xs text-zinc-500">
-                  {metric.label}
-                </div>
-              </div>
-            ))}
-          </div>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button
@@ -123,11 +97,11 @@ export default function HeroSection() {
               className="bg-emerald-400 font-semibold text-[#052e1f] shadow-[0_0_24px_-6px_rgba(52,211,153,0.5)] hover:bg-emerald-300"
             >
               <Link href="#contact">
-                Get in touch <ArrowRight className="h-4 w-4" />
+                {t.hero.getInTouch} <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <ResumeButton>
-              <FileText className="h-4 w-4" /> View CV
+              <FileText className="h-4 w-4" /> {t.hero.viewCV}
             </ResumeButton>
             <div className="ml-1 flex items-center gap-1">
               <ExternalLink

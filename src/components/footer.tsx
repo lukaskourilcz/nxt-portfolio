@@ -1,16 +1,20 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowUp } from "lucide-react";
 import { ExternalLink } from "@/components/external-link";
+import { useI18n } from "@/components/language-provider";
 import { SOCIALS_WITH_EMAIL } from "@/lib/socials";
 
 export function Footer() {
+  const { t } = useI18n();
+
   return (
     <footer className="border-t border-zinc-800 bg-zinc-900/40">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10">
         <div className="flex items-center justify-between gap-4">
           <p className="font-mono text-xs text-zinc-400">
-            <span className="text-emerald-400">$</span>{" "}
-            built with Next.js
+            <span className="text-emerald-400">$</span> {t.footer.builtWith}
           </p>
           <div className="flex items-center gap-4">
             {SOCIALS_WITH_EMAIL.map(({ href, label, Icon }) => (
@@ -33,7 +37,7 @@ export function Footer() {
             href="#top"
             className="inline-flex items-center gap-1 font-mono text-[0.7rem] text-zinc-500 transition-colors hover:text-zinc-200"
           >
-            back to top <ArrowUp className="h-3 w-3" />
+            {t.footer.backToTop} <ArrowUp className="h-3 w-3" />
           </Link>
         </div>
       </div>

@@ -1,16 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { Reveal } from "@/components/reveal";
+import { useI18n } from "@/components/language-provider";
 import { staggerDelay } from "@/lib/anim";
-import { CONTENT, type Experience } from "@/lib/content";
+import { type Experience } from "@/lib/content";
 
 // The recent engineering roles render in full; the earlier, pre-engineering
 // roles collapse into one compact "earlier career" group so the senior work
-// stays dominant.
-const ENGINEERING = CONTENT.experience.slice(0, 6);
-const EARLIER = CONTENT.experience.slice(6);
-const EARLIER_PERIOD = "2015 – 2024";
+// stays dominant. The first six entries are the engineering roles.
+const ENGINEERING_COUNT = 6;
 
 // The rail marker for a timeline entry. The current role gets an emerald dot
 // with a soft ring; the rest are quiet zinc dots. The 2px ring is the page
@@ -49,10 +50,12 @@ function EngineeringRow({
   exp,
   current,
   delay,
+  presentLabel,
 }: {
   exp: Experience;
   current: boolean;
   delay: number;
+  presentLabel: string;
 }) {
   return (
     <Reveal
@@ -77,7 +80,7 @@ function EngineeringRow({
               <h3 className="font-semibold text-zinc-100">{exp.role}</h3>
               {current && (
                 <span className="rounded-full bg-emerald-400 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] text-[#052e1f]">
-                  Present
+                  {presentLabel}
                 </span>
               )}
             </div>
@@ -113,38 +116,47 @@ export default function ExperienceSection({
 }: {
   earlierRolesOpen?: boolean;
 } = {}) {
+  const { content, t } = useI18n();
+  const engineering = content.experience.slice(0, ENGINEERING_COUNT);
+  const earlier = content.experience.slice(ENGINEERING_COUNT);
+
   return (
     <Section id="experience" mesh="right">
-      <SectionHeading index="03" command="experience" title="Experience" />
+      <SectionHeading
+        index="03"
+        command={t.sections.experience.command}
+        title={t.sections.experience.title}
+      />
 
       <div>
-        {ENGINEERING.map((exp, idx) => (
+        {engineering.map((exp, idx) => (
           <EngineeringRow
             key={`${exp.company}-${exp.period}`}
             exp={exp}
             current={idx === 0}
             delay={staggerDelay(idx, 0.06, 0.4)}
+            presentLabel={t.experience.present}
           />
         ))}
 
         {/* Earlier career — one compact group of one-line rows. */}
         <Reveal
           as="article"
-          delay={staggerDelay(ENGINEERING.length, 0.06, 0.4)}
+          delay={staggerDelay(engineering.length, 0.06, 0.4)}
           className="grid grid-cols-[104px_1fr] gap-x-5 sm:grid-cols-[130px_1fr] sm:gap-x-7"
         >
           <div className="pt-0.5 font-mono text-xs text-zinc-600">
-            {EARLIER_PERIOD}
+            {t.experience.earlierPeriod}
           </div>
 
           <div className="relative border-l border-zinc-800 pl-7">
             <TimelineDot current={false} />
             <h3 className="mb-1.5 font-mono text-xs uppercase tracking-[0.08em] text-zinc-400">
-              Earlier career · pre-engineering
+              {t.experience.earlierCareer}
             </h3>
 
             <div className="flex flex-col">
-              {EARLIER.map((exp) => (
+              {earlier.map((exp) => (
                 <div
                   key={`${exp.company}-${exp.period}`}
                   className="border-t border-[#1f1f23] py-3"

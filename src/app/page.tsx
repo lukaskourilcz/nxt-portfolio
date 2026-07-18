@@ -1,6 +1,7 @@
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { BackgroundGrid } from "@/components/background-grid";
+import { LanguageProvider } from "@/components/language-provider";
 import HeroSection from "./components/hero/HeroSection";
 import StackSection from "./components/stack/StackSection";
 import ExperienceSection from "./components/experience/ExperienceSection";
@@ -10,7 +11,7 @@ import ContactSection from "./components/contact/ContactSection";
 
 export default function Home() {
   return (
-    <>
+    <LanguageProvider>
       <BackgroundGrid />
       <Nav />
       <main id="main" tabIndex={-1} className="outline-none">
@@ -22,6 +23,6 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }
