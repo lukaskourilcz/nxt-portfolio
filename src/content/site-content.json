@@ -224,7 +224,7 @@
       "company": "beKind",
       "logo": "/logos/bekind_logo.png",
       "role": "Frontend Developer",
-      "period": "May 2023 – Jan 2024",
+      "period": "Feb 2023 – Jan 2024",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built the site in Next.js, tuned for performance and SEO",
@@ -237,26 +237,6 @@
         "Tailwind",
         "PostgreSQL",
         "Node.js"
-      ]
-    },
-    {
-      "company": "Autodoprava Kopeček",
-      "logo": "/logos/autodopravakopecek_logo.png",
-      "role": "Frontend Engineer",
-      "period": "Feb 2023 – Apr 2023",
-      "location": "Brno, Czech Republic",
-      "responsibilities": [
-        "Solo project: took the client's brief from concept and design through testing and release",
-        "Built the site in Next.js and shadcn/ui, mobile-first and heavy on SEO",
-        "Designed the customer flow around quote requests and conversions"
-      ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "SEO",
-        "UX/UI",
-        "i18n",
-        "shadcn/ui"
       ]
     },
     {
