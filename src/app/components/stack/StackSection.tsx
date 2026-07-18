@@ -17,6 +17,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { Reveal } from "@/components/reveal";
 import { BrandIcon } from "@/components/brand-icons";
+import { useI18n } from "@/components/language-provider";
 import { useContainerScale } from "@/hooks/useContainerScale";
 import {
   createSeededRandom,
@@ -511,6 +512,7 @@ function MobileStackConstellation({
 }
 
 export default function StackSection() {
+  const { t } = useI18n();
   const reduce = useReducedMotion();
   const [hovered, setHovered] = useState<string | null>(null);
   const [seed, setSeed] = useState(0);
@@ -559,11 +561,14 @@ export default function StackSection() {
 
   return (
     <Section id="stack" mesh="right">
-      <SectionHeading index="01" command="stack" title="Tech Stack" />
+      <SectionHeading
+        index="01"
+        command={t.sections.stack.command}
+        title={t.sections.stack.title}
+      />
 
       <Reveal className="-mt-4 mb-8 max-w-[40rem] text-[15px] leading-relaxed text-zinc-400 sm:-mt-8">
-        The tools I reach for day to day — grouped by where they sit in the
-        stack. Hover the constellation to explore.
+        {t.stackIntro}
       </Reveal>
 
       <MobileStackConstellation

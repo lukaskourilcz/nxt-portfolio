@@ -1,0 +1,389 @@
+{
+  "hero": {
+    "availability": "K dispozici pro práci · Praha / remote",
+    "eyebrow": "$ whoami",
+    "name": "Lukas Kouril",
+    "title": "Senior Fullstack Engineer",
+    "specialization": "TypeScript · React · Next.js · Node.js",
+    "intro": "Stavím produkční frontendy v **TypeScriptu** a **Reactu** — od mikrofrontend pro online bankovnictví po **AI nástroje** nasazené s reálnými týmy. Záleží mi na čitelném kódu a rozhraních, která dávají smysl i po roce.",
+    "terminal": [
+      {
+        "command": "cat about.txt",
+        "outputs": [
+          "Stavím webové aplikace v TypeScriptu, Reactu,",
+          "Next.js a Node.js."
+        ]
+      },
+      {
+        "command": "ls ~/stack",
+        "outputs": [
+          "typescript  react  next.js  node.js  postgresql",
+          "  tailwindcss  payload  docker  ..."
+        ]
+      },
+      {
+        "command": "echo $STATUS",
+        "outputs": [
+          "available_for_work"
+        ]
+      }
+    ]
+  },
+  "projects": [
+    {
+      "title": "devShark",
+      "description": "Vývojářská kvízová a učební aplikace s tematickými cestami, denními výzvami, multiplayerem v reálném čase a žebříčky. React a Supabase za serverless funkcemi.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Supabase",
+        "Realtime",
+        "Vercel"
+      ],
+      "vercel": "https://www.devshark.app",
+      "image": "/projects/devshark.png"
+    },
+    {
+      "title": "Personal Dashboard",
+      "description": "Osobní dashboard pro předplatná, návyky, finance, české faktury, knihy a kalendář, plus rychlé přidávání přirozeným jazykem postavené na Claude.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Supabase",
+        "Claude AI",
+        "Recharts"
+      ],
+      "vercel": "https://own-dashboard-tau.vercel.app",
+      "image": "/projects/personal-dashboard.png"
+    },
+    {
+      "title": "aifirst",
+      "description": "Denní, plně statický dvojjazyčný (CS/EN) magazín o AI a technologiích. Naplánovaná úloha v GitHub Actions každý den seškrábe zdroje dne a Claude napíše každé vydání.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Claude API",
+        "GitHub Actions"
+      ],
+      "vercel": "https://aifirst-beryl.vercel.app/",
+      "image": "/projects/aifirst.png"
+    },
+    {
+      "title": "Czech Monopoly",
+      "description": "Česká verze Monopolů v prohlížeči a v reálném čase, kde 2–4 hráči kupují česká města přes kód místnosti, s vědomostním twistem a lokalizací CS/EN.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Payload CMS",
+        "Neon",
+        "Ably"
+      ],
+      "vercel": "https://czech-cities.vercel.app",
+      "image": "/projects/czech-cities.png"
+    },
+    {
+      "title": "Dont Wanna Know",
+      "description": "Zadejte rok narození, zemi a město a získáte okamžitý report o době, ve které někdo vyrůstal — celý v prohlížeči. Žádný backend, žádná volání API.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "i18n",
+        "Vercel"
+      ],
+      "vercel": "https://dontwannaknow.vercel.app",
+      "image": "/projects/dontwannaknow.png"
+    },
+    {
+      "title": "AutobusyHodonín.cz",
+      "description": "Prezentační web pro českou autobusovou a nákladní dopravu pokrývající vozový park, osobní linky i nákladní přepravu, vyladěný pro SEO v češtině i angličtině.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "i18n"
+      ],
+      "vercel": "https://autobusyhodonin.cz",
+      "image": "/projects/autobusy-hodonin.png"
+    },
+    {
+      "title": "Umyjeme fasádu",
+      "description": "Web pro českou službu čištění exteriérů: tlakové mytí fasád, střech a dlažby horkou vodou, s posuvníky před/po a poptávkovým formulářem.",
+      "tech": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "TailwindCSS"
+      ],
+      "vercel": "https://umyjemefasadu.vercel.app/",
+      "image": "/projects/umyjeme-fasadu.png"
+    },
+    {
+      "title": "Eurowafers",
+      "description": "Webová prezentace českého výrobce lázeňských oplatek — historie, produkty a distribuce.",
+      "tech": [
+        "Astro",
+        "TypeScript",
+        "TailwindCSS",
+        "Vercel"
+      ],
+      "vercel": "https://eurowafers.vercel.app",
+      "image": "/projects/eurowafers.png"
+    },
+    {
+      "title": "Take a Break",
+      "description": "B2B aplikace pro rezervaci meditací s rezervačním dashboardem, achievementy a novinkami, postavená na monorepu Turborepo.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Prisma",
+        "PostgreSQL",
+        "Turborepo"
+      ],
+      "image": "/projects/takeabreak.png",
+      "note": "Bohužel už nemám screenshot aplikace, ale podívejte se na ten skvělý tým!"
+    },
+    {
+      "title": "beKind Web App",
+      "description": "Rebrand firmy a webová aplikace v Next.js, postavená na PostgreSQL a Prisma.",
+      "tech": [
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Prisma",
+        "PostgreSQL"
+      ],
+      "image": "/projects/bekind.png"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Web Integrator",
+      "logo": "/logos/webintegrator_logo.svg",
+      "role": "Senior Frontend Engineer",
+      "period": "duben 2026 – současnost",
+      "location": "Praha, Česká republika",
+      "responsibilities": [
+        "První inženýr zaměřený na AI v týmu: přinesl jsem AI nástroje do workflow a nastavil konvence, jak je používáme",
+        "Vedu frontendovou práci v TypeScriptu, Reactu a Next.js, včetně kvality kódu a chování napříč prohlížeči",
+        "Udržuji kódovací standardy a klientské guideliny ohledně přístupnosti a webových standardů",
+        "Píšu technické specifikace z návrhů a připravuji grafické podklady pro vývoj",
+        "Modeluji strukturovaný obsah v Payload CMS a zlepšuji UX detaily napříč klientskými weby"
+      ],
+      "tags": [
+        "AI tooling",
+        "TypeScript",
+        "Next.js",
+        "React",
+        "Payload CMS"
+      ]
+    },
+    {
+      "company": "EmbedIT",
+      "logo": "/logos/embedit_logo.png",
+      "role": "Senior Fullstack Developer",
+      "period": "říjen 2025 – březen 2026",
+      "location": "Praha, Česká republika",
+      "responsibilities": [
+        "Vedl jsem modernizaci platformy online bankovnictví — přechod legacy systémů na mikrofrontendovou architekturu",
+        "Postavil jsem vrstvu Backend-for-Frontend (BFF): kontrolery, mappery a orchestraci služeb",
+        "Navrhl jsem API kontrakty a udržoval integrace stabilní napříč několika navazujícími službami",
+        "Pokryl jsem kód unit, integračními a E2E testy a splnil požadavky přístupnosti WCAG",
+        "Zrychlil jsem CI/CD pipeline a zpřísnil standardy code review"
+      ],
+      "tags": [
+        "TypeScript",
+        "React",
+        "Express.js",
+        "StyleX",
+        "Node.js"
+      ]
+    },
+    {
+      "company": "Ersilia",
+      "logo": "/logos/ersilia_logo.png",
+      "role": "Fullstack Developer",
+      "period": "květen 2025 – září 2025",
+      "location": "Barcelona, Španělsko",
+      "responsibilities": [
+        "Postavil jsem full-stackovou aplikaci v Next.js a TypeScriptu pro správu strukturovaných metadat ML modelů",
+        "Navrhl jsem databázové schéma a backend za ním",
+        "Vytvořil jsem AI workflow na Vercel AI SDK, které analyzuje vědecké PDF pomocí LLM",
+        "Zautomatizoval jsem validaci metadat a synchronizaci repozitářů přes GitHub API a Actions",
+        "Spolupracoval jsem přímo s výzkumným týmem na open-science codebase"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Vercel AI SDK",
+        "PostgreSQL",
+        "Node.js"
+      ]
+    },
+    {
+      "company": "beKind",
+      "logo": "/logos/bekind_logo.png",
+      "role": "Frontend Developer",
+      "period": "listopad 2024 – červen 2025",
+      "location": "Barcelona, Španělsko",
+      "responsibilities": [
+        "Postavil jsem web v Next.js, vyladěný na výkon a SEO",
+        "Podílel jsem se na UX/UI kolem jasné a jednoduché navigace",
+        "S týmem jsem dovedl rebrand od návrhu až po spuštění"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Tailwind",
+        "PostgreSQL",
+        "Node.js"
+      ]
+    },
+    {
+      "company": "Autodoprava Kopeček",
+      "logo": "/logos/autodopravakopecek_logo.png",
+      "role": "Frontend Engineer",
+      "period": "leden 2025 – únor 2025",
+      "location": "Brno, Česká republika",
+      "responsibilities": [
+        "Sólo projekt: klientský brief jsem provedl od konceptu a návrhu přes testování až po nasazení",
+        "Postavil jsem web v Next.js a shadcn/ui, mobile-first a s důrazem na SEO",
+        "Navrhl jsem zákaznický flow kolem poptávek a konverzí"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "SEO",
+        "UX/UI",
+        "i18n",
+        "shadcn/ui"
+      ]
+    },
+    {
+      "company": "Take a Break",
+      "logo": "/logos/takeabreak_logo.svg",
+      "role": "Full Stack Developer",
+      "period": "duben 2024 – říjen 2024",
+      "location": "Barcelona, Španělsko",
+      "responsibilities": [
+        "Postavil jsem full-stackovou B2B aplikaci pro rezervaci meditací v Next.js a TypeScriptu",
+        "Sestavil jsem UI ze znovupoužitelných komponent React, TailwindCSS a shadcn/ui",
+        "Vyladil jsem PostgreSQL dotazy přes Prisma",
+        "Integroval jsem Stripe a API třetích stran pro platby, autentizaci a aktualizace v reálném čase",
+        "Nasadil jsem na Vercel s CI pro preview a produkční buildy"
+      ],
+      "tags": [
+        "TypeScript",
+        "Next.js",
+        "Tailwind",
+        "PostgreSQL",
+        "Prisma"
+      ]
+    },
+    {
+      "company": "Controlant",
+      "logo": "/logos/controlant_logo.png",
+      "role": "Technical Analyst",
+      "period": "listopad 2021 – duben 2024",
+      "location": "Reykjavík, Island",
+      "responsibilities": [
+        "Monitoroval jsem živou telemetrii z IoT trackerů chladicího řetězce u farmaceutických zásilek a triážoval kritické teplotní výkyvy",
+        "Prováděl jsem analýzu příčin nad daty zásilek a senzorů a měnil zjištění v řešení v souladu s předpisy pro globální klienty",
+        "Zautomatizoval jsem opakující se části zpracování dat a klientského reportingu",
+        "Psal jsem auditní zprávy a dokumentaci kvality a prezentoval zjištění vedení"
+      ],
+      "tags": [
+        "Data Analysis",
+        "IoT Telemetry",
+        "Root-Cause Analysis",
+        "Automation"
+      ]
+    },
+    {
+      "company": "Entain Group",
+      "logo": "/logos/entain_logo.png",
+      "role": "User Protection Expert",
+      "period": "leden 2020 – září 2021",
+      "location": "Gibraltar",
+      "responsibilities": [
+        "Odhaloval jsem vzorce podvodů a praní špinavých peněz v sázkových a transakčních datech pomocí specializovaných analytických nástrojů",
+        "Vyšetřoval jsem označené účty a nakládal s citlivými uživatelskými daty podle GDPR",
+        "Udržoval jsem detekční procesy v souladu s EU a místními předpisy pro hazard",
+        "Mentoroval jsem juniorní analytiky v oblasti compliance a rizik"
+      ],
+      "tags": [
+        "Fraud Detection",
+        "AML/KYC",
+        "Data Analytics",
+        "GDPR"
+      ]
+    },
+    {
+      "company": "Kiwi.com",
+      "logo": "/logos/kiwi_logo.png",
+      "role": "Customer Relations Advisor",
+      "period": "prosinec 2015 – listopad 2019",
+      "location": "Brno, Česká republika",
+      "responsibilities": [
+        "Řešil jsem složité problémy s rezervacemi napříč několika leteckými a CRM systémy",
+        "S týmem jsem přepracoval podpůrné workflow a zkrátil dobu řešení",
+        "Podporoval jsem provoz KAYAK a B2B partnery řešeními podloženými daty",
+        "Zaškoloval jsem nováčky v systémech, postupech a procesech podpory"
+      ],
+      "tags": [
+        "CRM Systems",
+        "Workflow Optimization",
+        "B2B Support"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "name": "arol.dev",
+      "field": "Softwarové inženýrství",
+      "period": "červenec 2024 – prosinec 2024",
+      "url": "https://arol.dev",
+      "description": "Intenzivní akademie softwarového inženýrství v Barceloně zaměřená na full-stack webový vývoj. Pracoval jsem hlavně s JavaScriptem, TypeScriptem, Reactem, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, Prisma a MongoDB, vedle datových struktur, algoritmů a nástrojů jako Git, Docker, Vercel a Figma. Většina učení přišla ze stavění reálných projektů — a tam jsem se do softwarového inženýrství zamiloval.",
+      "skills": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "photos": [
+        {
+          "src": "/education/arol-office.jpg",
+          "alt": "Kancelář arol.dev v Barceloně"
+        }
+      ]
+    },
+    {
+      "name": "Reykjavík Academy of Web Development",
+      "field": "Webový vývoj",
+      "period": "srpen 2022 – prosinec 2022",
+      "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
+      "description": "Bootcamp webového vývoje, kde jsem si vybudoval základ v HTML, CSS a JavaScriptu. Všechno se točilo kolem stavění responzivních, interaktivních webových aplikací.",
+      "skills": [
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Vue.js",
+        "Responsive Design",
+        "REST APIs"
+      ],
+      "photos": [
+        {
+          "src": "/education/reykjavik-school.jpg",
+          "alt": "Budova Tækniskólinn v Reykjavíku"
+        }
+      ]
+    }
+  ],
+  "contact": {
+    "prompt": "$ ./say-hello.sh",
+    "blurb": "Nabíráte, nebo máte v hlavě projekt? Napište mi a ozvu se vám."
+  }
+}

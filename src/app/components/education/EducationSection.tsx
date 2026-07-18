@@ -1,16 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { ArrowLink } from "@/components/arrow-link";
-import { CONTENT } from "@/lib/content";
+import { useI18n } from "@/components/language-provider";
 
 export default function EducationSection() {
+  const { content, t } = useI18n();
+
   return (
     <Section id="education" mesh="left">
-      <SectionHeading index="04" command="education" title="Education" />
+      <SectionHeading
+        index="04"
+        command={t.sections.education.command}
+        title={t.sections.education.title}
+      />
 
       <div className="border-t border-zinc-800">
-        {CONTENT.education.map((a) => (
+        {content.education.map((a) => (
           <article
             key={a.name}
             className="grid gap-x-8 gap-y-4 border-b border-zinc-800 py-8 sm:grid-cols-[150px_1fr]"

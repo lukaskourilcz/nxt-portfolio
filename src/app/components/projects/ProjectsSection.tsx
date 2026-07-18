@@ -1,12 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import { ExternalLink as ExternalLinkIcon, ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
 import { ExternalLink } from "@/components/external-link";
 import { SpotlightCard } from "@/components/ui/spotlight-card";
-import { CONTENT, type Project } from "@/lib/content";
-
-const PROJECTS: Project[] = CONTENT.projects;
+import { useI18n } from "@/components/language-provider";
+import { type Project } from "@/lib/content";
+import type { UIStrings } from "@/lib/i18n";
 
 // The screenshot banner and its corner icon inside; if the project is live,
 // the whole banner is the link (the icon is a decorative affordance, not a
@@ -77,9 +79,11 @@ function ProjectBanner({
 function ProjectFooter({
   proj,
   featured,
+  t,
 }: {
   proj: Project;
   featured: boolean;
+  t: UIStrings;
 }) {
   return (
     <div
@@ -95,11 +99,11 @@ function ProjectFooter({
           href={proj.vercel}
           className="inline-flex shrink-0 items-center gap-1 font-mono text-xs text-emerald-400 transition-colors hover:text-emerald-300"
         >
-          Visit site <ArrowUpRight className="h-3 w-3" />
+          {t.projects.visitSite} <ArrowUpRight className="h-3 w-3" />
         </ExternalLink>
       ) : (
         <span className="shrink-0 font-mono text-xs text-zinc-600">
-          not public
+          {t.projects.notPublic}
         </span>
       )}
     </div>
@@ -113,9 +117,11 @@ function ProjectFooter({
 function ProjectCard({
   proj,
   featured,
+  t,
 }: {
   proj: Project;
   featured: boolean;
+  t: UIStrings;
 }) {
   return (
     <SpotlightCard
@@ -133,7 +139,7 @@ function ProjectCard({
         >
           {featured && (
             <span className="mb-3.5 self-start rounded-full border border-emerald-400/40 px-2.5 py-[3px] font-mono text-[11px] uppercase tracking-[0.08em] text-emerald-300">
-              Featured
+              {t.projects.featured}
             </span>
           )}
           <h3
@@ -157,7 +163,7 @@ function ProjectCard({
           )}
         </div>
 
-        <ProjectFooter proj={proj} featured={featured} />
+        <ProjectFooter proj={proj} featured={featured} t={t} />
       </div>
     </SpotlightCard>
   );
@@ -169,15 +175,25 @@ export default function ProjectsSection({
 }: {
   featuredCount?: number;
 } = {}) {
+  const { content, t } = useI18n();
   const featured = Math.max(0, Math.min(3, featuredCount));
 
   return (
     <Section id="projects" mesh="left">
-      <SectionHeading index="02" command="projects" title="Projects" />
+      <SectionHeading
+        index="02"
+        command={t.sections.projects.command}
+        title={t.sections.projects.title}
+      />
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-6">
-        {PROJECTS.map((proj, i) => (
-          <ProjectCard key={proj.title} proj={proj} featured={i < featured} />
+        {content.projects.map((proj, i) => (
+          <ProjectCard
+            key={proj.title}
+            proj={proj}
+            featured={i < featured}
+            t={t}
+          />
         ))}
       </div>
     </Section>

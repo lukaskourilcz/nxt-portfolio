@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, FileText, Github, Linkedin } from "lucide-react";
@@ -6,8 +8,8 @@ import { Terminal } from "@/components/ui/terminal";
 import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
 import { ResumeButton } from "@/components/resume-button";
+import { useI18n } from "@/components/language-provider";
 import { GITHUB_URL, LINKEDIN_URL } from "@/lib/site";
-import { CONTENT } from "@/lib/content";
 
 // Renders the intro string with **word** segments highlighted.
 function Intro({ text }: { text: string }) {
@@ -27,7 +29,8 @@ function Intro({ text }: { text: string }) {
 }
 
 export default function HeroSection() {
-  const hero = CONTENT.hero;
+  const { content, t } = useI18n();
+  const hero = content.hero;
   const commands = hero.terminal.map((line) => line.command);
   const outputs = Object.fromEntries(
     hero.terminal.map((line, i) => [i, line.outputs])
@@ -94,11 +97,11 @@ export default function HeroSection() {
               className="bg-emerald-400 font-semibold text-[#052e1f] shadow-[0_0_24px_-6px_rgba(52,211,153,0.5)] hover:bg-emerald-300"
             >
               <Link href="#contact">
-                Get in touch <ArrowRight className="h-4 w-4" />
+                {t.hero.getInTouch} <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
             <ResumeButton>
-              <FileText className="h-4 w-4" /> View CV
+              <FileText className="h-4 w-4" /> {t.hero.viewCV}
             </ResumeButton>
             <div className="ml-1 flex items-center gap-1">
               <ExternalLink
