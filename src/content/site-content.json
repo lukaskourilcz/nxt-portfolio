@@ -1,10 +1,22 @@
 {
   "hero": {
-    "availability": "available for work · Prague, CZ",
+    "availability": "Available for work · Prague / remote",
     "eyebrow": "$ whoami",
     "name": "Lukas Kouril",
     "title": "Senior Fullstack Engineer",
-    "intro": "I specialize in **TypeScript** and **React**, from micro-frontends for online banking to AI tooling in production teams. I care about readable code and frontends that still make sense a year later.",
+    "specialization": "TypeScript · React · Next.js · Node.js",
+    "roleContext": {
+      "role": "Senior Frontend Engineer",
+      "company": "Web Integrator",
+      "companyHref": "#experience",
+      "location": "Prague"
+    },
+    "intro": "I build production frontends in **TypeScript** and **React** — from micro-frontends for online banking to **AI tooling** shipped with real teams. I care about readable code and interfaces that still make sense a year later.",
+    "metrics": [
+      { "value": "10", "label": "projects shipped" },
+      { "value": "9", "label": "teams & clients" },
+      { "value": "4", "label": "countries worked" }
+    ],
     "terminal": [
       {
         "command": "cat about.txt",

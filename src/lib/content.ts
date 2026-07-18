@@ -9,13 +9,33 @@ export type TerminalLine = {
   outputs: string[];
 };
 
+// A single hero proof-strip metric (e.g. "10" / "projects shipped").
+export type HeroMetric = {
+  value: string;
+  label: string;
+};
+
+// The "Currently … at … , …" context line under the hero subtitle.
+export type HeroRoleContext = {
+  role: string;
+  company: string;
+  // In-page anchor the company name links to (e.g. "#experience").
+  companyHref: string;
+  location: string;
+};
+
 export type HeroContent = {
+  // Copy for the availability pill next to the portrait.
   availability: string;
   eyebrow: string;
   name: string;
   title: string;
+  // Mono specialization line under the subtitle.
+  specialization: string;
+  roleContext: HeroRoleContext;
   // Plain text; **word** renders highlighted.
   intro: string;
+  metrics: HeroMetric[];
   terminal: TerminalLine[];
 };
 
