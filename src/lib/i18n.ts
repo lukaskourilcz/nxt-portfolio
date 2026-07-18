@@ -87,7 +87,7 @@ export const UI: Record<Language, UIStrings> = {
     experience: {
       present: "Present",
       earlierCareer: "Earlier career · pre-engineering",
-      earlierPeriod: "2015 – 2024",
+      earlierPeriod: "2014 – 2022",
     },
     contact: {
       sayHello: "Say hello",
@@ -126,7 +126,7 @@ export const UI: Record<Language, UIStrings> = {
     experience: {
       present: "současnost",
       earlierCareer: "Dřívější kariéra · před programováním",
-      earlierPeriod: "2015 – 2024",
+      earlierPeriod: "2014 – 2022",
     },
     contact: {
       sayHello: "Napsat e-mail",

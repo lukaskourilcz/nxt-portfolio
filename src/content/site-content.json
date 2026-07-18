@@ -182,7 +182,7 @@
       "company": "EmbedIT",
       "logo": "/logos/embedit_logo.png",
       "role": "Senior Fullstack Developer",
-      "period": "Oct 2025 – Mar 2026",
+      "period": "May 2025 – Mar 2026",
       "location": "Prague, Czech Republic",
       "responsibilities": [
         "Led the modernization of an online banking platform, moving legacy systems to a micro-frontend architecture",
@@ -203,7 +203,7 @@
       "company": "Ersilia",
       "logo": "/logos/ersilia_logo.png",
       "role": "Fullstack Developer",
-      "period": "May 2025 – Sep 2025",
+      "period": "Nov 2023 – Apr 2025",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built a full-stack app in Next.js and TypeScript for managing structured ML model metadata",
@@ -224,7 +224,7 @@
       "company": "beKind",
       "logo": "/logos/bekind_logo.png",
       "role": "Frontend Developer",
-      "period": "Nov 2024 – Jun 2025",
+      "period": "Mar 2023 – Oct 2023",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built the site in Next.js, tuned for performance and SEO",
@@ -243,7 +243,7 @@
       "company": "Autodoprava Kopeček",
       "logo": "/logos/autodopravakopecek_logo.png",
       "role": "Frontend Engineer",
-      "period": "Jan 2025 – Feb 2025",
+      "period": "Dec 2022 – Feb 2023",
       "location": "Brno, Czech Republic",
       "responsibilities": [
         "Solo project: took the client's brief from concept and design through testing and release",
@@ -263,7 +263,7 @@
       "company": "Take a Break",
       "logo": "/logos/takeabreak_logo.svg",
       "role": "Full Stack Developer",
-      "period": "Apr 2024 – Oct 2024",
+      "period": "Apr 2022 – Nov 2022",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built a full-stack B2B app for booking meditation sessions in Next.js and TypeScript",
@@ -284,7 +284,7 @@
       "company": "Controlant",
       "logo": "/logos/controlant_logo.png",
       "role": "Technical Analyst",
-      "period": "Nov 2021 – Apr 2024",
+      "period": "Sep 2019 – Mar 2022",
       "location": "Reykjavík, Iceland",
       "responsibilities": [
         "Monitored live telemetry from cold-chain IoT trackers on pharmaceutical shipments and triaged critical temperature excursions",
@@ -303,7 +303,7 @@
       "company": "Entain Group",
       "logo": "/logos/entain_logo.png",
       "role": "User Protection Expert",
-      "period": "Jan 2020 – Sep 2021",
+      "period": "Dec 2017 – Aug 2019",
       "location": "Gibraltar",
       "responsibilities": [
         "Detected fraud and money-laundering patterns in betting and transaction data using dedicated analysis tools",
@@ -322,7 +322,7 @@
       "company": "Kiwi.com",
       "logo": "/logos/kiwi_logo.png",
       "role": "Customer Relations Advisor",
-      "period": "Dec 2015 – Nov 2019",
+      "period": "Jun 2014 – Nov 2017",
       "location": "Brno, Czech Republic",
       "responsibilities": [
         "Resolved complex booking issues across multiple airline and CRM systems",
