@@ -9,6 +9,11 @@ export type Language = "en" | "cs";
 
 export const LANGUAGES: Language[] = ["en", "cs"];
 
+// Name of the cookie that persists the language choice. Defined here (a plain
+// module) rather than in the "use client" provider, so the server component
+// that reads it gets the real string and not a client-reference placeholder.
+export const LANG_COOKIE = "lang";
+
 // The five in-page sections, in nav order. `command` is the mono token shown
 // in the navbar and section heading; `title` is the large section heading.
 type SectionStrings = {
