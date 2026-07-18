@@ -182,7 +182,7 @@
       "company": "EmbedIT",
       "logo": "/logos/embedit_logo.png",
       "role": "Senior Fullstack Developer",
-      "period": "květen 2025 – březen 2026",
+      "period": "září 2025 – březen 2026",
       "location": "Praha, Česká republika",
       "responsibilities": [
         "Vedl jsem modernizaci platformy online bankovnictví — přechod legacy systémů na mikrofrontendovou architekturu",
@@ -203,7 +203,7 @@
       "company": "Ersilia",
       "logo": "/logos/ersilia_logo.png",
       "role": "Fullstack Developer",
-      "period": "listopad 2023 – duben 2025",
+      "period": "únor 2024 – srpen 2025",
       "location": "Barcelona, Španělsko",
       "responsibilities": [
         "Postavil jsem full-stackovou aplikaci v Next.js a TypeScriptu pro správu strukturovaných metadat ML modelů",
@@ -224,7 +224,7 @@
       "company": "beKind",
       "logo": "/logos/bekind_logo.png",
       "role": "Frontend Developer",
-      "period": "březen 2023 – říjen 2023",
+      "period": "únor 2023 – leden 2024",
       "location": "Barcelona, Španělsko",
       "responsibilities": [
         "Postavil jsem web v Next.js, vyladěný na výkon a SEO",
@@ -240,30 +240,10 @@
       ]
     },
     {
-      "company": "Autodoprava Kopeček",
-      "logo": "/logos/autodopravakopecek_logo.png",
-      "role": "Frontend Engineer",
-      "period": "prosinec 2022 – únor 2023",
-      "location": "Brno, Česká republika",
-      "responsibilities": [
-        "Sólo projekt: klientský brief jsem provedl od konceptu a návrhu přes testování až po nasazení",
-        "Postavil jsem web v Next.js a shadcn/ui, mobile-first a s důrazem na SEO",
-        "Navrhl jsem zákaznický flow kolem poptávek a konverzí"
-      ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "SEO",
-        "UX/UI",
-        "i18n",
-        "shadcn/ui"
-      ]
-    },
-    {
       "company": "Take a Break",
       "logo": "/logos/takeabreak_logo.svg",
       "role": "Full Stack Developer",
-      "period": "duben 2022 – listopad 2022",
+      "period": "duben 2022 – leden 2023",
       "location": "Barcelona, Španělsko",
       "responsibilities": [
         "Postavil jsem full-stackovou B2B aplikaci pro rezervaci meditací v Next.js a TypeScriptu",
@@ -341,7 +321,7 @@
     {
       "name": "arol.dev",
       "field": "Softwarové inženýrství",
-      "period": "červenec 2024 – prosinec 2024",
+      "period": "leden 2024 – červen 2024",
       "url": "https://arol.dev",
       "description": "Intenzivní akademie softwarového inženýrství v Barceloně zaměřená na full-stack webový vývoj. Pracoval jsem hlavně s JavaScriptem, TypeScriptem, Reactem, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, Prisma a MongoDB, vedle datových struktur, algoritmů a nástrojů jako Git, Docker, Vercel a Figma. Většina učení přišla ze stavění reálných projektů — a tam jsem se do softwarového inženýrství zamiloval.",
       "skills": [
@@ -363,7 +343,7 @@
     {
       "name": "Reykjavík Academy of Web Development",
       "field": "Webový vývoj",
-      "period": "srpen 2022 – prosinec 2022",
+      "period": "únor 2022 – červen 2022",
       "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
       "description": "Bootcamp webového vývoje, kde jsem si vybudoval základ v HTML, CSS a JavaScriptu. Všechno se točilo kolem stavění responzivních, interaktivních webových aplikací.",
       "skills": [

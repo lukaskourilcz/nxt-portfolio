@@ -182,7 +182,7 @@
       "company": "EmbedIT",
       "logo": "/logos/embedit_logo.png",
       "role": "Senior Fullstack Developer",
-      "period": "May 2025 – Mar 2026",
+      "period": "Sep 2025 – Mar 2026",
       "location": "Prague, Czech Republic",
       "responsibilities": [
         "Led the modernization of an online banking platform, moving legacy systems to a micro-frontend architecture",
@@ -203,7 +203,7 @@
       "company": "Ersilia",
       "logo": "/logos/ersilia_logo.png",
       "role": "Fullstack Developer",
-      "period": "Nov 2023 – Apr 2025",
+      "period": "Feb 2024 – Aug 2025",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built a full-stack app in Next.js and TypeScript for managing structured ML model metadata",
@@ -224,7 +224,7 @@
       "company": "beKind",
       "logo": "/logos/bekind_logo.png",
       "role": "Frontend Developer",
-      "period": "Mar 2023 – Oct 2023",
+      "period": "Feb 2023 – Jan 2024",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built the site in Next.js, tuned for performance and SEO",
@@ -240,30 +240,10 @@
       ]
     },
     {
-      "company": "Autodoprava Kopeček",
-      "logo": "/logos/autodopravakopecek_logo.png",
-      "role": "Frontend Engineer",
-      "period": "Dec 2022 – Feb 2023",
-      "location": "Brno, Czech Republic",
-      "responsibilities": [
-        "Solo project: took the client's brief from concept and design through testing and release",
-        "Built the site in Next.js and shadcn/ui, mobile-first and heavy on SEO",
-        "Designed the customer flow around quote requests and conversions"
-      ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "SEO",
-        "UX/UI",
-        "i18n",
-        "shadcn/ui"
-      ]
-    },
-    {
       "company": "Take a Break",
       "logo": "/logos/takeabreak_logo.svg",
       "role": "Full Stack Developer",
-      "period": "Apr 2022 – Nov 2022",
+      "period": "Apr 2022 – Jan 2023",
       "location": "Barcelona, Spain",
       "responsibilities": [
         "Built a full-stack B2B app for booking meditation sessions in Next.js and TypeScript",
@@ -341,7 +321,7 @@
     {
       "name": "arol.dev",
       "field": "Computer Software Engineering",
-      "period": "Jul 2024 – Dec 2024",
+      "period": "Jan 2024 – Jun 2024",
       "url": "https://arol.dev",
       "description": "Intensive software engineering academy in Barcelona focused on full-stack web development. I worked mainly with JavaScript, TypeScript, React, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, Prisma, and MongoDB, alongside data structures, algorithms, and tools like Git, Docker, Vercel, and Figma. Most of the learning came from building actual projects, which is also where I got hooked on software engineering.",
       "skills": [
@@ -363,7 +343,7 @@
     {
       "name": "Reykjavík Academy of Web Development",
       "field": "Web Development",
-      "period": "Aug 2022 – Dec 2022",
+      "period": "Feb 2022 – Jun 2022",
       "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
       "description": "Web development bootcamp where I built my foundation in HTML, CSS, and JavaScript. Everything centered on building responsive, interactive web apps.",
       "skills": [

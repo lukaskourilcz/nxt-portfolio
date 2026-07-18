@@ -10,8 +10,8 @@ import { type Experience } from "@/lib/content";
 
 // The recent engineering roles render in full; the earlier, pre-engineering
 // roles collapse into one compact "earlier career" group so the senior work
-// stays dominant. The first six entries are the engineering roles.
-const ENGINEERING_COUNT = 6;
+// stays dominant. The first five entries are the engineering roles.
+const ENGINEERING_COUNT = 5;
 
 // The rail marker for a timeline entry. The current role gets an emerald dot
 // with a soft ring; the rest are quiet zinc dots. The 2px ring is the page
