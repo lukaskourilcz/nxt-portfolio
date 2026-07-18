@@ -134,11 +134,11 @@ export function Nav() {
         </div>
 
         <div className="col-start-3 flex shrink-0 items-center justify-self-end gap-2 min-[1130px]:-mr-[50px]">
-          <LanguageToggle />
-
           <ResumeButton size="sm" className="hidden md:inline-flex">
             <FileText className="h-3.5 w-3.5" /> {t.nav.resume}
           </ResumeButton>
+
+          <LanguageToggle />
 
           <button
             className="text-zinc-300 md:hidden"
