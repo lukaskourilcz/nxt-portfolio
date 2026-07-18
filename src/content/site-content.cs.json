@@ -227,9 +227,11 @@
       "period": "únor 2023 – prosinec 2023",
       "location": "Barcelona, Španělsko",
       "responsibilities": [
-        "Postavil jsem web v Next.js, vyladěný na výkon a SEO",
-        "Podílel jsem se na UX/UI kolem jasné a jednoduché navigace",
-        "S týmem jsem dovedl rebrand od návrhu až po spuštění"
+        "Postavil jsem B2B marketplace propojující neziskovky a firmy v Next.js a TypeScriptu, vyladěný na výkon a SEO",
+        "Převzal jsem architekturu frontendu — znovupoužitelná komponentová knihovna v Reactu a TailwindCSS a konzistentní design systém",
+        "Převáděl jsem UX wireframy do produkčních rozhraní v úzké spolupráci s designéry",
+        "Přispěl jsem k backendu a návrhu databázového schématu v Node.js a PostgreSQL a integroval REST API napříč stackem",
+        "Dovedl jsem firemní rebrand od návrhu až po spuštění"
       ],
       "tags": [
         "TypeScript",

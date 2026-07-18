@@ -227,9 +227,11 @@
       "period": "Feb 2023 – Dec 2023",
       "location": "Barcelona, Spain",
       "responsibilities": [
-        "Built the site in Next.js, tuned for performance and SEO",
-        "Helped shape the UX/UI around clear, simple navigation",
-        "Worked with the team to take the rebrand from design to launch"
+        "Built a B2B marketplace connecting charities and corporations in Next.js and TypeScript, tuned for performance and SEO",
+        "Owned the frontend architecture, establishing a reusable React and TailwindCSS component library and a consistent design system",
+        "Translated UX wireframes into production interfaces in close collaboration with design stakeholders",
+        "Contributed to the backend and database schema design with Node.js and PostgreSQL, integrating REST APIs across the stack",
+        "Drove the company rebrand from design through to launch"
       ],
       "tags": [
         "TypeScript",
