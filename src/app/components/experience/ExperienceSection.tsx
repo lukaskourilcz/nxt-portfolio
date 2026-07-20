@@ -19,7 +19,7 @@ const ENGINEERING_COUNT = 5;
 function TimelineDot({ current }: { current: boolean }) {
   return (
     <span
-      className={`absolute left-[-5.5px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-zinc-950 ${
+      className={`absolute left-[-5.5px] top-1.5 hidden h-2.5 w-2.5 rounded-full border-2 border-zinc-950 sm:block ${
         current
           ? "bg-emerald-500 shadow-[0_0_0_4px_rgba(16,185,129,0.15)]"
           : "bg-zinc-700"
@@ -61,16 +61,16 @@ function EngineeringRow({
     <Reveal
       as="article"
       delay={delay}
-      className="grid grid-cols-[104px_1fr] gap-x-5 gap-y-2 pb-9 sm:grid-cols-[130px_1fr] sm:gap-x-7"
+      className="grid grid-cols-1 gap-y-2 pb-9 sm:grid-cols-[130px_1fr] sm:gap-x-7"
     >
-      <div className="pt-0.5 font-mono text-xs leading-relaxed">
+      <div className="flex items-baseline gap-x-2.5 font-mono text-xs leading-relaxed sm:block sm:pt-0.5">
         <p className={current ? "text-emerald-300" : "text-zinc-400"}>
           {exp.period}
         </p>
-        <p className="mt-1 text-zinc-600">{exp.location}</p>
+        <p className="text-zinc-600 sm:mt-1">{exp.location}</p>
       </div>
 
-      <div className="relative border-l border-zinc-800 pl-7">
+      <div className="relative sm:border-l sm:border-zinc-800 sm:pl-7">
         <TimelineDot current={current} />
 
         <div className="flex flex-wrap items-center gap-3">
@@ -143,13 +143,13 @@ export default function ExperienceSection({
         <Reveal
           as="article"
           delay={staggerDelay(engineering.length, 0.06, 0.4)}
-          className="grid grid-cols-[104px_1fr] gap-x-5 sm:grid-cols-[130px_1fr] sm:gap-x-7"
+          className="grid grid-cols-1 gap-y-1.5 sm:grid-cols-[130px_1fr] sm:gap-x-7"
         >
-          <div className="pt-0.5 font-mono text-xs text-zinc-600">
+          <div className="font-mono text-xs text-zinc-600 sm:pt-0.5">
             {t.experience.earlierPeriod}
           </div>
 
-          <div className="relative border-l border-zinc-800 pl-7">
+          <div className="relative sm:border-l sm:border-zinc-800 sm:pl-7">
             <TimelineDot current={false} />
             <h3 className="mb-1.5 font-mono text-xs uppercase tracking-[0.08em] text-zinc-400">
               {t.experience.earlierCareer}
