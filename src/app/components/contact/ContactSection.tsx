@@ -3,11 +3,9 @@
 import { Mail } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { Section } from "@/components/section";
-import { ExternalLink } from "@/components/external-link";
 import { Button } from "@/components/ui/button";
 import { useI18n } from "@/components/language-provider";
 import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF, LOCATION } from "@/lib/site";
-import { SOCIALS } from "@/lib/socials";
 
 type ContactItem = {
   label: string;
@@ -46,19 +44,6 @@ export default function ContactSection() {
               <Mail className="h-4 w-4" /> {t.contact.sayHello}
             </a>
           </Button>
-
-          <div className="mt-8 flex items-center gap-3">
-            {SOCIALS.map(({ href, label, Icon }) => (
-              <ExternalLink
-                key={label}
-                href={href}
-                aria-label={label}
-                className="flex h-10 w-10 items-center justify-center rounded-md border border-zinc-700 text-zinc-400 transition-colors hover:border-zinc-500 hover:text-zinc-100"
-              >
-                <Icon className="h-5 w-5" />
-              </ExternalLink>
-            ))}
-          </div>
         </div>
 
         <div className="border-t border-zinc-800">
