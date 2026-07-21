@@ -1,85 +1,56 @@
-import raw from "@/content/site-content.json";
-import rawCs from "@/content/site-content.cs.json";
-import type { Language } from "@/lib/i18n";
+import enRaw from "@/content/site-content.json";
+import csRaw from "@/content/site-content.cs.json";
+import {
+  LOCALES,
+  localeSchema,
+  siteContentSchema,
+  validateLocaleParity,
+  type Locale,
+  type SiteContent,
+  type Work,
+} from "@/lib/content-schema";
 
-// All user-facing copy and image paths for the page sections live in
-// src/content/site-content.json (English, the default) and its Czech
-// counterpart site-content.cs.json. English can be edited from the /dev
-// editor (dev mode only) without touching component code; the Czech file
-// mirrors the same structure.
+const parsed = {
+  en: siteContentSchema.parse(enRaw),
+  cs: siteContentSchema.parse(csRaw),
+} satisfies Record<Locale, SiteContent>;
 
-export type TerminalLine = {
-  command: string;
-  outputs: string[];
-};
+const parityErrors = validateLocaleParity(parsed.en, parsed.cs);
+if (parityErrors.length) {
+  throw new Error(`Localized content validation failed:\n${parityErrors.join("\n")}`);
+}
 
-export type HeroContent = {
-  // Copy for the availability pill next to the portrait.
-  availability: string;
-  eyebrow: string;
-  name: string;
-  title: string;
-  // Mono specialization line under the subtitle.
-  specialization: string;
-  // Plain text; **word** renders highlighted.
-  intro: string;
-  terminal: TerminalLine[];
-};
+export function isLocale(value: string): value is Locale {
+  return localeSchema.safeParse(value).success;
+}
 
-export type Project = {
-  title: string;
-  description: string;
-  tech: string[];
-  image?: string;
-  vercel?: string;
-  note?: string;
-};
+export function getContent(locale: Locale): SiteContent {
+  return parsed[locale];
+}
 
-export type Experience = {
-  company: string;
-  logo: string;
-  role: string;
-  period: string;
-  location: string;
-  responsibilities: string[];
-  tags: string[];
-};
+export function getAllContent(): Record<Locale, SiteContent> {
+  return parsed;
+}
 
-export type AcademyPhoto = {
-  src: string;
-  alt: string;
-};
+export function getFeaturedWork(locale: Locale): Work[] {
+  return parsed[locale].work.filter((item) => item.featured);
+}
 
-export type Academy = {
-  name: string;
-  field: string;
-  period: string;
-  url?: string;
-  description: string;
-  skills: string[];
-  photos: AcademyPhoto[];
-};
+export function getAdditionalWork(locale: Locale): Work[] {
+  return parsed[locale].work.filter((item) => !item.featured);
+}
 
-export type ContactContent = {
-  prompt: string;
-  blurb: string;
-};
+export function getCaseStudy(locale: Locale, slug: string): Work | undefined {
+  return parsed[locale].work.find(
+    (item) => item.featured && item.slug === slug && item.detail
+  );
+}
 
-export type SiteContent = {
-  hero: HeroContent;
-  projects: Project[];
-  experience: Experience[];
-  education: Academy[];
-  contact: ContactContent;
-};
+export function getCaseStudySlugs(): string[] {
+  return parsed.en.work.flatMap((item) =>
+    item.featured && item.slug ? [item.slug] : []
+  );
+}
 
-// English content — the default used for server rendering, metadata, and the
-// /dev editor.
-export const CONTENT = raw as SiteContent;
-
-// Full content set keyed by language, consumed at runtime by the language
-// provider so the page can switch without a reload.
-export const CONTENT_BY_LANG: Record<Language, SiteContent> = {
-  en: raw as SiteContent,
-  cs: rawCs as SiteContent,
-};
+export { LOCALES, siteContentSchema, validateLocaleParity };
+export type { Locale, SiteContent, Work };

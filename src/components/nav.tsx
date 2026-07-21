@@ -1,195 +1,115 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { Menu, X, FileText } from "lucide-react";
-import { ResumeButton } from "@/components/resume-button";
+import { FileText, Menu, X } from "lucide-react";
 import { LanguageToggle } from "@/components/language-toggle";
-import { useI18n } from "@/components/language-provider";
-import { useScrolled } from "@/hooks/useScrolled";
+import { ResumeButton } from "@/components/resume-button";
 import { useActiveSection } from "@/hooks/useActiveSection";
-import { useElementOnScreen } from "@/hooks/useElementOnScreen";
-import { EMAIL, EMAIL_HREF } from "@/lib/site";
+import { useScrolled } from "@/hooks/useScrolled";
+import { localizedPath } from "@/lib/i18n";
+import type { Locale, SiteContent } from "@/lib/content-schema";
 
-// Section id + anchor stay fixed across languages; the visible label comes
-// from the active-language UI dictionary (keyed by id).
-type NavSectionId = "stack" | "projects" | "experience" | "education" | "contact";
-const SECTION_ORDER: { id: NavSectionId; index: string }[] = [
-  { id: "stack", index: "01" },
-  { id: "projects", index: "02" },
-  { id: "experience", index: "03" },
-  { id: "education", index: "04" },
-  { id: "contact", index: "05" },
-];
-const SECTION_IDS = SECTION_ORDER.map((section) => section.id);
-
-export function Nav() {
+export function Nav({ locale, content }: { locale: Locale; content: SiteContent }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const reduce = useReducedMotion();
-  const { t } = useI18n();
-
-  const sections = SECTION_ORDER.map((section) => ({
-    ...section,
-    label: t.sections[section.id].command,
-  }));
-
-  const scrolled = useScrolled(8);
-  const activeSection = useActiveSection(SECTION_IDS);
-
-  // Show "LK" while the hero avatar is on screen, then swap to the photo once
-  // it scrolls under the navbar.
-  const heroAvatarOnScreen = useElementOnScreen("hero-avatar", {
-    rootMargin: "-64px 0px 0px 0px",
-  });
-  const showPhoto = !heroAvatarOnScreen;
+  const scrolled = useScrolled(12);
+  const sectionIds = content.nav.map(({ id }) => id);
+  const activeSection = useActiveSection(sectionIds);
+  const home = localizedPath(locale);
 
   useEffect(() => {
     if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
   }, [menuOpen]);
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-zinc-800/80 bg-zinc-950/80 backdrop-blur-md"
-          : "border-b border-transparent"
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
+        scrolled || menuOpen
+          ? "border-zinc-800/90 bg-zinc-950/90 backdrop-blur-xl"
+          : "border-transparent bg-zinc-950/35 backdrop-blur-sm"
       }`}
     >
-      <nav className="mx-auto grid max-w-5xl grid-cols-[minmax(0,auto)_1fr_auto] items-center px-6 py-4">
-        {/* The outward -ml/-mr offsets only fit once the viewport is wider than
-            the 5xl container + 2×50px; below that they'd clip off-screen. */}
-        <a
-          href={EMAIL_HREF}
-          className="group flex min-w-0 items-center gap-2 font-mono text-xs font-semibold text-zinc-100 transition-colors hover:text-white sm:text-sm min-[1130px]:-ml-[50px]"
+      <nav
+        aria-label={content.common.primaryNavigation}
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8"
+      >
+        <Link
+          href={home}
+          className="inline-flex min-h-11 items-center gap-3 font-mono text-sm font-semibold text-zinc-100"
         >
-          <span className="relative block h-7 w-7 shrink-0">
-            <motion.span
-              aria-hidden
-              initial={false}
-              animate={{
-                opacity: showPhoto ? 0 : 1,
-                scale: showPhoto ? 0.5 : 1,
-                rotate: reduce ? 0 : showPhoto ? -90 : 0,
-              }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="absolute inset-0 flex items-center justify-center rounded-md bg-white text-[0.7rem] text-zinc-900"
-            >
-              LK
-            </motion.span>
-            <motion.span
-              aria-hidden
-              initial={false}
-              animate={{
-                opacity: showPhoto ? 1 : 0,
-                scale: showPhoto ? 1 : 0.5,
-                rotate: reduce ? 0 : showPhoto ? 0 : 90,
-              }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="absolute inset-0"
-            >
-              <Image
-                src="/profile.png"
-                alt=""
-                width={28}
-                height={28}
-                className="h-7 w-7 rounded-md object-cover"
-              />
-            </motion.span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-100 text-xs text-zinc-950">
+            LK
           </span>
-          <span className="truncate">{EMAIL}</span>
-        </a>
+          <span className="hidden sm:inline">Lukas Kouril</span>
+        </Link>
 
-        {/* Nav links, centered in the space between the email and the resume button. */}
-        <div className="hidden items-center justify-center gap-4 md:flex lg:gap-6">
-          {sections.map((section) => (
+        <div className="hidden items-center gap-5 lg:flex">
+          {content.nav.map(({ id, label }) => (
             <Link
-              key={section.id}
-              href={`#${section.id}`}
-              aria-current={
-                activeSection === section.id ? "location" : undefined
-              }
-              className="group whitespace-nowrap font-mono text-sm transition-colors"
+              key={id}
+              href={`${home}#${id}`}
+              aria-current={activeSection === id ? "location" : undefined}
+              className={`relative py-5 text-sm transition-colors after:absolute after:inset-x-0 after:bottom-3 after:h-px after:bg-emerald-400 after:transition-transform ${
+                activeSection === id
+                  ? "text-zinc-100 after:scale-x-100"
+                  : "text-zinc-500 after:scale-x-0 hover:text-zinc-200"
+              }`}
             >
-              <span className="text-emerald-400">
-                {section.index}.
-              </span>{" "}
-              <span
-                className={
-                  activeSection === section.id
-                    ? "text-zinc-100"
-                    : "text-zinc-500 group-hover:text-zinc-200"
-                }
-              >
-                {section.label}
-              </span>
+              {label}
             </Link>
           ))}
         </div>
 
-        <div className="col-start-3 flex shrink-0 items-center justify-self-end gap-2 min-[1130px]:-mr-[50px]">
+        <div className="flex items-center gap-1">
           <ResumeButton size="sm" className="hidden md:inline-flex">
-            <FileText className="h-3.5 w-3.5" /> {t.nav.resume}
+            <FileText className="h-3.5 w-3.5" aria-hidden />
+            {content.common.links.downloadCv}
           </ResumeButton>
-
-          <LanguageToggle />
-
+          <LanguageToggle locale={locale} label={content.common.switchLanguage} />
           <button
-            className="text-zinc-300 md:hidden"
+            type="button"
             onClick={() => setMenuOpen((open) => !open)}
-            aria-label="Toggle menu"
             aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
+            aria-controls="mobile-navigation"
+            aria-label={menuOpen ? content.common.menuClose : content.common.menuOpen}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md text-zinc-300 hover:bg-zinc-900 lg:hidden"
           >
-            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {menuOpen ? <X className="h-5 w-5" aria-hidden /> : <Menu className="h-5 w-5" aria-hidden />}
           </button>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            id="mobile-menu"
-            initial={reduce ? { opacity: 1 } : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="overflow-hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur-md md:hidden"
-          >
-            <div className="flex flex-col gap-1 px-6 py-4">
-              {sections.map((section) => (
-                <Link
-                  key={section.id}
-                  href={`#${section.id}`}
-                  onClick={() => setMenuOpen(false)}
-                  aria-current={
-                    activeSection === section.id ? "location" : undefined
-                  }
-                  className={`py-2 font-mono text-sm ${
-                    activeSection === section.id
-                      ? "text-zinc-100"
-                      : "text-zinc-400"
-                  }`}
-                >
-                  <span className="text-emerald-400">
-                    {section.index}.
-                  </span>{" "}
-                  {section.label}
-                </Link>
-              ))}
-              <ResumeButton size="sm" className="mt-2 w-fit">
-                <FileText className="h-3.5 w-3.5" /> {t.nav.resume}
-              </ResumeButton>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div
+        id="mobile-navigation"
+        hidden={!menuOpen}
+        className="border-t border-zinc-800 bg-zinc-950 px-5 pb-5 pt-3 lg:hidden"
+      >
+        <div className="mx-auto flex max-w-6xl flex-col">
+          {content.nav.map(({ id, label }) => (
+            <Link
+              key={id}
+              href={`${home}#${id}`}
+              onClick={() => setMenuOpen(false)}
+              aria-current={activeSection === id ? "location" : undefined}
+              className={`border-b border-zinc-900 py-3 text-sm ${
+                activeSection === id ? "text-zinc-100" : "text-zinc-400"
+              }`}
+            >
+              {label}
+              {activeSection === id ? <span className="ml-2 text-emerald-400" aria-hidden>●</span> : null}
+            </Link>
+          ))}
+          <ResumeButton size="sm" className="mt-4 w-fit">
+            <FileText className="h-3.5 w-3.5" aria-hidden />
+            {content.common.links.downloadCv}
+          </ResumeButton>
+        </div>
+      </div>
     </header>
   );
 }

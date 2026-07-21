@@ -1,371 +1,723 @@
 {
+  "locale": "cs",
+  "metadata": {
+    "homeTitle": "Lukas Kouril | Seniorní softwarový inženýr",
+    "homeDescription": "Seniorní softwarový inženýr v Praze se zaměřením na spolehlivé webové produkty, bankovnictví, AI nástroje, frontendovou architekturu, přístupnost a full-stackový vývoj v TypeScriptu.",
+    "ogLocale": "cs_CZ",
+    "ogAlternateLocale": "en_US"
+  },
+  "common": {
+    "skipToContent": "Přeskočit na obsah",
+    "menuOpen": "Otevřít navigaci",
+    "menuClose": "Zavřít navigaci",
+    "switchLanguage": "Switch to English",
+    "primaryNavigation": "Hlavní navigace",
+    "breadcrumb": "Drobečková navigace",
+    "coreCapabilities": "Hlavní schopnosti",
+    "capabilitiesLabel": "Schopnosti",
+    "transferableCapabilities": "Přenositelné schopnosti",
+    "organizationLabel": "Organizace",
+    "roleLabel": "Role",
+    "periodLabel": "Období",
+    "present": "Současnost",
+    "confidential": "Důvěrné",
+    "selectedWork": "Vybraná práce",
+    "additionalWork": "Další projekty",
+    "productAndExperimental": "Produktové a experimentální projekty",
+    "clientAndEarlier": "Klientské a dřívější produktové projekty",
+    "beforeEngineering": "Před vývojem",
+    "alsoWorkedWith": "Další zkušenosti",
+    "analyticsSettings": "Nastavení analytiky",
+    "links": {
+      "backHome": "Zpět na úvodní stránku",
+      "backToWork": "Zpět k vybrané práci",
+      "caseStudy": "Přečíst případovou studii",
+      "externalProduct": "Otevřít produkt",
+      "repository": "Otevřít repozitář",
+      "downloadCv": "Stáhnout CV",
+      "contact": "Kontaktovat",
+      "email": "E-mail",
+      "location": "Lokalita",
+      "privacy": "Soukromí",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "opensNewTab": "otevře se v nové kartě",
+      "pdfLabel": "PDF"
+    }
+  },
+  "nav": [
+    { "id": "work", "label": "Projekty" },
+    { "id": "experience", "label": "Zkušenosti" },
+    { "id": "approach", "label": "Přístup" },
+    { "id": "capabilities", "label": "Schopnosti" },
+    { "id": "education", "label": "Vzdělání" },
+    { "id": "contact", "label": "Kontakt" }
+  ],
   "hero": {
-    "availability": "K dispozici pro práci · Praha / remote",
     "eyebrow": "$ whoami",
-    "name": "Lukas Kouril",
-    "title": "Senior Fullstack Engineer",
-    "specialization": "TypeScript · React · Next.js · Node.js",
-    "intro": "Stavím produkční frontendy v **TypeScriptu** a **Reactu** — od mikrofrontend pro online bankovnictví po **AI nástroje** nasazené s reálnými týmy. Záleží mi na čitelném kódu a rozhraních, která dávají smysl i po roce.",
-    "terminal": [
-      {
-        "command": "cat about.txt",
-        "outputs": [
-          "Stavím webové aplikace v TypeScriptu, Reactu,",
-          "Next.js a Node.js."
-        ]
-      },
-      {
-        "command": "ls ~/stack",
-        "outputs": [
-          "typescript  react  next.js  node.js  postgresql",
-          "  tailwindcss  payload  docker  ..."
-        ]
-      },
-      {
-        "command": "echo $STATUS",
-        "outputs": [
-          "available_for_work"
+    "headline": "Seniorní softwarový inženýr pro spolehlivé webové produkty",
+    "subheadline": "Vedu frontendový a full-stackový vývoj v bankovnictví, AI nástrojích a produktových týmech. Převádím složité požadavky do přístupných a dlouhodobě udržitelných systémů.",
+    "supporting": "Než jsem přešel k vývoji, pracoval jsem se zákaznickými procesy, prevencí podvodů, regulací a analýzou IoT incidentů. Díky tomu přemýšlím nejen o tom, jak systém postavit, ale také o tom, co se stane, když se na něj skuteční lidé musí spolehnout.",
+    "proof": ["React", "TypeScript", "Next.js", "Node.js", "Přístupnost", "AI ve vývoji"],
+    "availability": "Působím v Praze. Jsem otevřený vybraným freelance projektům a budoucím seniorním pracovním příležitostem.",
+    "portrait": {
+      "src": "/profile.png",
+      "alt": "Portrét Lukase Kourila"
+    },
+    "primaryAction": "Vybrané projekty",
+    "cvAction": "Stáhnout CV",
+    "contactAction": "Kontaktovat"
+  },
+  "sectionCopy": {
+    "work": {
+      "eyebrow": "01 / vybraná práce",
+      "title": "Práce, ve které záleželo na odpovědnosti",
+      "intro": "Tři ukázky produkčního vývoje v citlivých systémech, vědeckých nástrojích a samostatně vedeném produktu. Důraz je na rozsah, rozhodnutí a spolehlivé dodání."
+    },
+    "experience": {
+      "eyebrow": "02 / zkušenosti",
+      "title": "Zkušenosti z produktů i provozu",
+      "intro": "Nedávné vývojářské role uvádím podrobně. Dřívější provozní zkušenosti zachovávám, protože ovlivnily, jak dnes vyšetřuji rizika, komunikuji pod tlakem a navrhuji systémy pro reálné dopady."
+    },
+    "approach": {
+      "eyebrow": "03 / přístup",
+      "title": "Přístup k vývoji",
+      "intro": "Několik principů, podle kterých se rozhoduji při návrhu architektury, implementaci, code review a nasazení."
+    },
+    "additionalWork": {
+      "eyebrow": "04 / další projekty",
+      "title": "Další projekty",
+      "intro": "Menší produkty, experimenty a klientské weby. Užitečná práce prezentovaná v odpovídajícím měřítku."
+    },
+    "capabilities": {
+      "eyebrow": "05 / schopnosti",
+      "title": "Schopnosti",
+      "intro": "Oblasti, za které dokážu převzít odpovědnost, od produktového frontendu a systémových rozhraní po testování a dodání."
+    },
+    "education": {
+      "eyebrow": "06 / vzdělání",
+      "title": "Vzdělání",
+      "intro": "Cílené vzdělávání v softwarovém inženýrství doplněné průběžnou prací v produkčních codebasech."
+    },
+    "contact": {
+      "eyebrow": "07 / kontakt",
+      "title": "Pojďme probrat spolupráci",
+      "intro": "Působím v Praze a jsem otevřený vybraným freelance projektům i budoucím seniorním pracovním příležitostem. Nejlépe mě zastihnete e-mailem nebo přes LinkedIn."
+    }
+  },
+  "work": [
+    {
+      "id": "banking-modernization",
+      "slug": "banking-modernization",
+      "featured": true,
+      "group": "professional",
+      "title": "Modernizace internetového bankovnictví",
+      "contextLabel": "Profesionální práce",
+      "organization": "EmbedIT",
+      "period": "2025–2026",
+      "year": "2025–2026",
+      "role": "Senior Fullstack Developer",
+      "summary": "Vedl frontendovou a BFF část modernizace internetového bankovnictví. Podílel se na převodu funkcionality směrem k micro-frontendové architektuře a na zlepšení API rozhraní, testování, přístupnosti a kvality nasazování.",
+      "capabilities": ["Vedení frontendu", "BFF architektura", "Přístupnost", "Kvalita dodání"],
+      "technologies": ["TypeScript", "React", "Node.js", "Express.js", "StyleX"],
+      "confidentiality": "confidential",
+      "detail": {
+        "confidentialityNote": "Screenshoty produktu ani zdrojový kód nejsou veřejně dostupné. Případová studie se proto soustředí na mou roli, architektonická rozhodnutí a způsob práce.",
+        "overview": [
+          { "label": "Kontext", "value": "Modernizace internetového bankovnictví" },
+          { "label": "Organizace", "value": "EmbedIT" },
+          { "label": "Role", "value": "Senior Fullstack Developer" },
+          { "label": "Období", "value": "2025–2026" }
+        ],
+        "problem": [
+          "Původní funkcionalitu bylo potřeba převést směrem k micro-frontendové architektuře, aniž by se oslabily hranice mezi uživatelským rozhraním a navazujícími bankovními službami.",
+          "Dodání frontendu záviselo na jasných API kontraktech a BFF vrstvě, která pohltí složitost služeb místo toho, aby ji přenesla do produktového kódu."
+        ],
+        "constraints": [
+          "Produkt i detaily implementace jsou důvěrné.",
+          "Změny musely zachovat stabilitu integrací a zároveň splnit požadavky na testování a přístupnost."
+        ],
+        "responsibilities": [
+          "Vedl jsem frontendovou a BFF část modernizace.",
+          "Vytvářel jsem BFF kontrolery, mappery a orchestraci služeb.",
+          "Navrhoval jsem API kontrakty a koordinoval integrace s navazujícími službami.",
+          "Podílel jsem se na unit, integračních, E2E a accessibility testech.",
+          "Zlepšoval jsem CI/CD proces a standardy code review."
+        ],
+        "approach": [
+          "Specifické formáty odpovědí jednotlivých služeb jsem držel za explicitními mappery a kontrakty.",
+          "Přístupnost a automatizované testy jsem chápal jako součást dodání, ne jako úklid na konci.",
+          "Code review a zpětnou vazbu z CI jsem používal k tomu, aby změny zůstaly srozumitelné napříč frontendovými a backendovými hranicemi."
+        ],
+        "decisions": [
+          {
+            "title": "Nenechat složitost navazujících služeb proniknout do UI",
+            "context": "Více služeb poskytovalo rozdílné datové formáty a provozní chování.",
+            "decision": "Použít BFF jako explicitní integrační hranici s kontrolery, mappery a orchestrací, která frontendu poskytuje stabilní kontrakty.",
+            "tradeoff": "BFF přidává kód a odpovědnost, ale udržuje produktovou logiku UI soustředěnou a lépe testovatelnou."
+          },
+          {
+            "title": "Zahrnout kvalitu přímo do migrace",
+            "context": "Modernizace může zachovat původní chování a současně přinést nová integrační a přístupnostní rizika.",
+            "decision": "Pokrýt práci unit, integračními a E2E testy a zahrnout požadavky na přístupnost do implementace a review.",
+            "outcome": "Migrace získala jasnější release kontroly a důslednější způsob dodání."
+          }
+        ],
+        "outcomes": [
+          "Pomohl jsem převést původní funkcionalitu směrem k micro-frontendové architektuře.",
+          "Vytvořil jsem jasnější API a BFF hranice pro dodání frontendu.",
+          "Posílil jsem testování, přístupnost, CI/CD a postupy code review kolem projektu."
+        ],
+        "reflection": [
+          "V citlivých systémech architektura neznamená jen strukturu komponent. Patří k ní také práce s chybami, vlastnictví, dohledatelnost a jistota při nasazování změn."
         ]
       }
-    ]
-  },
-  "projects": [
+    },
     {
+      "id": "ersilia-ai-tooling",
+      "slug": "ersilia-ai-tooling",
+      "featured": true,
+      "group": "professional",
+      "title": "AI nástroje pro metadata vědeckých modelů",
+      "contextLabel": "Open-science nástroje",
+      "organization": "Ersilia",
+      "period": "2024–2025",
+      "year": "2024–2025",
+      "role": "Fullstack Developer",
+      "summary": "Vyvíjel full-stackové nástroje pro správu metadat modelů strojového učení a AI workflow pro získávání strukturovaných informací z vědeckých PDF. Součástí řešení byla validace dat a automatizace napojená na GitHub.",
+      "capabilities": ["Full-stack dodání", "AI workflow", "Návrh schématu", "Automatizace"],
+      "technologies": ["Next.js", "TypeScript", "PostgreSQL", "Vercel AI SDK", "GitHub Actions"],
+      "confidentiality": "public",
+      "detail": {
+        "overview": [
+          { "label": "Kontext", "value": "Nástroje pro metadata vědeckých modelů" },
+          { "label": "Organizace", "value": "Ersilia" },
+          { "label": "Role", "value": "Fullstack Developer" },
+          { "label": "Období", "value": "2024–2025" }
+        ],
+        "problem": [
+          "Metadata modelů strojového učení potřebovala strukturovanou aplikaci a backend namísto nespojených ručních kroků.",
+          "Důležité informace z vědeckých PDF bylo potřeba získat ve formě, kterou lze zkontrolovat a použít v širším open-science workflow."
+        ],
+        "constraints": [
+          "Informace získané pomocí AI nebylo možné považovat automaticky za správné.",
+          "Aplikace musela zapadnout do existující spolupráce a práce s repozitáři na GitHubu."
+        ],
+        "responsibilities": [
+          "Postavil jsem full-stackovou aplikaci v Next.js a TypeScriptu.",
+          "Navrhl jsem databázové schéma a backend pro strukturovaná metadata modelů.",
+          "Vyvinul jsem workflow pro vědecká PDF pomocí Vercel AI SDK.",
+          "Automatizoval jsem validaci metadat a synchronizaci repozitářů přes GitHub API a Actions.",
+          "Spolupracoval jsem přímo s výzkumníky a vývojáři v open-science týmu."
+        ],
+        "approach": [
+          "Metadata jsem modeloval explicitně, aby aplikace, validace i práce s repozitáři sdílely stejný slovník.",
+          "AI extrakci jsem držel v kontrolovatelném workflow místo toho, aby se výstup modelu stal konečným zdrojem pravdy.",
+          "Pomocí GitHub automatizace jsem aplikaci napojil na repozitáře, se kterými už tým pracoval."
+        ],
+        "decisions": [
+          {
+            "title": "Považovat výstup AI za vstup do validace",
+            "context": "Vědecká PDF mají rozdílnou strukturu a výstup LLM je pravděpodobnostní.",
+            "decision": "Získat pomocí AI strukturované kandidáty a následně zachovat explicitní validaci a lidskou kontrolu.",
+            "tradeoff": "Kontrola přidává tření, ale brání tomu, aby se nepodložená metadata stala autoritativními."
+          },
+          {
+            "title": "Napojit se na existující práci s repozitáři",
+            "context": "Open-science tým už používal GitHub repozitáře jako součást svého pracovního modelu.",
+            "decision": "Automatizovat validaci a synchronizaci přes GitHub API a GitHub Actions místo vytváření samostatného publikačního procesu."
+          }
+        ],
+        "outcomes": [
+          "Dodal jsem full-stackové rozhraní a backend pro strukturovaná metadata modelů.",
+          "Propojil jsem AI analýzu PDF s explicitní validací.",
+          "Automatizací jsem omezil rozdíly mezi daty aplikace a GitHub workflow open-science týmu."
+        ],
+        "reflection": [
+          "AI funkce jsou spolehlivé tehdy, když jsou datový model, validace a odpovědnost navrženy stejně pečlivě jako samotné volání modelu."
+        ]
+      }
+    },
+    {
+      "id": "devshark",
+      "slug": "devshark",
+      "featured": true,
+      "group": "product",
       "title": "devShark",
-      "description": "Vývojářská kvízová a učební aplikace s tematickými cestami, denními výzvami, multiplayerem v reálném čase a žebříčky. React a Supabase za serverless funkcemi.",
-      "tech": [
-        "React",
-        "TypeScript",
-        "Supabase",
-        "Realtime",
-        "Vercel"
-      ],
-      "vercel": "https://www.devshark.app",
-      "image": "/projects/devshark.png"
+      "contextLabel": "Vlastní produkt",
+      "organization": "Nezávislý projekt",
+      "period": "Aktivní produkt",
+      "role": "Vlastník produktu a full-stack vývojář",
+      "summary": "Výuková platforma pro vývojáře postavená jako skutečný produkt, ne pouze jako UI ukázka. Propojuje strukturovaný vzdělávací obsah, kvízy, sledování pokroku a multiplayer ve spravovatelné architektuře nad Reactem a Supabase.",
+      "capabilities": ["Vlastnictví produktu", "Architektura aplikace", "Realtime", "Modelování obsahu"],
+      "technologies": ["React", "TypeScript", "Supabase", "Realtime", "Vercel"],
+      "image": {
+        "src": "/projects/devshark.png",
+        "alt": "Výukový dashboard devShark s pokrokem v tématech a denní výzvou"
+      },
+      "externalUrl": "https://www.devshark.app",
+      "confidentiality": "public",
+      "detail": {
+        "overview": [
+          { "label": "Kontext", "value": "Nezávislý výukový produkt" },
+          { "label": "Role", "value": "Vlastník produktu a full-stack vývojář" },
+          { "label": "Stav", "value": "Aktivní produkt" },
+          { "label": "Platforma", "value": "React a Supabase" }
+        ],
+        "problem": [
+          "Nástroje pro výuku vývojářů často oddělují obsah, procvičování, pokrok a soutěžení do nespojených prostředí.",
+          "Produkt potřeboval architekturu, která zvládne tematické cesty, denní výzvy, pokrok, žebříčky a multiplayer v reálném čase bez zbytečně složitého rozšiřování."
+        ],
+        "constraints": [
+          "U samostatně vedeného produktu sdílejí produktová rozhodnutí, implementace, nasazení a údržba stejnou omezenou pozornost.",
+          "Realtime funkce a uživatelská data vyžadují jasnou autorizaci a vlastnictví dat."
+        ],
+        "responsibilities": [
+          "Definoval jsem strukturu produktu a výukové mechanismy.",
+          "Navrhl jsem React aplikaci a datový model v Supabase.",
+          "Implementoval jsem autentizaci, autorizaci, sledování pokroku a kvízové flow.",
+          "Vytvořil jsem realtime multiplayer a žebříčky.",
+          "Zodpovídám za nasazení, údržbu a další produktová rozhodnutí."
+        ],
+        "approach": [
+          "Oddělil jsem výukový obsah, pokusy, pokrok a multiplayer stav do účelových modelů.",
+          "Hranice funkcí jsem udržel explicitní, aby bylo možné přidávat nová témata a typy výzev bez přepisování základního flow.",
+          "Supabase používám pro data, autentizaci a realtime chování, zatímco aplikační pravidla zůstávají viditelná v codebase."
+        ],
+        "decisions": [
+          {
+            "title": "Oddělit pokrok ve výuce od obsahu",
+            "context": "Obsah se v čase mění, zatímco pokusy a pokrok uživatele musí zachovat stabilní význam.",
+            "decision": "Držet strukturu obsahu a uživatelský pokrok jako oddělené oblasti propojené stabilními identifikátory.",
+            "outcome": "Výukový model se může vyvíjet bez směšování obsahových záznamů a uživatelského stavu."
+          },
+          {
+            "title": "Přistupovat k multiplayeru jako k produktovému flow",
+            "context": "Samotný realtime přenos nedefinuje stav místnosti, přechody, opětovné připojení ani výsledky.",
+            "decision": "Modelovat multiplayer pomocí explicitních stavů místnosti a hry, které se přenášejí realtime aktualizacemi."
+          }
+        ],
+        "outcomes": [
+          "Spustil jsem a provozuji živý produkt na devshark.app.",
+          "Propojil jsem strukturovanou výuku, kvízy, pokrok, žebříčky a multiplayer v jedné produktové architektuře.",
+          "Vytvořil jsem základ pro další rozvoj produktu a obsahu."
+        ],
+        "reflection": [
+          "Vlastnictví produktu mění vývojářské priority. Udržovatelnost, provozní jednoduchost a rozhodnutí, co nepostavit, jsou stejně důležité jako dodávání funkcí."
+        ]
+      }
     },
     {
+      "id": "personal-dashboard",
+      "featured": false,
+      "group": "product",
       "title": "Personal Dashboard",
-      "description": "Osobní dashboard pro předplatná, návyky, finance, české faktury, knihy a kalendář, plus rychlé přidávání přirozeným jazykem postavené na Claude.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Supabase",
-        "Claude AI",
-        "Recharts"
-      ],
-      "vercel": "https://own-dashboard-tau.vercel.app",
-      "image": "/projects/personal-dashboard.png"
+      "contextLabel": "Vlastní produkt",
+      "role": "Vlastník produktu a vývojář",
+      "summary": "Soukromý osobní dashboard pro předplatná, návyky, finance, faktury, knihy a plánování kalendáře s rychlým přidáváním v přirozeném jazyce postaveným na Claude.",
+      "capabilities": ["Modelování produktu", "AI integrace", "Vizualizace dat"],
+      "technologies": ["Next.js", "Supabase", "Claude API"],
+      "image": { "src": "/projects/personal-dashboard.png", "alt": "Přehled Personal Dashboard s plánováním a finančními widgety" },
+      "externalUrl": "https://own-dashboard-tau.vercel.app",
+      "confidentiality": "public"
     },
     {
+      "id": "aifirst",
+      "featured": false,
+      "group": "product",
       "title": "aifirst",
-      "description": "Denní, plně statický dvojjazyčný (CS/EN) magazín o AI a technologiích. Naplánovaná úloha v GitHub Actions každý den seškrábe zdroje dne a Claude napíše každé vydání.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Claude API",
-        "GitHub Actions"
-      ],
-      "vercel": "https://aifirst-beryl.vercel.app/",
-      "image": "/projects/aifirst.png"
+      "contextLabel": "Vlastní produkt",
+      "role": "Autor a vývojář",
+      "summary": "Statická dvojjazyčná publikace o AI a technologiích vytvářená plánovaným workflow pro získání zdrojů, kurátorství a publikování.",
+      "capabilities": ["Automatizace obsahu", "Statické publikování", "AI workflow"],
+      "technologies": ["Next.js", "Claude API", "GitHub Actions"],
+      "image": { "src": "/projects/aifirst.png", "alt": "Úvodní stránka dvojjazyčné technologické publikace aifirst" },
+      "externalUrl": "https://aifirst-beryl.vercel.app/",
+      "confidentiality": "public"
     },
     {
+      "id": "czech-monopoly",
+      "featured": false,
+      "group": "product",
       "title": "Czech Monopoly",
-      "description": "Česká verze Monopolů v prohlížeči a v reálném čase, kde 2–4 hráči kupují česká města přes kód místnosti, s vědomostním twistem a lokalizací CS/EN.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Payload CMS",
-        "Neon",
-        "Ably"
-      ],
-      "vercel": "https://czech-cities.vercel.app",
-      "image": "/projects/czech-cities.png"
+      "contextLabel": "Vlastní produkt",
+      "role": "Full-stack vývojář",
+      "summary": "Česká hra Monopoly v prohlížeči s kódy místností, realtime hrou pro dva až čtyři hráče, vědomostními otázkami a českou i anglickou lokalizací.",
+      "capabilities": ["Realtime produkt", "Stav hry", "Lokalizace"],
+      "technologies": ["Next.js", "Payload CMS", "Ably"],
+      "image": { "src": "/projects/czech-cities.png", "alt": "Herní plán Czech Monopoly s českými městy" },
+      "externalUrl": "https://czech-cities.vercel.app",
+      "confidentiality": "public"
     },
     {
-      "title": "Dont Wanna Know",
-      "description": "Zadejte rok narození, zemi a město a získáte okamžitý report o době, ve které někdo vyrůstal — celý v prohlížeči. Žádný backend, žádná volání API.",
-      "tech": [
-        "React",
-        "TypeScript",
-        "Vite",
-        "i18n",
-        "Vercel"
-      ],
-      "vercel": "https://dontwannaknow.vercel.app",
-      "image": "/projects/dontwannaknow.png"
+      "id": "dont-wanna-know",
+      "featured": false,
+      "group": "experiment",
+      "title": "Don't Wanna Know",
+      "contextLabel": "Produktový experiment",
+      "role": "Frontend vývojář",
+      "summary": "Report o době, ve které někdo vyrůstal, generovaný v prohlížeči podle roku narození a lokality bez backendu a volání API.",
+      "capabilities": ["Klientská architektura", "Prezentace dat", "Lokalizace"],
+      "technologies": ["React", "TypeScript", "Vite"],
+      "image": { "src": "/projects/dontwannaknow.png", "alt": "Rozhraní reportu Don't Wanna Know" },
+      "externalUrl": "https://dontwannaknow.vercel.app",
+      "confidentiality": "public"
     },
     {
+      "id": "autobusy-hodonin",
+      "featured": false,
+      "group": "client",
       "title": "AutobusyHodonín.cz",
-      "description": "Prezentační web pro českou autobusovou a nákladní dopravu pokrývající vozový park, osobní linky i nákladní přepravu, vyladěný pro SEO v češtině i angličtině.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "TailwindCSS",
-        "i18n"
-      ],
-      "vercel": "https://autobusyhodonin.cz",
-      "image": "/projects/autobusy-hodonin.png"
+      "contextLabel": "Klientský web",
+      "role": "Frontend inženýr",
+      "summary": "Dvojjazyčný web pro českou osobní a nákladní dopravu, který představuje služby a vozový park s důrazem na dohledatelnost ve vyhledávačích.",
+      "capabilities": ["Klientské dodání", "SEO", "Lokalizace"],
+      "technologies": ["Next.js", "TypeScript", "i18n"],
+      "image": { "src": "/projects/autobusy-hodonin.png", "alt": "Web dopravní společnosti Autobusy Hodonín" },
+      "externalUrl": "https://autobusyhodonin.cz",
+      "confidentiality": "public"
     },
     {
+      "id": "umyjeme-fasadu",
+      "featured": false,
+      "group": "client",
       "title": "Umyjeme fasádu",
-      "description": "Web pro českou službu čištění exteriérů: tlakové mytí fasád, střech a dlažby horkou vodou, s posuvníky před/po a poptávkovým formulářem.",
-      "tech": [
-        "React",
-        "TypeScript",
-        "Vite",
-        "TailwindCSS"
-      ],
-      "vercel": "https://umyjemefasadu.vercel.app/",
-      "image": "/projects/umyjeme-fasadu.png"
+      "contextLabel": "Klientský web",
+      "role": "Frontend vývojář",
+      "summary": "Web pro službu čištění exteriérů s porovnáním před a po a přímým poptávkovým flow.",
+      "capabilities": ["Klientské dodání", "Responzivní UI", "Poptávkové flow"],
+      "technologies": ["React", "TypeScript", "Vite"],
+      "image": { "src": "/projects/umyjeme-fasadu.png", "alt": "Web služby čištění exteriérů Umyjeme fasádu" },
+      "externalUrl": "https://umyjemefasadu.vercel.app/",
+      "confidentiality": "public"
     },
     {
+      "id": "eurowafers",
+      "featured": false,
+      "group": "client",
       "title": "Eurowafers",
-      "description": "Webová prezentace českého výrobce lázeňských oplatek — historie, produkty a distribuce.",
-      "tech": [
-        "Astro",
-        "TypeScript",
-        "TailwindCSS",
-        "Vercel"
-      ],
-      "vercel": "https://eurowafers.vercel.app",
-      "image": "/projects/eurowafers.png"
+      "contextLabel": "Klientský web",
+      "role": "Frontend vývojář",
+      "summary": "Produktový a firemní web českého výrobce lázeňských oplatek, který představuje historii, produkty a distribuci.",
+      "capabilities": ["Klientské dodání", "Struktura obsahu", "Statický web"],
+      "technologies": ["Astro", "TypeScript", "Tailwind CSS"],
+      "image": { "src": "/projects/eurowafers.png", "alt": "Produktový web Eurowafers" },
+      "externalUrl": "https://eurowafers.vercel.app",
+      "confidentiality": "public"
     },
     {
+      "id": "take-a-break",
+      "featured": false,
+      "group": "client",
       "title": "Take a Break",
-      "description": "B2B aplikace pro rezervaci meditací s rezervačním dashboardem, achievementy a novinkami, postavená na monorepu Turborepo.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Prisma",
-        "PostgreSQL",
-        "Turborepo"
-      ],
-      "image": "/projects/takeabreak.png",
-      "note": "Bohužel už nemám screenshot aplikace, ale podívejte se na ten skvělý tým!"
+      "contextLabel": "Dřívější produktová práce",
+      "year": "2022–2023",
+      "role": "Full Stack Developer",
+      "summary": "B2B produkt pro rezervaci meditací s rezervacemi, achievementy, obsahem, platbami, autentizací a realtime aktualizacemi.",
+      "capabilities": ["Full-stack dodání", "Platby", "Modelování dat"],
+      "technologies": ["Next.js", "PostgreSQL", "Prisma"],
+      "image": { "src": "/projects/takeabreak.png", "alt": "Produktový tým Take a Break" },
+      "confidentiality": "limited"
     },
     {
-      "title": "beKind Web App",
-      "description": "Rebrand firmy a webová aplikace v Next.js, postavená na PostgreSQL a Prisma.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Node.js",
-        "Prisma",
-        "PostgreSQL"
-      ],
-      "image": "/projects/bekind.png"
+      "id": "bekind",
+      "featured": false,
+      "group": "client",
+      "title": "beKind",
+      "contextLabel": "Dřívější produktová práce",
+      "year": "2023",
+      "role": "Frontend Developer",
+      "summary": "B2B marketplace propojující neziskové organizace a firmy, dodaný společně s firemním rebrandem.",
+      "capabilities": ["Frontend architektura", "Produktové UI", "Dodání rebrandu"],
+      "technologies": ["Next.js", "PostgreSQL", "Node.js"],
+      "image": { "src": "/projects/bekind.png", "alt": "B2B marketplace beKind" },
+      "confidentiality": "limited"
     }
   ],
   "experience": [
     {
+      "id": "web-integrator",
+      "phase": "engineering",
       "company": "Web Integrator",
       "logo": "/logos/webintegrator_logo.svg",
+      "logoAlt": "Logo Web Integrator",
       "role": "Senior Frontend Engineer",
-      "period": "duben 2026 – současnost",
+      "period": "dub 2026–současnost",
       "location": "Praha, Česká republika",
-      "responsibilities": [
-        "První inženýr zaměřený na AI v týmu: přinesl jsem AI nástroje do workflow a nastavil konvence, jak je používáme",
-        "Vedu frontendovou práci v TypeScriptu, Reactu a Next.js, včetně kvality kódu a chování napříč prohlížeči",
-        "Udržuji kódovací standardy a klientské guideliny ohledně přístupnosti a webových standardů",
-        "Píšu technické specifikace z návrhů a připravuji grafické podklady pro vývoj",
-        "Modeluji strukturovaný obsah v Payload CMS a zlepšuji UX detaily napříč klientskými weby"
+      "summary": "Vedu frontendovou práci a pomáhám týmu zavádět AI nástroje s jasnými pravidly. V každodenních rozhodnutích udržuji viditelné požadavky na přístupnost, webové standardy a udržitelné dodání.",
+      "contributions": [
+        "Připojil jsem se jako první inženýr v týmu s explicitním zaměřením na AI nástroje a nastavil praktické konvence jejich použití.",
+        "Vedu frontendový vývoj v TypeScriptu, Reactu a Next.js, včetně kvality kódu a chování napříč prohlížeči.",
+        "Udržuji standardy přístupnosti, webových standardů, technických specifikací a klientských pokynů pro implementaci.",
+        "Modeluji strukturovaný obsah v Payload CMS a zlepšuji technické i UX detaily klientských webů."
       ],
-      "tags": [
-        "AI tooling",
-        "TypeScript",
-        "Next.js",
-        "React",
-        "Payload CMS"
-      ]
+      "capabilities": ["Vedení frontendu", "AI nástroje", "Přístupnost", "Payload CMS"]
     },
     {
+      "id": "embedit",
+      "phase": "engineering",
       "company": "EmbedIT",
       "logo": "/logos/embedit_logo.png",
+      "logoAlt": "Logo EmbedIT",
       "role": "Senior Fullstack Developer",
-      "period": "červenec 2025 – březen 2026",
+      "period": "čvc 2025–bře 2026",
       "location": "Praha, Česká republika",
-      "responsibilities": [
-        "Vedl jsem modernizaci platformy online bankovnictví — přechod legacy systémů na mikrofrontendovou architekturu",
-        "Postavil jsem vrstvu Backend-for-Frontend (BFF): kontrolery, mappery a orchestraci služeb",
-        "Navrhl jsem API kontrakty a udržoval integrace stabilní napříč několika navazujícími službami",
-        "Pokryl jsem kód unit, integračními a E2E testy a splnil požadavky přístupnosti WCAG",
-        "Zrychlil jsem CI/CD pipeline a zpřísnil standardy code review"
+      "summary": "Vedl jsem frontendovou a BFF část modernizace internetového bankovnictví a podílel se na převodu původní funkcionality směrem k micro-frontendové architektuře.",
+      "contributions": [
+        "Vytvářel jsem BFF kontrolery, mappery a orchestraci služeb.",
+        "Navrhoval jsem API kontrakty a udržoval stabilní integrace s navazujícími službami.",
+        "Pokrýval jsem práci unit, integračními a E2E testy včetně požadavků na přístupnost.",
+        "Zlepšoval jsem CI/CD proces a standardy code review."
       ],
-      "tags": [
-        "TypeScript",
-        "React",
-        "Express.js",
-        "StyleX",
-        "Node.js"
-      ]
+      "capabilities": ["Micro-frontendy", "BFF", "API kontrakty", "Testování", "Přístupnost"],
+      "caseStudySlug": "banking-modernization"
     },
     {
+      "id": "ersilia",
+      "phase": "engineering",
       "company": "Ersilia",
       "logo": "/logos/ersilia_logo.png",
+      "logoAlt": "Logo Ersilia",
       "role": "Fullstack Developer",
-      "period": "leden 2024 – červen 2025",
+      "period": "led 2024–čvn 2025",
       "location": "Barcelona, Španělsko",
-      "responsibilities": [
-        "Postavil jsem full-stackovou aplikaci v Next.js a TypeScriptu pro správu strukturovaných metadat ML modelů",
-        "Navrhl jsem databázové schéma a backend za ním",
-        "Vytvořil jsem AI workflow na Vercel AI SDK, které analyzuje vědecké PDF pomocí LLM",
-        "Zautomatizoval jsem validaci metadat a synchronizaci repozitářů přes GitHub API a Actions",
-        "Spolupracoval jsem přímo s výzkumným týmem na open-science codebase"
+      "summary": "Postavil jsem full-stackovou aplikaci pro strukturovaná metadata modelů strojového učení a AI workflow pro vědecká PDF v open-science týmu.",
+      "contributions": [
+        "Navrhl jsem databázové schéma a backend pro strukturovaná metadata modelů.",
+        "Postavil jsem aplikaci v Next.js a TypeScriptu pro správu celého workflow.",
+        "Vyvinul jsem AI analýzu PDF pomocí Vercel AI SDK a explicitní validace.",
+        "Automatizoval jsem validaci metadat a synchronizaci repozitářů přes GitHub API a Actions."
       ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "Vercel AI SDK",
-        "PostgreSQL",
-        "Node.js"
-      ]
+      "capabilities": ["Full-stack vývoj", "Návrh schématu", "AI workflow", "GitHub automatizace"],
+      "caseStudySlug": "ersilia-ai-tooling"
     },
     {
+      "id": "bekind-role",
+      "phase": "engineering",
       "company": "beKind",
       "logo": "/logos/bekind_logo.png",
+      "logoAlt": "Logo beKind",
       "role": "Frontend Developer",
-      "period": "únor 2023 – prosinec 2023",
+      "period": "úno 2023–pro 2023",
       "location": "Barcelona, Španělsko",
-      "responsibilities": [
-        "Postavil jsem B2B marketplace propojující neziskovky a firmy v Next.js a TypeScriptu, vyladěný na výkon a SEO",
-        "Převzal jsem architekturu frontendu se znovupoužitelnou komponentovou knihovnou v Reactu a TailwindCSS",
-        "Převáděl jsem UX wireframy do produkčních rozhraní v úzké spolupráci s designéry",
-        "Přispěl jsem k backendu a návrhu schématu v Node.js, PostgreSQL a REST API",
-        "Dovedl jsem firemní rebrand od návrhu až po spuštění"
+      "summary": "Postavil jsem frontend B2B marketplace propojujícího neziskové organizace a firmy a přenesl firemní rebrand do produkčního produktu.",
+      "contributions": [
+        "Strukturoval jsem frontend pomocí znovupoužitelných komponent v Reactu a Tailwind CSS.",
+        "Převáděl jsem UX wireframy do produkčních rozhraní s designovými stakeholdery.",
+        "Přispíval jsem k práci v Node.js, PostgreSQL, návrhu schématu a API.",
+        "Zahrnul jsem výkon a SEO přímo do implementace."
       ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "Tailwind",
-        "PostgreSQL",
-        "Node.js"
-      ]
+      "capabilities": ["Frontend architektura", "Produktové UI", "Full-stack spolupráce", "SEO"]
     },
     {
+      "id": "take-a-break-role",
+      "phase": "engineering",
       "company": "Take a Break",
       "logo": "/logos/takeabreak_logo.svg",
+      "logoAlt": "Lotosové logo Take a Break",
       "role": "Full Stack Developer",
-      "period": "duben 2022 – leden 2023",
+      "period": "dub 2022–led 2023",
       "location": "Barcelona, Španělsko",
-      "responsibilities": [
-        "Postavil jsem full-stackovou B2B aplikaci pro rezervaci meditací v Next.js a TypeScriptu",
-        "Sestavil jsem UI ze znovupoužitelných komponent React, TailwindCSS a shadcn/ui",
-        "Vyladil jsem PostgreSQL dotazy přes Prisma",
-        "Integroval jsem Stripe a API třetích stran pro platby, autentizaci a aktualizace v reálném čase",
-        "Nasadil jsem na Vercel s CI pro preview a produkční buildy"
+      "summary": "Vyvíjel jsem B2B aplikaci pro rezervaci meditací napříč produktovým UI, daty, platbami, autentizací a nasazením.",
+      "contributions": [
+        "Postavil jsem rezervace, dashboard, achievementy a obsahová rozhraní v Next.js a TypeScriptu.",
+        "Pracoval jsem s PostgreSQL a Prisma na datové vrstvě produktu.",
+        "Integroval jsem Stripe a API třetích stran pro platby, autentizaci a realtime aktualizace.",
+        "Podporoval jsem preview a produkční nasazení na Vercelu."
       ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "Tailwind",
-        "PostgreSQL",
-        "Prisma"
-      ]
+      "capabilities": ["Full-stack dodání", "Platby", "Autentizace", "PostgreSQL"]
     },
     {
+      "id": "controlant",
+      "phase": "earlier",
       "company": "Controlant",
       "logo": "/logos/controlant_logo.png",
+      "logoAlt": "Logo Controlant",
       "role": "Technical Analyst",
-      "period": "září 2019 – březen 2022",
+      "period": "zář 2019–bře 2022",
       "location": "Reykjavík, Island",
-      "responsibilities": [
-        "Monitoroval jsem živou telemetrii z IoT trackerů chladicího řetězce u farmaceutických zásilek a triážoval kritické teplotní výkyvy",
-        "Prováděl jsem analýzu příčin nad daty zásilek a senzorů a měnil zjištění v řešení v souladu s předpisy pro globální klienty",
-        "Zautomatizoval jsem opakující se části zpracování dat a klientského reportingu",
-        "Psal jsem auditní zprávy a dokumentaci kvality a prezentoval zjištění vedení"
+      "summary": "Vyšetřoval jsem kritické incidenty v chladicím řetězci pomocí živé IoT telemetrie farmaceutických zásilek.",
+      "contributions": [
+        "Triážoval jsem teplotní výkyvy a prováděl root-cause analýzu dat zásilek a senzorů.",
+        "Převáděl jsem zjištění do řešení pro klienty, auditních zpráv a dokumentace kvality v souladu s předpisy.",
+        "Automatizoval jsem opakující se části zpracování dat a reportingu."
       ],
-      "tags": [
-        "Data Analysis",
-        "IoT Telemetry",
-        "Root-Cause Analysis",
-        "Automation"
-      ]
+      "capabilities": ["Analýza incidentů", "IoT telemetrie", "Citlivý provoz", "Komunikace pod tlakem"]
     },
     {
+      "id": "entain",
+      "phase": "earlier",
       "company": "Entain Group",
       "logo": "/logos/entain_logo.png",
+      "logoAlt": "Logo Entain",
       "role": "User Protection Expert",
-      "period": "prosinec 2017 – srpen 2019",
+      "period": "pro 2017–srp 2019",
       "location": "Gibraltar",
-      "responsibilities": [
-        "Odhaloval jsem vzorce podvodů a praní špinavých peněz v sázkových a transakčních datech pomocí specializovaných analytických nástrojů",
-        "Vyšetřoval jsem označené účty a nakládal s citlivými uživatelskými daty podle GDPR",
-        "Udržoval jsem detekční procesy v souladu s EU a místními předpisy pro hazard",
-        "Mentoroval jsem juniorní analytiky v oblasti compliance a rizik"
+      "summary": "Vyšetřoval jsem podvody, vzorce praní špinavých peněz a rizika ochrany uživatelů v regulovaném prostředí.",
+      "contributions": [
+        "Analyzoval jsem sázková a transakční data pomocí specializovaných nástrojů.",
+        "Vyšetřoval jsem označené účty a pracoval s citlivými daty podle GDPR.",
+        "Pracoval jsem v rámci evropské i místní regulace hazardu a mentoroval juniorní analytiky."
       ],
-      "tags": [
-        "Fraud Detection",
-        "AML/KYC",
-        "Data Analytics",
-        "GDPR"
-      ]
+      "capabilities": ["Podvody a AML", "GDPR", "Citlivá data", "Regulované systémy"]
     },
     {
+      "id": "kiwi",
+      "phase": "earlier",
       "company": "Kiwi.com",
       "logo": "/logos/kiwi_logo.png",
+      "logoAlt": "Logo Kiwi.com",
       "role": "Customer Relations Advisor",
-      "period": "prosinec 2014 – listopad 2017",
+      "period": "pro 2014–lis 2017",
       "location": "Brno, Česká republika",
-      "responsibilities": [
-        "Řešil jsem složité problémy s rezervacemi napříč několika leteckými a CRM systémy",
-        "S týmem jsem přepracoval podpůrné workflow a zkrátil dobu řešení",
-        "Podporoval jsem provoz KAYAK a B2B partnery řešeními podloženými daty",
-        "Zaškoloval jsem nováčky v systémech, postupech a procesech podpory"
+      "summary": "Řešil jsem složité chyby rezervací napříč leteckými a CRM systémy pro zákazníky i B2B partnery.",
+      "contributions": [
+        "Pracoval jsem napříč několika systémy na řešení časově citlivých cestovních problémů.",
+        "Pomáhal jsem zlepšovat podpůrné workflow a školil nové členy týmu.",
+        "Podporoval jsem provoz KAYAK a B2B partnery řešeními podloženými důkazy."
       ],
-      "tags": [
-        "CRM Systems",
-        "Workflow Optimization",
-        "B2B Support"
-      ]
+      "capabilities": ["Dopad na zákazníka", "Provozní spolehlivost", "B2B podpora", "Komunikace pod tlakem"]
     }
   ],
-  "education": [
+  "earlierCareerIntro": "Osm let v zákaznických procesech, prevenci podvodů, regulovaném prostředí a technické podpoře IoT systémů ovlivňuje způsob, jakým dnes vyvíjím software. Naučil jsem se vyšetřovat incidenty, komunikovat pod tlakem, pracovat s citlivými daty a chápat provozní dopad nepřehledných rozhraní a nespolehlivých systémů.",
+  "approach": [
     {
-      "name": "arol.dev",
-      "field": "Softwarové inženýrství",
-      "period": "leden 2024 – červen 2024",
-      "url": "https://arol.dev",
-      "description": "Intenzivní akademie softwarového inženýrství v Barceloně zaměřená na full-stack webový vývoj. Pracoval jsem hlavně s JavaScriptem, TypeScriptem, Reactem, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, Prisma a MongoDB, vedle datových struktur, algoritmů a nástrojů jako Git, Docker, Vercel a Figma. Většina učení přišla ze stavění reálných projektů — a tam jsem se do softwarového inženýrství zamiloval.",
-      "skills": [
-        "TypeScript",
-        "React",
-        "Next.js",
-        "Node.js",
-        "Express",
-        "PostgreSQL",
-        "Docker"
-      ],
-      "photos": [
-        {
-          "src": "/education/arol-office.jpg",
-          "alt": "Kancelář arol.dev v Barceloně"
-        }
-      ]
+      "id": "dependable-boundaries",
+      "title": "Spolehlivá rozhraní",
+      "body": "Preferuji explicitní kontrakty mezi frontendem, backendem a externími službami. Stabilní rozhraní, srozumitelná práce s chybami a účelové datové modely brání tomu, aby se složitost nekontrolovaně šířila aplikací."
     },
     {
+      "id": "quality-delivery",
+      "title": "Kvalita je součástí dodání",
+      "body": "Přístupnost, testování, výkon a udržovatelnost nejsou úkoly, které se řeší až po dokončení funkce. Jsou součástí návrhu, code review i samotného nasazení."
+    },
+    {
+      "id": "product-context",
+      "title": "Kontext produktu je důležitý",
+      "body": "Dobrá implementace začíná pochopením toho, kdo se na systém spoléhá, co může selhat a jaké budou provozní dopady. Nezačíná výběrem frameworku."
+    },
+    {
+      "id": "ai-guardrails",
+      "title": "AI s jasnými pravidly",
+      "body": "AI používám tam, kde pomáhá s rešerší, dodáním a opakovanou vývojářskou prací. Validaci, testy, bezpečnostní hranice a lidskou kontrolu ale ponechávám explicitní."
+    }
+  ],
+  "capabilities": {
+    "groups": [
+      {
+        "id": "product-frontend",
+        "title": "Produktový frontend",
+        "items": ["React", "TypeScript", "Next.js", "Přístupné UI", "Design systémy", "Responzivní rozhraní", "Frontend architektura"]
+      },
+      {
+        "id": "application-architecture",
+        "title": "Aplikační architektura",
+        "items": ["BFF", "API kontrakty", "Micro-frontendy", "Autentizace", "Integrační hranice", "Vlastnictví dat a stavu"]
+      },
+      {
+        "id": "backend-data",
+        "title": "Backend a data",
+        "items": ["Node.js", "PostgreSQL", "Návrh schématu", "Integrace", "Procesy na pozadí", "Supabase"]
+      },
+      {
+        "id": "quality-delivery",
+        "title": "Kvalita a dodání",
+        "items": ["Unit testy", "Integrační testy", "E2E testy", "Testování přístupnosti", "Výkon", "CI/CD", "Code review", "Udržovatelnost"]
+      }
+    ],
+    "additionalTools": ["Payload CMS", "Supabase", "Prisma", "Ably", "Vercel AI SDK", "Anthropic SDK", "GitHub Actions", "Vercel"]
+  },
+  "education": [
+    {
+      "id": "arol",
+      "name": "arol.dev",
+      "field": "Softwarové inženýrství",
+      "period": "led 2024–čvn 2024",
+      "url": "https://arol.dev",
+      "description": "Intenzivní akademie softwarového inženýrství v Barceloně zaměřená na full-stackový vývoj, datové struktury, algoritmy a tvorbu fungujících produktů v týmech.",
+      "skills": ["TypeScript", "React", "Next.js", "Node.js", "PostgreSQL", "Docker"],
+      "image": { "src": "/education/arol-office.jpg", "alt": "Kancelář arol.dev v Barceloně" }
+    },
+    {
+      "id": "reykjavik-academy",
       "name": "Reykjavík Academy of Web Development",
       "field": "Webový vývoj",
-      "period": "únor 2022 – červen 2022",
+      "period": "úno 2022–čvn 2022",
       "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
-      "description": "Bootcamp webového vývoje, kde jsem si vybudoval základ v HTML, CSS a JavaScriptu. Všechno se točilo kolem stavění responzivních, interaktivních webových aplikací.",
-      "skills": [
-        "JavaScript",
-        "HTML5",
-        "CSS3",
-        "Vue.js",
-        "Responsive Design",
-        "REST APIs"
-      ],
-      "photos": [
-        {
-          "src": "/education/reykjavik-school.jpg",
-          "alt": "Budova Tækniskólinn v Reykjavíku"
-        }
-      ]
+      "description": "Bootcamp webového vývoje, kde jsem si vybudoval základy responzivních a interaktivních webových aplikací v HTML, CSS, JavaScriptu a Vue.",
+      "skills": ["JavaScript", "HTML", "CSS", "Vue", "Responzivní design"],
+      "image": { "src": "/education/reykjavik-school.jpg", "alt": "Budova Tækniskólinn v Reykjavíku" }
     }
   ],
   "contact": {
-    "prompt": "$ ./say-hello.sh",
-    "blurb": "Nabíráte, nebo máte v hlavě projekt? Napište mi a ozvu se vám."
-  }
+    "body": "Nejlépe mě zastihnete e-mailem nebo přes LinkedIn. Ukázky kódu a aktuální produktovou práci najdete na GitHubu.",
+    "availability": "Působím v Praze. Jsem k dispozici pro vybrané freelance projekty a budoucí seniorní vývojářské role."
+  },
+  "footer": {
+    "role": "Seniorní softwarový inženýr",
+    "location": "Praha, Česká republika",
+    "copyright": "© 2026 Lukas Kouril",
+    "backToTop": "Zpět nahoru"
+  },
+  "caseStudyLabels": {
+    "context": "Kontext",
+    "problem": "Problém",
+    "constraints": "Omezení",
+    "responsibility": "Moje odpovědnost",
+    "approach": "Přístup",
+    "decisions": "Klíčová technická rozhodnutí",
+    "outcomes": "Výsledky",
+    "reflection": "Reflexe",
+    "testimonial": "Doporučení",
+    "related": "Související práce",
+    "contactHeading": "Hledáte někoho, kdo převezme odpovědnost za systémové hranice?",
+    "contactBody": "Jsem otevřený vybrané produktové práci a budoucím seniorním vývojářským příležitostem."
+  },
+  "privacy": {
+    "title": "Soukromí",
+    "description": "Jak toto portfolio pracuje s volitelnou analytikou a údaji návštěvníků.",
+    "updated": "Aktualizováno v červenci 2026",
+    "sections": [
+      {
+        "id": "operator",
+        "title": "Provozovatel webu",
+        "paragraphs": ["Toto portfolio provozuje Lukas Kouril v Praze, Česká republika. Kontaktovat mě můžete na adrese kouril.lukas@gmail.com."]
+      },
+      {
+        "id": "analytics",
+        "title": "Volitelná analytika",
+        "paragraphs": ["Pokud je nastaven klíč PostHog, web si před načtením analytiky vyžádá souhlas. Pokud klíč nastaven není, rozhraní souhlasu se nezobrazí a neproběhnou žádné analytické požadavky.", "Analytika slouží k základnímu přehledu návštěv stránek a vědomých přechodů na případové studie, CV, GitHub nebo LinkedIn. Hodnoty formulářů, pohyb ukazatele, stisky kláves, kopírovaný text ani podrobné scrollování nesleduji."]
+      },
+      {
+        "id": "consent",
+        "title": "Souhlas a nastavení",
+        "paragraphs": ["Vaše volba se ukládá v prohlížeči. Změnit ji můžete pomocí nastavení soukromí v patičce. Do Not Track respektuji jako další signál a při jeho zapnutí se analytika nenačte."]
+      },
+      {
+        "id": "provider",
+        "title": "Poskytovatel a uchování",
+        "paragraphs": ["Volitelnou analytiku poskytuje PostHog přes evropský endpoint. Nahrávání relací, automatické snímání formulářů a zbytečné profily osob jsou vypnuté. Dobu uchování určují nastavení projektu PostHog a měla by být omezena na dobu nutnou pro základní analytiku webu."]
+      },
+      {
+        "id": "contact-data",
+        "title": "Přímý kontakt",
+        "paragraphs": ["Pokud mě kontaktujete e-mailem nebo přes LinkedIn, tyto služby zpracují informace, které se rozhodnete odeslat, podle vlastních podmínek soukromí. Tento web nemá kontaktní formulář a obsah zpráv neukládá."]
+      }
+    ]
+  },
+  "consent": {
+    "title": "Volitelná analytika",
+    "body": "Mohu použít analytiku šetrnou k soukromí pro přehled návštěv a vědomých přechodů na odkazy? Web funguje stejně i při odmítnutí.",
+    "accept": "Přijmout",
+    "decline": "Odmítnout",
+    "close": "Zavřít nastavení",
+    "dnt": "Analytika je vypnutá, protože váš prohlížeč odesílá Do Not Track."
+  },
+  "notFound": {
+    "eyebrow": "404 / nenalezeno",
+    "title": "Tato stránka neexistuje",
+    "body": "Adresa může být zastaralá nebo neúplná. Pokračujte návratem na úvodní stránku portfolia.",
+    "action": "Zpět na úvodní stránku"
+  },
+  "testimonials": []
 }

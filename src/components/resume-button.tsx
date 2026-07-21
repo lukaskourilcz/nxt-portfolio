@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { RESUME_PATH } from "@/lib/site";
 
-// CV / résumé link — opens the PDF in a new tab. Shared by the navbar and hero.
+// CV / resume link - opens the PDF in a new tab. Shared by the navbar and hero.
 export function ResumeButton({
   size = "md",
   className,
@@ -14,7 +14,11 @@ export function ResumeButton({
 }) {
   return (
     <Button asChild variant="outline" size={size} className={className}>
-      <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
+      <a
+        href={RESUME_PATH}
+        download="lukas-kouril-senior-software-engineer-cv.pdf"
+        data-analytics="cv_download"
+      >
         {children}
       </a>
     </Button>

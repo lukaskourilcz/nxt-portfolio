@@ -1,371 +1,1027 @@
 {
+  "locale": "en",
+  "metadata": {
+    "homeTitle": "Lukas Kouril | Senior Software Engineer",
+    "homeDescription": "Senior software engineer in Prague building dependable web products across banking, AI tooling, frontend architecture, accessibility, and full-stack TypeScript development.",
+    "ogLocale": "en_US",
+    "ogAlternateLocale": "cs_CZ"
+  },
+  "common": {
+    "skipToContent": "Skip to content",
+    "menuOpen": "Open navigation",
+    "menuClose": "Close navigation",
+    "switchLanguage": "Switch to Czech",
+    "primaryNavigation": "Primary navigation",
+    "breadcrumb": "Breadcrumb",
+    "coreCapabilities": "Core capabilities",
+    "capabilitiesLabel": "Capabilities",
+    "transferableCapabilities": "Transferable capabilities",
+    "organizationLabel": "Organization",
+    "roleLabel": "Role",
+    "periodLabel": "Period",
+    "present": "Present",
+    "confidential": "Confidential",
+    "selectedWork": "Selected work",
+    "additionalWork": "Additional work",
+    "productAndExperimental": "Product and experimental work",
+    "clientAndEarlier": "Client and earlier product work",
+    "beforeEngineering": "Before engineering",
+    "alsoWorkedWith": "Also worked with",
+    "analyticsSettings": "Analytics preferences",
+    "links": {
+      "backHome": "Back to homepage",
+      "backToWork": "Back to selected work",
+      "caseStudy": "Read case study",
+      "externalProduct": "Visit product",
+      "repository": "View repository",
+      "downloadCv": "Download CV",
+      "contact": "Contact me",
+      "email": "Email",
+      "location": "Location",
+      "privacy": "Privacy",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "opensNewTab": "opens in a new tab",
+      "pdfLabel": "PDF"
+    }
+  },
+  "nav": [
+    {
+      "id": "work",
+      "label": "Work"
+    },
+    {
+      "id": "experience",
+      "label": "Experience"
+    },
+    {
+      "id": "approach",
+      "label": "Approach"
+    },
+    {
+      "id": "capabilities",
+      "label": "Capabilities"
+    },
+    {
+      "id": "education",
+      "label": "Education"
+    },
+    {
+      "id": "contact",
+      "label": "Contact"
+    }
+  ],
   "hero": {
-    "availability": "Available for work · Prague / remote",
     "eyebrow": "$ whoami",
-    "name": "Lukas Kouril",
-    "title": "Senior Fullstack Engineer",
-    "specialization": "TypeScript · React · Next.js · Node.js",
-    "intro": "I build production frontends in **TypeScript** and **React** — from micro-frontends for online banking to **AI tooling** shipped with real teams. I care about readable code and interfaces that still make sense a year later.",
-    "terminal": [
-      {
-        "command": "cat about.txt",
-        "outputs": [
-          "I build web apps with TypeScript, React,",
-          "Next.js and Node.js."
-        ]
-      },
-      {
-        "command": "ls ~/stack",
-        "outputs": [
-          "typescript  react  next.js  node.js  postgresql",
-          "  tailwindcss  payload  docker  ..."
-        ]
-      },
-      {
-        "command": "echo $STATUS",
-        "outputs": [
-          "available_for_work"
+    "headline": "Senior software engineer building dependable web products",
+    "subheadline": "I lead frontend and full-stack work across banking, AI tooling, and product teams, turning complex requirements into accessible, maintainable systems.",
+    "supporting": "My background spans customer operations, fraud prevention, regulatory work, IoT incident analysis, and software engineering. That path taught me to understand systems from both sides: how they are built, and what happens when real people depend on them.",
+    "proof": [
+      "React",
+      "TypeScript",
+      "Next.js",
+      "Node.js",
+      "Accessibility",
+      "AI-assisted engineering"
+    ],
+    "availability": "Based in Prague. Open to selected freelance projects and future senior engineering opportunities.",
+    "portrait": {
+      "src": "/profile.png",
+      "alt": "Portrait of Lukas Kouril"
+    },
+    "primaryAction": "View selected work",
+    "cvAction": "Download CV",
+    "contactAction": "Contact me"
+  },
+  "sectionCopy": {
+    "work": {
+      "eyebrow": "01 / selected work",
+      "title": "Work where responsibility mattered",
+      "intro": "Three examples of production engineering across sensitive systems, scientific tooling, and an owner-operated product. The focus is on scope, decisions, and dependable delivery."
+    },
+    "experience": {
+      "eyebrow": "02 / experience",
+      "title": "Experience across products and operations",
+      "intro": "Recent engineering roles are shown in detail. Earlier operational work is kept because it shaped how I investigate risk, communicate under pressure, and design for real-world consequences."
+    },
+    "approach": {
+      "eyebrow": "03 / approach",
+      "title": "Engineering approach",
+      "intro": "A few principles that guide architecture, implementation, review, and release decisions."
+    },
+    "additionalWork": {
+      "eyebrow": "04 / additional work",
+      "title": "Additional work",
+      "intro": "Smaller products, experiments, and client sites. Useful work, presented at the scale it deserves."
+    },
+    "capabilities": {
+      "eyebrow": "05 / capabilities",
+      "title": "Capabilities",
+      "intro": "The engineering areas I can take responsibility for, from product frontend and system boundaries to testing and delivery."
+    },
+    "education": {
+      "eyebrow": "06 / education",
+      "title": "Education",
+      "intro": "Focused software-engineering training supported by continued work in production codebases."
+    },
+    "contact": {
+      "eyebrow": "07 / contact",
+      "title": "Let's discuss the work",
+      "intro": "I'm based in Prague and open to selected freelance projects and future senior engineering opportunities. The best way to reach me is by email or LinkedIn."
+    }
+  },
+  "work": [
+    {
+      "id": "banking-modernization",
+      "slug": "banking-modernization",
+      "featured": true,
+      "group": "professional",
+      "title": "Online-banking modernization",
+      "contextLabel": "Professional work",
+      "organization": "EmbedIT",
+      "period": "2025–2026",
+      "year": "2025–2026",
+      "role": "Senior Fullstack Developer",
+      "summary": "Led frontend and BFF work within the modernization of an online-banking platform, helping move legacy functionality toward a micro-frontend architecture while improving API boundaries, testing, accessibility, and delivery quality.",
+      "capabilities": [
+        "Frontend leadership",
+        "BFF architecture",
+        "Accessibility",
+        "Delivery quality"
+      ],
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Node.js",
+        "Express.js",
+        "StyleX"
+      ],
+      "confidentiality": "confidential",
+      "detail": {
+        "confidentialityNote": "Product screenshots and source code are not publicly available. This case study therefore focuses on my role, architectural decisions, and engineering process.",
+        "overview": [
+          {
+            "label": "Context",
+            "value": "Online-banking modernization"
+          },
+          {
+            "label": "Organization",
+            "value": "EmbedIT"
+          },
+          {
+            "label": "Role",
+            "value": "Senior Fullstack Developer"
+          },
+          {
+            "label": "Period",
+            "value": "2025–2026"
+          }
+        ],
+        "problem": [
+          "Legacy functionality needed to move toward a micro-frontend architecture without weakening the boundaries between the user interface and downstream banking services.",
+          "Frontend delivery depended on clear API contracts and a BFF layer that could absorb service-level complexity instead of leaking it into product code."
+        ],
+        "constraints": [
+          "The product and implementation details are confidential.",
+          "Changes had to preserve integration stability while meeting testing and accessibility requirements."
+        ],
+        "responsibilities": [
+          "Led frontend and BFF work within the modernization effort.",
+          "Built BFF controllers, mappers, and service orchestration.",
+          "Designed API contracts and coordinated integrations across downstream services.",
+          "Contributed unit, integration, E2E, and accessibility testing.",
+          "Improved CI/CD flow and code-review standards."
+        ],
+        "approach": [
+          "Kept service-specific response shapes behind explicit mappers and contracts.",
+          "Treated accessibility and automated testing as delivery requirements rather than final-stage cleanup.",
+          "Used code review and CI feedback to keep changes understandable across frontend and backend boundaries."
+        ],
+        "decisions": [
+          {
+            "title": "Keep downstream complexity out of the UI",
+            "context": "Multiple services exposed different response shapes and operational concerns.",
+            "decision": "Use the BFF as an explicit integration boundary with controllers, mappers, and orchestration that presented stable contracts to the frontend.",
+            "tradeoff": "The BFF adds code and ownership, but keeps product UI logic focused and easier to test."
+          },
+          {
+            "title": "Build quality into the migration",
+            "context": "Modernization work can reproduce legacy behavior while introducing new integration and accessibility risks.",
+            "decision": "Cover the work with unit, integration, and E2E tests, and include accessibility requirements in implementation and review.",
+            "outcome": "The migration had clearer release checks and stronger delivery discipline."
+          }
+        ],
+        "outcomes": [
+          "Helped move legacy functionality toward a micro-frontend architecture.",
+          "Established clearer API and BFF boundaries for frontend delivery.",
+          "Strengthened testing, accessibility, CI/CD, and review practices around the work."
+        ],
+        "reflection": [
+          "In sensitive systems, architecture is not only component structure. It is also error semantics, ownership, traceability, and confidence in how changes are released."
         ]
       }
-    ]
-  },
-  "projects": [
+    },
     {
+      "id": "ersilia-ai-tooling",
+      "slug": "ersilia-ai-tooling",
+      "featured": true,
+      "group": "professional",
+      "title": "AI tooling for scientific model metadata",
+      "contextLabel": "Open-science tooling",
+      "organization": "Ersilia",
+      "period": "2024–2025",
+      "year": "2024–2025",
+      "role": "Fullstack Developer",
+      "summary": "Built full-stack tooling for managing machine-learning model metadata and developed an AI-assisted workflow for extracting structured information from scientific PDFs, with validation and GitHub-based automation around the wider open-science workflow.",
+      "capabilities": [
+        "Full-stack delivery",
+        "AI workflow",
+        "Schema design",
+        "Automation"
+      ],
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "PostgreSQL",
+        "Vercel AI SDK",
+        "GitHub Actions"
+      ],
+      "confidentiality": "public",
+      "detail": {
+        "overview": [
+          {
+            "label": "Context",
+            "value": "Scientific model metadata tooling"
+          },
+          {
+            "label": "Organization",
+            "value": "Ersilia"
+          },
+          {
+            "label": "Role",
+            "value": "Fullstack Developer"
+          },
+          {
+            "label": "Period",
+            "value": "2024–2025"
+          }
+        ],
+        "problem": [
+          "Machine-learning model metadata needed a structured application and backend rather than a collection of disconnected manual steps.",
+          "Relevant information in scientific PDFs had to be extracted into a form that could be reviewed and used by the wider open-science workflow."
+        ],
+        "constraints": [
+          "AI-extracted information could not be treated as automatically correct.",
+          "The application had to fit an existing GitHub-based collaboration and repository workflow."
+        ],
+        "responsibilities": [
+          "Built the full-stack Next.js and TypeScript application.",
+          "Designed the database schema and backend for structured model metadata.",
+          "Developed the scientific-PDF workflow with the Vercel AI SDK.",
+          "Automated metadata validation and repository synchronization with GitHub API and Actions.",
+          "Worked directly with researchers and engineers in the open-science team."
+        ],
+        "approach": [
+          "Modeled metadata explicitly so the application, validation, and repository workflow shared the same vocabulary.",
+          "Kept AI extraction inside a reviewable workflow instead of presenting model output as a final source of truth.",
+          "Used GitHub automation to connect application work with the repositories already used by the team."
+        ],
+        "decisions": [
+          {
+            "title": "Treat AI output as input to validation",
+            "context": "Scientific PDFs vary in structure and LLM output is probabilistic.",
+            "decision": "Extract structured candidates through the AI workflow, then keep validation and human review explicit.",
+            "tradeoff": "Review adds friction, but avoids making unsupported metadata authoritative."
+          },
+          {
+            "title": "Integrate with the existing repository workflow",
+            "context": "The open-science team already used GitHub repositories as part of its operating model.",
+            "decision": "Automate validation and synchronization through the GitHub API and GitHub Actions instead of creating a separate publishing path."
+          }
+        ],
+        "outcomes": [
+          "Delivered a full-stack interface and backend for structured model metadata.",
+          "Connected AI-assisted PDF analysis to explicit validation.",
+          "Reduced disconnects between application data and GitHub-based open-science workflows through automation."
+        ],
+        "reflection": [
+          "AI features become dependable when the surrounding data model, validation, and ownership are designed as carefully as the model call itself."
+        ]
+      }
+    },
+    {
+      "id": "devshark",
+      "slug": "devshark",
+      "featured": true,
+      "group": "product",
       "title": "devShark",
-      "description": "Developer quiz and learning app with topic paths, daily challenges, real-time multiplayer, and leaderboards. React and Supabase behind serverless functions.",
-      "tech": [
+      "contextLabel": "Owner-operated product",
+      "organization": "Independent",
+      "period": "Current product",
+      "role": "Product owner and full-stack developer",
+      "summary": "A learning platform for developers built as a real product rather than a UI demo. It combines structured learning content, quiz mechanics, progress tracking, and multiplayer functionality in a maintainable React and Supabase architecture.",
+      "capabilities": [
+        "Product ownership",
+        "Application architecture",
+        "Realtime",
+        "Content modeling"
+      ],
+      "technologies": [
         "React",
         "TypeScript",
         "Supabase",
         "Realtime",
         "Vercel"
       ],
-      "vercel": "https://www.devshark.app",
-      "image": "/projects/devshark.png"
+      "image": {
+        "src": "/projects/devshark.png",
+        "alt": "devShark learning dashboard with topic progress and daily challenge"
+      },
+      "externalUrl": "https://www.devshark.app",
+      "confidentiality": "public",
+      "detail": {
+        "overview": [
+          {
+            "label": "Context",
+            "value": "Independent learning product"
+          },
+          {
+            "label": "Role",
+            "value": "Product owner and full-stack developer"
+          },
+          {
+            "label": "Status",
+            "value": "Live product"
+          },
+          {
+            "label": "Platform",
+            "value": "React and Supabase"
+          }
+        ],
+        "problem": [
+          "Developer-learning tools often separate content, practice, progress, and competition into disconnected experiences.",
+          "The product needed an architecture that could support structured topic paths, daily challenges, progress, leaderboards, and real-time multiplayer without becoming difficult to extend."
+        ],
+        "constraints": [
+          "As an owner-operated product, product decisions, implementation, deployment, and maintenance share the same limited attention.",
+          "Real-time features and user data require clear authorization and data ownership."
+        ],
+        "responsibilities": [
+          "Defined the product structure and learning mechanics.",
+          "Designed the React application and Supabase data model.",
+          "Implemented authentication, authorization, progress tracking, and quiz flows.",
+          "Built real-time multiplayer and leaderboard behavior.",
+          "Own deployment, maintenance, and ongoing product decisions."
+        ],
+        "approach": [
+          "Separated learning content, attempts, progress, and multiplayer state into purposeful models.",
+          "Kept feature boundaries explicit so new topic paths and challenge types can be added without rewriting the core flow.",
+          "Used Supabase for integrated data, authentication, and real-time behavior while keeping application rules visible in the codebase."
+        ],
+        "decisions": [
+          {
+            "title": "Model learning progress separately from content",
+            "context": "Content changes over time, while a user's attempts and progress need stable meaning.",
+            "decision": "Keep content structure and user progress as separate concerns connected through stable identifiers.",
+            "outcome": "The learning model can evolve without treating content records and user state as the same thing."
+          },
+          {
+            "title": "Treat multiplayer as a product flow",
+            "context": "Real-time transport alone does not define room state, transitions, reconnect behavior, or results.",
+            "decision": "Model multiplayer around explicit room and game states, with real-time updates carrying those state transitions."
+          }
+        ],
+        "outcomes": [
+          "Shipped and operate a live product at devshark.app.",
+          "Combined structured learning, quizzes, progress, leaderboards, and multiplayer in one product architecture.",
+          "Built a foundation that supports ongoing product and content development."
+        ],
+        "reflection": [
+          "Owning the product changes engineering priorities. Maintainability, operational simplicity, and what not to build matter as much as feature delivery."
+        ]
+      }
     },
     {
+      "id": "personal-dashboard",
+      "featured": false,
+      "group": "product",
       "title": "Personal Dashboard",
-      "description": "Life dashboard for subscriptions, habits, finances, Czech invoices, books, and a calendar, plus a natural-language quick-add built on Claude.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Supabase",
-        "Claude AI",
-        "Recharts"
+      "contextLabel": "Independent product",
+      "role": "Product owner and developer",
+      "summary": "A private life dashboard for subscriptions, habits, finances, invoices, books, and calendar planning, with natural-language quick add built on Claude.",
+      "capabilities": [
+        "Product modeling",
+        "AI integration",
+        "Data visualization"
       ],
-      "vercel": "https://own-dashboard-tau.vercel.app",
-      "image": "/projects/personal-dashboard.png"
+      "technologies": [
+        "Next.js",
+        "Supabase",
+        "Claude API"
+      ],
+      "image": {
+        "src": "/projects/personal-dashboard.png",
+        "alt": "Personal Dashboard overview with planning and finance widgets"
+      },
+      "externalUrl": "https://own-dashboard-tau.vercel.app",
+      "confidentiality": "public"
     },
     {
+      "id": "aifirst",
+      "featured": false,
+      "group": "product",
       "title": "aifirst",
-      "description": "Daily, fully static bilingual (CS/EN) AI & tech magazine. A scheduled GitHub Actions job scrapes the day's sources and Claude writes each issue.",
-      "tech": [
+      "contextLabel": "Independent product",
+      "role": "Creator and developer",
+      "summary": "A static bilingual AI and technology publication produced through a scheduled source, curation, and publishing workflow.",
+      "capabilities": [
+        "Content automation",
+        "Static publishing",
+        "AI workflow"
+      ],
+      "technologies": [
         "Next.js",
-        "TypeScript",
         "Claude API",
         "GitHub Actions"
       ],
-      "vercel": "https://aifirst-beryl.vercel.app/",
-      "image": "/projects/aifirst.png"
+      "image": {
+        "src": "/projects/aifirst.png",
+        "alt": "aifirst bilingual technology publication homepage"
+      },
+      "externalUrl": "https://aifirst-beryl.vercel.app/",
+      "confidentiality": "public"
     },
     {
+      "id": "czech-monopoly",
+      "featured": false,
+      "group": "product",
       "title": "Czech Monopoly",
-      "description": "Real-time, browser-based Czech-themed Monopoly where 2–4 players buy Czech cities via a room code, with a trivia twist and CS/EN localization.",
-      "tech": [
+      "contextLabel": "Independent product",
+      "role": "Full-stack developer",
+      "summary": "A browser-based Czech Monopoly game with room codes, real-time play for two to four players, trivia, and Czech and English localization.",
+      "capabilities": [
+        "Realtime product",
+        "Game state",
+        "Localization"
+      ],
+      "technologies": [
         "Next.js",
-        "TypeScript",
         "Payload CMS",
-        "Neon",
         "Ably"
       ],
-      "vercel": "https://czech-cities.vercel.app",
-      "image": "/projects/czech-cities.png"
+      "image": {
+        "src": "/projects/czech-cities.png",
+        "alt": "Czech Monopoly game board with Czech cities"
+      },
+      "externalUrl": "https://czech-cities.vercel.app",
+      "confidentiality": "public"
     },
     {
-      "title": "Dont Wanna Know",
-      "description": "Enter a birth year, country, and city to get an instant, fully in-browser report on the era someone grew up in. No backend, no API calls.",
-      "tech": [
+      "id": "dont-wanna-know",
+      "featured": false,
+      "group": "experiment",
+      "title": "Don't Wanna Know",
+      "contextLabel": "Product experiment",
+      "role": "Frontend developer",
+      "summary": "An in-browser report about the era someone grew up in, generated from a birth year and location without a backend or API calls.",
+      "capabilities": [
+        "Client-side architecture",
+        "Data presentation",
+        "Localization"
+      ],
+      "technologies": [
         "React",
         "TypeScript",
-        "Vite",
-        "i18n",
-        "Vercel"
+        "Vite"
       ],
-      "vercel": "https://dontwannaknow.vercel.app",
-      "image": "/projects/dontwannaknow.png"
+      "image": {
+        "src": "/projects/dontwannaknow.png",
+        "alt": "Don't Wanna Know report interface"
+      },
+      "externalUrl": "https://dontwannaknow.vercel.app",
+      "confidentiality": "public"
     },
     {
+      "id": "autobusy-hodonin",
+      "featured": false,
+      "group": "client",
       "title": "AutobusyHodonín.cz",
-      "description": "Marketing site for a Czech bus and freight company covering its fleet, passenger routes, and cargo, tuned for SEO in Czech and English.",
-      "tech": [
+      "contextLabel": "Client website",
+      "role": "Frontend engineer",
+      "summary": "A bilingual website for a Czech passenger and freight transport company, covering services and fleet with search visibility in mind.",
+      "capabilities": [
+        "Client delivery",
+        "SEO",
+        "Localization"
+      ],
+      "technologies": [
         "Next.js",
         "TypeScript",
-        "TailwindCSS",
         "i18n"
       ],
-      "vercel": "https://autobusyhodonin.cz",
-      "image": "/projects/autobusy-hodonin.png"
+      "image": {
+        "src": "/projects/autobusy-hodonin.png",
+        "alt": "Autobusy Hodonín transport company website"
+      },
+      "externalUrl": "https://autobusyhodonin.cz",
+      "confidentiality": "public"
     },
     {
+      "id": "umyjeme-fasadu",
+      "featured": false,
+      "group": "client",
       "title": "Umyjeme fasádu",
-      "description": "Site for a Czech exterior-cleaning service: hot-water pressure washing of facades, roofs, and paving, with before/after sliders and a quote form.",
-      "tech": [
+      "contextLabel": "Client website",
+      "role": "Frontend developer",
+      "summary": "A service website for exterior cleaning with before-and-after comparisons and a direct quote flow.",
+      "capabilities": [
+        "Client delivery",
+        "Responsive UI",
+        "Lead flow"
+      ],
+      "technologies": [
         "React",
         "TypeScript",
-        "Vite",
-        "TailwindCSS"
+        "Vite"
       ],
-      "vercel": "https://umyjemefasadu.vercel.app/",
-      "image": "/projects/umyjeme-fasadu.png"
+      "image": {
+        "src": "/projects/umyjeme-fasadu.png",
+        "alt": "Umyjeme fasádu exterior-cleaning website"
+      },
+      "externalUrl": "https://umyjemefasadu.vercel.app/",
+      "confidentiality": "public"
     },
     {
+      "id": "eurowafers",
+      "featured": false,
+      "group": "client",
       "title": "Eurowafers",
-      "description": "Web presentation for a Czech spa-wafer maker, covering its history, products, and distribution.",
-      "tech": [
+      "contextLabel": "Client website",
+      "role": "Frontend developer",
+      "summary": "A product and company website for a Czech spa-wafer maker, covering its history, products, and distribution.",
+      "capabilities": [
+        "Client delivery",
+        "Content structure",
+        "Static site"
+      ],
+      "technologies": [
         "Astro",
         "TypeScript",
-        "TailwindCSS",
-        "Vercel"
+        "Tailwind CSS"
       ],
-      "vercel": "https://eurowafers.vercel.app",
-      "image": "/projects/eurowafers.png"
+      "image": {
+        "src": "/projects/eurowafers.png",
+        "alt": "Eurowafers product website"
+      },
+      "externalUrl": "https://eurowafers.vercel.app",
+      "confidentiality": "public"
     },
     {
+      "id": "take-a-break",
+      "featured": false,
+      "group": "client",
       "title": "Take a Break",
-      "description": "B2B meditation-booking app with a booking dashboard, achievements, and news, built on a Turborepo monorepo.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Prisma",
-        "PostgreSQL",
-        "Turborepo"
+      "contextLabel": "Earlier product work",
+      "year": "2022–2023",
+      "role": "Full Stack Developer",
+      "summary": "A B2B meditation-booking product with booking, achievements, content, payments, authentication, and real-time updates.",
+      "capabilities": [
+        "Full-stack delivery",
+        "Payments",
+        "Data modeling"
       ],
-      "image": "/projects/takeabreak.png",
-      "note": "Unfortunately I don't have a photo of the app anymore, but look at that beautiful team!"
+      "technologies": [
+        "Next.js",
+        "PostgreSQL",
+        "Prisma"
+      ],
+      "image": {
+        "src": "/projects/takeabreak.png",
+        "alt": "Take a Break product team"
+      },
+      "confidentiality": "limited"
     },
     {
-      "title": "beKind Web App",
-      "description": "Company rebrand and web app on Next.js, backed by PostgreSQL and Prisma.",
-      "tech": [
-        "Next.js",
-        "TypeScript",
-        "Node.js",
-        "Prisma",
-        "PostgreSQL"
+      "id": "bekind",
+      "featured": false,
+      "group": "client",
+      "title": "beKind",
+      "contextLabel": "Earlier product work",
+      "year": "2023",
+      "role": "Frontend Developer",
+      "summary": "A B2B marketplace connecting charities and corporations, delivered alongside a company rebrand.",
+      "capabilities": [
+        "Frontend architecture",
+        "Product UI",
+        "Rebrand delivery"
       ],
-      "image": "/projects/bekind.png"
+      "technologies": [
+        "Next.js",
+        "PostgreSQL",
+        "Node.js"
+      ],
+      "image": {
+        "src": "/projects/bekind.png",
+        "alt": "beKind B2B marketplace website"
+      },
+      "confidentiality": "limited"
     }
   ],
   "experience": [
     {
+      "id": "web-integrator",
+      "phase": "engineering",
       "company": "Web Integrator",
       "logo": "/logos/webintegrator_logo.svg",
+      "logoAlt": "Web Integrator logo",
       "role": "Senior Frontend Engineer",
-      "period": "Apr 2026 – Present",
+      "period": "Apr 2026–Present",
       "location": "Prague, Czech Republic",
-      "responsibilities": [
-        "First AI-focused engineer on the team: brought AI tooling into the workflow and set the conventions for how we use it",
-        "Lead frontend work in TypeScript, React and Next.js, including code quality and cross-browser behavior",
-        "Maintain coding standards and client guidelines around accessibility and web standards",
-        "Write technical specs from designs and prepare graphic assets for the build",
-        "Model structured content in Payload CMS and improve UX details across client sites"
+      "summary": "Lead frontend work and help the team adopt AI tooling with clear conventions, while keeping accessibility, web standards, and maintainable delivery visible in day-to-day decisions.",
+      "contributions": [
+        "Joined as the first engineer on the team with an explicit AI-tooling focus and established practical conventions for its use.",
+        "Lead frontend delivery in TypeScript, React, and Next.js, including code quality and cross-browser behavior.",
+        "Maintain standards around accessibility, web standards, technical specifications, and client implementation guidance.",
+        "Model structured content in Payload CMS and improve technical and UX details across client sites."
       ],
-      "tags": [
+      "capabilities": [
+        "Frontend leadership",
         "AI tooling",
-        "TypeScript",
-        "Next.js",
-        "React",
+        "Accessibility",
         "Payload CMS"
       ]
     },
     {
+      "id": "embedit",
+      "phase": "engineering",
       "company": "EmbedIT",
       "logo": "/logos/embedit_logo.png",
+      "logoAlt": "EmbedIT logo",
       "role": "Senior Fullstack Developer",
-      "period": "Jul 2025 – Mar 2026",
+      "period": "Jul 2025–Mar 2026",
       "location": "Prague, Czech Republic",
-      "responsibilities": [
-        "Led the modernization of an online banking platform, moving legacy systems to a micro-frontend architecture",
-        "Built the Backend-for-Frontend (BFF) layer: controllers, mappers, and service orchestration",
-        "Designed API contracts and kept integrations stable across several downstream services",
-        "Covered the code with unit, integration, and E2E tests, and met WCAG accessibility requirements",
-        "Sped up CI/CD pipelines and tightened code review standards"
+      "summary": "Led frontend and BFF work within the modernization of an online-banking platform, helping migrate legacy functionality toward a micro-frontend architecture.",
+      "contributions": [
+        "Built BFF controllers, mappers, and service orchestration.",
+        "Designed API contracts and kept integrations stable across downstream services.",
+        "Covered the work with unit, integration, and E2E tests, including accessibility requirements.",
+        "Improved CI/CD flow and code-review standards."
       ],
-      "tags": [
-        "TypeScript",
-        "React",
-        "Express.js",
-        "StyleX",
-        "Node.js"
-      ]
+      "capabilities": [
+        "Micro-frontends",
+        "BFFs",
+        "API contracts",
+        "Testing",
+        "Accessibility"
+      ],
+      "caseStudySlug": "banking-modernization"
     },
     {
+      "id": "ersilia",
+      "phase": "engineering",
       "company": "Ersilia",
       "logo": "/logos/ersilia_logo.png",
+      "logoAlt": "Ersilia logo",
       "role": "Fullstack Developer",
-      "period": "Jan 2024 – Jun 2025",
+      "period": "Jan 2024–Jun 2025",
       "location": "Barcelona, Spain",
-      "responsibilities": [
-        "Built a full-stack app in Next.js and TypeScript for managing structured ML model metadata",
-        "Designed the database schema and the backend behind it",
-        "Built an AI workflow on the Vercel AI SDK that analyzes scientific PDFs with an LLM",
-        "Automated metadata validation and repo syncing with the GitHub API and Actions",
-        "Worked directly with the research team on an open-science codebase"
+      "summary": "Built a full-stack application for structured machine-learning model metadata and an AI-assisted scientific-PDF workflow within an open-science team.",
+      "contributions": [
+        "Designed the database schema and backend for structured model metadata.",
+        "Built the Next.js and TypeScript application used to manage the workflow.",
+        "Developed AI-assisted PDF analysis with the Vercel AI SDK and explicit validation.",
+        "Automated metadata validation and repository synchronization with GitHub API and Actions."
       ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "Vercel AI SDK",
-        "PostgreSQL",
-        "Node.js"
-      ]
+      "capabilities": [
+        "Full-stack development",
+        "Schema design",
+        "AI workflow",
+        "GitHub automation"
+      ],
+      "caseStudySlug": "ersilia-ai-tooling"
     },
     {
+      "id": "bekind-role",
+      "phase": "engineering",
       "company": "beKind",
       "logo": "/logos/bekind_logo.png",
+      "logoAlt": "beKind logo",
       "role": "Frontend Developer",
-      "period": "Feb 2023 – Dec 2023",
+      "period": "Feb 2023–Dec 2023",
       "location": "Barcelona, Spain",
-      "responsibilities": [
-        "Built a B2B marketplace connecting charities and corporations in Next.js and TypeScript, tuned for performance and SEO",
-        "Owned the frontend architecture with a reusable React and TailwindCSS component library",
-        "Translated UX wireframes into production interfaces in close collaboration with design stakeholders",
-        "Contributed to the backend and schema design with Node.js, PostgreSQL, and REST APIs",
-        "Drove the company rebrand from design through to launch"
+      "summary": "Built the frontend of a B2B marketplace connecting charities and corporations, and carried a company rebrand into the production product.",
+      "contributions": [
+        "Structured the frontend around reusable React and Tailwind CSS components.",
+        "Translated UX wireframes into production interfaces with design stakeholders.",
+        "Contributed to Node.js, PostgreSQL, schema, and API work.",
+        "Delivered performance and SEO considerations as part of the implementation."
       ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "Tailwind",
-        "PostgreSQL",
-        "Node.js"
+      "capabilities": [
+        "Frontend architecture",
+        "Product UI",
+        "Full-stack collaboration",
+        "SEO"
       ]
     },
     {
+      "id": "take-a-break-role",
+      "phase": "engineering",
       "company": "Take a Break",
       "logo": "/logos/takeabreak_logo.svg",
+      "logoAlt": "Take a Break lotus logo",
       "role": "Full Stack Developer",
-      "period": "Apr 2022 – Jan 2023",
+      "period": "Apr 2022–Jan 2023",
       "location": "Barcelona, Spain",
-      "responsibilities": [
-        "Built a full-stack B2B app for booking meditation sessions in Next.js and TypeScript",
-        "Assembled the UI from reusable React, TailwindCSS, and shadcn/ui components",
-        "Tuned PostgreSQL queries through Prisma",
-        "Integrated Stripe and third-party APIs for payments, auth, and real-time updates",
-        "Deployed on Vercel with CI for preview and production builds"
+      "summary": "Built a B2B meditation-booking application across product UI, data, payments, authentication, and deployment.",
+      "contributions": [
+        "Built booking, dashboard, achievement, and content interfaces in Next.js and TypeScript.",
+        "Worked with PostgreSQL and Prisma on the product data layer.",
+        "Integrated Stripe and third-party APIs for payments, authentication, and real-time updates.",
+        "Supported preview and production deployment on Vercel."
       ],
-      "tags": [
-        "TypeScript",
-        "Next.js",
-        "Tailwind",
-        "PostgreSQL",
-        "Prisma"
+      "capabilities": [
+        "Full-stack delivery",
+        "Payments",
+        "Authentication",
+        "PostgreSQL"
       ]
     },
     {
+      "id": "controlant",
+      "phase": "earlier",
       "company": "Controlant",
       "logo": "/logos/controlant_logo.png",
+      "logoAlt": "Controlant logo",
       "role": "Technical Analyst",
-      "period": "Sep 2019 – Mar 2022",
+      "period": "Sep 2019–Mar 2022",
       "location": "Reykjavík, Iceland",
-      "responsibilities": [
-        "Monitored live telemetry from cold-chain IoT trackers on pharmaceutical shipments and triaged critical temperature excursions",
-        "Ran root-cause analysis on shipment and sensor data and turned findings into compliant resolutions for global clients",
-        "Automated recurring parts of data processing and client reporting",
-        "Wrote audit reports and quality documentation, and presented findings to senior management"
+      "summary": "Investigated critical cold-chain incidents using live IoT telemetry for pharmaceutical shipments.",
+      "contributions": [
+        "Triaged temperature excursions and ran root-cause analysis across shipment and sensor data.",
+        "Turned findings into compliant client resolutions, audit reports, and quality documentation.",
+        "Automated recurring parts of data processing and reporting."
       ],
-      "tags": [
-        "Data Analysis",
-        "IoT Telemetry",
-        "Root-Cause Analysis",
-        "Automation"
+      "capabilities": [
+        "Incident analysis",
+        "IoT telemetry",
+        "Sensitive operations",
+        "Communication under pressure"
       ]
     },
     {
+      "id": "entain",
+      "phase": "earlier",
       "company": "Entain Group",
       "logo": "/logos/entain_logo.png",
+      "logoAlt": "Entain logo",
       "role": "User Protection Expert",
-      "period": "Dec 2017 – Aug 2019",
+      "period": "Dec 2017–Aug 2019",
       "location": "Gibraltar",
-      "responsibilities": [
-        "Detected fraud and money-laundering patterns in betting and transaction data using dedicated analysis tools",
-        "Ran investigations on flagged accounts and handled sensitive user data under GDPR",
-        "Kept detection processes compliant with EU and local gaming regulations",
-        "Mentored junior analysts on compliance and risk"
+      "summary": "Investigated fraud, money-laundering patterns, and user-protection risks in a regulated environment.",
+      "contributions": [
+        "Reviewed betting and transaction data with dedicated analysis tools.",
+        "Handled flagged-account investigations and sensitive data under GDPR.",
+        "Worked within EU and local gaming regulation and mentored junior analysts."
       ],
-      "tags": [
-        "Fraud Detection",
-        "AML/KYC",
-        "Data Analytics",
-        "GDPR"
+      "capabilities": [
+        "Fraud and AML",
+        "GDPR",
+        "Sensitive data",
+        "Regulated systems"
       ]
     },
     {
+      "id": "kiwi",
+      "phase": "earlier",
       "company": "Kiwi.com",
       "logo": "/logos/kiwi_logo.png",
+      "logoAlt": "Kiwi.com logo",
       "role": "Customer Relations Advisor",
-      "period": "Dec 2014 – Nov 2017",
+      "period": "Dec 2014–Nov 2017",
       "location": "Brno, Czech Republic",
-      "responsibilities": [
-        "Resolved complex booking issues across multiple airline and CRM systems",
-        "Reworked support workflows with the team to cut resolution times",
-        "Supported KAYAK operations and B2B partners with data-backed resolutions",
-        "Trained new hires on systems, policies, and support processes"
+      "summary": "Resolved complex booking failures across airline and CRM systems for customers and B2B partners.",
+      "contributions": [
+        "Worked across multiple systems to resolve time-sensitive travel issues.",
+        "Helped improve support workflows and trained new team members.",
+        "Supported KAYAK operations and B2B partners with evidence-based resolutions."
       ],
-      "tags": [
-        "CRM Systems",
-        "Workflow Optimization",
-        "B2B Support"
+      "capabilities": [
+        "Customer impact",
+        "Operational reliability",
+        "B2B support",
+        "Communication under pressure"
       ]
     }
   ],
+  "earlierCareerIntro": "Eight years in customer operations, fraud prevention, regulatory work, and cold-chain IoT support shaped how I build software today. I learned to investigate incidents, communicate under pressure, work with sensitive data, and understand the operational cost of unclear interfaces and unreliable systems.",
+  "approach": [
+    {
+      "id": "dependable-boundaries",
+      "title": "Dependable boundaries",
+      "body": "I prefer explicit contracts between frontend, backend, and external services. Stable boundaries, clear error semantics, and purposeful data models keep complexity from leaking through the application."
+    },
+    {
+      "id": "quality-delivery",
+      "title": "Quality is part of delivery",
+      "body": "Accessibility, tests, performance, and maintainability are not cleanup tasks after a feature ships. They are part of how the feature is designed, reviewed, and released."
+    },
+    {
+      "id": "product-context",
+      "title": "Product context matters",
+      "body": "Good implementation starts with understanding who depends on the system, what can fail, and what the operational consequences are, not with choosing a framework."
+    },
+    {
+      "id": "ai-guardrails",
+      "title": "AI with guardrails",
+      "body": "I use AI where it improves research, delivery, and repetitive engineering work, but keep validation, tests, security boundaries, and human review explicit."
+    }
+  ],
+  "capabilities": {
+    "groups": [
+      {
+        "id": "product-frontend",
+        "title": "Product frontend",
+        "items": [
+          "React",
+          "TypeScript",
+          "Next.js",
+          "Accessible UI",
+          "Design systems",
+          "Responsive interfaces",
+          "Frontend architecture"
+        ]
+      },
+      {
+        "id": "application-architecture",
+        "title": "Application architecture",
+        "items": [
+          "BFFs",
+          "API contracts",
+          "Micro-frontends",
+          "Authentication",
+          "Integration boundaries",
+          "Data and state ownership"
+        ]
+      },
+      {
+        "id": "backend-data",
+        "title": "Backend and data",
+        "items": [
+          "Node.js",
+          "PostgreSQL",
+          "Schema design",
+          "Integrations",
+          "Background workflows",
+          "Supabase"
+        ]
+      },
+      {
+        "id": "quality-delivery",
+        "title": "Quality and delivery",
+        "items": [
+          "Unit testing",
+          "Integration testing",
+          "E2E testing",
+          "Accessibility testing",
+          "Performance",
+          "CI/CD",
+          "Code review",
+          "Maintainability"
+        ]
+      }
+    ],
+    "additionalTools": [
+      "Payload CMS",
+      "Supabase",
+      "Prisma",
+      "Ably",
+      "Vercel AI SDK",
+      "Anthropic SDK",
+      "GitHub Actions",
+      "Vercel"
+    ]
+  },
   "education": [
     {
+      "id": "arol",
       "name": "arol.dev",
       "field": "Computer Software Engineering",
-      "period": "Jan 2024 – Jun 2024",
+      "period": "Jan 2024–Jun 2024",
       "url": "https://arol.dev",
-      "description": "Intensive software engineering academy in Barcelona focused on full-stack web development. I worked mainly with JavaScript, TypeScript, React, Next.js, Vue.js, Node.js, Express.js, PostgreSQL, Prisma, and MongoDB, alongside data structures, algorithms, and tools like Git, Docker, Vercel, and Figma. Most of the learning came from building actual projects, which is also where I got hooked on software engineering.",
+      "description": "An intensive software-engineering academy in Barcelona centered on full-stack development, data structures, algorithms, and building working products in teams.",
       "skills": [
         "TypeScript",
         "React",
         "Next.js",
         "Node.js",
-        "Express",
         "PostgreSQL",
         "Docker"
       ],
-      "photos": [
-        {
-          "src": "/education/arol-office.jpg",
-          "alt": "The arol.dev office in Barcelona"
-        }
-      ]
+      "image": {
+        "src": "/education/arol-office.jpg",
+        "alt": "The arol.dev office in Barcelona"
+      }
     },
     {
+      "id": "reykjavik-academy",
       "name": "Reykjavík Academy of Web Development",
       "field": "Web Development",
-      "period": "Feb 2022 – Jun 2022",
+      "period": "Feb 2022–Jun 2022",
       "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
-      "description": "Web development bootcamp where I built my foundation in HTML, CSS, and JavaScript. Everything centered on building responsive, interactive web apps.",
+      "description": "A web-development bootcamp where I built the foundation for responsive and interactive web applications in HTML, CSS, JavaScript, and Vue.",
       "skills": [
         "JavaScript",
-        "HTML5",
-        "CSS3",
-        "Vue.js",
-        "Responsive Design",
-        "REST APIs"
+        "HTML",
+        "CSS",
+        "Vue",
+        "Responsive design"
       ],
-      "photos": [
-        {
-          "src": "/education/reykjavik-school.jpg",
-          "alt": "The Tækniskólinn building in Reykjavík"
-        }
-      ]
+      "image": {
+        "src": "/education/reykjavik-school.jpg",
+        "alt": "The Tækniskólinn building in Reykjavík"
+      }
     }
   ],
   "contact": {
-    "prompt": "$ ./say-hello.sh",
-    "blurb": "Hiring, or have a project in mind? Drop me a line and I'll get back to you."
-  }
+    "body": "The best way to reach me is by email or LinkedIn. For code and current product work, GitHub is linked below.",
+    "availability": "Based in Prague. Available for selected freelance projects and future senior engineering roles."
+  },
+  "footer": {
+    "role": "Senior Software Engineer",
+    "location": "Prague, Czech Republic",
+    "copyright": "© 2026 Lukas Kouril",
+    "backToTop": "Back to top"
+  },
+  "caseStudyLabels": {
+    "context": "Context",
+    "problem": "Problem",
+    "constraints": "Constraints",
+    "responsibility": "My responsibility",
+    "approach": "Approach",
+    "decisions": "Key technical decisions",
+    "outcomes": "Outcomes",
+    "reflection": "Reflection",
+    "testimonial": "Recommendation",
+    "related": "Related work",
+    "contactHeading": "Need someone who can own the boundaries?",
+    "contactBody": "I am open to selected product work and future senior engineering opportunities."
+  },
+  "privacy": {
+    "title": "Privacy",
+    "description": "How this portfolio handles optional analytics and visitor data.",
+    "updated": "Updated July 2026",
+    "sections": [
+      {
+        "id": "operator",
+        "title": "Site operator",
+        "paragraphs": [
+          "This portfolio is operated by Lukas Kouril in Prague, Czech Republic. You can contact me at kouril.lukas@gmail.com."
+        ]
+      },
+      {
+        "id": "analytics",
+        "title": "Optional analytics",
+        "paragraphs": [
+          "When a PostHog key is configured, this site asks for consent before loading analytics. If no key is configured, no analytics interface is shown and no analytics requests are made.",
+          "Analytics is used to understand basic page visits and deliberate navigation to case studies, the CV, GitHub, or LinkedIn. Form values, pointer movement, keystrokes, copied text, and detailed scrolling are not tracked."
+        ]
+      },
+      {
+        "id": "consent",
+        "title": "Consent and preferences",
+        "paragraphs": [
+          "Your choice is stored in your browser. You can change it from the privacy control in the footer. Do Not Track is respected as an additional signal and prevents analytics from loading."
+        ]
+      },
+      {
+        "id": "provider",
+        "title": "Provider and retention",
+        "paragraphs": [
+          "Optional analytics is provided by PostHog using its EU service endpoint. Session recording, form autocapture, and unnecessary person profiles are disabled. Retention is controlled in the PostHog project settings and should be kept only as long as needed for basic site analytics."
+        ]
+      },
+      {
+        "id": "contact-data",
+        "title": "Direct contact",
+        "paragraphs": [
+          "If you contact me by email or LinkedIn, those services process the information you choose to send under their own privacy terms. This site does not include a contact form or store message content."
+        ]
+      }
+    ]
+  },
+  "consent": {
+    "title": "Optional analytics",
+    "body": "May I use privacy-conscious analytics to understand page visits and deliberate link navigation? The site works the same if you decline.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "close": "Close preferences",
+    "dnt": "Analytics is disabled because your browser sends Do Not Track."
+  },
+  "notFound": {
+    "eyebrow": "404 / not found",
+    "title": "This page does not exist",
+    "body": "The address may be outdated or incomplete. Return to the portfolio homepage to continue.",
+    "action": "Back to homepage"
+  },
+  "testimonials": []
 }

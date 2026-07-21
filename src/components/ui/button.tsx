@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 // CTA button styles: "solid" (primary) and "outline" (secondary), with quiet
 // brightness-step hovers. Sizes: "md" for page CTAs, "sm" for the navbar résumé.
 const buttonVariants = cva(
-  "inline-flex items-center gap-2 rounded-md transition-colors",
+  "inline-flex min-h-11 items-center justify-center gap-2 rounded-md transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400",
   {
     variants: {
       variant: {
@@ -17,7 +17,7 @@ const buttonVariants = cva(
       },
       size: {
         md: "px-5 py-2.5 text-sm font-medium",
-        sm: "px-3 py-1.5 font-mono text-xs",
+        sm: "min-h-9 px-3 py-1.5 font-mono text-xs",
       },
     },
     defaultVariants: { variant: "solid", size: "md" },
