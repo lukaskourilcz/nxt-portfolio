@@ -7,22 +7,12 @@ into the OwnDashboard **Úkoly** section, where you can filter by that priority.
 
 ## Tasks
 
-- [ ] **Turn on PostHog analytics** — add `NEXT_PUBLIC_POSTHOG_KEY` + `_HOST` in
-  Vercel, redeploy, and toggle Session Replay on in PostHog. Disabled (no data)
-  until then. `[imp:2]`
-- [ ] **Smoke-test the CSP + security headers in production** — the strict CSP
-  only applies on Vercel; check DevTools console for `Refused to …` errors after
-  deploy. `[imp:2]`
-- [ ] **Replace the hero-art placeholder** (`public/hero-art.svg`) with real art
-  from Recraft/Ideogram and wire it into `HeroSection.tsx`. `[imp:2]`
-- [ ] **Customize the hero mesh gradient** (`.hero-mesh` in `globals.css`) — art
-  it with Colorflow if you want to move off the hand-written emerald mesh.
-  `[imp:1]`
-- [ ] **Re-theme with tweakcn** — optionally diversify the emerald-heavy palette
-  via exported CSS variables in `globals.css`. `[imp:1]`
-- [ ] **Measure the devicon bundle** — run the deployed URL through PageSpeed /
-  DebugBear and import only the brand icons you use if the payload shows up.
-  `[imp:1]`
+- [ ] **Turn on PostHog analytics** — add `NEXT_PUBLIC_POSTHOG_KEY` + `_HOST` in Vercel, redeploy, and toggle Session Replay on in PostHog (disabled, no data, until then). `[imp:2]`
+- [ ] **Smoke-test the CSP + security headers in production** — the strict CSP only applies on Vercel; check DevTools console for `Refused to …` errors after deploy. `[imp:2]`
+- [ ] **Replace the hero-art placeholder** (`public/hero-art.svg`) with real art from Recraft/Ideogram and wire it into `HeroSection.tsx`. `[imp:2]`
+- [ ] **Customize the hero mesh gradient** (`.hero-mesh` in `globals.css`) — art it with Colorflow if you want to move off the hand-written emerald mesh. `[imp:1]`
+- [ ] **Re-theme with tweakcn** — optionally diversify the emerald-heavy palette via exported CSS variables in `globals.css`. `[imp:1]`
+- [ ] **Measure the devicon bundle** — run the deployed URL through PageSpeed / DebugBear and import only the brand icons you use if the payload shows up. `[imp:1]`
 
 ## Details
 
