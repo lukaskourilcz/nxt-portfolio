@@ -1,10 +1,16 @@
 import { ImageResponse } from "next/og";
+import { notFound } from "next/navigation";
+import { getContent, isLocale } from "@/lib/content";
 
-export const alt = "Lukas Kouril — Software Engineer";
+export const alt = "Lukas Kouril portfolio preview";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) notFound();
+  const content = getContent(locale);
+
   return new ImageResponse(
     (
       <div
@@ -65,7 +71,7 @@ export default function Image() {
             marginTop: "10px",
           }}
         >
-          Software Engineer
+          {content.footer.role}
         </div>
         <div
           style={{
@@ -75,7 +81,7 @@ export default function Image() {
             marginTop: "40px",
           }}
         >
-          TypeScript · React · Node.js · Next.js
+          {content.footer.location}
         </div>
         <div
           style={{

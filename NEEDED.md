@@ -1,34 +1,19 @@
-# NEEDED — portfolio to-do list
+# NEEDED: owner follow-ups
 
-Everything is code-complete, builds, lints, and is deployed. These are the items
-that need **your** hands (accounts, secrets, dashboards, or artwork). Each task
-carries an importance score `[imp:N]` (1–5, 5 = highest). This file is parsed
-into the OwnDashboard **Úkoly** section, where you can filter by that priority.
+The rebrand is implemented in the repository. This list contains only work that requires your verified information, approval, or access to external accounts. It is parsed by OwnDashboard, so every task includes an importance score and an owner marker.
 
 ## Tasks
 
-- [ ] **Turn on PostHog analytics** — add `NEXT_PUBLIC_POSTHOG_KEY` + `_HOST` in Vercel, redeploy, and toggle Session Replay on in PostHog (disabled, no data, until then). `[imp:2]` `[owner:me]`
-- [ ] **Smoke-test the CSP + security headers in production** — the strict CSP only applies on Vercel; check DevTools console for `Refused to …` errors after deploy. `[imp:2]` `[owner:me]`
-- [ ] **Replace the hero-art placeholder** (`public/hero-art.svg`) with real art from Recraft/Ideogram and wire it into `HeroSection.tsx`. `[imp:2]` `[owner:me]`
-- [ ] **Customize the hero mesh gradient** (`.hero-mesh` in `globals.css`) — art it with Colorflow if you want to move off the hand-written emerald mesh. `[imp:1]` `[owner:ai]`
-- [ ] **Re-theme with tweakcn** — optionally diversify the emerald-heavy palette via exported CSS variables in `globals.css`. `[imp:1]` `[owner:me]`
-- [ ] **Measure the devicon bundle** — run the deployed URL through PageSpeed / DebugBear and import only the brand icons you use if the payload shows up. `[imp:1]` `[owner:me]`
+- [ ] **Update and re-export the CV**: align role titles and dates with the portfolio, replace the old preview URL with `https://lukaskouril.dev`, set a professional PDF title, and check reading order, links, and contrast before replacing `public/pdf/lukas-kouril-senior-software-engineer-cv.pdf`. `[imp:5]` `[owner:me]`
+- [ ] **Verify the production deployment**: after this merge deploys, confirm that `lukaskouril.dev`, both locale routes, all six localized case-study routes, the CV download, redirects, privacy pages, and the custom 404 work correctly. `[imp:5]` `[owner:me]`
+- [ ] **Synchronize public profiles**: update the GitHub profile website, repository About URL, LinkedIn contact URL, public title, company names, and employment dates so they match the portfolio. `[imp:4]` `[owner:me]`
+- [ ] **Run the final production review**: test keyboard navigation, 200% and 400% zoom, 320 px reflow, the mobile menu, both languages, and the PDF, then run Lighthouse on `/en`, `/cs`, and one case study. `[imp:4]` `[owner:me]`
+- [ ] **Provide any publishable case-study evidence**: answer the factual questions in `docs/content-gaps.md` for banking, Ersilia, devShark, and Additional Work. Add only details that can be verified and publicly disclosed. `[imp:3]` `[owner:me]`
+- [ ] **Confirm the final portrait**: approve the current image or provide a higher-resolution source that may be published. `[imp:2]` `[owner:me]`
+- [ ] **Configure the portfolio email address**: create or forward `lukas@lukaskouril.dev` if you want the custom-domain address used in the site and CV later. `[imp:2]` `[owner:me]`
+- [ ] **Decide whether to enable PostHog**: if analytics is useful, add the EU project key and host in Vercel, choose a retention period, redeploy, and verify consent behavior. Keep autocapture, person profiles, and session recording disabled. `[imp:2]` `[owner:me]`
+- [ ] **Approve testimonials before publication**: if you want recommendations on the site, provide the exact quote, full name, role, company, relevant flagship case study, source URL, and explicit permission for each person. `[imp:1]` `[owner:me]`
 
-## Details
+## Reference
 
-**PostHog** — create a free project (<https://posthog.com>), copy the Project API
-Key (`phc_…`), add `NEXT_PUBLIC_POSTHOG_KEY` + `NEXT_PUBLIC_POSTHOG_HOST`
-(`https://eu.i.posthog.com` or US) in **Vercel → Settings → Environment
-Variables**, then **redeploy** (these are baked in at build time). Enable
-**Settings → Session Replay** in PostHog. Local: paste into `.env.local` to test.
-
-**CSP check** — open the live site → DevTools → Console; look for red
-`Content-Security-Policy` / `Refused to …` errors. Any new third-party host must
-be added to the CSP in `next.config.mjs` (`script-src` / `connect-src` /
-`img-src`).
-
-**Hero art** — generate a bespoke illustration with **Recraft**
-(<https://recraft.ai>, vector/SVG) or **Ideogram** (<https://ideogram.ai>), save
-it over `public/hero-art.svg` (keep the name), and add it to the hero's right
-column in `src/app/components/hero/HeroSection.tsx` (currently the terminal). The
-favicon (`icon.svg`) and generated OG image are already solid.
+Detailed factual questions are in `docs/content-gaps.md`. The broader release notes are in `docs/manual-follow-ups.md`, and current operating-cost assumptions are in `stack-and-scaling.md`.

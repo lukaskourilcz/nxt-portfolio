@@ -1,45 +1,50 @@
+import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
+import sharp from "sharp";
+import { ALLOWED_UPLOAD_DIRS, devRouteMethodResponse, isDevelopment, MAX_IMAGE_DIMENSION, MAX_UPLOAD_BYTES, safeAssetBase } from "@/lib/dev-security";
 
-const ALLOWED_DIRS = new Set(["projects", "logos", "education", "uploads"]);
-const ALLOWED_EXT = new Set([".png", ".jpg", ".jpeg", ".webp", ".svg", ".gif"]);
+export const runtime = "nodejs";
 
-// Dev-only: saves an uploaded image into /public/<dir>/ and returns its
-// public path. In production this route does not exist (404).
-export async function POST(req: Request) {
-  if (process.env.NODE_ENV !== "development") {
-    return new Response(null, { status: 404 });
+export const GET = devRouteMethodResponse;
+export const PUT = devRouteMethodResponse;
+export const PATCH = devRouteMethodResponse;
+export const DELETE = devRouteMethodResponse;
+export const OPTIONS = devRouteMethodResponse;
+
+export async function POST(request: Request) {
+  if (!isDevelopment()) return new Response(null, { status: 404 });
+
+  try {
+    const form = await request.formData();
+    const file = form.get("file");
+    const dir = String(form.get("dir") ?? "uploads");
+    if (!(file instanceof Blob) || typeof (file as File).name !== "string") {
+      return Response.json({ error: "No image was provided" }, { status: 400 });
+    }
+    const uploadedFile = file as File;
+    if (!ALLOWED_UPLOAD_DIRS.has(dir)) return Response.json({ error: "Invalid upload directory" }, { status: 400 });
+    if (uploadedFile.size > MAX_UPLOAD_BYTES) return Response.json({ error: "Image exceeds the 5 MB limit" }, { status: 413 });
+
+    const input = Buffer.from(await uploadedFile.arrayBuffer());
+    const image = sharp(input, { failOn: "error", limitInputPixels: 40_000_000 });
+    const metadata = await image.metadata();
+    if (!metadata.format || !["jpeg", "png", "webp"].includes(metadata.format)) {
+      return Response.json({ error: "Only decodable PNG, JPEG, and WebP images are allowed" }, { status: 415 });
+    }
+    if (!metadata.width || !metadata.height || metadata.width > MAX_IMAGE_DIMENSION || metadata.height > MAX_IMAGE_DIMENSION) {
+      return Response.json({ error: "Image dimensions are invalid or too large" }, { status: 400 });
+    }
+
+    const output = await image.rotate().webp({ quality: 82, effort: 4 }).toBuffer();
+    const name = `${safeAssetBase(uploadedFile.name)}-${randomUUID().slice(0, 12)}.webp`;
+    const publicDir = path.resolve(process.cwd(), "public");
+    const targetDir = path.resolve(publicDir, dir);
+    if (!targetDir.startsWith(`${publicDir}${path.sep}`)) return Response.json({ error: "Invalid upload path" }, { status: 400 });
+    await fs.mkdir(targetDir, { recursive: true });
+    await fs.writeFile(path.join(targetDir, name), output, { flag: "wx" });
+    return Response.json({ path: `/${dir}/${name}` });
+  } catch {
+    return Response.json({ error: "The image could not be decoded or saved" }, { status: 400 });
   }
-
-  const form = await req.formData();
-  const file = form.get("file");
-  const dir = String(form.get("dir") ?? "uploads");
-
-  if (!(file instanceof File)) {
-    return Response.json({ error: "No file" }, { status: 400 });
-  }
-  if (!ALLOWED_DIRS.has(dir)) {
-    return Response.json({ error: "Bad target dir" }, { status: 400 });
-  }
-  const ext = path.extname(file.name).toLowerCase();
-  if (!ALLOWED_EXT.has(ext)) {
-    return Response.json({ error: "Unsupported file type" }, { status: 400 });
-  }
-
-  const base = path
-    .basename(file.name, ext)
-    .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 60);
-  const name = `${base || "image"}-${Date.now()}${ext}`;
-
-  const targetDir = path.join(process.cwd(), "public", dir);
-  await fs.mkdir(targetDir, { recursive: true });
-  await fs.writeFile(
-    path.join(targetDir, name),
-    Buffer.from(await file.arrayBuffer())
-  );
-
-  return Response.json({ path: `/${dir}/${name}` });
 }

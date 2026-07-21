@@ -2,9 +2,7 @@
 
 const isDev = process.env.NODE_ENV === "development";
 
-// PostHog analytics + session-replay endpoints. Kept in the CSP so the lazily
-// injected snippet can load its assets and phone home once a key is set. Wildcard
-// covers the us/eu ingest + asset hosts (us.i.posthog.com, us-assets.i.posthog.com, …).
+// Optional PostHog endpoints. The script is injected only after consent.
 const posthog = "https://*.posthog.com https://*.i.posthog.com";
 
 // A pragmatic CSP: Next.js injects inline bootstrap/hydration scripts, so
@@ -46,6 +44,7 @@ const nextConfig = {
   images: {
     // Serve modern formats; Next negotiates AVIF → WebP → original per browser.
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 82],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

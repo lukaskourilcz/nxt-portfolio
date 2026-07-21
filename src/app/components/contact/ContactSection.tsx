@@ -1,80 +1,38 @@
-"use client";
-
-import { Mail } from "lucide-react";
-import { SectionHeading } from "@/components/section-heading";
+import { FileText, Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { ExternalLink } from "@/components/external-link";
+import { ResumeButton } from "@/components/resume-button";
 import { Section } from "@/components/section";
-import { Button } from "@/components/ui/button";
-import { useI18n } from "@/components/language-provider";
-import { EMAIL, EMAIL_HREF, PHONE, PHONE_HREF, LOCATION } from "@/lib/site";
+import { SectionHeading } from "@/components/section-heading";
+import { EMAIL, EMAIL_HREF, GITHUB_URL, LINKEDIN_URL, LOCATION } from "@/lib/site";
+import type { SiteContent } from "@/lib/content-schema";
 
-type ContactItem = {
-  label: string;
-  href: string | null;
-  value: string;
-};
-
-export default function ContactSection() {
-  const { content, t } = useI18n();
-
-  const contacts: ContactItem[] = [
-    { label: t.contact.email, href: EMAIL_HREF, value: EMAIL },
-    { label: t.contact.phone, href: PHONE_HREF, value: PHONE },
-    { label: t.contact.location, href: null, value: LOCATION },
-  ];
+export default function ContactSection({ content }: { content: SiteContent }) {
+  const newTabLabel = content.common.links.opensNewTab;
 
   return (
-    <Section id="contact" mesh="right">
-      <SectionHeading
-        index="05"
-        command={t.sections.contact.command}
-        title={t.sections.contact.title}
-      />
-
-      <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-2">
+    <Section id="contact" className="pb-24 sm:pb-32">
+      <SectionHeading id="contact" {...content.sectionCopy.contact} />
+      <div className="grid gap-10 border-y border-zinc-800 py-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
-          <p className="font-mono text-sm text-emerald-400">
-            {content.contact.prompt}
-          </p>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-zinc-300 sm:text-lg">
-            {content.contact.blurb}
-          </p>
-
-          <Button asChild className="mt-6">
-            <a href={EMAIL_HREF}>
-              <Mail className="h-4 w-4" /> {t.contact.sayHello}
+          <p className="max-w-[62ch] text-base leading-7 text-zinc-400">{content.contact.body}</p>
+          <p className="mt-4 max-w-[62ch] text-sm leading-6 text-zinc-500">{content.contact.availability}</p>
+          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-3">
+            <a href={EMAIL_HREF} className="inline-flex min-h-11 items-center gap-2 text-zinc-100 underline decoration-emerald-500/60 underline-offset-4">
+              <Mail className="h-4 w-4" aria-hidden /> {EMAIL}
             </a>
-          </Button>
+            <ExternalLink href={LINKEDIN_URL} newTabLabel={newTabLabel} data-analytics="external_linkedin" className="inline-flex min-h-11 items-center gap-2 text-zinc-400 underline decoration-zinc-700 underline-offset-4 hover:text-zinc-200">
+              <Linkedin className="h-4 w-4" aria-hidden /> LinkedIn
+            </ExternalLink>
+            <ExternalLink href={GITHUB_URL} newTabLabel={newTabLabel} data-analytics="external_github" className="inline-flex min-h-11 items-center gap-2 text-zinc-400 underline decoration-zinc-700 underline-offset-4 hover:text-zinc-200">
+              <Github className="h-4 w-4" aria-hidden /> GitHub
+            </ExternalLink>
+          </div>
+          <p className="mt-5 inline-flex items-center gap-2 text-sm text-zinc-500"><MapPin className="h-4 w-4" aria-hidden /> {LOCATION}</p>
         </div>
-
-        <div className="border-t border-zinc-800">
-          {contacts.map(({ label, href, value }) => {
-            const row = (
-              <>
-                <span className="font-mono text-[0.7rem] uppercase tracking-wider text-zinc-500">
-                  {label}
-                </span>
-                <span className="min-w-0 truncate text-sm text-zinc-200">
-                  {value}
-                </span>
-              </>
-            );
-            const rowClass =
-              "flex items-center justify-between gap-4 border-b border-zinc-800 py-4";
-            return href ? (
-              <a
-                key={label}
-                href={href}
-                className={`${rowClass} transition-colors hover:bg-white/[0.02]`}
-              >
-                {row}
-              </a>
-            ) : (
-              <div key={label} className={rowClass}>
-                {row}
-              </div>
-            );
-          })}
-        </div>
+        <ResumeButton>
+          <FileText className="h-4 w-4" aria-hidden /> {content.common.links.downloadCv}
+          <span className="font-mono text-[10px] text-zinc-500">PDF</span>
+        </ResumeButton>
       </div>
     </Section>
   );
