@@ -55,7 +55,6 @@ export function caseStudyMetadata(locale: Locale, content: SiteContent, work: Wo
       type: "article",
       locale: content.metadata.ogLocale,
       alternateLocale: content.metadata.ogAlternateLocale,
-      images: [{ url: `${localizedPath(locale, path)}/opengraph-image`, width: 1200, height: 630, alt: work.title }],
     },
     twitter: { card: "summary_large_image", title: work.title, description: work.summary },
   };

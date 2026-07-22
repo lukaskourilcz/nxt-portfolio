@@ -1,22 +1,25 @@
-# Portfolio overhaul continuation
+# Portfolio overhaul completion handoff
 
-This file is the restart handoff for the autonomous portfolio overhaul begun on
-22 July 2026. Continue from this repository state; do not repeat the completed
-audit, research, or implementation. The original acceptance criteria still
-apply, except that all Higgsfield work is explicitly deferred until its MCP is
-available.
+This file records the completed autonomous portfolio overhaul begun and
+validated on 22 July 2026. It remains as a repository handoff so a future agent
+can understand the implementation and evidence without repeating the audit or
+mistaking deferred external work for an unfinished code change. Higgsfield work
+remains explicitly deferred until its MCP is available.
 
 ## Current state
 
 - Branch: `agent/portfolio-overhaul-handoff`
 - Starting worktree was clean; no unrelated user changes were present.
-- Seven implementation milestones are committed before this handoff commit.
+- Eight coherent milestones were committed before the final release checkpoint.
 - Public content remains local, static, bilingual, schema validated, and free of
   a database, remote CMS, authentication, or public runtime content API.
 - `/dev` remains development-only and its mutation APIs are now more strongly
   constrained than at the start of the session.
 - Higgsfield was not researched, invoked, or replaced with another generator.
   Prepared integration slots are documented in `docs/deferred-media.md`.
+- Final QA added keyboard focus transfer for case-study fragment navigation, an
+  explicit/focus-recovering advanced JSON field, localized generated Open Graph
+  metadata, and regression coverage for the advertised Open Graph assets.
 
 ## Completed implementation
 
@@ -107,58 +110,43 @@ available.
 5. `47b2cbe` - `Strengthen public pages privacy and release coverage`
 6. `55d1f4d` - `Add project-specific agent workflows`
 7. `685bba2` - `Refresh the CV and portfolio assets`
+8. `48df43f` - `Add portfolio overhaul continuation handoff`
 
-## Validation evidence so far
+## Final validation evidence
 
 Completed successfully:
 
-- `npm run validate:content` (multiple runs): 12 work items, 8 roles, 21
-  referenced assets, English/Czech parity.
-- Targeted ESLint runs for every implementation milestone.
-- Repository-wide `npm run lint` as the lint stage of the final `npm run check`.
-- `npx vitest run tests/dev-security.test.ts`: 12/12 tests.
-- `npx vitest run tests/content.test.ts`: 6/6 tests.
+- `npm run check`: content validation, repository-wide lint, type-check, and 18
+  Vitest tests all passed. Content validation found 12 work items, 8 roles, 21
+  referenced assets, and English/Czech parity.
+- `npm run build`: Next.js 15.5.21 production build passed and generated 19
+  static pages, including both locales and all six localized case-study routes.
+- `npm run test:e2e`: all 21 Chromium tests passed, covering localized
+  routes, keyboard navigation, fragment focus, 320 px reflow, metadata and Open
+  Graph delivery, locale/hash preservation, analytics absence, reduced motion,
+  production `/dev` isolation, localized not-found behavior, and console errors.
+- `npm run test:a11y`: axe found no violations on the two localized homepages,
+  two privacy pages, and three English flagship case studies.
+- The in-app browser was used for manual QA at 320, 390, 768, 1024, 1280, 1440,
+  and 1680 px across the English and Czech homepages, all three case studies,
+  both privacy pages, localized not-found state, and `/dev`.
+- Manual interaction checks covered mobile menu Escape/focus return,
+  locale/hash retention, case-study fragment focus, editor invalid-JSON focus,
+  configured analytics decline/reopen behavior, editor dirty/reset state, wide
+  layout containment, image/caption authenticity, and browser console output.
+- HTTP checks confirmed the permanent root redirect, robots restrictions,
+  localized sitemap entries, CV download, and resolvable generated Open Graph
+  images with localized case-study alt text.
 - Skill frontmatter and `agents/openai.yaml` validation using Ruby YAML because
   the bundled Python validator lacked PyYAML.
 - CV generation, PDF metadata/structure extraction, and visual inspection of
   both rendered pages.
 
-Interrupted due to host capacity, not a reported diagnostic:
+## Repository work remaining
 
-- `npm run check` completed content validation and repository-wide lint, then
-  spent more than 30 minutes in `tsc --noEmit` while accumulating only about one
-  minute of CPU time on a heavily oversubscribed host. It was stopped for this
-  CLI restart, so the combined command did not pass and its unit-test stage was
-  not reached.
-- A replacement `tsc --noEmit --incremental false` was also still CPU-limited
-  and was stopped when the restart was requested. Do not report typecheck as
-  passing until a fresh run completes.
-
-## Work remaining after restart
-
-1. Inspect `git status -sb`, read `AGENTS.md`, and preserve this committed state.
-2. Run the final release matrix on the fresh CLI/host:
-   - `npm run validate:content`
-   - `npm run lint`
-   - `npm run typecheck`
-   - `npm run test`
-   - `npm run build`
-   - `npm run test:e2e`
-   - `npm run test:a11y`
-3. Fix every introduced failure and rerun the affected command. Make coherent
-   follow-up commits rather than one commit per lint fix.
-4. Start the app and visually inspect `/en`, `/cs`, all three case studies,
-   both privacy pages, localized not-found behavior, and `/dev` in development.
-   Check 320, 390-430, 768, 1024-1280, 1440, and wide desktop widths plus menu
-   keyboard/Escape/focus return, locale/hash retention, consent behavior,
-   overflow, reading widths, media crops, editor states, and console errors.
-5. Verify production `/dev` and `/api/dev/*` denial, sitemap, robots, canonical
-   and alternate metadata, CV download, analytics absence without a key, and
-   representative critical flows.
-6. Reconcile documentation only if fixes change an implemented contract.
-7. Commit validation fixes/final cleanup, confirm the worktree is clean, and
-   prepare the original requested final report with actual command results and
-   the complete commit list.
+No feasible implementation or validation work remains from this overhaul. The
+items below require deployment, specialist tooling, owner input, or the deferred
+Higgsfield integration and are not safe substitutes for local code changes.
 
 ## Manual or external boundaries
 

@@ -2,9 +2,15 @@ import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { getCaseStudy, isLocale } from "@/lib/content";
 
-export const alt = "Lukas Kouril portfolio case study";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const imageSize = { width: 1200, height: 630 };
+
+export function generateImageMetadata({ params }: { params: { locale: string; slug: string } }) {
+  if (!isLocale(params.locale)) return [];
+  const work = getCaseStudy(params.locale, params.slug);
+  if (!work) return [];
+
+  return [{ id: work.id, alt: work.title, size: imageSize, contentType: "image/png" }];
+}
 
 export default async function Image({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { locale, slug } = await params;
@@ -34,6 +40,6 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
         <span style={{ display: "flex" }}>{work.period}</span>
       </div>
     </div>,
-    size
+    imageSize
   );
 }

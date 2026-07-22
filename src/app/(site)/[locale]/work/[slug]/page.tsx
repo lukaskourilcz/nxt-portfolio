@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight, LockKeyhole } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/external-link";
+import { FragmentFocus } from "@/components/fragment-focus";
 import { ProjectVisual } from "@/components/project-visual";
 import { getCaseStudy, getCaseStudySlugs, getContent, isLocale, LOCALES } from "@/lib/content";
 import { caseStudyMetadata } from "@/lib/metadata";
@@ -39,7 +40,7 @@ function ProseSection({
   if (!paragraphs?.length) return null;
   return (
     <section id={id} className="scroll-mt-28 border-t border-edge py-10 md:grid md:grid-cols-[10rem_1fr] md:gap-8">
-      <h2 className="font-mono text-xs uppercase tracking-[0.12em] text-muted">{title}</h2>
+      <h2 data-fragment-heading tabIndex={-1} className="font-mono text-xs uppercase tracking-[0.12em] text-muted outline-none">{title}</h2>
       {list ? (
         <ul className="mt-5 max-w-[68ch] space-y-3 text-base leading-7 text-secondary md:mt-0">
           {paragraphs.map((paragraph) => (
@@ -63,7 +64,7 @@ function DecisionRecords({ content, decisions }: { content: SiteContent; decisio
   return (
     <section id="decisions" className="scroll-mt-28 border-t border-edge py-10" aria-labelledby="decisions-heading">
       <div className="grid gap-4 md:grid-cols-[10rem_1fr] md:gap-8">
-        <h2 id="decisions-heading" className="font-mono text-xs uppercase tracking-[0.12em] text-muted">
+        <h2 id="decisions-heading" data-fragment-heading tabIndex={-1} className="font-mono text-xs uppercase tracking-[0.12em] text-muted outline-none">
           {content.caseStudyLabels.decisions}
         </h2>
         <div>
@@ -124,6 +125,7 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
 
   return (
     <main id="main" tabIndex={-1} className="outline-none">
+      <FragmentFocus />
       <article className="page-shell pb-20 pt-28 sm:pb-28 sm:pt-36">
         <nav aria-label={content.common.breadcrumb}>
           <Link href={`${localizedPath(locale)}#work`} className="editorial-link inline-flex min-h-11 items-center gap-2 text-sm">

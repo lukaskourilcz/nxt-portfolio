@@ -172,6 +172,9 @@ function ValueEditor({
 }
 
 function AdvancedJson({ locale, value, onApply }: { locale: Locale; value: SiteContent; onApply: (value: SiteContent) => void }) {
+  const editorId = useId();
+  const errorId = useId();
+  const editorRef = useRef<HTMLTextAreaElement>(null);
   const [draft, setDraft] = useState(() => JSON.stringify(value, null, 2));
   const [error, setError] = useState("");
 
@@ -186,14 +189,18 @@ function AdvancedJson({ locale, value, onApply }: { locale: Locale; value: SiteC
       setError("");
     } catch {
       setError("Invalid JSON. Fix the syntax before applying it to the form.");
+      window.requestAnimationFrame(() => editorRef.current?.focus());
     }
   }
 
   return (
     <div className="border-t border-edge p-5">
-      <textarea value={draft} onChange={(event) => setDraft(event.target.value)} aria-invalid={Boolean(error)} aria-describedby={error ? "advanced-json-error" : undefined} rows={30} className="w-full rounded-md border border-edge bg-canvas p-4 font-mono text-xs leading-5 text-secondary" />
+      <label htmlFor={editorId} className="mb-2 block font-mono text-[11px] uppercase tracking-[0.08em] text-muted">
+        JSON document / {locale.toUpperCase()}
+      </label>
+      <textarea ref={editorRef} id={editorId} value={draft} onChange={(event) => setDraft(event.target.value)} aria-invalid={Boolean(error)} aria-describedby={error ? errorId : undefined} rows={30} className="w-full rounded-md border border-edge bg-canvas p-4 font-mono text-xs leading-5 text-secondary" />
       <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-        <p id="advanced-json-error" className="text-xs text-danger" role={error ? "alert" : undefined}>{error}</p>
+        <p id={errorId} className="text-xs text-danger" role={error ? "alert" : undefined}>{error}</p>
         <button type="button" onClick={apply} className="min-h-11 rounded-md border border-edge-strong px-4 text-sm text-primary hover:bg-interactive">Apply JSON to {locale.toUpperCase()}</button>
       </div>
     </div>

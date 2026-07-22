@@ -42,6 +42,13 @@ test("language switch preserves case-study paths and homepage sections", async (
   await expect(page).toHaveURL(/\/cs#experience$/);
 });
 
+test("case-study contents moves focus to the selected section", async ({ page }) => {
+  await page.goto("/en/work/banking-modernization");
+  await page.locator('nav[aria-label="On this page"] a[href="#decisions"]').click();
+  await expect(page).toHaveURL(/#decisions$/);
+  await expect(page.locator("#decisions-heading")).toBeFocused();
+});
+
 test("mobile navigation restores focus after Escape", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto("/en");
@@ -54,6 +61,21 @@ test("mobile navigation restores focus after Escape", async ({ page }) => {
   await page.keyboard.press("Escape");
   await expect(trigger).toHaveAttribute("aria-expanded", "false");
   await expect(trigger).toBeFocused();
+});
+
+test("skip link and desktop navigation work with keyboard only", async ({ page }) => {
+  await page.goto("/en");
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "Skip to content", exact: true })).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(page.locator("#main")).toBeFocused();
+
+  await page.goto("/en");
+  await page.keyboard.press("Tab");
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "Lukas Kouril", exact: true })).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: "Work", exact: true })).toBeFocused();
 });
 
 test("critical routes reflow without horizontal overflow at 320px", async ({ page }) => {
@@ -76,6 +98,18 @@ test("localized metadata exposes canonical and alternate routes", async ({ page 
   await page.goto("/cs/work/ersilia-ai-tooling");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", "https://lukaskouril.dev/cs/work/ersilia-ai-tooling");
   await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute("href", "https://lukaskouril.dev/en/work/ersilia-ai-tooling");
+});
+
+test("generated Open Graph images resolve from advertised metadata", async ({ page, request }) => {
+  for (const route of ["/en", "/en/work/banking-modernization"]) {
+    await page.goto(route);
+    const imageUrl = await page.locator('meta[property="og:image"]').getAttribute("content");
+    expect(imageUrl).toBeTruthy();
+    const advertisedImage = new URL(imageUrl!);
+    const response = await request.get(`${advertisedImage.pathname}${advertisedImage.search}`);
+    expect(response.status()).toBe(200);
+    expect(response.headers()["content-type"]).toContain("image/png");
+  }
 });
 
 test("default route redirects without locale guessing", async ({ request }) => {
