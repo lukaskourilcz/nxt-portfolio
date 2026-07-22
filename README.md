@@ -188,7 +188,7 @@ See [stack-and-scaling.md](stack-and-scaling.md) for the current cost estimate, 
 - [Product and design direction](docs/portfolio-direction.md)
 - [Design system](docs/design-system.md)
 - [Design-reference research](docs/reference-research.md)
-- [Deferred media slots](docs/deferred-media.md)
+- [Generative-media production and provider research](docs/generative-media.md)
 - [Agent operating guide](AGENTS.md)
 - [Claude project control](CLAUDE.md)
 - [Content gaps](docs/content-gaps.md)
