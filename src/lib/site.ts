@@ -17,3 +17,10 @@ export const LINKEDIN_URL = "https://linkedin.com/in/lukas-kouril/";
 
 // CV served from /public.
 export const RESUME_PATH = "/pdf/lukas-kouril-senior-software-engineer-cv.pdf";
+
+export const POSTHOG_EU_HOST = "https://eu.i.posthog.com";
+
+export function resolvePostHogHost(configured?: string): string {
+  if (!configured || configured === POSTHOG_EU_HOST) return POSTHOG_EU_HOST;
+  throw new Error(`NEXT_PUBLIC_POSTHOG_HOST must remain ${POSTHOG_EU_HOST}`);
+}

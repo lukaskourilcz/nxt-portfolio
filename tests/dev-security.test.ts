@@ -2,7 +2,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 import { describe, expect, it, vi } from "vitest";
-import { ALLOWED_UPLOAD_DIRS, MAX_CONTENT_BYTES, MAX_UPLOAD_BYTES, safeAssetBase } from "@/lib/dev-security";
+import { getAllContent } from "@/lib/content";
+import { ALLOWED_UPLOAD_DIRS, isTrustedDevRequest, MAX_CONTENT_BYTES, MAX_UPLOAD_BYTES, safeAssetBase } from "@/lib/dev-security";
+import { POSTHOG_EU_HOST, resolvePostHogHost } from "@/lib/site";
 
 function uploadRequest(file: Blob, filename: string, dir = "uploads") {
   const form = new FormData();
@@ -19,6 +21,21 @@ describe("development editor security", () => {
   it("keeps the upload directory allowlist narrow", () => {
     expect([...ALLOWED_UPLOAD_DIRS]).toEqual(["projects", "logos", "education", "uploads"]);
     expect(ALLOWED_UPLOAD_DIRS.has("../src")).toBe(false);
+  });
+
+  it("accepts development mutations only from the same loopback origin", () => {
+    vi.stubEnv("NODE_ENV", "development");
+    expect(isTrustedDevRequest(new Request("http://localhost/api/dev/content"))).toBe(true);
+    expect(isTrustedDevRequest(new Request("http://127.0.0.1/api/dev/content", { headers: { origin: "http://127.0.0.1" } }))).toBe(true);
+    expect(isTrustedDevRequest(new Request("http://localhost/api/dev/content", { headers: { origin: "https://example.com" } }))).toBe(false);
+    expect(isTrustedDevRequest(new Request("http://192.168.1.50/api/dev/content"))).toBe(false);
+    vi.unstubAllEnvs();
+  });
+
+  it("keeps optional analytics on the documented EU endpoint", () => {
+    expect(resolvePostHogHost()).toBe(POSTHOG_EU_HOST);
+    expect(resolvePostHogHost(POSTHOG_EU_HOST)).toBe(POSTHOG_EU_HOST);
+    expect(() => resolvePostHogHost("https://example.com")).toThrow(/must remain/);
   });
 
   it("returns 404 from the content route outside development", async () => {
@@ -54,6 +71,33 @@ describe("development editor security", () => {
     const response = await POST(new Request("http://localhost/api/dev/content?locale=en", { method: "POST", body: "{" }));
     expect(response.status).toBe(400);
     expect(await response.json()).toEqual({ error: "Malformed JSON" });
+    vi.unstubAllEnvs();
+  });
+
+  it("rejects an untrusted development origin", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const { POST } = await import("@/app/api/dev/content/route");
+    const response = await POST(new Request("http://localhost/api/dev/content", {
+      method: "POST",
+      headers: { origin: "https://example.com" },
+      body: "{}",
+    }));
+    expect(response.status).toBe(403);
+    vi.unstubAllEnvs();
+  });
+
+  it("validates both locales before a structural save", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    const { POST } = await import("@/app/api/dev/content/route");
+    const content = structuredClone(getAllContent());
+    content.en.work.push(structuredClone(content.en.work[0]));
+    const response = await POST(new Request("http://localhost/api/dev/content", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(content),
+    }));
+    expect(response.status).toBe(400);
+    expect((await response.json() as { error: string }).error).toMatch(/structures differ|duplicate work id/);
     vi.unstubAllEnvs();
   });
 
