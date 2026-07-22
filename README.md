@@ -168,6 +168,12 @@ See [stack-and-scaling.md](stack-and-scaling.md) for the current cost estimate, 
 
 ## Project documentation
 
+- [Product and design direction](docs/portfolio-direction.md)
+- [Design system](docs/design-system.md)
+- [Design-reference research](docs/reference-research.md)
+- [Deferred media slots](docs/deferred-media.md)
+- [Agent operating guide](AGENTS.md)
+- [Claude project control](CLAUDE.md)
 - [Content gaps](docs/content-gaps.md)
 - [Manual follow-ups](docs/manual-follow-ups.md)
 - [Profile synchronization](docs/profile-sync-checklist.md)
