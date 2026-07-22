@@ -1,6 +1,9 @@
 # Manual follow-ups
 
-These items require verified information, account access, or approval outside the repository.
+These items require verified information, account access, deployment state, or
+specialist review outside the repository. Local keyboard, locale, mobile-menu,
+reduced-motion, 320 px reflow, axe, and PDF structure checks are complete and
+recorded in `CONTINUATION.md`.
 
 ## Metrics and proof
 
@@ -24,10 +27,8 @@ These items require verified information, account access, or approval outside th
 
 ## CV
 
-- Update the source CV manually and re-export it. The current PDF renders cleanly on one tagged A4 page and contains selectable text, but its role dates and titles do not match the current portfolio.
-- Replace the obsolete Vercel preview URL and its link annotation with `https://lukaskouril.dev`.
-- Review the re-exported PDF's document title, reading order, link labels, and contrast with an accessibility checker. The current metadata title still contains the old source filename.
-- Provide a verified `cvUpdatedAt` date if it should be displayed publicly.
+- Review the generated PDF's tagged reading order and link labels with a dedicated PDF accessibility checker before claiming PDF/UA conformance.
+- Provide a verified content-level `cvUpdatedAt` date if the website should display one dynamically.
 
 ## Photography
 
@@ -38,6 +39,13 @@ These items require verified information, account access, or approval outside th
 
 - Run Lighthouse against the deployed English and Czech homepages and one case study.
 - Record measured results before presenting the documented performance budgets as achieved outcomes.
+
+## Accessibility
+
+- Test the deployed site at 200% and 400% zoom.
+- Perform a focused pass with a real screen reader rather than inferring its
+  behavior from the accessibility tree and axe results.
+- Keep `docs/accessibility-checklist.md` synchronized with completed evidence.
 
 ## Privacy and deployment
 

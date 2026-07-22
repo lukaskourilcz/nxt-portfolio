@@ -88,7 +88,15 @@ Localized content lives in:
 
 Both documents use the schema in `src/lib/content-schema.ts`. Stable IDs and case-study slugs must match across languages. The validator checks schema compliance, unique IDs and slugs, flagship case-study structure, and locale parity.
 
-Use `/dev` for normal copy and image changes. The advanced JSON panel remains available for structural edits. Structural changes must be made in both locales before either document can be saved.
+Use `/dev` for normal copy and image changes. The advanced JSON panel remains available for structural edits. Every save validates both locales and publishes them as one staged transaction so structural parity cannot be partially written.
+
+The English CV is generated from the same validated portfolio content and published to its stable public filename:
+
+```bash
+npm run generate:cv
+```
+
+The generator creates a tagged A4 PDF through the installed Playwright Chromium runtime. Rendered-page and reading-order checks remain part of release review.
 
 ## Quality commands
 
@@ -100,7 +108,13 @@ npm run test
 npm run build
 npm run test:e2e
 npm run test:a11y
+npm run check
+npm run check:full
 ```
+
+`check` runs content validation, lint, type checking, and unit/security tests.
+`check:full` adds the complete production Playwright suite; `test:a11y` runs its
+axe-tagged subset when only the automated accessibility routes are needed.
 
 Install the Playwright browser once before running browser tests locally:
 
@@ -138,7 +152,10 @@ Documented production budgets are:
 - CLS: 0.1 or lower
 - INP: 200 milliseconds or lower
 
-These are release budgets, not unmeasured claims. The repository includes automated axe coverage, while keyboard, zoom, PDF, and deployed Lighthouse checks remain manual release steps.
+These are release budgets, not unmeasured claims. The repository includes
+automated axe, keyboard, locale, focus-return, reduced-motion, and 320 px reflow
+coverage. Real screen-reader use, 200%/400% zoom, dedicated PDF accessibility
+checking, and deployed Lighthouse measurement remain manual release steps.
 
 ## Analytics and privacy
 
@@ -168,11 +185,18 @@ See [stack-and-scaling.md](stack-and-scaling.md) for the current cost estimate, 
 
 ## Project documentation
 
+- [Product and design direction](docs/portfolio-direction.md)
+- [Design system](docs/design-system.md)
+- [Design-reference research](docs/reference-research.md)
+- [Deferred media slots](docs/deferred-media.md)
+- [Agent operating guide](AGENTS.md)
+- [Claude project control](CLAUDE.md)
 - [Content gaps](docs/content-gaps.md)
 - [Manual follow-ups](docs/manual-follow-ups.md)
 - [Profile synchronization](docs/profile-sync-checklist.md)
 - [Manual accessibility checks](docs/accessibility-checklist.md)
 - [Stack, costs, and scaling](stack-and-scaling.md)
+- [Completed overhaul and validation record](CONTINUATION.md)
 
 ## License
 

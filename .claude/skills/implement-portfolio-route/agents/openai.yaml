@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implement Portfolio Route"
+  short_description: "Build localized portfolio routes from existing systems"
+  default_prompt: "Use $implement-portfolio-route to implement this localized portfolio screen and validate it."

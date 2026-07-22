@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function DevLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="bg-zinc-950 font-sans text-zinc-100 antialiased">{children}</body>
+      <body className="bg-canvas font-sans text-primary antialiased">{children}</body>
     </html>
   );
 }

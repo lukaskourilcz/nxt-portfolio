@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
@@ -29,20 +29,27 @@ export function PostHog({
 }) {
   const pathname = usePathname();
   const [choice, setChoice] = useState<"accepted" | "declined" | null>(null);
+  const [initialized, setInitialized] = useState(false);
   const [preferencesOpen, setPreferencesOpen] = useState(false);
   const [dnt, setDnt] = useState(false);
   const [analyticsReady, setAnalyticsReady] = useState(false);
+  const preferencesRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const hasDnt = navigator.doNotTrack === "1";
     setDnt(hasDnt);
     const stored = localStorage.getItem(STORAGE_KEY);
     setChoice(stored === "accepted" || stored === "declined" ? stored : null);
+    setInitialized(true);
 
     const open = () => setPreferencesOpen(true);
     window.addEventListener("open-analytics-preferences", open);
     return () => window.removeEventListener("open-analytics-preferences", open);
   }, []);
+
+  useEffect(() => {
+    if (preferencesOpen) preferencesRef.current?.focus();
+  }, [preferencesOpen]);
 
   useEffect(() => {
     if (choice !== "accepted" || dnt) return;
@@ -69,7 +76,7 @@ export function PostHog({
     if (next === "declined") window.posthog?.opt_out_capturing?.();
   }
 
-  const showBanner = !dnt && (choice === null || preferencesOpen);
+  const showBanner = initialized && !dnt && (choice === null || preferencesOpen);
 
   return (
     <>
@@ -84,32 +91,35 @@ export function PostHog({
       ) : null}
 
       {dnt && preferencesOpen ? (
-        <div className="fixed inset-x-4 bottom-4 z-[70] mx-auto max-w-lg rounded-lg border border-zinc-700 bg-zinc-950 p-4 shadow-2xl" role="status">
-          <p className="text-sm leading-6 text-zinc-300">{content.consent.dnt}</p>
-          <button type="button" onClick={() => setPreferencesOpen(false)} className="mt-3 min-h-11 text-sm text-zinc-300 underline underline-offset-4">
+        <section ref={preferencesRef} tabIndex={-1} aria-labelledby="analytics-dnt-title" className="fixed inset-x-4 bottom-4 z-[70] mx-auto max-w-lg rounded-md border border-edge-strong bg-[var(--overlay)] p-4 shadow-2xl">
+          <h2 id="analytics-dnt-title" className="font-semibold text-primary">{content.consent.title}</h2>
+          <p className="mt-2 text-sm leading-6 text-secondary">{content.consent.dnt}</p>
+          <button type="button" onClick={() => setPreferencesOpen(false)} className="editorial-link mt-3 min-h-11 text-sm">
             {content.consent.close}
           </button>
-        </div>
+        </section>
       ) : null}
 
       {showBanner ? (
         <section
+          ref={preferencesRef}
+          tabIndex={-1}
           aria-labelledby="analytics-consent-title"
-          className="fixed inset-x-4 bottom-4 z-[70] mx-auto max-w-2xl rounded-lg border border-zinc-700 bg-zinc-950 p-5 shadow-2xl"
+          className="fixed inset-x-4 bottom-4 z-[70] mx-auto max-w-2xl rounded-md border border-edge-strong bg-[var(--overlay)] p-5 shadow-2xl"
         >
-          <h2 id="analytics-consent-title" className="font-semibold text-zinc-100">{content.consent.title}</h2>
-          <p className="mt-2 text-sm leading-6 text-zinc-400">{content.consent.body}</p>
+          <h2 id="analytics-consent-title" className="font-semibold text-primary">{content.consent.title}</h2>
+          <p className="mt-2 text-sm leading-6 text-secondary">{content.consent.body}</p>
           <Link
             href={localizedPath(content.locale, "/privacy")}
-            className="mt-2 inline-flex min-h-11 items-center text-sm text-zinc-300 underline decoration-zinc-600 underline-offset-4"
+            className="editorial-link mt-2 inline-flex min-h-11 items-center text-sm"
           >
             {content.common.links.privacy}
           </Link>
           <div className="mt-4 flex flex-wrap gap-3">
-            <button type="button" onClick={() => store("accepted")} className="min-h-11 rounded-md bg-zinc-100 px-4 text-sm font-medium text-zinc-950">
+            <button type="button" onClick={() => store("accepted")} className="min-h-11 rounded-md border border-edge-strong bg-subtle px-4 text-sm font-medium text-primary hover:bg-interactive">
               {content.consent.accept}
             </button>
-            <button type="button" onClick={() => store("declined")} className="min-h-11 rounded-md border border-zinc-700 px-4 text-sm font-medium text-zinc-200">
+            <button type="button" onClick={() => store("declined")} className="min-h-11 rounded-md border border-edge-strong bg-subtle px-4 text-sm font-medium text-primary hover:bg-interactive">
               {content.consent.decline}
             </button>
           </div>

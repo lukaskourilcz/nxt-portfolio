@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
-import { ALLOWED_UPLOAD_DIRS, devRouteMethodResponse, isDevelopment, MAX_IMAGE_DIMENSION, MAX_UPLOAD_BYTES, safeAssetBase } from "@/lib/dev-security";
+import { ALLOWED_UPLOAD_DIRS, devRequestDeniedResponse, devRouteMethodResponse, MAX_IMAGE_DIMENSION, MAX_UPLOAD_BYTES, MAX_UPLOAD_REQUEST_BYTES, safeAssetBase } from "@/lib/dev-security";
 
 export const runtime = "nodejs";
 
@@ -13,7 +13,13 @@ export const DELETE = devRouteMethodResponse;
 export const OPTIONS = devRouteMethodResponse;
 
 export async function POST(request: Request) {
-  if (!isDevelopment()) return new Response(null, { status: 404 });
+  const denied = devRequestDeniedResponse(request);
+  if (denied) return denied;
+
+  const declaredSize = Number(request.headers.get("content-length") ?? 0);
+  if (declaredSize > MAX_UPLOAD_REQUEST_BYTES) {
+    return Response.json({ error: "Upload request is too large" }, { status: 413 });
+  }
 
   try {
     const form = await request.formData();

@@ -200,6 +200,9 @@ export const siteContentSchema = z.object({
   }),
   caseStudyLabels: z.object({
     context: nonEmpty,
+    decision: nonEmpty,
+    tradeoff: nonEmpty,
+    outcome: nonEmpty,
     problem: nonEmpty,
     constraints: nonEmpty,
     responsibility: nonEmpty,
@@ -208,6 +211,11 @@ export const siteContentSchema = z.object({
     outcomes: nonEmpty,
     reflection: nonEmpty,
     testimonial: nonEmpty,
+    technology: nonEmpty,
+    contents: nonEmpty,
+    visualEvidence: nonEmpty,
+    abstractVisual: nonEmpty,
+    authenticVisual: nonEmpty,
     related: nonEmpty,
     contactHeading: nonEmpty,
     contactBody: nonEmpty,
@@ -270,6 +278,7 @@ export function validateLocaleParity(en: SiteContent, cs: SiteContent): string[]
     ["capability groups", idsAt(en.capabilities.groups), idsAt(cs.capabilities.groups)],
     ["education", idsAt(en.education), idsAt(cs.education)],
     ["testimonials", en.testimonials.map((item) => `${item.id}:${item.workId}`), cs.testimonials.map((item) => `${item.id}:${item.workId}`)],
+    ["case-study slugs", en.work.map((item) => item.slug ?? ""), cs.work.map((item) => item.slug ?? "")],
   ];
 
   for (const [label, a, b] of pairs) {
@@ -289,6 +298,24 @@ export function validateLocaleParity(en: SiteContent, cs: SiteContent): string[]
       }
     }
     const featuredIds = new Set(locale.work.filter((item) => item.featured).map((item) => item.id));
+    const featuredSlugs = new Set(locale.work.filter((item) => item.featured).flatMap((item) => item.slug ? [item.slug] : []));
+    for (const [label, collection] of [
+      ["experience", locale.experience],
+      ["approach", locale.approach],
+      ["capability group", locale.capabilities.groups],
+      ["education", locale.education],
+      ["testimonial", locale.testimonials],
+    ] as const) {
+      const collectionIds = collection.map((item) => item.id);
+      if (new Set(collectionIds).size !== collectionIds.length) {
+        errors.push(`${locale.locale}: duplicate ${label} id`);
+      }
+    }
+    for (const role of locale.experience) {
+      if (role.caseStudySlug && !featuredSlugs.has(role.caseStudySlug)) {
+        errors.push(`${locale.locale}: experience ${role.id} references an unknown case study`);
+      }
+    }
     for (const testimonial of locale.testimonials) {
       if (!featuredIds.has(testimonial.workId)) {
         errors.push(`${locale.locale}: testimonial ${testimonial.id} must reference featured work`);

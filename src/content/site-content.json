@@ -77,12 +77,10 @@
     "subheadline": "I lead frontend and full-stack work across banking, AI tooling, and product teams, turning complex requirements into accessible, maintainable systems.",
     "supporting": "My background spans customer operations, fraud prevention, regulatory work, IoT incident analysis, and software engineering. That path taught me to understand systems from both sides: how they are built, and what happens when real people depend on them.",
     "proof": [
-      "React",
-      "TypeScript",
-      "Next.js",
-      "Node.js",
-      "Accessibility",
-      "AI-assisted engineering"
+      "Frontend and BFF architecture",
+      "Accessibility by default",
+      "Testing and delivery quality",
+      "Validated AI-assisted workflows"
     ],
     "availability": "Based in Prague. Open to selected freelance projects and future senior engineering opportunities.",
     "portrait": {
@@ -954,6 +952,9 @@
   },
   "caseStudyLabels": {
     "context": "Context",
+    "decision": "Decision",
+    "tradeoff": "Tradeoff",
+    "outcome": "Outcome",
     "problem": "Problem",
     "constraints": "Constraints",
     "responsibility": "My responsibility",
@@ -962,6 +963,11 @@
     "outcomes": "Outcomes",
     "reflection": "Reflection",
     "testimonial": "Recommendation",
+    "technology": "Technology",
+    "contents": "On this page",
+    "visualEvidence": "Project visual",
+    "abstractVisual": "Abstract system view—not a product screenshot",
+    "authenticVisual": "Authentic product interface",
     "related": "Related work",
     "contactHeading": "Need someone who can own the boundaries?",
     "contactBody": "I am open to selected product work and future senior engineering opportunities."

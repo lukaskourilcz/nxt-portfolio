@@ -58,7 +58,12 @@
     "headline": "Seniorní softwarový inženýr pro spolehlivé webové produkty",
     "subheadline": "Vedu frontendový a full-stackový vývoj v bankovnictví, AI nástrojích a produktových týmech. Převádím složité požadavky do přístupných a dlouhodobě udržitelných systémů.",
     "supporting": "Než jsem přešel k vývoji, pracoval jsem se zákaznickými procesy, prevencí podvodů, regulací a analýzou IoT incidentů. Díky tomu přemýšlím nejen o tom, jak systém postavit, ale také o tom, co se stane, když se na něj skuteční lidé musí spolehnout.",
-    "proof": ["React", "TypeScript", "Next.js", "Node.js", "Přístupnost", "AI ve vývoji"],
+    "proof": [
+      "Frontendová a BFF architektura",
+      "Přístupnost od začátku",
+      "Testování a kvalita dodání",
+      "AI workflow s validací"
+    ],
     "availability": "Působím v Praze. Jsem otevřený vybraným freelance projektům a budoucím seniorním pracovním příležitostem.",
     "portrait": {
       "src": "/profile.png",
@@ -661,6 +666,9 @@
   },
   "caseStudyLabels": {
     "context": "Kontext",
+    "decision": "Rozhodnutí",
+    "tradeoff": "Kompromis",
+    "outcome": "Výsledek",
     "problem": "Problém",
     "constraints": "Omezení",
     "responsibility": "Moje odpovědnost",
@@ -669,6 +677,11 @@
     "outcomes": "Výsledky",
     "reflection": "Reflexe",
     "testimonial": "Doporučení",
+    "technology": "Technologie",
+    "contents": "Obsah stránky",
+    "visualEvidence": "Vizuál projektu",
+    "abstractVisual": "Abstraktní pohled na systém, nikoli produktový screenshot",
+    "authenticVisual": "Autentické rozhraní produktu",
     "related": "Související práce",
     "contactHeading": "Hledáte někoho, kdo převezme odpovědnost za systémové hranice?",
     "contactBody": "Jsem otevřený vybrané produktové práci a budoucím seniorním vývojářským příležitostem."

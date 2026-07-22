@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Context"
+  short_description: "Protect portfolio product, brand, and content rules"
+  default_prompt: "Use $portfolio-context to review this portfolio change against its product and brand rules."
