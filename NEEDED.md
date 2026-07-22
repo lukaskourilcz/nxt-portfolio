@@ -4,7 +4,6 @@ The rebrand is implemented in the repository. This list contains only work that 
 
 ## Tasks
 
-- [ ] **Update and re-export the CV**: align role titles and dates with the portfolio, replace the old preview URL with `https://lukaskouril.dev`, set a professional PDF title, and check reading order, links, and contrast before replacing `public/pdf/lukas-kouril-senior-software-engineer-cv.pdf`. `[imp:5]` `[owner:me]`
 - [ ] **Verify the production deployment**: after this merge deploys, confirm that `lukaskouril.dev`, both locale routes, all six localized case-study routes, the CV download, redirects, privacy pages, and the custom 404 work correctly. `[imp:5]` `[owner:me]`
 - [ ] **Synchronize public profiles**: update the GitHub profile website, repository About URL, LinkedIn contact URL, public title, company names, and employment dates so they match the portfolio. `[imp:4]` `[owner:me]`
 - [ ] **Run the final production review**: test keyboard navigation, 200% and 400% zoom, 320 px reflow, the mobile menu, both languages, and the PDF, then run Lighthouse on `/en`, `/cs`, and one case study. `[imp:4]` `[owner:me]`

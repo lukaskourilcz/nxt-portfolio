@@ -24,10 +24,8 @@ These items require verified information, account access, or approval outside th
 
 ## CV
 
-- Update the source CV manually and re-export it. The current PDF renders cleanly on one tagged A4 page and contains selectable text, but its role dates and titles do not match the current portfolio.
-- Replace the obsolete Vercel preview URL and its link annotation with `https://lukaskouril.dev`.
-- Review the re-exported PDF's document title, reading order, link labels, and contrast with an accessibility checker. The current metadata title still contains the old source filename.
-- Provide a verified `cvUpdatedAt` date if it should be displayed publicly.
+- Review the generated PDF's tagged reading order and link labels with a dedicated PDF accessibility checker before claiming PDF/UA conformance.
+- Provide a verified content-level `cvUpdatedAt` date if the website should display one dynamically.
 
 ## Photography
 

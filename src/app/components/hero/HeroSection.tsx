@@ -17,6 +17,18 @@ export default function HeroSection({
 }) {
   const { hero, common } = content;
   const home = localizedPath(locale);
+  const portraitAnnotation =
+    locale === "cs"
+      ? {
+          location: "Praha",
+          availability: "2026 / výběrová dostupnost",
+          source: "portrét / autentický zdroj",
+        }
+      : {
+          location: "Prague",
+          availability: "2026 / available selectively",
+          source: "portrait / authentic source",
+        };
 
   return (
     <section
@@ -101,10 +113,13 @@ export default function HeroSection({
             className="object-cover object-center"
           />
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-canvas/90 to-transparent px-4 pb-4 pt-16 font-mono text-[10px] uppercase tracking-[0.12em] text-secondary" aria-hidden>
-            <span>Prague</span><span>2026 / available selectively</span>
+            <span>{portraitAnnotation.location}</span>
+            <span>{portraitAnnotation.availability}</span>
           </div>
         </div>
-        <p className="mt-3 text-right font-mono text-[10px] uppercase tracking-[0.12em] text-muted">portrait / authentic source</p>
+        <p className="mt-3 text-right font-mono text-[10px] uppercase tracking-[0.12em] text-muted">
+          {portraitAnnotation.source}
+        </p>
       </div>
     </section>
   );

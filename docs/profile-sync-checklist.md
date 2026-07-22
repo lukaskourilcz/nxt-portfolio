@@ -8,7 +8,7 @@
 - [ ] GitHub profile website is current
 - [ ] Repository About URL is current
 - [ ] LinkedIn contact URL is current
-- [ ] CV links point to the custom domain
-- [ ] CV filename is professional
+- [x] CV links point to the custom domain
+- [x] CV filename is professional
 - [ ] English and Czech content remain aligned
 - [ ] Structured data matches visible content

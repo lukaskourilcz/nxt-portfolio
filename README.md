@@ -88,7 +88,15 @@ Localized content lives in:
 
 Both documents use the schema in `src/lib/content-schema.ts`. Stable IDs and case-study slugs must match across languages. The validator checks schema compliance, unique IDs and slugs, flagship case-study structure, and locale parity.
 
-Use `/dev` for normal copy and image changes. The advanced JSON panel remains available for structural edits. Structural changes must be made in both locales before either document can be saved.
+Use `/dev` for normal copy and image changes. The advanced JSON panel remains available for structural edits. Every save validates both locales and publishes them as one staged transaction so structural parity cannot be partially written.
+
+The English CV is generated from the same validated portfolio content and published to its stable public filename:
+
+```bash
+npm run generate:cv
+```
+
+The generator creates a tagged A4 PDF through the installed Playwright Chromium runtime. Rendered-page and reading-order checks remain part of release review.
 
 ## Quality commands
 
