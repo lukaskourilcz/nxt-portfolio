@@ -1,6 +1,9 @@
 # Manual follow-ups
 
-These items require verified information, account access, or approval outside the repository.
+These items require verified information, account access, deployment state, or
+specialist review outside the repository. Local keyboard, locale, mobile-menu,
+reduced-motion, 320 px reflow, axe, and PDF structure checks are complete and
+recorded in `CONTINUATION.md`.
 
 ## Metrics and proof
 
@@ -36,6 +39,13 @@ These items require verified information, account access, or approval outside th
 
 - Run Lighthouse against the deployed English and Czech homepages and one case study.
 - Record measured results before presenting the documented performance budgets as achieved outcomes.
+
+## Accessibility
+
+- Test the deployed site at 200% and 400% zoom.
+- Perform a focused pass with a real screen reader rather than inferring its
+  behavior from the accessibility tree and axe results.
+- Keep `docs/accessibility-checklist.md` synchronized with completed evidence.
 
 ## Privacy and deployment
 

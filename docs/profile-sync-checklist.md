@@ -10,5 +10,5 @@
 - [ ] LinkedIn contact URL is current
 - [x] CV links point to the custom domain
 - [x] CV filename is professional
-- [ ] English and Czech content remain aligned
-- [ ] Structured data matches visible content
+- [x] English and Czech content remain aligned
+- [x] Structured data matches visible content

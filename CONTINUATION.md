@@ -20,6 +20,9 @@ remains explicitly deferred until its MCP is available.
 - Final QA added keyboard focus transfer for case-study fragment navigation, an
   explicit/focus-recovering advanced JSON field, localized generated Open Graph
   metadata, and regression coverage for the advertised Open Graph assets.
+- A repository-wide Markdown reconciliation subsequently checked every tracked
+  guide, internal link, package command, remaining owner task, and cost model
+  against the completed implementation and current public-repository state.
 
 ## Completed implementation
 
@@ -101,7 +104,7 @@ remains explicitly deferred until its MCP is available.
 - Added real `check` and `check:full` package scripts and strengthened CI
   permissions, concurrency, timeouts, build, E2E, and accessibility coverage.
 
-## Commits already created
+## Implementation commits through release validation
 
 1. `5cc2c39` - `Document portfolio direction and design system`
 2. `100ecd2` - `Establish editorial portfolio foundations`
@@ -111,6 +114,7 @@ remains explicitly deferred until its MCP is available.
 6. `55d1f4d` - `Add project-specific agent workflows`
 7. `685bba2` - `Refresh the CV and portfolio assets`
 8. `48df43f` - `Add portfolio overhaul continuation handoff`
+9. `e98b28c` - `Complete portfolio release validation`
 
 ## Final validation evidence
 
@@ -141,6 +145,10 @@ Completed successfully:
   the bundled Python validator lacked PyYAML.
 - CV generation, PDF metadata/structure extraction, and visual inspection of
   both rendered pages.
+- Repository-wide documentation validation found no broken internal Markdown
+  links or missing referenced npm scripts. Current provider pricing assumptions
+  were reconciled with official documentation and the repository's public
+  visibility.
 
 ## Repository work remaining
 

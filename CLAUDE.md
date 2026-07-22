@@ -12,6 +12,10 @@ truth is:
 - `docs/reference-research.md` — adopted and rejected reference principles.
 - `docs/deferred-media.md` — prepared visual slots; no substitute generation.
 - `README.md` — architecture, content flow, privacy, `/dev`, and commands.
+- `stack-and-scaling.md` — verified architecture and cost assumptions; recheck
+  linked official pricing before a billing decision.
+- `NEEDED.md` — owner-only deployment, account, approval, and evidence tasks.
+- `CONTINUATION.md` — completed overhaul scope and measured release evidence.
 
 ## Workflow routing
 

@@ -11,7 +11,7 @@ Pricing checked on 22 July 2026. Vendor prices and included quotas can change, s
 | Content | English and Czech JSON committed to Git | No database or CMS charge |
 | Images | Local assets served through `next/image` | Image transformations plus cache reads and writes |
 | Analytics | Optional consent-gated PostHog EU project | Product analytics events only when configured and accepted |
-| CI | Two GitHub Actions jobs for validation and browser testing | Linux runner minutes and cache storage |
+| CI | Two GitHub Actions jobs for validation and browser testing in a public repository | Cache storage, artifacts, or non-standard runners; standard hosted-runner minutes are free while public |
 | Domain | `lukaskouril.dev` | Annual registrar renewal, amount depends on the registrar |
 
 There is currently no production database, object-storage account, remote CMS, authentication provider, email service, queue, cron service, or public editor backend.
@@ -24,7 +24,7 @@ The exact bill cannot be read from the repository, but the architecture supports
 | --- | ---: | ---: | --- |
 | Vercel | $0 on Hobby | $20/month on Pro | Hobby is for personal, non-commercial use. Pro includes $20 of usage credit. |
 | PostHog | $0 | $0 at current portfolio scale | It is currently $0 when unconfigured. Product Analytics includes 1 million events per month before usage charges. |
-| GitHub Actions | Usually $0 within plan quota | Usually $0 within plan quota | Private repositories on GitHub Free include 2,000 minutes per month. This workflow uses Linux runners. |
+| GitHub Actions | $0 for the current public repository | $0 for the current public repository | Standard GitHub-hosted runners are free for public repositories. The workflow uses standard Linux runners and uploads no artifacts. |
 | Domain | Registrar-specific | Registrar-specific | Paid annually and not inferable from the repository. |
 | **Estimated platform total** | **$0/month plus domain** | **$20/month plus domain** | Assumes included quotas are not exceeded. |
 
@@ -62,16 +62,29 @@ These are simple estimates before volume discounts and exclude other PostHog pro
 
 ### GitHub Actions
 
-GitHub Free includes 2,000 Actions minutes per month for private repositories, 500 MB of artifact storage, and 10 GB of cache storage per repository. GitHub lists Linux runner overage at $0.006 per minute. The current workflow does not upload artifacts, and `actions/setup-node` provides the npm cache.
+This repository is public. GitHub documents standard GitHub-hosted runners as
+free for public repositories, so the current validation and accessibility jobs
+do not consume a paid minute allowance. The workflow uploads no artifacts;
+`actions/setup-node` provides the npm cache, which remains subject to GitHub's
+separate cache-storage policy.
 
-Both CI jobs run for every pull-request update, then run again after the merge reaches `main`. A practical planning formula is:
+Both jobs run for every pull-request update, then run again after the merge
+reaches `main`. Their duration still matters for feedback speed and resource
+efficiency even though standard public-repository runner minutes are free.
+
+If the repository becomes private, GitHub Free currently includes 2,000 Actions
+minutes per month and 500 MB of artifact storage, while cache storage has a
+separate 10 GB per-repository allowance. The private-repository planning formula
+would then be:
 
 ```text
 monthly CI minutes = workflow runs x total minutes across both jobs
 Linux overage cost = max(0, monthly minutes - included minutes) x $0.006
 ```
 
-For example, if both jobs use 10 Linux minutes in total and the repository produces 40 workflow runs in a month, usage is about 400 minutes and stays within the GitHub Free allowance.
+GitHub currently lists a standard two-core Linux runner at $0.006 per minute
+after a private repository's included allowance. Larger runners remain billable
+even for public repositories.
 
 ## How this portfolio scales
 
@@ -113,7 +126,10 @@ Move to or remain on Vercel Pro when any of these is true:
 
 Review PostHog billing when product analytics approaches 800,000 events in a month. This gives time to remove accidental high-volume events, verify consent behavior, and set a billing limit before crossing the free tier.
 
-Review GitHub Actions when private-repository usage approaches 1,600 minutes in a month. If CI becomes material, keep the current split jobs but consider path filters, Playwright browser caching where safe, and avoiding duplicate runs for documentation-only changes.
+Review GitHub Actions billing if the repository becomes private, larger runners
+are introduced, or artifact/cache storage grows. Independently of billing, keep
+the current split jobs focused and consider path filters or safe browser caching
+only when measured CI duration justifies the added complexity.
 
 ## Cost controls
 
