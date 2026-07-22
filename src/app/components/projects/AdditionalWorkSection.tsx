@@ -6,28 +6,30 @@ import { ExternalLink } from "@/components/external-link";
 import { getAdditionalWork } from "@/lib/content";
 import type { Locale, SiteContent, Work } from "@/lib/content-schema";
 
-function ProductRow({ item, content }: { item: Work; content: SiteContent }) {
+function ProductRow({ item, content, index }: { item: Work; content: SiteContent; index: number }) {
   return (
-    <article className="grid gap-5 border-t border-zinc-800 py-7 sm:grid-cols-[120px_1fr_auto] sm:items-start">
+    <article className="grid gap-5 border-t border-edge py-7 sm:grid-cols-[2rem_7.5rem_1fr_auto] sm:items-start">
+      <span aria-hidden className="font-mono text-[10px] text-muted">{String(index + 1).padStart(2, "0")}</span>
       {item.image ? (
-        <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-zinc-800 bg-zinc-900">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-edge bg-surface">
           <Image src={item.image.src} alt={item.image.alt} fill sizes="120px" className="object-cover object-top" />
         </div>
-      ) : <div />}
+      ) : <div className="hidden sm:block" />}
       <div>
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <h3 className="font-semibold text-zinc-100">{item.title}</h3>
-          <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-zinc-600">{item.contextLabel}</span>
+          <h3 className="font-semibold text-primary">{item.title}</h3>
+          <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted">{item.contextLabel}</span>
         </div>
-        <p className="mt-2 max-w-[66ch] text-sm leading-6 text-zinc-400">{item.summary}</p>
-        <p className="mt-3 font-mono text-xs text-zinc-600">{item.role} · {item.technologies.join(" · ")}</p>
+        <p className="mt-2 max-w-[66ch] text-sm leading-6 text-secondary">{item.summary}</p>
+        <p className="mt-3 font-mono text-xs text-muted">{item.role} · {item.technologies.join(" · ")}</p>
       </div>
       <div className="flex flex-wrap gap-x-4 sm:flex-col sm:items-end">
         {item.externalUrl ? (
           <ExternalLink
             href={item.externalUrl}
             newTabLabel={content.common.links.opensNewTab}
-            className="inline-flex min-h-11 items-center gap-1 text-sm text-zinc-400 underline decoration-zinc-700 underline-offset-4 hover:text-zinc-200"
+            aria-label={`${item.title}: ${content.common.links.externalProduct}`}
+            className="editorial-link inline-flex min-h-11 items-center gap-1 text-sm"
           >
             {content.common.links.externalProduct} <ArrowUpRight className="h-4 w-4" aria-hidden />
           </ExternalLink>
@@ -36,7 +38,8 @@ function ProductRow({ item, content }: { item: Work; content: SiteContent }) {
           <ExternalLink
             href={item.repositoryUrl}
             newTabLabel={content.common.links.opensNewTab}
-            className="inline-flex min-h-11 items-center gap-1 text-sm text-zinc-400 underline decoration-zinc-700 underline-offset-4 hover:text-zinc-200"
+            aria-label={`${item.title}: ${content.common.links.repository}`}
+            className="editorial-link inline-flex min-h-11 items-center gap-1 text-sm"
           >
             {content.common.links.repository} <ArrowUpRight className="h-4 w-4" aria-hidden />
           </ExternalLink>
@@ -50,24 +53,24 @@ function ClientItem({ item, content }: { item: Work; content: SiteContent }) {
   const link = item.externalUrl ?? item.repositoryUrl;
 
   return (
-    <article className="border-t border-zinc-800 py-5">
+    <article className="border-t border-edge py-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h3 className="font-medium text-zinc-200">{item.title}</h3>
-          <p className="mt-1 font-mono text-xs text-zinc-600">{item.contextLabel} · {item.role}{item.year ? ` · ${item.year}` : ""}</p>
+          <h3 className="font-medium text-secondary">{item.title}</h3>
+          <p className="mt-1 font-mono text-xs text-muted">{item.contextLabel} · {item.role}{item.year ? ` · ${item.year}` : ""}</p>
         </div>
         {link ? (
           <ExternalLink
             href={link}
             newTabLabel={content.common.links.opensNewTab}
             aria-label={`${item.title}: ${item.externalUrl ? content.common.links.externalProduct : content.common.links.repository}`}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md text-muted hover:bg-interactive hover:text-primary"
           >
             <ArrowUpRight className="h-4 w-4" aria-hidden />
           </ExternalLink>
         ) : null}
       </div>
-      <p className="mt-3 max-w-[62ch] text-sm leading-6 text-zinc-500">{item.summary}</p>
+      <p className="mt-3 max-w-[62ch] text-sm leading-6 text-muted">{item.summary}</p>
     </article>
   );
 }
@@ -81,12 +84,12 @@ export default function AdditionalWorkSection({ locale, content }: { locale: Loc
     <Section id="additional-work">
       <SectionHeading id="additional-work" {...content.sectionCopy.additionalWork} />
       <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="border-b border-zinc-800">
-          <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.12em] text-zinc-500">{content.common.productAndExperimental}</h3>
-          {products.map((item) => <ProductRow key={item.id} item={item} content={content} />)}
+        <div className="border-b border-edge">
+          <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.12em] text-muted">{content.common.productAndExperimental}</h3>
+          {products.map((item, index) => <ProductRow key={item.id} item={item} content={content} index={index} />)}
         </div>
-        <div className="border-b border-zinc-800">
-          <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.12em] text-zinc-500">{content.common.clientAndEarlier}</h3>
+        <div className="border-b border-edge">
+          <h3 className="mb-3 font-mono text-xs uppercase tracking-[0.12em] text-muted">{content.common.clientAndEarlier}</h3>
           {client.map((item) => <ClientItem key={item.id} item={item} content={content} />)}
         </div>
       </div>
