@@ -21,6 +21,16 @@ describe("localized portfolio content", () => {
     ]);
   });
 
+  it("rejects localized slug drift and unknown experience links", () => {
+    const changedSlug = structuredClone(content.cs);
+    changedSlug.work[0].slug = "jiny-slug";
+    expect(validateLocaleParity(content.en, changedSlug)).toContain("case-study slugs identifiers differ between locales");
+
+    const unknownReference = structuredClone(content.en);
+    unknownReference.experience[0].caseStudySlug = "missing-case-study";
+    expect(validateLocaleParity(unknownReference, content.cs)).toContain("en: experience web-integrator references an unknown case study");
+  });
+
   it("does not expose empty public strings", () => {
     const visit = (value: unknown): void => {
       if (typeof value === "string") expect(value.trim()).not.toBe("");

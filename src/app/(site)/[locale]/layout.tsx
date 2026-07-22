@@ -9,7 +9,7 @@ import { Footer } from "@/components/footer";
 import { Nav } from "@/components/nav";
 import { PostHog } from "@/components/posthog";
 import { getContent, isLocale, LOCALES } from "@/lib/content";
-import { EMAIL, GITHUB_URL, LINKEDIN_URL, SITE_URL } from "@/lib/site";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, resolvePostHogHost, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -38,7 +38,7 @@ export default async function LocaleLayout({
   if (!isLocale(value)) notFound();
   const content = getContent(value);
   const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-  const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com";
+  const posthogHost = resolvePostHogHost(process.env.NEXT_PUBLIC_POSTHOG_HOST);
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
@@ -61,7 +61,7 @@ export default async function LocaleLayout({
   return (
     <html lang={value} className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="bg-background font-sans text-foreground antialiased">
-        <a href="#main" className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:not-sr-only focus:rounded-md focus:bg-zinc-100 focus:px-4 focus:py-3 focus:text-sm focus:text-zinc-950">
+        <a href="#main" className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:not-sr-only focus:rounded-md focus:bg-primary focus:px-4 focus:py-3 focus:text-sm focus:text-canvas">
           {content.common.skipToContent}
         </a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }} />
