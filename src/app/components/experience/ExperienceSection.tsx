@@ -77,15 +77,26 @@ function EarlierRole({ role, capabilitiesLabel }: { role: Experience; capabiliti
         <p>{role.period}</p>
         <p>{role.location}</p>
       </div>
-      <div>
-        <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <h3 className="font-semibold text-secondary">{role.role}</h3>
-          <p className="text-sm text-muted">{role.company}</p>
+      <div className="grid grid-cols-[auto_1fr] gap-x-3.5">
+        <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-white p-[3px]">
+          <Image
+            src={role.logo}
+            alt={role.logoAlt}
+            width={30}
+            height={30}
+            className="h-full w-full object-contain"
+          />
+        </span>
+        <div>
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <h3 className="font-semibold text-secondary">{role.role}</h3>
+            <p className="text-sm text-muted">{role.company}</p>
+          </div>
+          <p className="mt-2 max-w-[68ch] text-sm leading-6 text-muted">{role.summary}</p>
+          <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted" aria-label={capabilitiesLabel}>
+            {role.capabilities.map((capability) => <li key={capability}>{capability}</li>)}
+          </ul>
         </div>
-        <p className="mt-2 max-w-[68ch] text-sm leading-6 text-muted">{role.summary}</p>
-        <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted" aria-label={capabilitiesLabel}>
-          {role.capabilities.map((capability) => <li key={capability}>{capability}</li>)}
-        </ul>
       </div>
     </article>
   );

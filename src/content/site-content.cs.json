@@ -66,7 +66,7 @@
     ],
     "availability": "Působím v Praze. Jsem otevřený vybraným freelance projektům a budoucím seniorním pracovním příležitostem.",
     "portrait": {
-      "src": "/profile.png",
+      "src": "/portrait-hero.png",
       "alt": "Portrét Lukase Kourila"
     },
     "primaryAction": "Vybrané projekty",
@@ -638,6 +638,7 @@
       "name": "arol.dev",
       "field": "Softwarové inženýrství",
       "period": "led 2024–čvn 2024",
+      "location": "Barcelona, Španělsko",
       "url": "https://arol.dev",
       "description": "Intenzivní akademie softwarového inženýrství v Barceloně zaměřená na full-stackový vývoj, datové struktury, algoritmy a tvorbu fungujících produktů v týmech.",
       "skills": ["TypeScript", "React", "Next.js", "Node.js", "PostgreSQL", "Docker"],
@@ -648,6 +649,7 @@
       "name": "Reykjavík Academy of Web Development",
       "field": "Webový vývoj",
       "period": "úno 2022–čvn 2022",
+      "location": "Reykjavík, Island",
       "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
       "description": "Bootcamp webového vývoje, kde jsem si vybudoval základy responzivních a interaktivních webových aplikací v HTML, CSS, JavaScriptu a Vue.",
       "skills": ["JavaScript", "HTML", "CSS", "Vue", "Responzivní design"],

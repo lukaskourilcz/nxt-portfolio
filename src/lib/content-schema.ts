@@ -91,6 +91,7 @@ const educationSchema = z.object({
   name: nonEmpty,
   field: nonEmpty,
   period: nonEmpty,
+  location: nonEmpty,
   url: z.string().url(),
   description: nonEmpty,
   skills: z.array(nonEmpty).min(2),

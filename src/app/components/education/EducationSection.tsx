@@ -12,7 +12,10 @@ export default function EducationSection({ content }: { content: SiteContent }) 
       <div className="border-b border-edge">
         {content.education.map((entry) => (
           <article key={entry.id} className="grid gap-6 border-t border-edge py-8 md:grid-cols-[180px_200px_1fr] md:gap-8">
-            <p className="font-mono text-xs leading-6 text-muted">{entry.period}</p>
+            <div className="font-mono text-xs leading-6 text-muted">
+              <p>{entry.period}</p>
+              <p>{entry.location}</p>
+            </div>
             <div className="relative aspect-[4/3] overflow-hidden rounded-md border border-edge bg-surface">
               <Image
                 src={entry.image.src}
