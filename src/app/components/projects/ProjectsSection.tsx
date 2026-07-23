@@ -24,7 +24,12 @@ function SelectedWorkCard({
   const visualOnRight = item.id === "ersilia-ai-tooling";
 
   return (
-    <article className="group relative grid overflow-hidden border border-edge bg-canvas/60 lg:grid-cols-[0.9fr_1.1fr]">
+    <article
+      className={cn(
+        "group relative grid overflow-hidden border border-edge bg-canvas/60 transition-colors duration-[var(--motion-standard)] ease-[var(--ease-out)] hover:border-edge-strong",
+        visualOnRight ? "lg:grid-cols-[1.1fr_0.9fr]" : "lg:grid-cols-[0.9fr_1.1fr]",
+      )}
+    >
       <span className="absolute right-4 top-4 z-10 font-mono text-[10px] tracking-[0.14em] text-muted" aria-hidden>
         0{index + 1} / 03
       </span>

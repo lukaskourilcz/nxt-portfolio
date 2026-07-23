@@ -3,8 +3,9 @@
 This file records the completed autonomous portfolio overhaul begun and
 validated on 22 July 2026. It remains as a repository handoff so a future agent
 can understand the implementation and evidence without repeating the audit or
-mistaking deferred external work for an unfinished code change. Higgsfield work
-remains explicitly deferred until its MCP is available.
+mistaking external work for an unfinished code change. Generative-media
+production state and provider-selection rules are recorded in
+`docs/generative-media.md`.
 
 ## Current state
 
@@ -15,8 +16,10 @@ remains explicitly deferred until its MCP is available.
   a database, remote CMS, authentication, or public runtime content API.
 - `/dev` remains development-only and its mutation APIs are now more strongly
   constrained than at the start of the session.
-- Higgsfield was not researched, invoked, or replaced with another generator.
-  Prepared integration slots are documented in `docs/deferred-media.md`.
+- No generated media was accepted during the original overhaul. A later
+  continuation completed the opportunity audit, production briefs, and a
+  mandatory current-provider research gate. No generation or credit spend is
+  recorded; see `docs/generative-media.md`.
 - Final QA added keyboard focus transfer for case-study fragment navigation, an
   explicit/focus-recovering advanced JSON field, localized generated Open Graph
   metadata, and regression coverage for the advertised Open Graph assets.
@@ -152,9 +155,10 @@ Completed successfully:
 
 ## Repository work remaining
 
-No feasible implementation or validation work remains from this overhaul. The
-items below require deployment, specialist tooling, owner input, or the deferred
-Higgsfield integration and are not safe substitutes for local code changes.
+No feasible implementation or validation work remains from the original
+overhaul. The items below require deployment, specialist tooling, owner input,
+or completion of the current generative-provider research gate and are not safe
+substitutes for local code changes.
 
 ## Manual or external boundaries
 
@@ -167,12 +171,13 @@ Higgsfield integration and are not safe substitutes for local code changes.
   updates, and a higher-resolution approved portrait require owner input or
   external account access; see `NEEDED.md` and `docs/manual-follow-ups.md`.
 
-## Deferred Higgsfield tasks
+## Generative-media production state
 
-Do not use another generator or create filler. Once the Higgsfield MCP exists,
-assess and produce only the optional assets in `docs/deferred-media.md`: a hero
-system-boundary layer, abstract banking cover, scientific metadata-workflow
-cover, deterministic devShark screenshot environment, homepage/case-study social
-images, and optional explanatory motion with posters and reduced-motion
-fallbacks. Authentic portrait and UI pixels must remain unchanged; banking UI
-and scientific outcomes must never be fabricated.
+Before recommending a paid plan, the next agent must research current free and
+low-cost providers under the comparison and safety rules in
+`docs/generative-media.md`. Resume the three selected asset
+families only with a documented suitable provider: abstract banking cover,
+scientific metadata-workflow cover, and deterministic devShark screenshot
+environment. Hero, identity, social imagery, and motion were reviewed and
+intentionally not selected. Authentic portrait and UI pixels must remain
+unchanged; banking UI and scientific outcomes must never be fabricated.

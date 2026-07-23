@@ -24,26 +24,22 @@ export default function HeroSection({
       aria-labelledby="hero-heading"
       className="relative isolate overflow-hidden"
     >
-      {/* Portrait composited into the hero background: anchored to the right,
-          bled to the section edge, and faded into the page canvas on its left
-          and bottom so the left-hand copy always sits on solid canvas. The
-          canvas stops are theme-aware, so the dark studio background of the
-          photo blends into the dark theme and softens under the light one. */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 w-full sm:w-[64%] lg:w-[56%] xl:w-[52%]">
-        <Image
-          src={hero.portrait.src}
-          alt={hero.portrait.alt}
-          fill
-          priority
-          sizes="(max-width: 640px) 100vw, 56vw"
-          className="object-cover object-[center_18%]"
-        />
-        {/* On narrow screens the portrait sits behind the whole column, so a flat
-            canvas scrim keeps the copy readable; desktop keeps the clean fade. */}
-        <div className="absolute inset-0 bg-canvas/55 sm:bg-transparent" aria-hidden />
-        <div className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/70 to-transparent" aria-hidden />
-        <div className="absolute inset-0 bg-gradient-to-t from-canvas via-canvas/20 to-transparent" aria-hidden />
-        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-canvas/45 to-transparent" aria-hidden />
+      {/* Decorative portrait: a self-vignetting glow bleeding in from the top-right,
+          held behind the text. A left-to-right canvas scrim keeps the copy legible. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute -right-[12%] top-[4%] w-[78%] max-w-[420px] sm:-right-[6%] sm:max-w-[560px] lg:right-[-3%] lg:top-[7%] lg:w-[52vw] lg:max-w-[860px]">
+          <Image
+            src={hero.portrait.src}
+            alt={hero.portrait.alt}
+            width={900}
+            height={750}
+            priority
+            sizes="(max-width: 639px) 78vw, (max-width: 1023px) 560px, 52vw"
+            className="h-auto w-full opacity-55 sm:opacity-70 lg:opacity-100"
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-canvas via-canvas/80 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-canvas to-transparent" />
       </div>
 
       <div className="page-shell grid min-h-[min(880px,100svh)] items-center pb-20 pt-28 sm:pt-32">

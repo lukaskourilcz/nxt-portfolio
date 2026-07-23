@@ -23,7 +23,7 @@ function collectAssetPaths(value) {
 }
 
 const assetPaths = [...new Set([...collectAssetPaths(en), ...collectAssetPaths(cs)])];
-const allowedAssetRoots = ["/profile.png", "/projects/", "/education/", "/logos/", "/uploads/"];
+const allowedAssetRoots = ["/profile.png", "/portrait-hero.png", "/projects/", "/education/", "/logos/", "/uploads/"];
 
 for (const assetPath of assetPaths) {
   if (assetPath.includes("..") || !allowedAssetRoots.some((allowed) => assetPath === allowed || assetPath.startsWith(allowed))) {

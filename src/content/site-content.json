@@ -84,7 +84,7 @@
     ],
     "availability": "Based in Prague. Open to selected freelance projects and future senior engineering opportunities.",
     "portrait": {
-      "src": "/profile.png",
+      "src": "/portrait-hero.png",
       "alt": "Portrait of Lukas Kouril"
     },
     "primaryAction": "View selected work",
@@ -911,6 +911,7 @@
       "name": "arol.dev",
       "field": "Computer Software Engineering",
       "period": "Jan 2024–Jun 2024",
+      "location": "Barcelona, Spain",
       "url": "https://arol.dev",
       "description": "An intensive software-engineering academy in Barcelona centered on full-stack development, data structures, algorithms, and building working products in teams.",
       "skills": [
@@ -931,6 +932,7 @@
       "name": "Reykjavík Academy of Web Development",
       "field": "Web Development",
       "period": "Feb 2022–Jun 2022",
+      "location": "Reykjavík, Iceland",
       "url": "https://en.tskoli.is/study-programme/reykjavik-academy-of-web-development/",
       "description": "A web-development bootcamp where I built the foundation for responsive and interactive web applications in HTML, CSS, JavaScript, and Vue.",
       "skills": [

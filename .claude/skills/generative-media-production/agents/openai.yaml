@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Media Research"
+  short_description: "Research and produce safe portfolio media"
+  default_prompt: "Use $generative-media-production to research an affordable provider, produce this portfolio visual, and validate its integration."

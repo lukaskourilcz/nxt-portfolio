@@ -66,9 +66,13 @@ without hiding technical depth. Avoid generic SaaS/AI copy, superlatives,
 technology walls, repeated pills, glass, random glow, giant gradients, fake
 charts, fake terminals, and decorative metrics.
 
-Higgsfield media production is deferred because its integration is unavailable.
-Do not use another generator or create placeholder assets. The prepared slots
-and intended uses are in `docs/deferred-media.md`.
+Generative-media production follows the opportunity audit, art direction,
+provider-research gate, prompt foundation, provenance, and delivery contract in
+`docs/generative-media.md`. Use `$generative-media-production` only for
+high-value custom visuals. Future agents must research current free and low-cost
+providers from official sources before recommending or using one. Do not use an
+unresearched service, create filler, bypass account/license/privacy
+restrictions, replace authentic UI, or fabricate banking/scientific evidence.
 
 ## Accessibility and responsive behavior
 
@@ -117,9 +121,12 @@ requested.
   editor guardrails.
 - `$implement-portfolio-route`: complete localized route/section implementation.
 - `$verify`: evidence-based release validation.
+- `$generative-media-production`: current provider research plus safe custom-media
+  production and integration.
 - Agents: `.claude/agents/portfolio-route-implementer.md`,
   `ux-visual-qa.md`, and `accessibility-reviewer.md`.
-- Commands: `/implement-route`, `/visual-qa`, and `/release-validate`.
+- Commands: `/implement-route`, `/visual-qa`, `/generative-asset`, and
+  `/release-validate`.
 
 ## Definition of done
 

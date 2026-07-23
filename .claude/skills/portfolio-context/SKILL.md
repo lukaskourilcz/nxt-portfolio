@@ -46,8 +46,10 @@ Treat the flagship work distinctly:
   annotation layer; green is a signal, not a section wash.
 - Reject glass, random glow, giant gradients, fake dashboards, decorative
   metrics, repeated pills/cards, and filler imagery.
-- Keep real screenshots, portraits, and product artifacts unaltered. Defer
-  unavailable generative-media work; never substitute another generator.
+- Keep real screenshots, portraits, and product artifacts unaltered. Follow
+  `docs/generative-media.md` for approved generation. Complete and document the
+  required current-provider research before using a service. Never bypass a
+  model, plan, workspace, license, privacy boundary, or owner approval.
 
 ## Preserve technical invariants
 

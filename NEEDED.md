@@ -15,6 +15,7 @@ owner marker.
 - [ ] **Confirm the final portrait**: approve the current image or provide a higher-resolution source that may be published. `[imp:2]` `[owner:me]`
 - [ ] **Configure the portfolio email address**: create or forward `lukas@lukaskouril.dev` if you want the custom-domain address used in the site and CV later. `[imp:2]` `[owner:me]`
 - [ ] **Decide whether to enable PostHog**: if analytics is useful, add the EU project key and host in Vercel, choose a retention period, redeploy, and verify consent behavior. Keep autocapture, person profiles, and session recording disabled. `[imp:2]` `[owner:me]`
+- [ ] **Approve a generative-media provider only after the agent completes the required comparison**: the next agent must first research current free and low-cost services using official pricing, licensing, privacy, watermark, and export terms. Approve an account, card-backed trial, credits, or recurring plan only if the documented best option justifies it. `[imp:2]` `[owner:me]`
 - [ ] **Approve testimonials before publication**: if you want recommendations on the site, provide the exact quote, full name, role, company, relevant flagship case study, source URL, and explicit permission for each person. `[imp:1]` `[owner:me]`
 
 ## Reference
