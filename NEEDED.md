@@ -20,3 +20,12 @@ owner marker.
 ## Reference
 
 Detailed factual questions are in `docs/content-gaps.md`. The broader release notes are in `docs/manual-follow-ups.md`, and current operating-cost assumptions are in `stack-and-scaling.md`.
+
+## Developer tooling
+
+- [ ] **Install and initialize RTK (`rtk-ai/rtk`)** — RTK could not be set up from the Claude Code web session because its GitHub download host is outside the session's network allowlist (`github.com/rtk-ai/rtk` and its release binaries return HTTP 403). Set it up locally at home with the commands below, then enable it for this repository following `rtk --help` / the RTK docs (the exact per-repo command isn't documented here because the tool wouldn't install in the sandbox). `[imp:2]` `[owner:me]`
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+rtk init --global
+```
