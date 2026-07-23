@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
 import Image from "next/image";
 import { ArrowDownToLine, Check, FileText, GitBranch, ShieldCheck } from "lucide-react";
 import type { Work } from "@/lib/content-schema";
 import { cn } from "@/lib/utils";
+import { ProjectPreview } from "@/components/project-preview";
 
 function BankingVisual() {
   return (
@@ -63,32 +65,41 @@ function ScienceVisual() {
 }
 
 function AuthenticProductVisual({ item }: { item: Work }) {
-  if (!item.image) return null;
+  if (!item.preview && !item.image) return null;
   return (
     <div className="relative grid h-full min-h-72 place-items-center overflow-hidden bg-[linear-gradient(135deg,var(--surface),var(--canvas))] p-5 sm:p-9">
       <div className="absolute inset-x-0 top-9 h-px bg-accent/35" aria-hidden />
       <div className="relative aspect-[16/10] w-full overflow-hidden border border-edge-strong bg-canvas shadow-[12px_12px_0_var(--border-subtle)]">
-        <Image
-          src={item.image.src}
-          alt={item.image.alt}
-          fill
-          sizes="(max-width: 1023px) 100vw, 48vw"
-          className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.012]"
-        />
+        {item.preview ? (
+          <ProjectPreview
+            slug={item.id}
+            alt={item.image?.alt ?? item.title}
+            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.012]"
+          />
+        ) : (
+          <Image
+            src={item.image!.src}
+            alt={item.image!.alt}
+            fill
+            sizes="(max-width: 1023px) 100vw, 48vw"
+            className="object-cover object-top transition-transform duration-300 group-hover:scale-[1.012]"
+          />
+        )}
       </div>
     </div>
   );
 }
 
 export function ProjectVisual({ item, className }: { item: Work; className?: string }) {
-  return (
-    <div className={cn("border-edge", className)}>
-      {item.id === "banking-modernization" ? <BankingVisual /> : null}
-      {item.id === "ersilia-ai-tooling" ? <ScienceVisual /> : null}
-      {item.id === "devshark" ? <AuthenticProductVisual item={item} /> : null}
-      {!["banking-modernization", "ersilia-ai-tooling", "devshark"].includes(item.id) && item.image ? (
-        <AuthenticProductVisual item={item} />
-      ) : null}
-    </div>
-  );
+  // A recorded preview, when present, takes over the visual slot; otherwise the
+  // hand-built abstract visuals (banking, science) or a static screenshot stand.
+  let visual: ReactNode = null;
+  if (item.preview || item.image) {
+    visual = <AuthenticProductVisual item={item} />;
+  } else if (item.id === "banking-modernization") {
+    visual = <BankingVisual />;
+  } else if (item.id === "ersilia-ai-tooling") {
+    visual = <ScienceVisual />;
+  }
+  return <div className={cn("border-edge", className)}>{visual}</div>;
 }

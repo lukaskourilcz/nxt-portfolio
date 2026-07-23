@@ -221,6 +221,7 @@
     },
     {
       "id": "ersilia-ai-tooling",
+      "preview": true,
       "slug": "ersilia-ai-tooling",
       "featured": true,
       "group": "professional",
@@ -309,6 +310,7 @@
     },
     {
       "id": "devshark",
+      "preview": true,
       "slug": "devshark",
       "featured": true,
       "group": "product",
@@ -401,6 +403,7 @@
     },
     {
       "id": "personal-dashboard",
+      "preview": true,
       "featured": false,
       "group": "product",
       "title": "Personal Dashboard",
@@ -426,6 +429,7 @@
     },
     {
       "id": "aifirst",
+      "preview": true,
       "featured": false,
       "group": "product",
       "title": "aifirst",
@@ -451,6 +455,7 @@
     },
     {
       "id": "czech-monopoly",
+      "preview": true,
       "featured": false,
       "group": "product",
       "title": "Czech Monopoly",
@@ -476,6 +481,7 @@
     },
     {
       "id": "dont-wanna-know",
+      "preview": true,
       "featured": false,
       "group": "experiment",
       "title": "Don't Wanna Know",
@@ -968,6 +974,7 @@
     "visualEvidence": "Project visual",
     "abstractVisual": "Abstract system view—not a product screenshot",
     "authenticVisual": "Authentic product interface",
+    "authenticSite": "Authentic live website",
     "related": "Related work",
     "contactHeading": "Need someone who can own the boundaries?",
     "contactBody": "I am open to selected product work and future senior engineering opportunities."

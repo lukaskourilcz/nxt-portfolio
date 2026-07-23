@@ -180,6 +180,7 @@
     },
     {
       "id": "ersilia-ai-tooling",
+      "preview": true,
       "slug": "ersilia-ai-tooling",
       "featured": true,
       "group": "professional",
@@ -245,6 +246,7 @@
     },
     {
       "id": "devshark",
+      "preview": true,
       "slug": "devshark",
       "featured": true,
       "group": "product",
@@ -314,6 +316,7 @@
     },
     {
       "id": "personal-dashboard",
+      "preview": true,
       "featured": false,
       "group": "product",
       "title": "Personal Dashboard",
@@ -328,6 +331,7 @@
     },
     {
       "id": "aifirst",
+      "preview": true,
       "featured": false,
       "group": "product",
       "title": "aifirst",
@@ -342,6 +346,7 @@
     },
     {
       "id": "czech-monopoly",
+      "preview": true,
       "featured": false,
       "group": "product",
       "title": "Czech Monopoly",
@@ -356,6 +361,7 @@
     },
     {
       "id": "dont-wanna-know",
+      "preview": true,
       "featured": false,
       "group": "experiment",
       "title": "Don't Wanna Know",
@@ -682,6 +688,7 @@
     "visualEvidence": "Vizuál projektu",
     "abstractVisual": "Abstraktní pohled na systém, nikoli produktový screenshot",
     "authenticVisual": "Autentické rozhraní produktu",
+    "authenticSite": "Autentický živý web",
     "related": "Související práce",
     "contactHeading": "Hledáte někoho, kdo převezme odpovědnost za systémové hranice?",
     "contactBody": "Jsem otevřený vybrané produktové práci a budoucím seniorním vývojářským příležitostem."
