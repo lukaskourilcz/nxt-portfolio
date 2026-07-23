@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { ProjectPreview } from "@/components/project-preview";
 import { Section } from "@/components/section";
 import { SectionHeading } from "@/components/section-heading";
 import { ExternalLink } from "@/components/external-link";
@@ -10,7 +11,15 @@ function ProductRow({ item, content, index }: { item: Work; content: SiteContent
   return (
     <article className="grid gap-5 border-t border-edge py-7 sm:grid-cols-[2rem_7.5rem_1fr_auto] sm:items-start">
       <span aria-hidden className="font-mono text-[10px] text-muted">{String(index + 1).padStart(2, "0")}</span>
-      {item.image ? (
+      {item.preview ? (
+        <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-edge bg-surface">
+          <ProjectPreview
+            slug={item.id}
+            alt={item.image?.alt ?? item.title}
+            className="absolute inset-0 h-full w-full object-cover object-top"
+          />
+        </div>
+      ) : item.image ? (
         <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-edge bg-surface">
           <Image src={item.image.src} alt={item.image.alt} fill sizes="120px" className="object-cover object-top" />
         </div>

@@ -164,7 +164,13 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
           <ProjectVisual item={work} />
           <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-edge px-4 py-3 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
             <span>{content.caseStudyLabels.visualEvidence}</span>
-            <span>{work.id === "devshark" ? content.caseStudyLabels.authenticVisual : content.caseStudyLabels.abstractVisual}</span>
+            <span>
+              {work.id === "devshark"
+                ? content.caseStudyLabels.authenticVisual
+                : work.id === "ersilia-ai-tooling"
+                  ? content.caseStudyLabels.authenticSite
+                  : content.caseStudyLabels.abstractVisual}
+            </span>
           </figcaption>
         </figure>
 
