@@ -2,20 +2,6 @@
 
 Pricing checked on 22 July 2026. Vendor prices and included quotas can change, so verify the linked pricing pages before making a plan or billing decision. Currency conversions, VAT, the domain renewal, and any paid GitHub account are excluded because those depend on the actual accounts.
 
-## Current production architecture
-
-| Layer | Current implementation | Cost driver |
-| --- | --- | --- |
-| Hosting and CDN | Vercel deployment from `main` | Plan, requests, data transfer, image optimization, and function use |
-| Application | Next.js 15 static locale and case-study routes | Mostly build time and CDN delivery |
-| Content | English and Czech JSON committed to Git | No database or CMS charge |
-| Images | Local assets served through `next/image` | Image transformations plus cache reads and writes |
-| Analytics | Optional consent-gated PostHog EU project | Product analytics events only when configured and accepted |
-| CI | Two GitHub Actions jobs for validation and browser testing in a public repository | Cache storage, artifacts, or non-standard runners; standard hosted-runner minutes are free while public |
-| Domain | `lukaskouril.dev` | Annual registrar renewal, amount depends on the registrar |
-
-There is currently no production database, object-storage account, remote CMS, authentication provider, email service, queue, cron service, or public editor backend.
-
 ## Current monthly cost
 
 The exact bill cannot be read from the repository, but the architecture supports two realistic baselines.
